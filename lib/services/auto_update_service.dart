@@ -1,4 +1,4 @@
-import 'dart:async';
+﻿import 'dart:async';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:workmanager/workmanager.dart' as wm;
@@ -82,3 +82,9 @@ class AutoUpdateService {
     bg.BackgroundFetch.finish(taskId);
   }
 }
+
+
+
+
+
+

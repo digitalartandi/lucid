@@ -1,4 +1,4 @@
-class QuizQuestion {
+﻿class QuizQuestion {
   final String id;
   final String text;
   final List<String> options;
@@ -22,3 +22,9 @@ class Quiz {
     questions: (j['questions'] as List).map((e)=> QuizQuestion.fromJson(e)).toList(),
   );
 }
+
+
+
+
+
+

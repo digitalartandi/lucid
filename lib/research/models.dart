@@ -1,4 +1,4 @@
-class StudyArm {
+﻿class StudyArm {
   final String id;
   final String name;
   final String description;
@@ -34,3 +34,9 @@ class Study {
     schedule: (j['schedule'] as List).map((x)=> Assignment.fromJson(x)).toList(),
   );
 }
+
+
+
+
+
+

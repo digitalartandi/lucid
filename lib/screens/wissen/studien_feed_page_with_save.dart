@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+﻿import 'package:flutter/cupertino.dart';
 import '../../apple_ui/widgets/large_nav_scaffold.dart';
 import '../../apple_ui/widgets/section_list.dart';
 import '../../research_feed/repo.dart';
@@ -44,7 +44,7 @@ class _StudienFeedPageState extends State<StudienFeedPage> {
       source: (it['source'] ?? 'crossref') as String,
     );
     await ReadingListRepo.addOrUpdate(item);
-    await A11y.announce('Zur Leseliste hinzugefügt');
+    await A11y.announce('Zur Leseliste hinzugefÃ¼gt');
     if (mounted) setState((){});
   }
 
@@ -62,14 +62,14 @@ class _StudienFeedPageState extends State<StudienFeedPage> {
           ));
           setState((){});
         }),
-        RowItem(title: const Text('Aktualisieren'), subtitle: Text(loading? 'Lädt ...':'Jetzt suchen'), onTap: _refresh),
+        RowItem(title: const Text('Aktualisieren'), subtitle: Text(loading? 'LÃ¤dt ...':'Jetzt suchen'), onTap: _refresh),
       ]),
       const StudienFeedSettings(),
       Section(header: 'Ergebnisse', children: [
         for (final it in items.take(30))
           RowItem(
             title: Text(it['title'] ?? ''),
-            subtitle: Text([it['venue'] ?? '', it['date'] ?? ''].where((s)=> (s as String).isNotEmpty).join(' • ')),
+            subtitle: Text([it['venue'] ?? '', it['date'] ?? ''].where((s)=> (s as String).isNotEmpty).join(' â€¢ ')),
             trailing: Row(mainAxisSize: MainAxisSize.min, children: [
               CupertinoButton(padding: EdgeInsets.zero, onPressed: () async {
                 final url = Uri.parse((it['url'] ?? '') as String);
@@ -83,3 +83,9 @@ class _StudienFeedPageState extends State<StudienFeedPage> {
     ]));
   }
 }
+
+
+
+
+
+

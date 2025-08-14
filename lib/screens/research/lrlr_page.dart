@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+﻿import 'package:flutter/cupertino.dart';
 import '../../apple_ui/widgets/large_nav_scaffold.dart';
 import '../../apple_ui/widgets/section_list.dart';
 import '../../research/markers.dart';
@@ -27,13 +27,13 @@ class _LrLrState extends State<LrLrPage> {
       Section(header: 'Marker', children: [
         RowItem(title: const Text('LRLR markieren'), subtitle: const Text('Zeitstempel + Label'),
           onTap: () async { await Markers.log('LRLR'); await _refresh(); }),
-        RowItem(title: const Text('Custom‑Marker'), subtitle: const Text('„Klarheit 4/5“'),
+        RowItem(title: const Text('Customâ€‘Marker'), subtitle: const Text('â€žKlarheit 4/5â€œ'),
           onTap: () async { await Markers.log('clarity', meta: {'score': 4}); await _refresh(); }),
       ]),
-      Section(header: 'Chirp‑Cues (optional)', children: [
-        RowItem(title: const Text('Chirp – Sanft'), subtitle: const Text('CueProfiles.soft'),
+      Section(header: 'Chirpâ€‘Cues (optional)', children: [
+        RowItem(title: const Text('Chirp â€“ Sanft'), subtitle: const Text('CueProfiles.soft'),
           onTap: () async { await CueProfiles.play(CueProfiles.soft); }),
-        RowItem(title: const Text('Chirp – Federleicht'), subtitle: const Text('Sehr leise'),
+        RowItem(title: const Text('Chirp â€“ Federleicht'), subtitle: const Text('Sehr leise'),
           onTap: () async { await CueProfiles.play(CueProfiles.feather); }),
       ]),
       Section(header: 'Letzte Marker', children: [
@@ -42,3 +42,9 @@ class _LrLrState extends State<LrLrPage> {
     ]));
   }
 }
+
+
+
+
+
+

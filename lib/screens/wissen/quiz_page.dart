@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+﻿import 'package:flutter/cupertino.dart';
 import '../../apple_ui/widgets/large_nav_scaffold.dart';
 import '../../apple_ui/widgets/section_list.dart';
 import '../../quiz/quiz_repo.dart';
@@ -70,8 +70,8 @@ class _QuizPageState extends State<QuizPage> {
           ),
         if (submitted)
           Padding(padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4), child: Text(
-            (selected == q.correctIndex ? 'Richtig!' : 'Richtig wäre: ${q.options[q.correctIndex]}')
-            + (q.explain!=null? ' – ${q.explain}':''),
+            (selected == q.correctIndex ? 'Richtig!' : 'Richtig wÃ¤re: ${q.options[q.correctIndex]}')
+            + (q.explain!=null? ' â€“ ${q.explain}':''),
             style: TextStyle(color: selected==q.correctIndex ? CupertinoColors.activeGreen : CupertinoColors.destructiveRed),
           )),
         const SizedBox(height: 8),
@@ -79,3 +79,9 @@ class _QuizPageState extends State<QuizPage> {
     );
   }
 }
+
+
+
+
+
+

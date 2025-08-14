@@ -1,4 +1,4 @@
-import 'dart:convert';
+﻿import 'dart:convert';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 
@@ -104,3 +104,9 @@ class ReadingListRepo {
 
   static String makeId(String title, String url) => base64Url.encode(utf8.encode('${title.trim()}|${url.trim()}'));
 }
+
+
+
+
+
+

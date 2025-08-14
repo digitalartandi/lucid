@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+﻿import 'package:flutter/cupertino.dart';
 import '../screens/wissen/wissen_page_anchors.dart';
 import '../screens/wissen/wissen_index_with_progress.dart';
 import '../screens/wissen/knowledge_settings_page.dart';
@@ -54,11 +54,11 @@ class WissenRoutesEx {
       case grundlagen:
         return _deferred('Klartraum – Grundlagen', 'grundlagen', s);
       case techniken:
-        return _deferred('Techniken – Details', 'techniken', s);
+        return _deferred('Techniken & Details', 'techniken', s);
       case neuro:
         return _deferred('Neurobiologie des Schlafs', 'neuro', s);
       case journalGuide:
-        return _deferred('Traumtagebuch – Praxis', 'journal', s);
+        return _deferred('Traumtagebuch & Praxis', 'journal', s);
       case nightmareIrt:
         return _deferred('Albtraumtherapie (IRT)', 'nightmare', s);
       case wearables:
@@ -102,3 +102,11 @@ class WissenRoutesEx {
     );
   }
 }
+
+
+
+
+
+
+
+

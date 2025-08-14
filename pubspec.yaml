@@ -20,6 +20,7 @@ dependencies:
   workmanager: ^0.5.2
   background_fetch: ^1.2.1
   share_plus: ^10.0.2
+  google_fonts: ^6.3.0
 
 dev_dependencies:
   flutter_test:
@@ -29,6 +30,8 @@ dev_dependencies:
 flutter:
   uses-material-design: false
   assets:
+    - assets/brand/hero_bg.webp
+    - assets/wissen/grundlagen_de.md
     - assets/wissen/klartraum_grundlagen_de.md
     - assets/wissen/techniken_de.md
     - assets/wissen/neuro_sleep_de.md

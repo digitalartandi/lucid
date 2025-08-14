@@ -1,20 +1,33 @@
-import 'package:flutter/cupertino.dart';
-import 'research_named_routes.dart' as research;
-import 'wissen_routes_en_quiz_anchors.dart' as wissen;
-import '../screens/wissen/studien_feed_page_with_save.dart';
-import '../screens/wissen/reading_list_page.dart';
+﻿import 'package:flutter/cupertino.dart';
+import '../screens/modules/rc_reminder_page.dart';
+import '../screens/modules/night_lite_page.dart';
+import '../screens/modules/trainer_page.dart';
+import '../screens/modules/cue_tuning_page.dart';
+import '../screens/modules/journal_page.dart';
+import '../screens/help/help_center_page.dart';
+import '../screens/wissen/wissen_index_simple.dart';
+import '../screens/wissen/wissen_article_page.dart';
+
+CupertinoPageRoute _c(Widget w) =>
+  CupertinoPageRoute(builder: (_) => w);
 
 Route<dynamic> onGenerateRoute(RouteSettings s) {
-  final name = s.name ?? '';
-  if (name.startsWith('/research')) {
-    return research.onGenerateResearch(s);
+  switch (s.name) {
+    case '/rc':         return _c(const RcReminderPage());
+    case '/nightlite':  return _c(const NightLitePage());
+    case '/trainer':    return _c(const TrainerPage());
+    case '/cuetuning':  return _c(const CueTuningPage());
+    case '/journal':    return _c(const JournalPage());
+    case '/help':       return _c(const HelpCenterPage());
+    case '/wissen':     return _c(const WissenIndexSimple());
+    case '/wissen/article':
+      return _c(WissenArticlePage(assetPath: s.arguments as String));
+    default:
+      return _c(CupertinoPageScaffold(
+        navigationBar: const CupertinoNavigationBar(middle: Text('Seite')),
+        child: Center(child: Text('Unbekannte Route: ${s.name}')),
+      ));
   }
-  if (name.startsWith('/wissen')) {
-    // special-cases for feed and reading list
-    if (name == '/wissen/feed') return CupertinoPageRoute(builder: (_) => const StudienFeedPage(), settings: s);
-    if (name == '/wissen/reading_list') return CupertinoPageRoute(builder: (_) => const ReadingListPage(), settings: s);
-    return wissen.WissenRoutesEx.onGenerate(s);
-  }
-  // Unknown
-  return CupertinoPageRoute(builder: (_) => const CupertinoPageScaffold(child: Center(child: Text('Unknown route'))), settings: s);
 }
+
+

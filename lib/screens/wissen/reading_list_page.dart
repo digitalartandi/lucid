@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+﻿import 'package:flutter/cupertino.dart';
 import '../../apple_ui/widgets/large_nav_scaffold.dart';
 import '../../apple_ui/widgets/section_list.dart';
 import '../../research_feed/reading_list.dart';
@@ -64,7 +64,7 @@ class _ReadingListPageState extends State<ReadingListPage> {
         RowItem(title: const Text('Suchen'), subtitle: Text(query.isEmpty? '': query), onTap: () async {
           final ctrl = TextEditingController(text: query);
           await showCupertinoDialog(context: context, builder: (ctx)=> CupertinoAlertDialog(
-            title: const Text('Suche'), content: CupertinoTextField(controller: ctrl, placeholder: 'Titel, Journal …'),
+            title: const Text('Suche'), content: CupertinoTextField(controller: ctrl, placeholder: 'Titel, Journal â€¦'),
             actions: [
               CupertinoDialogAction(onPressed: ()=> Navigator.pop(ctx), child: const Text('Abbrechen')),
               CupertinoDialogAction(isDefaultAction: true, onPressed: (){ setState(()=> query = ctrl.text.trim()); Navigator.pop(ctx); }, child: const Text('OK')),
@@ -74,11 +74,11 @@ class _ReadingListPageState extends State<ReadingListPage> {
         RowItem(title: const Text('Export JSON'), subtitle: const Text('Teilen/Speichern'), onTap: _exportJson),
         RowItem(title: const Text('Export CSV'), subtitle: const Text('Teilen/Speichern'), onTap: _exportCsv),
       ]),
-      Section(header: 'Einträge', children: [
+      Section(header: 'EintrÃ¤ge', children: [
         for (final it in filtered.reversed)
           RowItem(
             title: Text(it.title),
-            subtitle: Text([it.venue, it.date].where((s)=> s.isNotEmpty).join(' • ')),
+            subtitle: Text([it.venue, it.date].where((s)=> s.isNotEmpty).join(' â€¢ ')),
             trailing: Row(mainAxisSize: MainAxisSize.min, children: [
               CupertinoButton(padding: EdgeInsets.zero, onPressed: () async {
                 final url = Uri.parse(it.url);
@@ -94,3 +94,9 @@ class _ReadingListPageState extends State<ReadingListPage> {
     ]));
   }
 }
+
+
+
+
+
+

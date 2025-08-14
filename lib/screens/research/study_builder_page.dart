@@ -1,4 +1,4 @@
-import 'dart:math';
+﻿import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import '../../apple_ui/widgets/large_nav_scaffold.dart';
 import '../../apple_ui/widgets/section_list.dart';
@@ -12,7 +12,7 @@ class StudyBuilderPage extends StatefulWidget {
 }
 
 class _StudyBuilderPageState extends State<StudyBuilderPage> {
-  final titleCtrl = TextEditingController(text: 'N‑of‑1 – Zwei Arme');
+  final titleCtrl = TextEditingController(text: 'Nâ€‘ofâ€‘1 â€“ Zwei Arme');
   final armA = TextEditingController(text: 'A: Cue sanft');
   final armB = TextEditingController(text: 'B: kein Cue');
   int days = 14;
@@ -49,7 +49,7 @@ class _StudyBuilderPageState extends State<StudyBuilderPage> {
 
   @override
   Widget build(BuildContext context) {
-    return LargeNavScaffold(title: 'Studien‑Builder', child: Column(children: [
+    return LargeNavScaffold(title: 'Studienâ€‘Builder', child: Column(children: [
       Section(children: [
         RowItem(title: const Text('Titel'), subtitle: const Text('Name der Studie'), onTap: () async {
           await showCupertinoDialog(context: context, builder: (ctx)=> CupertinoAlertDialog(
@@ -96,3 +96,9 @@ if (!mounted) return;
     ]));
   }
 }
+
+
+
+
+
+

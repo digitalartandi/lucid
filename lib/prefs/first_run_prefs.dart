@@ -1,4 +1,4 @@
-import 'package:shared_preferences/shared_preferences.dart';
+﻿import 'package:shared_preferences/shared_preferences.dart';
 
 class FirstRunPrefs {
   static const _kWissenCoach = 'firstRun.wissenCoachSeen';
@@ -11,3 +11,9 @@ class FirstRunPrefs {
     await p.setBool(_kWissenCoach, v);
   }
 }
+
+
+
+
+
+

@@ -1,4 +1,4 @@
-class CueProfiles {
+﻿class CueProfiles {
   static const soft = 'soft';
   static const feather = 'feather';
 
@@ -7,3 +7,10 @@ class CueProfiles {
     // Für jetzt: keine Aktion nötig.
   }
 }
+
+
+
+
+
+
+

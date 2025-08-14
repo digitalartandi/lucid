@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+﻿import 'package:flutter/cupertino.dart';
 
 class LargeNavScaffold extends StatelessWidget {
   final String title;
@@ -18,3 +18,9 @@ class LargeNavScaffold extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+

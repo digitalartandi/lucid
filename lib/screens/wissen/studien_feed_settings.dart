@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+﻿import 'package:flutter/cupertino.dart';
 import '../../apple_ui/widgets/section_list.dart';
 import '../../prefs/app_prefs_auto.dart';
 import '../../services/auto_update_service.dart';
@@ -41,7 +41,7 @@ class _StudienFeedSettingsState extends State<StudienFeedSettings> {
   @override
   Widget build(BuildContext context) {
     return Column(children: [
-      Section(header: 'Auto‑Update', children: [
+      Section(header: 'Autoâ€‘Update', children: [
         RowItem(title: const Text('Aktiviert'), subtitle: Text(enabled ? 'ein' : 'aus'),
           trailing: CupertinoSwitch(value: enabled, onChanged: (v)=> setState(()=> enabled=v))),
         RowItem(title: const Text('Intervall'), subtitle: Text('$mins min'), trailing: SizedBox(
@@ -66,3 +66,9 @@ class _StudienFeedSettingsState extends State<StudienFeedSettings> {
     ]);
   }
 }
+
+
+
+
+
+

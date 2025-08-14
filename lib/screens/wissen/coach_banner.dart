@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+﻿import 'package:flutter/cupertino.dart';
 import '../../prefs/first_run_prefs.dart';
 
 class CoachBanner extends StatefulWidget {
@@ -40,3 +40,9 @@ class _CoachBannerState extends State<CoachBanner> {
     );
   }
 }
+
+
+
+
+
+

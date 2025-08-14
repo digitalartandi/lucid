@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+﻿import 'package:flutter/cupertino.dart';
 import '../../apple_ui/widgets/large_nav_scaffold.dart';
 import '../../apple_ui/widgets/section_list.dart';
 import '../../knowledge/progress.dart';
@@ -13,9 +13,9 @@ class WissenIndexWithProgress extends StatefulWidget {
 class _WissenIndexWithProgressState extends State<WissenIndexWithProgress> {
   final assets = const {
     'Grundlagen':'assets/wissen/klartraum_grundlagen_de.md',
-    'Techniken – Details':'assets/wissen/techniken_de.md',
+    'Techniken â€“ Details':'assets/wissen/techniken_de.md',
     'Neurobiologie des Schlafs':'assets/wissen/neuro_sleep_de.md',
-    'Traumtagebuch – Praxis':'assets/wissen/journal_guide_de.md',
+    'Traumtagebuch â€“ Praxis':'assets/wissen/journal_guide_de.md',
     'Albtraumtherapie (IRT)':'assets/wissen/nightmare_irt_de.md',
     'Wearables & Erkennung':'assets/wissen/wearables_detection_de.md',
     'Ethik & Risiken':'assets/wissen/ethics_risks_de.md',
@@ -41,7 +41,7 @@ class _WissenIndexWithProgressState extends State<WissenIndexWithProgress> {
     if (p == null) return const SizedBox.shrink();
     final pct = (p.scrollPct * 100).round();
     final visited = p.visitedSlugs.length;
-    final label = visited > 0 ? '$pct% • $visited Abschn.' : '$pct%';
+    final label = visited > 0 ? '$pct% â€¢ $visited Abschn.' : '$pct%';
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(color: const Color(0xFFE7F1FF), borderRadius: BorderRadius.circular(10)),
@@ -52,7 +52,7 @@ class _WissenIndexWithProgressState extends State<WissenIndexWithProgress> {
   @override
   Widget build(BuildContext context) {
     return LargeNavScaffold(title: 'Wissen', child: Column(children: [
-      const CoachBanner(text: 'Tipp: Oben im Artikel findest du eine Inhaltsleiste (TOC). Tippe Überschriften zum Springen. Neben Überschriften kannst du Abschnitte als Lesezeichen speichern.'),
+      const CoachBanner(text: 'Tipp: Oben im Artikel findest du eine Inhaltsleiste (TOC). Tippe Ãœberschriften zum Springen. Neben Ãœberschriften kannst du Abschnitte als Lesezeichen speichern.'),
       Section(header: 'Kategorien', children: [
         for (final entry in assets.entries)
           RowItem(
@@ -61,9 +61,9 @@ class _WissenIndexWithProgressState extends State<WissenIndexWithProgress> {
             onTap: () {
               switch (entry.key) {
                 case 'Grundlagen': Navigator.pushNamed(context, WissenRoutesEx.grundlagen); break;
-                case 'Techniken – Details': Navigator.pushNamed(context, WissenRoutesEx.techniken); break;
+                case 'Techniken â€“ Details': Navigator.pushNamed(context, WissenRoutesEx.techniken); break;
                 case 'Neurobiologie des Schlafs': Navigator.pushNamed(context, WissenRoutesEx.neuro); break;
-                case 'Traumtagebuch – Praxis': Navigator.pushNamed(context, WissenRoutesEx.journalGuide); break;
+                case 'Traumtagebuch â€“ Praxis': Navigator.pushNamed(context, WissenRoutesEx.journalGuide); break;
                 case 'Albtraumtherapie (IRT)': Navigator.pushNamed(context, WissenRoutesEx.nightmareIrt); break;
                 case 'Wearables & Erkennung': Navigator.pushNamed(context, WissenRoutesEx.wearables); break;
                 case 'Ethik & Risiken': Navigator.pushNamed(context, WissenRoutesEx.ethics); break;
@@ -78,9 +78,15 @@ class _WissenIndexWithProgressState extends State<WissenIndexWithProgress> {
       Section(header: 'Werkzeuge', children: [
         RowItem(title: const Text('Studien & News (aktuell)'), onTap: ()=> Navigator.pushNamed(context, '/wissen/feed')),
         RowItem(title: const Text('Leseliste'), onTap: ()=> Navigator.pushNamed(context, '/wissen/reading_list')),
-        RowItem(title: const Text('Quiz – Techniken'), onTap: ()=> Navigator.pushNamed(context, WissenRoutesEx.quizTechniken)),
-        RowItem(title: const Text('Checklist – Pre‑Night'), onTap: ()=> Navigator.pushNamed(context, WissenRoutesEx.checklistPreNight)),
+        RowItem(title: const Text('Quiz â€“ Techniken'), onTap: ()=> Navigator.pushNamed(context, WissenRoutesEx.quizTechniken)),
+        RowItem(title: const Text('Checklist â€“ Preâ€‘Night'), onTap: ()=> Navigator.pushNamed(context, WissenRoutesEx.checklistPreNight)),
       ]),
     ]));
   }
 }
+
+
+
+
+
+

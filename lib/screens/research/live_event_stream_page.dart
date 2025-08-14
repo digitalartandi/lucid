@@ -1,4 +1,4 @@
-import 'dart:async';
+﻿import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
@@ -43,7 +43,7 @@ class _LiveEventStreamPageState extends State<LiveEventStreamPage> {
 
   @override
   Widget build(BuildContext context) {
-    return LargeNavScaffold(title: 'Live‑Event‑Stream', child: Column(children: [
+    return LargeNavScaffold(title: 'Liveâ€‘Eventâ€‘Stream', child: Column(children: [
       Section(children: [
         RowItem(title: const Text('WebSocket URL'), subtitle: Text(urlCtrl.text),
           onTap: () async {
@@ -57,12 +57,18 @@ class _LiveEventStreamPageState extends State<LiveEventStreamPage> {
             ));
             setState((){});
           }),
-        RowItem(title: const Text('Verbinden'), subtitle: const Text('Startet Live‑Stream'), onTap: _connect),
+        RowItem(title: const Text('Verbinden'), subtitle: const Text('Startet Liveâ€‘Stream'), onTap: _connect),
         RowItem(title: const Text('Trennen'), onTap: _disconnect),
       ]),
-      Section(header: 'Events (neu → oben)', children: [
+      Section(header: 'Events (neu â†’ oben)', children: [
         for (final s in lines.take(30)) RowItem(title: Text(s)),
       ]),
     ]));
   }
 }
+
+
+
+
+
+

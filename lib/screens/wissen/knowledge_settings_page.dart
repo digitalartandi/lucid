@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+﻿import 'package:flutter/cupertino.dart';
 import '../../apple_ui/widgets/large_nav_scaffold.dart';
 import '../../apple_ui/widgets/section_list.dart';
 import '../../prefs/lang_prefs.dart';
@@ -17,7 +17,7 @@ class _KnowledgeSettingsPageState extends State<KnowledgeSettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return LargeNavScaffold(title: 'Wissen – Einstellungen', child: Column(children: [
+    return LargeNavScaffold(title: 'Wissen â€“ Einstellungen', child: Column(children: [
       Section(header: 'Sprache', children: [
         RowItem(title: const Text('Deutsch'), trailing: CupertinoSwitch(value: lang=='de', onChanged: (v){ if(v) _save('de'); })),
         RowItem(title: const Text('English'), trailing: CupertinoSwitch(value: lang=='en', onChanged: (v){ if(v) _save('en'); })),
@@ -25,3 +25,9 @@ class _KnowledgeSettingsPageState extends State<KnowledgeSettingsPage> {
     ]));
   }
 }
+
+
+
+
+
+

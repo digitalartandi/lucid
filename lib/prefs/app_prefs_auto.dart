@@ -1,4 +1,4 @@
-import 'package:shared_preferences/shared_preferences.dart';
+﻿import 'package:shared_preferences/shared_preferences.dart';
 
 class AutoUpdatePrefs {
   static const _kEnabled = 'autoUpdate.enabled';
@@ -32,3 +32,9 @@ class AutoUpdatePrefs {
     return p.getString(_kQuery) ?? 'lucid dreaming OR lucid dream OR targeted memory reactivation dream';
   }
 }
+
+
+
+
+
+
