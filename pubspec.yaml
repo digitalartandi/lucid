@@ -1,0 +1,55 @@
+name: lucid_dreams_aaa
+description: AAA Lucid Dreaming App – Knowledge, Research, Studies Feed, Reading List (on-device), Apple-style UI.
+publish_to: "none"
+version: 0.1.0+1
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  flutter_markdown: ^0.6.18
+  http: ^1.2.1
+  path_provider: ^2.1.3
+  url_launcher: ^6.2.5
+  shared_preferences: ^2.2.2
+  web_socket_channel: ^2.4.0
+  just_audio: ^0.9.39
+  workmanager: ^0.5.2
+  background_fetch: ^1.2.1
+  share_plus: ^10.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+
+flutter:
+  uses-material-design: false
+  assets:
+    - assets/wissen/klartraum_grundlagen_de.md
+    - assets/wissen/techniken_de.md
+    - assets/wissen/neuro_sleep_de.md
+    - assets/wissen/journal_guide_de.md
+    - assets/wissen/nightmare_irt_de.md
+    - assets/wissen/wearables_detection_de.md
+    - assets/wissen/ethics_risks_de.md
+    - assets/wissen/troubleshooting_de.md
+    - assets/wissen/faq_de.md
+    - assets/wissen/glossary_de.md
+    - assets/wissen/citations_de.md
+    - assets/wissen_en/basics_en.md
+    - assets/wissen_en/techniques_en.md
+    - assets/wissen_en/neuro_sleep_en.md
+    - assets/wissen_en/journal_guide_en.md
+    - assets/wissen_en/nightmare_irt_en.md
+    - assets/wissen_en/wearables_detection_en.md
+    - assets/wissen_en/ethics_risks_en.md
+    - assets/wissen_en/troubleshooting_en.md
+    - assets/wissen_en/faq_en.md
+    - assets/wissen_en/glossary_en.md
+    - assets/wissen_en/citations_en.md
+    - assets/quizzes/techniken_de.json
+    - assets/checklists/pre_night_de.json
