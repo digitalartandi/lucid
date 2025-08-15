@@ -1,0 +1,22 @@
+[
+  {
+    "id": "pre_target_window",
+    "title": "REM‑Fenster (späte Nacht) definiert",
+    "hint": "Wecker/Smart Alarm geplant"
+  },
+  {
+    "id": "pre_audio_profile",
+    "title": "Audio‑Profil getestet",
+    "hint": "Kalibrierung im Audio‑Lab geprüft"
+  },
+  {
+    "id": "pre_mild",
+    "title": "MILD‑Satz formuliert",
+    "hint": "1–2 Visualisierungen kurz geübt"
+  },
+  {
+    "id": "pre_journal",
+    "title": "Journal bereitgelegt",
+    "hint": "Notizfeld/Tags vorbereitet"
+  }
+]
