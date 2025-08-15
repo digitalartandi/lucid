@@ -1,16 +1,35 @@
-@"
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Lucid Dreams AAA</title>
-    <base href="/">
-    <meta name="description" content="Lucid Dream Training App">
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lucid Dreams AAA</title>
+
+    <!-- WICHTIG: Dieser Platzhalter wird von --base-href ersetzt -->
+    <base href="$FLUTTER_BASE_HREF">
+
+    <meta name="description" content="Lucid Dream Training App">
     <link rel="manifest" href="manifest.json">
+
+    <script>
+      // Von Flutter benutzt (optional kann hier eine Version stehen)
+      var serviceWorkerVersion = null;
+    </script>
+    <script src="flutter.js" defer></script>
   </head>
   <body>
-    <script src="flutter.js" defer></script>
+    <script>
+      window.addEventListener('load', function () {
+        _flutter.loader.loadEntrypoint({
+          serviceWorker: { serviceWorkerVersion: serviceWorkerVersion },
+          onEntrypointLoaded: function (engineInitializer) {
+            engineInitializer.initializeEngine().then(function (appRunner) {
+              appRunner.runApp();
+            });
+          }
+        });
+      });
+    </script>
   </body>
 </html>
-"@ | Out-File -Encoding UTF8 web\index.html
