@@ -3,35 +3,48 @@ name: Deploy Flutter Web to GitHub Pages
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
 
 permissions:
   contents: write
 
+# verhindert parallele/überholende Builds
+concurrency:
+  group: gh-pages-deploy
+  cancel-in-progress: true
+
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.32.8'   # exakt deine lokale Version
+          flutter-version: '3.32.8'   # deine gepinnte Version
+          channel: 'stable'
 
-      - name: Install dependencies
+      - name: Flutter version
+        run: flutter --version
+
+      - name: Get packages
         run: flutter pub get
 
-      # Wichtig: funktioniert nur, wenn web/index.html den Platzhalter enthält:
-      # <base href="$FLUTTER_BASE_HREF">
-      - name: Build Flutter Web
-        run: flutter build web --release --base-href /lucid/
+      - name: Build web (Base-Href für /lucid/)
+        run: flutter build web --release --base-href /lucid/ --pwa-strategy=none
+
+      - name: SPA 404 fallback + nojekyll
+        run: |
+          cp -f build/web/index.html build/web/404.html
+          touch build/web/.nojekyll
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: build/web
           publish_branch: gh-pages
+          publish_dir: build/web
           force_orphan: true
