@@ -4,13 +4,13 @@ on:
   push:
     branches: [ main ]
 
-concurrency:
-  group: pages-deploy
-  cancel-in-progress: true
+permissions:
+  contents: write
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -18,18 +18,20 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.32.8'   # <- exakt deine Version
+          flutter-version: '3.32.8'   # exakt deine lokale Version
 
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Build Flutter Web (with base href for GitHub Pages)
+      # Wichtig: funktioniert nur, wenn web/index.html den Platzhalter enthält:
+      # <base href="$FLUTTER_BASE_HREF">
+      - name: Build Flutter Web
         run: flutter build web --release --base-href /lucid/
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build/web
+          publish_dir: build/web
           publish_branch: gh-pages
           force_orphan: true

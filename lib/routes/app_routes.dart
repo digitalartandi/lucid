@@ -7,6 +7,7 @@ import '../screens/modules/journal_page.dart';
 import '../screens/help/help_center_page.dart';
 import '../screens/wissen/wissen_index_simple.dart';
 import '../screens/wissen/wissen_article_page.dart';
+import '../screens/onboarding/start_screen.dart';
 
 CupertinoPageRoute _c(Widget w) =>
   CupertinoPageRoute(builder: (_) => w);
@@ -19,6 +20,7 @@ Route<dynamic> onGenerateRoute(RouteSettings s) {
     case '/cuetuning':  return _c(const CueTuningPage());
     case '/journal':    return _c(const JournalPage());
     case '/help':       return _c(const HelpCenterPage());
+    case '/onboarding': return _c(const OnboardingStart());
     case '/wissen':     return _c(const WissenIndexSimple());
     case '/wissen/article':
       return _c(WissenArticlePage(assetPath: s.arguments as String));

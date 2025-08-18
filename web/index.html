@@ -6,29 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Lucid Dreams AAA</title>
 
-    <!-- WICHTIG: Dieser Platzhalter wird von --base-href ersetzt -->
+    <!-- Wird vom CI/Build ersetzt (gh-pages Subpfad) -->
     <base href="$FLUTTER_BASE_HREF">
 
     <meta name="description" content="Lucid Dream Training App">
     <link rel="manifest" href="manifest.json">
-
-    <script>
-      // Von Flutter benutzt (optional kann hier eine Version stehen)
-      var serviceWorkerVersion = null;
-    </script>
-    <script src="flutter.js" defer></script>
   </head>
   <body>
     <script>
-      window.addEventListener('load', function () {
-        _flutter.loader.loadEntrypoint({
-          serviceWorker: { serviceWorkerVersion: serviceWorkerVersion },
-          onEntrypointLoaded: function (engineInitializer) {
-            engineInitializer.initializeEngine().then(function (appRunner) {
-              appRunner.runApp();
-            });
-          }
-        });
+      {{flutter_js}}
+      {{flutter_build_config}}
+
+      // Minimaler, empfohlener Start (kein serviceWorkerVersion mehr nötig)
+      _flutter.loader.load({
+        onEntrypointLoaded: async function (engineInitializer) {
+          const appRunner = await engineInitializer.initializeEngine();
+          await appRunner.runApp();
+        }
       });
     </script>
   </body>
