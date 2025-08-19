@@ -1,5 +1,19 @@
 \# Grundlagen des Klarträumens
 
+# Test
+
+\## Frage A
+
+Antwort A.
+
+
+
+\## Frage B
+
+Antwort B.
+
+
+
 
 
 \## Was ist ein Klartraum (lucid dream)?
@@ -122,9 +136,7 @@ Deine häufigen \*\*Traummuster\*\* (Orte, Personen, Unlogiken). Tagsüber: \*\*
 
 
 
-\*\*Weiterlesen (Auswahl)\*\*  
+\*\*Weiterlesen (Auswahl)\*\*
 
 Dresler et al., \*Curr Biol\* (2012); Stumbrys et al., \*Consciousness \& Cognition\* (2012, Review); Konkoly et al., \*Curr Biol\* (2021).
-
-
 

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter/services.dart' show rootBundle; // ⬅️ für Asset-Diagnose
+import 'package:flutter/services.dart' show rootBundle; // für Asset-Diagnose
 
 import 'routes/app_routes.dart' as app;
 import 'routes/research_named_routes.dart' as research;
@@ -13,7 +13,7 @@ const _bg0 = Color(0xFF0D0F16);
 const _bg1 = Color(0xFF101323);
 const _bg2 = Color(0xFF13172B);
 
-const _violet    = Color(0xFF7A6CFF); // Primary
+const _violet    = Color(0xFF7A6CFF); // Primary (auch: Back-Label etc.)
 const _textMed   = Color(0xFFB8C0E8); // Inactive / Secondary
 const _glassBar  = Color(0x1AFFFFFF); // 10% Weiß für "Glass"-Bar
 const _glassLine = Color(0x33FFFFFF); // 20% Weiß für Hairline
@@ -40,8 +40,8 @@ Future<void> _debugCheckIconAssets() async {
 
 void main() {
   GoogleFonts.config.allowRuntimeFetching = false;
-  WidgetsFlutterBinding.ensureInitialized(); // ⬅️ für rootBundle vor runApp
-  _debugCheckIconAssets();                   // ⬅️ einmalige Diagnoseausgabe
+  WidgetsFlutterBinding.ensureInitialized();
+  _debugCheckIconAssets(); // einmalige Diagnoseausgabe
   runApp(const AppRoot());
 }
 
@@ -50,6 +50,7 @@ class AppRoot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Aus pubspec eingebettete Schrift
     const fam = 'DM Sans';
     const fallback = <String>['SF Pro Text', 'Roboto', 'Arial'];
 
@@ -57,24 +58,25 @@ class AppRoot extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: const CupertinoThemeData(
         brightness: Brightness.dark,
-        primaryColor: _violet,
+        primaryColor: _violet,            // Back-Label, interaktive Akzente
         scaffoldBackgroundColor: _bg1,
         barBackgroundColor: _glassBar,
+        // 👇 Navigationstitel hell & gut lesbar, Action-Text ebenfalls hell
         textTheme: CupertinoTextThemeData(
           textStyle: TextStyle(
             inherit: false, fontFamily: fam, fontFamilyFallback: fallback, fontSize: 15),
           navTitleTextStyle: TextStyle(
             inherit: false, fontFamily: fam, fontFamilyFallback: fallback,
-            fontSize: 17, fontWeight: FontWeight.w600),
+            fontSize: 17, fontWeight: FontWeight.w600, color: Color(0xFFE9EAFF)),
           navLargeTitleTextStyle: TextStyle(
             inherit: false, fontFamily: fam, fontFamilyFallback: fallback,
-            fontSize: 34, fontWeight: FontWeight.w700),
+            fontSize: 34, fontWeight: FontWeight.w700, color: Color(0xFFE9EAFF)),
           tabLabelTextStyle: TextStyle(
             inherit: false, fontFamily: fam, fontFamilyFallback: fallback,
             fontSize: 12, fontWeight: FontWeight.w600),
           actionTextStyle: TextStyle(
             inherit: false, fontFamily: fam, fontFamilyFallback: fallback,
-            fontSize: 17, fontWeight: FontWeight.w600),
+            fontSize: 17, fontWeight: FontWeight.w600, color: Color(0xFFE9EAFF)),
         ),
       ),
       onGenerateRoute: app.onGenerateRoute,
