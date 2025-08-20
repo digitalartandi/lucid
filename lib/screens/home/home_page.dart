@@ -1,16 +1,17 @@
-﻿import '../../models/traumreise_models.dart';
-import '../../services/traumreise_repo.dart';
+﻿import 'dart:convert' show jsonDecode;
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/cupertino.dart';
+import 'package:video_player/video_player.dart';
 
 import '../../design/brand_appbar.dart';
+
 // Journal
 import '../../services/journal_repo.dart';
 import '../../models/journal_models.dart';
 
-// Media/Manifest
-import 'dart:convert' show jsonDecode;
-import 'package:flutter/services.dart' show rootBundle;
-import 'package:video_player/video_player.dart';
+// Traumreisen
+import '../../models/traumreise_models.dart';
+import '../../services/traumreise_repo.dart';
 
 // ---------- Farben laut Briefing ----------
 const _bgDark = Color(0xFF080B23);
@@ -24,16 +25,16 @@ const _violet2_2 = Color(0xFF7149CD);
 const _pinkA = Color(0xFFED68BE);
 const _pinkB = Color(0xFFEE2B71);
 
-const _cyan  = Color(0xFF52CAEB);
+const _cyan = Color(0xFF52CAEB);
 const _white = Color(0xFFFFFFFF);
 
 const _surface = Color(0xFF0A0A23); // solide Kartenfläche
-const _stroke  = Color(0x22FFFFFF); // zarte Kontur
+const _stroke = Color(0x22FFFFFF); // zarte Kontur
 
 const _rXL = BorderRadius.all(Radius.circular(20));
-const _rL  = BorderRadius.all(Radius.circular(16));
+const _rL = BorderRadius.all(Radius.circular(16));
 
-// ---------- Model für Header-Slider ----------
+// ---------- Model für Header-Slider (Fallback) ----------
 class _Promo {
   final String title;
   final String subtitle;
@@ -45,7 +46,7 @@ class _Promo {
 // Beispiel-Slides (Fallback, falls kein Manifest vorhanden)
 const _promos = <_Promo>[
   _Promo(
-    'Night Lite+ 2.0',
+    'Aurora über Bergen',
     'Sanfte REM-Cues & neue Sounds',
     [_violetA, _cyan],
     imageAsset: 'assets/slider/slide1.jpg',
@@ -54,7 +55,7 @@ const _promos = <_Promo>[
   _Promo('Journal Export', 'PDF/Markdown teilen', [_pinkA, _pinkB]),
 ];
 
-/// Startseite: Header-Slider (Bild/Video), Hero, Cards, Quick Actions, Recents
+/// Startseite: Header-Slider (Bild/Video, full-bleed), Hero, Cards, Quick Actions, Traumreisen, Recents
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -66,21 +67,26 @@ class HomePage extends StatelessWidget {
       child: SafeArea(
         top: false,
         child: ListView(
-          padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
+          // Slider etwas weiter nach unten, randlos (keine seitlichen Insets)
+          padding: const EdgeInsets.only(top: 24, bottom: 24),
           children: const [
-            _PromoSlider(banners: _promos), // ⬅️ Header-Slider (3:2)
-            SizedBox(height: 14),
-            _HeroScore(),
+            // RANDLOSER HEADER-SLIDER
+            _PromoSlider(banners: _promos),
+
+            SizedBox(height: 18),
+
+            // Ab hier wieder mit 16 px Seitenabstand
+            Padding(padding: EdgeInsets.symmetric(horizontal: 16), child: _HeroScore()),
             SizedBox(height: 16),
-            _HorizontalCards(),
+            Padding(padding: EdgeInsets.symmetric(horizontal: 16), child: _HorizontalCards()),
             SizedBox(height: 16),
-            _QuickGrid(),
+            Padding(padding: EdgeInsets.symmetric(horizontal: 16), child: _QuickGrid()),
             SizedBox(height: 16),
-            _PromoBanner(),
+            Padding(padding: EdgeInsets.symmetric(horizontal: 16), child: _PromoBanner()),
             SizedBox(height: 20),
-	    const _TraumreisenHomeSection(),
-	    SizedBox(height: 20),
-            _RecentSection(),
+            Padding(padding: EdgeInsets.symmetric(horizontal: 16), child: _TraumreisenHomeSection()),
+            SizedBox(height: 20),
+            Padding(padding: EdgeInsets.symmetric(horizontal: 16), child: _RecentSection()),
             SizedBox(height: 40),
           ],
         ),
@@ -90,15 +96,15 @@ class HomePage extends StatelessWidget {
 }
 
 // ------------------------------------------------------
-//  Header Slider (3:2) – lädt Bilder & Videos aus Manifest
+//  Header Slider (3:2) – lädt Bilder & Videos aus Manifest, full-bleed
 // ------------------------------------------------------
 
 class _PromoMedia {
   final String title;
   final String subtitle;
-  final String asset;          // Bild- oder Video-Assetpfad
+  final String asset; // Bild- oder Video-Assetpfad
   final bool isVideo;
-  final List<Color>? grad;     // Fallback-Gradient wenn kein Asset
+  final List<Color>? grad; // Fallback-Gradient, wenn kein Asset
   const _PromoMedia({
     required this.title,
     required this.subtitle,
@@ -124,7 +130,7 @@ class _PromoSliderState extends State<_PromoSlider> {
   @override
   void initState() {
     super.initState();
-    _ctrl = PageController(viewportFraction: .90);
+    _ctrl = PageController(); // volle Breite (viewportFraction = 1.0)
     _loadManifestOrFallback();
   }
 
@@ -151,25 +157,27 @@ class _PromoSliderState extends State<_PromoSlider> {
 
       if (!mounted) return;
       setState(() => _items = items);
+
       // Bilder vorladen (Videos nicht nötig)
       for (final it in items.where((e) => !e.isVideo && e.asset.isNotEmpty)) {
-  try {
-    // ignore: use_build_context_synchronously
-    await precacheImage(AssetImage(it.asset), context);
-  } catch (_) {
-    // still ignorieren – Slide lädt später normal
-  }
-}
-
+        try {
+          // ignore: use_build_context_synchronously
+          await precacheImage(AssetImage(it.asset), context);
+        } catch (_) {
+          // still: Falls ein Asset fehlt, nicht crashen.
+        }
+      }
     } catch (_) {
       // Fallback: Code-Promos nutzen
-      final fb = widget.banners.map((p) => _PromoMedia(
-        title: p.title,
-        subtitle: p.subtitle,
-        asset: p.imageAsset ?? '',
-        isVideo: false,
-        grad: p.grad,
-      )).toList();
+      final fb = widget.banners
+          .map((p) => _PromoMedia(
+                title: p.title,
+                subtitle: p.subtitle,
+                asset: p.imageAsset ?? '',
+                isVideo: false,
+                grad: p.grad,
+              ))
+          .toList();
       if (!mounted) return;
       setState(() => _items = fb);
     }
@@ -179,7 +187,7 @@ class _PromoSliderState extends State<_PromoSlider> {
   Widget build(BuildContext context) {
     final items = _items;
     if (items.isEmpty) {
-      return const SizedBox(height: 200, child: Center(child: CupertinoActivityIndicator()));
+      return const SizedBox(height: 220, child: Center(child: CupertinoActivityIndicator()));
     }
 
     return Column(
@@ -192,56 +200,54 @@ class _PromoSliderState extends State<_PromoSlider> {
             itemCount: items.length,
             itemBuilder: (ctx, i) {
               final p = items[i];
-              return Padding(
-                padding: const EdgeInsets.only(right: 10),
-                child: _SolidCard(
-                  radius: _rXL,
-                  color: _surface,
-                  child: ClipRRect(
-                    borderRadius: _rXL,
-                    child: Stack(
-                      fit: StackFit.expand,
+              return Stack(
+                fit: StackFit.expand,
+                children: [
+                  // Medienhintergrund randlos
+                  if (p.isVideo)
+                    _VideoCard(asset: p.asset)
+                  else if (p.asset.isNotEmpty)
+                    Image.asset(p.asset, fit: BoxFit.cover)
+                  else
+                    DecoratedBox(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: p.grad ?? [_violetA, _cyan],
+                        ),
+                      ),
+                    ),
+
+                  // dunkler Fade unten für Lesbarkeit
+                  const _BottomFade(),
+
+                  // Text-Overlay
+                  Positioned(
+                    left: 16,
+                    right: 16,
+                    bottom: 16,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // 1) Media-Hintergrund
-                        if (p.isVideo)
-                          _VideoCard(asset: p.asset)
-                        else if (p.asset.isNotEmpty)
-                          Image.asset(p.asset, fit: BoxFit.cover)
-                        else
-                          DecoratedBox(
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                                colors: p.grad ?? [_violetA, _cyan],
-                              ),
-                            ),
-                          ),
-
-                        // 2) dunkler Fade unten für Lesbarkeit
-                        const _BottomFade(),
-
-                        // 3) Beschriftung
-                        Positioned(
-                          left: 16, right: 16, bottom: 16,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(p.title,
-                                  maxLines: 1, overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(
-                                    color: _white, fontSize: 18, fontWeight: FontWeight.w800)),
-                              const SizedBox(height: 4),
-                              Text(p.subtitle,
-                                  maxLines: 2, overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(color: _white)),
-                            ],
-                          ),
+                        Text(
+                          p.title,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                              color: _white, fontSize: 18, fontWeight: FontWeight.w800),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          p.subtitle,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(color: _white),
                         ),
                       ],
                     ),
                   ),
-                ),
+                ],
               );
             },
           ),
@@ -254,9 +260,13 @@ class _PromoSliderState extends State<_PromoSlider> {
             return GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTap: () => _ctrl.animateToPage(
-                i, duration: const Duration(milliseconds: 260), curve: Curves.easeOut),
+                i,
+                duration: const Duration(milliseconds: 260),
+                curve: Curves.easeOut,
+              ),
               child: Container(
-                width: 24, height: 24,
+                width: 24,
+                height: 24,
                 alignment: Alignment.center,
                 child: Container(
                   width: active ? 10 : 8,
@@ -282,7 +292,8 @@ class _BottomFade extends StatelessWidget {
     return const DecoratedBox(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          begin: Alignment.bottomCenter, end: Alignment.topCenter,
+          begin: Alignment.bottomCenter,
+          end: Alignment.topCenter,
           colors: [Color(0xAA000000), Color(0x00000000)],
           stops: [0.0, 0.5],
         ),
@@ -466,7 +477,7 @@ class _GradientCard extends StatelessWidget {
             children: [
               Text(title,
                   style: const TextStyle(
-                    color: _white, fontSize: 18, fontWeight: FontWeight.w800)),
+                      color: _white, fontSize: 18, fontWeight: FontWeight.w800)),
               const SizedBox(height: 4),
               Text(subtitle, style: const TextStyle(color: _white)),
             ],
@@ -488,13 +499,13 @@ class _QuickGrid extends StatelessWidget {
     return Column(
       children: const [
         _QuickRow(
-          left: _QuickAction(icon: CupertinoIcons.bell,       label: 'Trainer',     route: '/trainer'),
-          right:_QuickAction(icon: CupertinoIcons.music_note, label: 'Cue Tuning',  route: '/cuetuning'),
+          left: _QuickAction(icon: CupertinoIcons.bell, label: 'Trainer', route: '/trainer'),
+          right: _QuickAction(icon: CupertinoIcons.music_note, label: 'Cue Tuning', route: '/cuetuning'),
         ),
         SizedBox(height: 12),
         _QuickRow(
-          left: _QuickAction(icon: CupertinoIcons.book,       label: 'Wissen',      route: '/wissen'),
-          right:_QuickAction(icon: CupertinoIcons.chart_bar,  label: 'Fortschritt', route: '/telemetry'),
+          left: _QuickAction(icon: CupertinoIcons.book, label: 'Wissen', route: '/wissen'),
+          right: _QuickAction(icon: CupertinoIcons.chart_bar, label: 'Fortschritt', route: '/telemetry'),
         ),
       ],
     );
@@ -649,18 +660,17 @@ class _RecentSectionState extends State<_RecentSection> {
         const Text('Zuletzt',
             style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700, color: _white)),
         const SizedBox(height: 8),
-
         if (_recent.isEmpty)
           const _Recent(title: 'Journal – keine Einträge', subtitle: 'Noch keine Notizen')
         else
-          ..._recent.map((it) => _Recent(
-                title: 'Journal – ${it.title.isEmpty ? 'Ohne Titel' : it.title}',
-                subtitle: _friendlyDate(it.date),
-                onTap: () => Navigator.of(context).pushNamed('/journal/edit', arguments: it.id),
-              )),
-
-        // Beispiele/Events behalten:
-        const _Recent(title: 'RC-Reminder aktiviert',      subtitle: 'Gestern, 19:42'),
+          ..._recent.map(
+            (it) => _Recent(
+              title: 'Journal – ${it.title.isEmpty ? 'Ohne Titel' : it.title}',
+              subtitle: _friendlyDate(it.date),
+              onTap: () => Navigator.of(context).pushNamed('/journal/edit', arguments: it.id),
+            ),
+          ),
+        const _Recent(title: 'RC-Reminder aktiviert', subtitle: 'Gestern, 19:42'),
         const _Recent(title: 'Cue Tuning – sanfte Glocke', subtitle: 'Gestern, 18:11'),
       ],
     );
@@ -670,8 +680,7 @@ class _RecentSectionState extends State<_RecentSection> {
 String _friendlyDate(DateTime dt) {
   final now = DateTime.now();
   final d = dt.toLocal();
-  bool sameDay(DateTime a, DateTime b) =>
-      a.year == b.year && a.month == b.month && a.day == b.day;
+  bool sameDay(DateTime a, DateTime b) => a.year == b.year && a.month == b.month && a.day == b.day;
 
   String two(int x) => x < 10 ? '0$x' : '$x';
   final hm = '${two(d.hour)}:${two(d.minute)}';
@@ -742,7 +751,6 @@ class _SolidCard extends StatelessWidget {
       ),
       child: Padding(padding: padding, child: child),
     );
-
     if (onTap == null) return box;
     return GestureDetector(onTap: onTap, child: box);
   }
@@ -760,10 +768,7 @@ class _AuroraBlob extends StatelessWidget {
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         gradient: RadialGradient(
-          colors: [
-            colors.first.withOpacity(opacity),
-            colors.last.withOpacity(0),
-          ],
+          colors: [colors.first.withOpacity(opacity), colors.last.withOpacity(0)],
           stops: const [0, 1],
         ),
       ),
@@ -771,6 +776,9 @@ class _AuroraBlob extends StatelessWidget {
   }
 }
 
+// ------------------------------------------------------
+//  Traumreisen Home-Section (Spotify-Stil, horizontale Banner)
+// ------------------------------------------------------
 class _TraumreisenHomeSection extends StatefulWidget {
   const _TraumreisenHomeSection();
 
@@ -796,9 +804,6 @@ class _TraumreisenHomeSectionState extends State<_TraumreisenHomeSection> {
 
   @override
   Widget build(BuildContext context) {
-    const _white = Color(0xFFFFFFFF);
-    const _stroke = Color(0x22FFFFFF);
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -816,9 +821,7 @@ class _TraumreisenHomeSectionState extends State<_TraumreisenHomeSection> {
           ],
         ),
         const SizedBox(height: 10),
-
         if (_items.isEmpty)
-          // Fallback-CTA statt „unsichtbar“ – UX: Nutzer sieht das Feature immer
           GestureDetector(
             onTap: () => Navigator.of(context).pushNamed('/traumreisen'),
             child: Container(
@@ -842,8 +845,8 @@ class _TraumreisenHomeSectionState extends State<_TraumreisenHomeSection> {
               itemBuilder: (_, i) {
                 final it = _items[i];
                 return GestureDetector(
-                  onTap: () => Navigator.of(context)
-                      .pushNamed('/traumreisen/play', arguments: it.id),
+                  onTap: () =>
+                      Navigator.of(context).pushNamed('/traumreisen/play', arguments: it.id),
                   child: Container(
                     width: 240,
                     decoration: BoxDecoration(
@@ -861,7 +864,8 @@ class _TraumreisenHomeSectionState extends State<_TraumreisenHomeSection> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
                         gradient: const LinearGradient(
-                          begin: Alignment.bottomCenter, end: Alignment.topCenter,
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter,
                           colors: [Color(0xAA000000), Color(0x00000000)],
                           stops: [0.0, 0.6],
                         ),
@@ -871,7 +875,8 @@ class _TraumreisenHomeSectionState extends State<_TraumreisenHomeSection> {
                       child: Text(it.title,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(color: _white, fontWeight: FontWeight.w700)),
+                          style:
+                              const TextStyle(color: _white, fontWeight: FontWeight.w700)),
                     ),
                   ),
                 );
@@ -882,4 +887,3 @@ class _TraumreisenHomeSectionState extends State<_TraumreisenHomeSection> {
     );
   }
 }
-
