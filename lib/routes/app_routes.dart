@@ -24,11 +24,19 @@ import '../screens/wissen/reading_list_page.dart';     // Leseliste
 // Studien-Feed
 import '../screens/wissen/studien_feed_page_with_save.dart';
 
-// Journal (neu)
+// Journal
 import '../screens/journal/journal_list_page.dart';
 import '../screens/journal/journal_entry_page.dart';
 import '../services/journal_repo.dart';
 import '../models/journal_models.dart';
+
+// Account
+import '../screens/account/account_settings_page.dart';
+
+// Cues
+import '../screens/cues/cue_library_page.dart';   // ⬅️ NEU
+
+
 
 CupertinoPageRoute<T> _c<T>(Widget w) => CupertinoPageRoute<T>(builder: (_) => w);
 
@@ -98,10 +106,17 @@ Route<dynamic> onGenerateRoute(RouteSettings s) {
     case '/reading_list':
       return _c(const ReadingListPage());
 
+    case '/cues':
+      return _c(const CueLibraryPage()); // ⬅️ NEU: Bibliothek öffnen
+
     // --- Studien-Feed (Aliase) ---
     case '/studien':
     case '/wissen/studies':
       return _c(const StudienFeedPage());
+
+    // --- Account ---
+    case '/account':
+      return _c(const AccountSettingsPage());
 
     // --- Fallback: unbekannte Route ---
     default:

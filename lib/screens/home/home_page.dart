@@ -1,9 +1,11 @@
 ﻿import 'dart:convert' show jsonDecode;
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:video_player/video_player.dart';
 
 import '../../design/brand_appbar.dart';
+import '../../design/gradient_theme.dart';
 
 // Journal
 import '../../services/journal_repo.dart';
@@ -200,12 +202,17 @@ class _PromoSliderState extends State<_PromoSlider> {
             itemCount: items.length,
             itemBuilder: (ctx, i) {
               final p = items[i];
+
+              // Fallback-Gradient an aktuellen Stil koppeln
+              final style = GradientTheme.style.value;
+              final g = GradientTheme.of(style);
+
               return Stack(
                 fit: StackFit.expand,
                 children: [
                   // Medienhintergrund randlos
                   if (p.isVideo)
-                    _VideoCard(asset: p.asset)
+                    _VideoCard(asset: p.asset, fallbackColors: p.grad ?? g.primary)
                   else if (p.asset.isNotEmpty)
                     Image.asset(p.asset, fit: BoxFit.cover)
                   else
@@ -214,7 +221,7 @@ class _PromoSliderState extends State<_PromoSlider> {
                         gradient: LinearGradient(
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
-                          colors: p.grad ?? [_violetA, _cyan],
+                          colors: p.grad ?? g.primary,
                         ),
                       ),
                     ),
@@ -304,7 +311,8 @@ class _BottomFade extends StatelessWidget {
 
 class _VideoCard extends StatefulWidget {
   final String asset;
-  const _VideoCard({required this.asset});
+  final List<Color> fallbackColors;
+  const _VideoCard({required this.asset, required this.fallbackColors});
 
   @override
   State<_VideoCard> createState() => _VideoCardState();
@@ -313,24 +321,41 @@ class _VideoCard extends StatefulWidget {
 class _VideoCardState extends State<_VideoCard> {
   late final VideoPlayerController _c;
   bool _ready = false;
+  bool _failed = false;
 
   @override
   void initState() {
     super.initState();
-    _c = VideoPlayerController.asset(widget.asset);
+
+    // Web: networkUrl mit RELATIVER URL (respektiert <base href="/.../">)
+    // Native: asset
+    if (kIsWeb) {
+      _c = VideoPlayerController.networkUrl(Uri.parse(widget.asset));
+    } else {
+      _c = VideoPlayerController.asset(widget.asset);
+    }
     _init();
   }
 
   Future<void> _init() async {
     try {
       await _c.setLooping(true);
-      await _c.setVolume(0); // stumm → Autoplay im Web/iOS erlaubt
+      await _c.setVolume(0); // muted → Autoplay erlaubt
       await _c.initialize();
       await _c.play();
       if (!mounted) return;
-      setState(() => _ready = true);
-    } catch (_) {
-      // Wenn das Video nicht geladen werden kann, bleiben wir still.
+      setState(() {
+        _ready = true;
+        _failed = false;
+      });
+    } catch (e) {
+      // ignore: avoid_print
+      print('Video init failed for ${widget.asset}: $e');
+      if (!mounted) return;
+      setState(() {
+        _ready = false;
+        _failed = true;
+      });
     }
   }
 
@@ -342,7 +367,20 @@ class _VideoCardState extends State<_VideoCard> {
 
   @override
   Widget build(BuildContext context) {
+    if (_failed) {
+      // Gradient-Fallback, damit der Slide nicht leer bleibt
+      return DecoratedBox(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: widget.fallbackColors,
+          ),
+        ),
+      );
+    }
     if (!_ready) return const SizedBox.shrink();
+
     return FittedBox(
       fit: BoxFit.cover,
       clipBehavior: Clip.hardEdge,
@@ -356,40 +394,46 @@ class _VideoCardState extends State<_VideoCard> {
 }
 
 // ------------------------------------------------------
-//  Hero („8 Sessions“)
+//  Hero („8 Sessions“)  -> dynamischer Verlauf
 // ------------------------------------------------------
 class _HeroScore extends StatelessWidget {
   const _HeroScore();
 
   @override
   Widget build(BuildContext context) {
-    return _SolidCard(
-      padding: const EdgeInsets.fromLTRB(18, 18, 18, 16),
-      radius: _rXL,
-      gradient: const LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: [_violetA, _cyan],
-      ),
-      child: Row(
-        children: const [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Dein Klartraum-Score', style: TextStyle(fontSize: 13, color: _white)),
-                SizedBox(height: 4),
-                Text('8 Sessions',
-                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.w800, color: _white)),
-                SizedBox(height: 6),
-                Text('Diese Woche +2 gegenüber letzter Woche',
-                    style: TextStyle(fontSize: 13, color: _white)),
-              ],
-            ),
+    return ValueListenableBuilder<GradientStyle>(
+      valueListenable: GradientTheme.style,
+      builder: (_, s, __) {
+        final g = GradientTheme.of(s);
+        return _SolidCard(
+          padding: const EdgeInsets.fromLTRB(18, 18, 18, 16),
+          radius: _rXL,
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: g.primary,
           ),
-          _StartButton(),
-        ],
-      ),
+          child: Row(
+            children: const [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Dein Klartraum-Score', style: TextStyle(fontSize: 13, color: _white)),
+                    SizedBox(height: 4),
+                    Text('8 Sessions',
+                        style: TextStyle(fontSize: 28, fontWeight: FontWeight.w800, color: _white)),
+                    SizedBox(height: 6),
+                    Text('Diese Woche +2 gegenüber letzter Woche',
+                        style: TextStyle(fontSize: 13, color: _white)),
+                  ],
+                ),
+              ),
+              _StartButton(),
+            ],
+          ),
+        );
+      },
     );
   }
 }
@@ -409,38 +453,44 @@ class _StartButton extends StatelessWidget {
 }
 
 // ------------------------------------------------------
-//  Horizontale Gradient-Cards
+//  Horizontale Gradient-Cards  -> dynamische Verläufe
 // ------------------------------------------------------
 class _HorizontalCards extends StatelessWidget {
   const _HorizontalCards();
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 140,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: const [
-          _GradientCard(
-            title: 'RC-Reminder',
-            subtitle: 'kontextbasiert',
-            colors: [_violetA, _cyan],
-            route: '/rc',
+    return ValueListenableBuilder<GradientStyle>(
+      valueListenable: GradientTheme.style,
+      builder: (_, s, __) {
+        final g = GradientTheme.of(s);
+        return SizedBox(
+          height: 140,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: [
+              _GradientCard(
+                title: 'RC-Reminder',
+                subtitle: 'kontextbasiert',
+                colors: g.primary,
+                route: '/rc',
+              ),
+              _GradientCard(
+                title: 'Night Lite+',
+                subtitle: 'REM-Cues',
+                colors: g.secondary,
+                route: '/nightlite',
+              ),
+              _GradientCard(
+                title: 'Journal',
+                subtitle: 'schnell notieren',
+                colors: g.tertiary,
+                route: '/journal',
+              ),
+            ],
           ),
-          _GradientCard(
-            title: 'Night Lite+',
-            subtitle: 'REM-Cues',
-            colors: [_violet2_1, _violet2_2],
-            route: '/nightlite',
-          ),
-          _GradientCard(
-            title: 'Journal',
-            subtitle: 'schnell notieren',
-            colors: [_pinkA, _pinkB],
-            route: '/journal',
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
@@ -562,29 +612,35 @@ class _QuickAction extends StatelessWidget {
 }
 
 // ------------------------------------------------------
-//  Promo-Banner
+//  Promo-Banner  -> dynamischer Verlauf
 // ------------------------------------------------------
 class _PromoBanner extends StatelessWidget {
   const _PromoBanner();
 
   @override
   Widget build(BuildContext context) {
-    return _SolidCard(
-      radius: _rXL,
-      gradient: const LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: [_violetA, _pinkA],
-      ),
-      child: Row(
-        children: const [
-          Expanded(
-            child: Text('2-Wochen-Trainer – dein klarer Einstieg.',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: _white)),
+    return ValueListenableBuilder<GradientStyle>(
+      valueListenable: GradientTheme.style,
+      builder: (_, s, __) {
+        final g = GradientTheme.of(s);
+        return _SolidCard(
+          radius: _rXL,
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: g.accent,
           ),
-          _Pill('Neu', CupertinoIcons.sparkles),
-        ],
-      ),
+          child: Row(
+            children: const [
+              Expanded(
+                child: Text('2-Wochen-Trainer – dein klarer Einstieg.',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: _white)),
+              ),
+              _Pill('Neu', CupertinoIcons.sparkles),
+            ],
+          ),
+        );
+      },
     );
   }
 }

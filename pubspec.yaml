@@ -67,6 +67,10 @@ flutter:
     - assets/traumreisen/
     - assets/traumreisen/images/
     - assets/traumreisen/audio/
+    - assets/logo/logo-text.svg
+    - assets/audio/cues/
+    - assets/images/cue_categories/
+
 
 
   # Optional, aber empfohlen: DM Sans lokal einbetten (passt zu allowRuntimeFetching=false)
