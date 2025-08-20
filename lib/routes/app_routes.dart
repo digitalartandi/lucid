@@ -40,6 +40,14 @@ import '../screens/account/account_settings_page.dart';
 // Cues
 import '../screens/cues/cue_library_page.dart';   // ⬅️ NEU
 
+// Meditation
+import '../screens/meditation/meditation_hub_page.dart';
+import '../screens/meditation/meditation_player_page.dart';
+
+// Trainer
+import '../screens/modules/trainer_page.dart';
+
+
 
 
 CupertinoPageRoute<T> _c<T>(Widget w) => CupertinoPageRoute<T>(builder: (_) => w);
@@ -127,6 +135,20 @@ Route<dynamic> onGenerateRoute(RouteSettings s) {
       return _c(const IntroLandingPage());
     case '/intro/stepper':
       return _c(const IntroStepperPage());
+
+// Meditations / Soundscapes
+case '/meditations':
+  return _c(const MeditationHubPage());
+case '/meditations/play': {
+  final id = s.arguments is String ? s.arguments as String : '';
+  if (id.isEmpty) return _c(const _UnknownRouteScreen(name: '/meditations/play (ohne ID)'));
+  return _c(MeditationPlayerPage(id: id));
+}
+
+// Trainer
+case '/trainer':
+  return _c(const TrainerPage());
+
 
 
     // --- Fallback: unbekannte Route ---

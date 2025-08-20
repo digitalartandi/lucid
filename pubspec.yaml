@@ -72,6 +72,9 @@ flutter:
     - assets/audio/cues/
     - assets/images/cue_categories/
     - assets/fonts/DMSans-Light.ttf
+    - assets/meditations/manifest.json
+    - assets/meditations/tracks/
+    - assets/meditations/covers/
 
 
 

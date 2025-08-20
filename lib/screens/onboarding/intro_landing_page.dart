@@ -11,12 +11,12 @@ const _white  = Color(0xFFFFFFFF);
 const _shadow = Color(0x80000000);
 
 // ---------- Feinjustage ----------
-const kTopGapFactor   = 0.10;   // 10% der Bildschirmhöhe als Ziel
+const kTopGapFactor   = 0.06;   // 6% der Bildschirmhöhe als Ziel
 const kTopGapMin      = 50.0;  // nie kleiner als 50 px
-const kTopGapMax      = 150.0;  // nie größer als 150 px
+const kTopGapMax      = 100.0;  // nie größer als 150 px
 
-const kLogoPhoneMin   = 150.0;
-const kLogoPhoneMax   = 200.0;
+const kLogoPhoneMin   = 180.0;
+const kLogoPhoneMax   = 250.0;
 const kLogoTabletMax  = 320.0;
 const kLogoDesktopMax = 360.0;
 
