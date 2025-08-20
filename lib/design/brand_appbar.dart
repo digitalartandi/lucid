@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-const _bgDark = Color(0xFF080B23);
-const _white  = Color(0xFFFFFFFF);
+const _bgDark   = Color(0xFF080B23);
+const _white    = Color(0xFFFFFFFF);
 const _hairline = Color(0x22FFFFFF);
 
 class BrandAppBar extends StatelessWidget implements ObstructingPreferredSizeWidget {
@@ -13,6 +13,7 @@ class BrandAppBar extends StatelessWidget implements ObstructingPreferredSizeWid
   @override
   Size get preferredSize => const Size.fromHeight(44);
 
+  /// Wir wollen die Bar in dunklem Stil vollständig darstellen.
   @override
   bool shouldFullyObstruct(BuildContext context) => true;
 
@@ -21,16 +22,32 @@ class BrandAppBar extends StatelessWidget implements ObstructingPreferredSizeWid
     return CupertinoNavigationBar(
       backgroundColor: _bgDark,
       automaticallyImplyLeading: false,
-      // Wir nutzen 'leading' für linksbündigen Titel (Signet + Textlogo).
+
+      // Links: Signet + Textlogo (linksbuendig)
       leading: const _BrandLeading(),
-      // kein 'middle', sonst würde es zentriert werden.
+
+      // kein middle, damit nichts zentriert wird
       middle: null,
+
+      // Rechts: Account (SVG)
       trailing: CupertinoButton(
         padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
         minSize: 36,
         onPressed: () => Navigator.of(context).pushNamed('/account'),
-        child: const Icon(CupertinoIcons.person_crop_circle, color: _white, size: 24),
+        child: Semantics(
+          label: 'Account & Einstellungen',
+          button: true,
+          child: SvgPicture.asset(
+            'assets/icons/account.svg',
+            width: 22,
+            height: 22,
+            // sorgt für weiße Färbung, auch wenn das SVG currentColor nutzt
+            colorFilter: const ColorFilter.mode(_white, BlendMode.srcIn),
+            theme: const SvgTheme(currentColor: _white),
+          ),
+        ),
       ),
+
       border: const Border(bottom: BorderSide(color: _hairline, width: .5)),
     );
   }
@@ -42,16 +59,40 @@ class _BrandLeading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: const [
         SizedBox(width: 6),
-        _AnimatedSignet(), // kleines Signet mit „Mond“-Pulse
+        _AnimatedSignet(),
         SizedBox(width: 10),
-        _LogoText(),       // weißes Textlogo
+        // Logo-Text flexibel machen, damit es auf schmalen Geräten nicht überläuft
+        Expanded(child: _LogoTextFlexible()),
       ],
     );
   }
 }
 
+/// Flexibles Textlogo: schrumpft notfalls minimal, bleibt links ausgerichtet.
+class _LogoTextFlexible extends StatelessWidget {
+  const _LogoTextFlexible();
+
+  @override
+  Widget build(BuildContext context) {
+    return FittedBox(
+      alignment: Alignment.centerLeft,
+      fit: BoxFit.scaleDown,
+      child: SvgPicture.asset(
+        'assets/logo/logo-text.svg',
+        height: 18, // Proportion für die Nav-Bar
+        colorFilter: const ColorFilter.mode(_white, BlendMode.srcIn),
+        theme: const SvgTheme(currentColor: _white),
+        clipBehavior: Clip.hardEdge,
+        semanticsLabel: 'Lucid',
+      ),
+    );
+  }
+}
+
+/// Der alte _LogoText bleibt für evtl. andere Verwendungen verfügbar.
 class _LogoText extends StatelessWidget {
   const _LogoText();
 
@@ -59,16 +100,16 @@ class _LogoText extends StatelessWidget {
   Widget build(BuildContext context) {
     return SvgPicture.asset(
       'assets/logo/logo-text.svg',
-      height: 18, // fein für die Nav-Bar
+      height: 18,
       colorFilter: const ColorFilter.mode(_white, BlendMode.srcIn),
+      theme: const SvgTheme(currentColor: _white),
       clipBehavior: Clip.hardEdge,
+      semanticsLabel: 'Lucid',
     );
   }
 }
 
-/// Kleiner „Mond-Pulse“ beim Laden.
-/// Hinweis: Da das Signet als eine SVG-Pfadform vorliegt, animieren wir
-/// das ganze Symbol subtil (Scale + Opacity), was dem Mond ein sanftes Aufblitzen gibt.
+/// Kleiner „Mond-Pulse“ beim Laden (Fade + Scale).
 class _AnimatedSignet extends StatefulWidget {
   const _AnimatedSignet();
 
@@ -110,6 +151,8 @@ class _AnimatedSignetState extends State<_AnimatedSignet> with SingleTickerProvi
           'assets/logo/logo-signet.svg',
           height: 22,
           colorFilter: const ColorFilter.mode(_white, BlendMode.srcIn),
+          theme: const SvgTheme(currentColor: _white),
+          semanticsLabel: 'Lucid',
         ),
       ),
     );
