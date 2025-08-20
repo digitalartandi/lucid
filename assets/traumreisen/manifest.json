@@ -47,6 +47,13 @@
       "audio": "assets/traumreisen/audio/Nordlichter-Lappland.mp3"
     },
     {
+      "id": "garten",
+      "title": "Auszeit im Garten",
+      "subtitle": "Auszeit im Garten",
+      "image": "assets/traumreisen/images/garten.jpg",
+      "audio": "assets/traumreisen/audio/Garten-german.mp3"
+    },
+    {
       "id": "zauberwald",
       "title": "Zauberwald",
       "subtitle": "Lichtfunken & Pfade",

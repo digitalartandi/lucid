@@ -1,46 +1,52 @@
-﻿import 'package:flutter/cupertino.dart';
-import '../screens/research/study_builder_page.dart';
-import '../screens/research/lrlr_page.dart';
-import '../screens/research/live_event_stream_page.dart';
-import '../screens/research/exports_page.dart';
+﻿// lib/routes/research_named_routes.dart
+import 'package:flutter/cupertino.dart';
 
-class R {
-  static const studyBuilder = '/research/study_builder';
-  static const lrLR = '/research/lr_lr';
-  static const eventStream = '/research/event_stream';
-  static const exportJson = '/research/export_json';
-  static const exportCsv = '/research/export_csv';
-  static const audioLab = '/audio/lab';
-}
+// ALLES mit Alias importieren, um Namenskonflikte zu vermeiden
+import '../screens/research/study_list_page.dart' as list;
+import '../screens/research/study_builder_page.dart' as builder;
+import '../screens/research/survey_editor_page.dart' as editor;
+import '../screens/research/study_detail_page.dart' as detail;
+import '../screens/research/survey_run_page.dart' as run;
 
-Route<dynamic> onGenerateResearch(RouteSettings settings) {
-  Widget page;
-  switch (settings.name) {
-    case R.studyBuilder: page = const StudyBuilderPage(); break;
-    case R.lrLR: page = const LrLrPage(); break;
-    case R.eventStream: page = const LiveEventStreamPage(); break;
-    case R.exportJson: page = const ExportJsonPage(); break;
-    case R.exportCsv: page = const ExportCsvPage(); break;
-    default: page = _Unknown(name: settings.name ?? ''); break;
+Route<dynamic> onGenerateResearch(RouteSettings s) {
+  switch (s.name) {
+    // Einstieg: Studienliste
+    case '/research':
+      return CupertinoPageRoute(builder: (_) => const list.StudyListPage());
+
+    // Builder (legt Titel/Ziel/Consent/Aufgaben fest)
+    case '/research/study_builder': {
+      final id = s.arguments as String;
+      return CupertinoPageRoute(builder: (_) => builder.StudyBuilderPage(studyId: id));
+    }
+
+    // Survey-Editor für die Studie
+    case '/research/survey_editor': {
+      final id = s.arguments as String;
+      return CupertinoPageRoute(builder: (_) => editor.SurveyEditorPage(studyId: id));
+    }
+
+    // Detailseite mit Tabs (Übersicht/Teilnehmer/Erhebung/Export)
+    case '/research/study_detail': {
+      final id = s.arguments as String;
+      return CupertinoPageRoute(builder: (_) => detail.StudyDetailPage(studyId: id));
+    }
+
+    // Fragebogen ausfüllen
+    case '/research/run_survey': {
+      final args = (s.arguments as Map?) ?? const {};
+      final studyId = args['studyId'] as String;
+      final participantId = args['participantId'] as String?;
+      return CupertinoPageRoute(
+        builder: (_) => run.SurveyRunPage(
+          studyId: studyId,
+          participantId: participantId,
+        ),
+      );
+    }
+
+    // Fallback → Liste
+    default:
+      return CupertinoPageRoute(builder: (_) => const list.StudyListPage());
   }
-  return CupertinoPageRoute(builder: (_) => page, settings: settings);
 }
-
-class _Unknown extends StatelessWidget {
-  final String name;
-  const _Unknown({Key? key, required this.name}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      navigationBar: const CupertinoNavigationBar(middle: Text('Unbekannte Route')),
-      child: Center(child: Text('Keine Seite für: $name')),
-    );
-  }
-}
-
-
-
-
-
-
-

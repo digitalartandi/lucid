@@ -1,104 +1,141 @@
-﻿import 'dart:math';
+﻿// lib/screens/research/study_builder_page.dart
 import 'package:flutter/cupertino.dart';
-import '../../apple_ui/widgets/large_nav_scaffold.dart';
-import '../../apple_ui/widgets/section_list.dart';
-import '../../apple_ui/a11y.dart';
-import '../../research/models.dart';
-import '../../research/storage.dart';
 
 class StudyBuilderPage extends StatefulWidget {
-  const StudyBuilderPage({super.key});
-  @override State<StudyBuilderPage> createState()=> _StudyBuilderPageState();
+  final String studyId;
+  const StudyBuilderPage({super.key, required this.studyId});
+
+  @override
+  State<StudyBuilderPage> createState() => _StudyBuilderPageState();
 }
 
 class _StudyBuilderPageState extends State<StudyBuilderPage> {
-  final titleCtrl = TextEditingController(text: 'Nâ€‘ofâ€‘1 â€“ Zwei Arme');
-  final armA = TextEditingController(text: 'A: Cue sanft');
-  final armB = TextEditingController(text: 'B: kein Cue');
-  int days = 14;
-  List<Assignment> schedule = [];
+  final _titleCtrl = TextEditingController();
+  final _goalCtrl  = TextEditingController();
 
   @override
-  void initState() { super.initState(); _generate(); }
-
-  void _generate() {
-    final rnd = Random();
-    final arms = ['A','B'];
-    schedule = List<Assignment>.generate(days, (i){
-      final arm = arms[rnd.nextInt(arms.length)];
-      return Assignment(dayIndex: i, armId: arm);
-    });
-    setState((){});
-  }
-
-  Future<void> _save() async {
-    final s = Study(
-      id: 'study_01',
-      title: titleCtrl.text.trim(),
-      arms: [StudyArm(id: 'A', name: armA.text.trim()), StudyArm(id: 'B', name: armB.text.trim())],
-      schedule: schedule,
-    );
-    await ResearchStorage.saveStudy(s);
-    if (mounted) {
-      await A11y.announce('Studie gespeichert');
-      showCupertinoDialog(context: context, builder: (_)=> const CupertinoAlertDialog(
-        title: Text('Gespeichert'), content: Text('Studie gespeichert'), actions: [CupertinoDialogAction(child: Text('OK'))],
-      ));
-    }
+  void dispose() {
+    _titleCtrl.dispose();
+    _goalCtrl.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return LargeNavScaffold(title: 'Studienâ€‘Builder', child: Column(children: [
-      Section(children: [
-        RowItem(title: const Text('Titel'), subtitle: const Text('Name der Studie'), onTap: () async {
-          await showCupertinoDialog(context: context, builder: (ctx)=> CupertinoAlertDialog(
-            title: const Text('Titel'),
-            content: CupertinoTextField(controller: titleCtrl, placeholder: 'Titel'),
-            actions: [
-              CupertinoDialogAction(onPressed: ()=> Navigator.pop(ctx), child: const Text('Abbrechen')),
-              CupertinoDialogAction(isDefaultAction: true, onPressed: ()=> Navigator.pop(ctx), child: const Text('OK')),
-            ],
-          ));
-if (!mounted) return;
-          setState((){});
-        }),
-        RowItem(title: const Text('Arm A'), subtitle: Text(armA.text), onTap: () async {
-          await showCupertinoDialog(context: context, builder: (ctx)=> CupertinoAlertDialog(
-            title: const Text('Arm A'),
-            content: CupertinoTextField(controller: armA, placeholder: 'Arm A'),
-            actions: [
-              CupertinoDialogAction(onPressed: ()=> Navigator.pop(ctx), child: const Text('Abbrechen')),
-              CupertinoDialogAction(isDefaultAction: true, onPressed: ()=> Navigator.pop(ctx), child: const Text('OK')),
-            ],
-          ));
-          setState((){});
-        }),
-        RowItem(title: const Text('Arm B'), subtitle: Text(armB.text), onTap: () async {
-          await showCupertinoDialog(context: context, builder: (ctx)=> CupertinoAlertDialog(
-            title: const Text('Arm B'),
-            content: CupertinoTextField(controller: armB, placeholder: 'Arm B'),
-            actions: [
-              CupertinoDialogAction(onPressed: ()=> Navigator.pop(ctx), child: const Text('Abbrechen')),
-              CupertinoDialogAction(isDefaultAction: true, onPressed: ()=> Navigator.pop(ctx), child: const Text('OK')),
-            ],
-          ));
-          setState((){});
-        }),
-        RowItem(title: const Text('Dauer (Tage)'), subtitle: Text('$days'),
-          trailing: SizedBox(width: 220, child: CupertinoSlider(min: 7, max: 30, divisions: 23, value: days.toDouble(), onChanged: (v){ setState(()=> days=v.round()); _generate(); })),
+    return CupertinoPageScaffold(
+      navigationBar: CupertinoNavigationBar(
+        middle: const Text('Studie einrichten'),
+        trailing: CupertinoButton(
+          padding: EdgeInsets.zero,
+          onPressed: () {
+            // Weiter zur Detailseite (du kannst auch Editor wählen)
+            Navigator.of(context).pushNamed(
+              '/research/study_detail',
+              arguments: widget.studyId,
+            );
+          },
+          child: const Text('Weiter'),
         ),
-      ]),
-      Section(header: 'Randomisierte Reihenfolge', children: [
-        for (final a in schedule) RowItem(title: Text('Tag ${a.dayIndex+1}'), subtitle: Text('Arm ${a.armId}')),
-      ]),
-      Padding(padding: const EdgeInsets.all(16), child: CupertinoButton.filled(onPressed: _save, child: const Text('Studie speichern'))),
-    ]));
+      ),
+      child: SafeArea(
+        bottom: false,
+        child: ListView(
+          padding: const EdgeInsets.fromLTRB(16, 12, 16, 32),
+          children: [
+            const Text('Allgemein', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
+            const SizedBox(height: 8),
+            _Field(
+              label: 'Titel',
+              child: CupertinoTextField(
+                controller: _titleCtrl,
+                placeholder: 'z. B. Klartraum-Frequenz (2 Wochen)',
+              ),
+            ),
+            const SizedBox(height: 12),
+            _Field(
+              label: 'Ziel',
+              child: CupertinoTextField(
+                controller: _goalCtrl,
+                placeholder: 'Kurz das Studienziel beschreiben…',
+                maxLines: 3,
+              ),
+            ),
+
+            const SizedBox(height: 24),
+            const Text('Module', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
+            const SizedBox(height: 8),
+            _NavTile(
+              title: 'Fragebogen / Surveys',
+              subtitle: 'Items, Skalen, Zeitpunkte festlegen',
+              onTap: () => Navigator.of(context).pushNamed(
+                '/research/survey_editor',
+                arguments: widget.studyId,
+              ),
+            ),
+            _NavTile(
+              title: 'Teilnehmer & Einladungen',
+              subtitle: 'Links, Codes, Tracking',
+              onTap: () => Navigator.of(context).pushNamed(
+                '/research/study_detail',
+                arguments: widget.studyId,
+              ),
+            ),
+            _NavTile(
+              title: 'Pilot starten',
+              subtitle: 'Testlauf durchführen',
+              onTap: () => Navigator.of(context).pushNamed(
+                '/research/run_survey',
+                arguments: {
+                  'studyId': widget.studyId,
+                  'participantId': null,
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 
+class _Field extends StatelessWidget {
+  final String label;
+  final Widget child;
+  const _Field({required this.label, required this.child});
 
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(label, style: const TextStyle(color: CupertinoColors.inactiveGray)),
+        const SizedBox(height: 6),
+        child,
+      ],
+    );
+  }
+}
 
+class _NavTile extends StatelessWidget {
+  final String title;
+  final String subtitle;
+  final VoidCallback onTap;
+  const _NavTile({required this.title, required this.subtitle, required this.onTap});
 
-
-
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 10),
+      decoration: BoxDecoration(
+        color: const Color(0x1AFFFFFF),
+        borderRadius: BorderRadius.circular(14),
+      ),
+      child: CupertinoListTile.notched(
+        title: Text(title),
+        subtitle: Text(subtitle),
+        trailing: const Icon(CupertinoIcons.chevron_right),
+        onTap: onTap,
+      ),
+    );
+  }
+}

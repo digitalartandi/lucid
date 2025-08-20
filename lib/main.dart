@@ -165,7 +165,7 @@ class RootTabs extends StatelessWidget {
             case 1:
               return const _LucidTabShell(initialRoute: '/wissen', useResearchRoutes: false);
             case 2:
-              return const _LucidTabShell(initialRoute: '/research/study_builder', useResearchRoutes: true);
+              return const _LucidTabShell(initialRoute: '/research', useResearchRoutes: true);
             case 3:
               return const _LucidPageWrap(child: StudienFeedPage());
             default:
