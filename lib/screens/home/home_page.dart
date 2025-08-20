@@ -1,4 +1,6 @@
-﻿import 'package:flutter/cupertino.dart';
+﻿import '../../models/traumreise_models.dart';
+import '../../services/traumreise_repo.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../../design/brand_appbar.dart';
 // Journal
@@ -76,6 +78,8 @@ class HomePage extends StatelessWidget {
             SizedBox(height: 16),
             _PromoBanner(),
             SizedBox(height: 20),
+	    const _TraumreisenHomeSection(),
+	    SizedBox(height: 20),
             _RecentSection(),
             SizedBox(height: 40),
           ],
@@ -149,9 +153,14 @@ class _PromoSliderState extends State<_PromoSlider> {
       setState(() => _items = items);
       // Bilder vorladen (Videos nicht nötig)
       for (final it in items.where((e) => !e.isVideo && e.asset.isNotEmpty)) {
-        // ignore: use_build_context_synchronously
-        precacheImage(AssetImage(it.asset), context);
-      }
+  try {
+    // ignore: use_build_context_synchronously
+    await precacheImage(AssetImage(it.asset), context);
+  } catch (_) {
+    // still ignorieren – Slide lädt später normal
+  }
+}
+
     } catch (_) {
       // Fallback: Code-Promos nutzen
       final fb = widget.banners.map((p) => _PromoMedia(
@@ -761,3 +770,116 @@ class _AuroraBlob extends StatelessWidget {
     );
   }
 }
+
+class _TraumreisenHomeSection extends StatefulWidget {
+  const _TraumreisenHomeSection();
+
+  @override
+  State<_TraumreisenHomeSection> createState() => _TraumreisenHomeSectionState();
+}
+
+class _TraumreisenHomeSectionState extends State<_TraumreisenHomeSection> {
+  final _repo = TraumreiseRepo.instance;
+  List<Traumreise> _items = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  Future<void> _load() async {
+    final list = await _repo.all();
+    if (!mounted) return;
+    setState(() => _items = list);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    const _white = Color(0xFFFFFFFF);
+    const _stroke = Color(0x22FFFFFF);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            const Expanded(
+              child: Text('Traumreisen',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: _white)),
+            ),
+            CupertinoButton(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              onPressed: () => Navigator.of(context).pushNamed('/traumreisen'),
+              child: const Text('Alle', style: TextStyle(color: _white)),
+            ),
+          ],
+        ),
+        const SizedBox(height: 10),
+
+        if (_items.isEmpty)
+          // Fallback-CTA statt „unsichtbar“ – UX: Nutzer sieht das Feature immer
+          GestureDetector(
+            onTap: () => Navigator.of(context).pushNamed('/traumreisen'),
+            child: Container(
+              height: 100,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: _stroke, width: 0.5),
+              ),
+              alignment: Alignment.center,
+              child: const Text('Traumreisen entdecken',
+                  style: TextStyle(color: _white, fontWeight: FontWeight.w700)),
+            ),
+          )
+        else
+          SizedBox(
+            height: 140,
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              itemCount: _items.length,
+              separatorBuilder: (_, __) => const SizedBox(width: 12),
+              itemBuilder: (_, i) {
+                final it = _items[i];
+                return GestureDetector(
+                  onTap: () => Navigator.of(context)
+                      .pushNamed('/traumreisen/play', arguments: it.id),
+                  child: Container(
+                    width: 240,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: _stroke, width: 0.5),
+                      image: DecorationImage(
+                        image: AssetImage(it.imageAsset),
+                        fit: BoxFit.cover,
+                      ),
+                      boxShadow: const [
+                        BoxShadow(color: Color(0x66000000), blurRadius: 16, offset: Offset(0, 8)),
+                      ],
+                    ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        gradient: const LinearGradient(
+                          begin: Alignment.bottomCenter, end: Alignment.topCenter,
+                          colors: [Color(0xAA000000), Color(0x00000000)],
+                          stops: [0.0, 0.6],
+                        ),
+                      ),
+                      padding: const EdgeInsets.fromLTRB(12, 12, 12, 10),
+                      alignment: Alignment.bottomLeft,
+                      child: Text(it.title,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(color: _white, fontWeight: FontWeight.w700)),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+      ],
+    );
+  }
+}
+
