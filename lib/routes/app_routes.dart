@@ -1,5 +1,9 @@
 ﻿import 'package:flutter/cupertino.dart';
 
+// Intro
+import '../screens/onboarding/intro_landing_page.dart';
+import '../screens/onboarding/intro_stepper_page.dart';
+
 // Traumreisen
 import '../screens/traumreisen/traumreisen_hub_page.dart';
 import '../screens/traumreisen/traumreise_player_page.dart';
@@ -117,6 +121,13 @@ Route<dynamic> onGenerateRoute(RouteSettings s) {
     // --- Account ---
     case '/account':
       return _c(const AccountSettingsPage());
+
+   // --- Intro ---
+    case '/intro':
+      return _c(const IntroLandingPage());
+    case '/intro/stepper':
+      return _c(const IntroStepperPage());
+
 
     // --- Fallback: unbekannte Route ---
     default:

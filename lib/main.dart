@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart' show rootBundle; // für Asset-Diagnose
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'routes/app_routes.dart' as app;
 import 'routes/research_named_routes.dart' as research;
@@ -54,9 +55,9 @@ class AppRoot extends StatelessWidget {
     const fam = 'DM Sans';
     const fallback = <String>['SF Pro Text', 'Roboto', 'Arial'];
 
-    return CupertinoApp(
+    return const CupertinoApp(
       debugShowCheckedModeBanner: false,
-      theme: const CupertinoThemeData(
+      theme: CupertinoThemeData(
         brightness: Brightness.dark,
         primaryColor: _violet,            // Back-Label, interaktive Akzente
         scaffoldBackgroundColor: _bg1,
@@ -80,7 +81,49 @@ class AppRoot extends StatelessWidget {
         ),
       ),
       onGenerateRoute: app.onGenerateRoute,
-      home: const RootTabs(),
+      home: _StartupRouter(),          // ⬅️ entscheidet Intro vs. Dashboard
+    );
+  }
+}
+
+/// Entscheidet einmalig: Intro (Landing + Stepper) oder direkt Dashboard.
+/// Intro-Route ist '/intro' (in app_routes registriert).
+class _StartupRouter extends StatefulWidget {
+  const _StartupRouter();
+
+  @override
+  State<_StartupRouter> createState() => _StartupRouterState();
+}
+
+class _StartupRouterState extends State<_StartupRouter> {
+  @override
+  void initState() {
+    super.initState();
+    _decide();
+  }
+
+  Future<void> _decide() async {
+    final prefs = await SharedPreferences.getInstance();
+    final seen = prefs.getBool('onboarded') ?? false;
+
+    if (!mounted) return;
+
+    if (seen) {
+      // Direkt ins Dashboard (Tabs)
+      Navigator.of(context).pushReplacement(
+        CupertinoPageRoute(builder: (_) => const RootTabs()),
+      );
+    } else {
+      // Erstes Mal -> Intro zeigen
+      Navigator.of(context).pushReplacementNamed('/intro');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // Kleiner Splash, bis entschieden wurde
+    return const CupertinoPageScaffold(
+      child: Center(child: CupertinoActivityIndicator()),
     );
   }
 }
