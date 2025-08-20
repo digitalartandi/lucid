@@ -2,129 +2,125 @@
 
 
 
-\## REM vs. NREM – was ist der Unterschied?
+REM vs. NREM – was ist der Unterschied?
 
-\*\*REM\*\*: lebhafte Bilder, schnelle Augenbewegungen, Muskelatonie. \*\*NREM\*\*: Tiefschlaf/Erholung, deklarative Konsolidierung. Klarträume überwiegend \*\*REM\*\*.
+REM: häufig lebhafte, bildhafte Träume bei gleichzeitiger Muskelatonie; NREM (vor allem Tiefschlaf/SWS): stärker erholungsbezogen und wichtig für deklarative Gedächtniskonsolidierung. Klarträume treten überwiegend in REM auf, können aber auch in NREM vorkommen (dann meist weniger bildhaft).
 
 
 
-\## Welche Hirnareale sind bei Klarträumen aktiver?
+Welche Hirnareale sind bei Klarträumen aktiver?
 
-Hinweise auf \*\*präfrontale\*\* und \*\*temporoparietale\*\* Netzwerke sowie \*\*Gamma-Aktivität\*\* in REM-Klarträumen – passend zu Metakognition.
+Hinweise auf (anterior) präfrontale und parietotemporale Netzwerke; Studien zeigen in REM-Klarträumen eine (Re-)Aktivierung von DLPFC/aPFC, Precuneus und Parietalcortex; EEG-Arbeiten berichten teils erhöhte Gamma-Aktivität. Die Befundlage ist begrenzt und teils gemischt.
 
 
 
-\## Wie wirken Schlaf-Cues aufs Gehirn?
+Wie wirken Schlaf-Cues aufs Gehirn?
 
-Leise Reize können \*\*Gedächtnisspuren reaktivieren\*\* (TMR) und Inhalte subtil in Träume integrieren – ohne vollständiges Erwachen.
+Dezente akustische/olfaktorische Reize können schlafend zuvor Gelernte reaktivieren (Targeted Memory Reactivation, TMR) und Inhalte subtil in Träume einbinden – ideal getimt (SWS oder REM je nach Ziel) und so leise, dass kein Aufwachen erfolgt.
 
 
 
-\## Was ist Schlafparalyse?
+Was ist Schlafparalyse?
 
-Kurzzeitige \*\*REM-Atonie\*\* beim (Teil-)Erwachen: unangenehm, aber \*\*harmlos\*\*. Aufklärung, ruhige Atmung, kleine Bewegungen helfen.
+Kurzzeitige REM-Atonie, die beim Ein- oder Aufwachen ins Bewusstsein rutscht. Unangenehm, aber harmlos; ruhige Atmung, kleine Bewegungen oder Schlucken, Blickfixation und Aufklärung helfen.
 
 
 
-\## Schadet fragmentierter Schlaf der LD-Rate?
+Schadet fragmentierter Schlaf der LD-Rate?
 
-Meist ja. Zu viele Unterbrechungen senken REM-Qualität. WBTB \*\*sparsam\*\* und \*\*schlafhygienisch\*\* einsetzen.
+Meist ja: Viele Unterbrechungen verschlechtern REM-Qualität und Emotionsregulation; WBTB daher sparsam, schlafhygienisch und nicht jede Nacht.
 
 
 
-\## Fördert Klarträumen Lernen/Motorik?
+Fördert Klarträumen Lernen/Motorik?
 
-Mentales Üben im Klartraum kann \*\*Ablaufplanung\*\* und \*\*Fehlererkennung\*\* verbessern – ähnlich mentalem Training im Wachzustand.
+Kontrollierte Hinweise deuten darauf, dass mentales Üben im Klartraum die spätere Ausführung messbar verbessern kann (ähnlich mentalem Training im Wachzustand). Effekte sind klein bis moderat und vor allem für einfache Aufgaben gezeigt.
 
 
 
-\## Einfluss auf Angst/Emotion?
+Einfluss auf Angst/Emotion?
 
-Kurzfristig berichten viele \*\*Selbstwirksamkeit\*\*; bei Albträumen kann Reframing helfen. Klinische Arbeit gehört in \*\*therapeutische Hände\*\*.
+Viele berichten kurzfristig mehr Selbstwirksamkeit; bei Albträumen kann Reframing/Luzidität helfen. Das ersetzt jedoch keine Therapie – bei klinischer Symptomatik therapeutisch begleiten lassen.
 
 
 
-\## Welche Rolle spielt Circadian-Timing?
+Welche Rolle spielt Circadian-Timing?
 
-\*\*Früher Morgen\*\* = mehr REM-Dichte. Licht am Morgen, Chronotyp, Koffein-Timing modulieren Chancen.
+REM-Phasen werden über die Nacht länger und häufen sich in den frühen Morgenstunden; Morgenlicht, Chronotyp und Koffein-Timing modulieren die Chancen.
 
 
 
-\## Ist tACS/Elektrostimulation sinnvoll?
+Ist tACS/Elektrostimulation sinnvoll?
 
-Evidenz ist \*\*uneinheitlich\*\*. Für Praxis empfehlen wir \*\*nicht-invasive Verhaltensmethoden\*\* als Standard.
+Ein früher Befund berichtete Effekte von frontotemporaler tACS in REM; spätere Arbeiten replizierten nicht robust. Insgesamt uneinheitlich – Standard bleiben verhaltensbasierte Methoden.
 
 
 
-\## Warum fühlen sich Träume so real an?
+Warum fühlen sich Träume so real an?
 
-REM koppelt \*\*emotionale\*\* und \*\*sensorische\*\* Netzwerke eng; interne Simulation erzeugt stimmige Weltmodelle ohne externe Inputs.
+REM verknüpft stark limbische und sensorische Netzwerke; visuelle und somatosensorische Areale können bei geträumten Handlungen messbar aktiv sein – interne Simulation erzeugt ein stimmiges Weltmodell trotz externer Reizdeprivation.
 
 
 
-\## Wie beeinflussen Medikamente Träume?
+Wie beeinflussen Medikamente Träume?
 
-Mehrere Substanzen (z. B. SSRIs, Anticholinergika, Alkohol, Nikotin) verändern \*\*REM/Traumhäufigkeit\*\*. Bei Medikation: \*\*ärztlich abklären\*\*.
+Viele Substanzen verschieben Schlafarchitektur und Traumerleben: SSRIs senken oft den REM-Anteil (mit möglichem REM-Rebound beim Absetzen) und erhöhen teils REM ohne Atonie; anticholinerg wirksame Mittel dämpfen Traum-/REM-Aktivität; cholinesterasehemmende Mittel (z. B. Galantamin/Donepezil) können Träume vivid/luzider machen. Alkohol reduziert frühen REM-Schlaf, später Fragmentierung; Nikotin stört Schlaf und kann REM unterdrücken. Medikation nie ohne ärztliche Rücksprache ändern.
 
 
 
-\## Erkennen Wearables REM zuverlässig?
+Erkennen Wearables REM zuverlässig?
 
-Nur \*\*indirekt\*\* (Bewegung/Herzrate). Nützlich für \*\*Heuristiken\*\*, keine PSG-Genauigkeit. Cues daher \*\*sanft\*\* und mit \*\*Toleranzfenstern\*\*.
+Nur indirekt (Bewegung, Herzrate/PPG) – brauchbar für Heuristiken und Timing, aber deutlich unter Polysomnographie-Genauigkeit; Fehleinschätzungen sind üblich. Cues daher sanft und mit Toleranzfenstern einsetzen.
 
 
 
-\## Kann zu viel Fokus auf LD Schlaf schaden?
+Kann zu viel Fokus auf LD dem Schlaf schaden?
 
-Wenn Training Stress erzeugt oder Zeit raubt: ja. Lösung: \*\*spielersich\*\*, klare \*\*Off-Tage\*\*, Schlafqualität priorisieren.
+Ja, wenn Training Stress erzeugt, zu spät am Abend stattfindet oder Schlafzeit „frisst“. Gegenmittel: spielerischer Ansatz, feste Off-Tage, Schlafqualität priorisieren.
 
 
 
-\## REM \& Emotionsverarbeitung?
+REM und Emotionsverarbeitung
 
-REM unterstützt \*\*Emotionsregulation\*\*; Klarheit erlaubt gezieltes \*\*Reframing\*\* – vorsichtig dosieren.
+REM wird mit Emotionsverarbeitung und Re-Kalibrierung limbischer Netzwerke in Verbindung gebracht; die Befunde sind nicht durchgehend konsistent, deuten aber auf eine Rolle von REM-Qualität und -Stabilität hin.
 
 
 
-\## Warum erinnere ich manche Träume nie?
+Warum erinnere ich manche Träume nie?
 
-Aufwach-Timing \& Aufmerksamkeit. Sofortiges \*\*Journal-Capture\*\* erhöht Erinnerungsrate deutlich.
+Weil Erinnerung stark vom Aufwach-Timing und der direkten Aufmerksamkeit abhängt. Sofortiges Notieren (Stichworte, kein Display) erhöht die Recall-Rate deutlich.
 
 
 
-\## Gibt es LD-„Biomarker“?
+Gibt es LD-„Biomarker“?
 
-Hinweise auf \*\*Metakognitions-Traits\*\* und \*\*Achtsamkeit\*\*, aber keine robusten, einfachen Marker. Training > fixe Anlage.
+Es gibt Assoziationen zwischen häufigem LD und Metakognitionsnetzwerken (z. B. aPFC-Konnektivität), aber keinen einfachen, robusten Marker. Training und Schlafqualität wiegen mehr als „Anlage“.
 
 
 
-\## Rolle von Geruch?
+Rolle von Geruch?
 
-\*\*Olfaktorische Cues\*\* lassen sich integrieren (TMR) – \*\*sehr dezent\*\*, sonst Weckrisiko.
+Olfaktorische Cues lassen sich oft schlafverträglicher integrieren als laute Töne; als TMR-Signal sehr dezent dosieren, sonst Weckrisiko.
 
 
 
-\## Warum bricht ein Klartraum bei starkem Grübeln ab?
+Warum bricht ein Klartraum bei starkem Grübeln ab?
 
-Hohe \*\*kognitive Last\*\* destabilisiert die Szene. Besser: \*\*taktil stabilisieren\*\*, kurz fokussieren, zurück in die Handlung.
+Hohe kognitive Last und übermäßiges Selbst-Monitoring destabilisieren die Szene. Besser: taktil stabilisieren (Reiben, Tasten), kurz fokussieren, dann zurück zur Handlung.
 
 
 
-\## Wie misst man LD im Labor?
+Wie misst man LD im Labor?
 
-\*\*PSG/EEG\*\* + zuvor trainierte \*\*Augensignale\*\* im REM (z. B. L-R-L-R) markieren Klarheit objektiv.
+Polysomnographie/EEG plus vorab trainierte Augen-Signale (z. B. L-R-L-R) markieren Klarheit objektiv; sogar einfache Dialoge während REM-Klarträumen sind gezeigt worden.
 
 
 
-\## Risiken bei TMR?
+Risiken bei TMR?
 
-Zu \*\*laut/zu häufig\*\* → Weckreaktionen, Fragmentierung. In der Praxis: \*\*Lautstärke-Limits\*\*, \*\*Cooldowns\*\*, \*\*späte Nacht\*\*.
+Zu laute oder zu häufige Cues führen zu Weckreaktionen und Fragmentierung. In der Praxis: Lautstärke-Limits, Cooldowns zwischen Signalen, späte Nacht/REM-Fenster.
 
+Weiterlesen (Auswahl)
 
-
-\*\*Weiterlesen (Auswahl)\*\*  
-
-Dresler et al., \*Curr Biol\*; Konkoly et al., \*Curr Biol\* (2021); TMR-Reviews (Paller/Oudiette; Hu/Rasch); AASM-Materialien.
-
-
+Baird/Dresler: The cognitive neuroscience of lucid dreaming (2019); Rasch \& Born: Sleep and memory (2013); Konkoly et al.: Kommunikation im REM-Klartraum (2021); systematische Reviews zu TMR und Wearables.
 

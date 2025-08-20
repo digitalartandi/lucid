@@ -22,6 +22,8 @@ dependencies:
   background_fetch: ^1.2.1
   share_plus: ^10.0.0
   google_fonts: ^6.3.0
+  # Neu: MP4-Loops im Header-Slider
+  video_player: ^2.9.1
 
 dev_dependencies:
   flutter_test:
@@ -33,7 +35,8 @@ flutter:
 
   assets:
     - assets/icons/              # Bottom-Nav SVGs
-    - assets/slider/             # Header-Slider-Bilder (3:2)
+    - assets/slider/             # Header-Slider-Bilder + manifest.json
+    - assets/slider/loops/       # MP4-Video-Loops (autoplay, muted)
     - assets/logo/logo-signet.svg
     - assets/brand/hero_bg.webp
     - assets/wissen/grundlagen_de.md
@@ -61,6 +64,10 @@ flutter:
     - assets/wissen_en/citations_en.md
     - assets/quizzes/techniken_de.json
     - assets/checklists/pre_night_de.json
+    - assets/traumreisen/
+    - assets/traumreisen/images/
+    - assets/traumreisen/audio/
+
 
   # Optional, aber empfohlen: DM Sans lokal einbetten (passt zu allowRuntimeFetching=false)
   fonts:

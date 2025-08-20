@@ -1,6 +1,14 @@
 ﻿import 'package:flutter/cupertino.dart';
 
 import '../../design/brand_appbar.dart';
+// Journal
+import '../../services/journal_repo.dart';
+import '../../models/journal_models.dart';
+
+// Media/Manifest
+import 'dart:convert' show jsonDecode;
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:video_player/video_player.dart';
 
 // ---------- Farben laut Briefing ----------
 const _bgDark = Color(0xFF080B23);
@@ -29,30 +37,29 @@ class _Promo {
   final String subtitle;
   final List<Color> grad;
   final String? imageAsset; // optional 3:2-Bild (assets)
-
   const _Promo(this.title, this.subtitle, this.grad, {this.imageAsset});
 }
 
-// Beispiel-Slides (du kannst imageAsset setzen, z. B. 'assets/slider/slide1.jpg')
+// Beispiel-Slides (Fallback, falls kein Manifest vorhanden)
 const _promos = <_Promo>[
   _Promo(
     'Night Lite+ 2.0',
     'Sanfte REM-Cues & neue Sounds',
     [_violetA, _cyan],
-    imageAsset: 'assets/slider/slide1.jpg',  // ← dein Bild (liegt im Ordner)
+    imageAsset: 'assets/slider/slide1.jpg',
   ),
   _Promo('RC-Reminder Pro', 'Kontextbasiert mit Zeitfenstern', [_violet2_1, _violet2_2]),
   _Promo('Journal Export', 'PDF/Markdown teilen', [_pinkA, _pinkB]),
 ];
 
-/// Startseite ohne Glass: Header-Slider, Hero, Gradient-Cards, Quick Actions, Recents
+/// Startseite: Header-Slider (Bild/Video), Hero, Cards, Quick Actions, Recents
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      backgroundColor: const Color(0x00000000),
+      backgroundColor: _bgDark,
       navigationBar: const BrandAppBar(),
       child: SafeArea(
         top: false,
@@ -79,10 +86,26 @@ class HomePage extends StatelessWidget {
 }
 
 // ------------------------------------------------------
-//  Header Slider (3:2), Swipe + tappbare Dots (große Touch-Targets)
+//  Header Slider (3:2) – lädt Bilder & Videos aus Manifest
 // ------------------------------------------------------
+
+class _PromoMedia {
+  final String title;
+  final String subtitle;
+  final String asset;          // Bild- oder Video-Assetpfad
+  final bool isVideo;
+  final List<Color>? grad;     // Fallback-Gradient wenn kein Asset
+  const _PromoMedia({
+    required this.title,
+    required this.subtitle,
+    required this.asset,
+    required this.isVideo,
+    this.grad,
+  });
+}
+
 class _PromoSlider extends StatefulWidget {
-  final List<_Promo> banners;
+  final List<_Promo> banners; // Fallback
   const _PromoSlider({super.key, required this.banners});
 
   @override
@@ -92,11 +115,13 @@ class _PromoSlider extends StatefulWidget {
 class _PromoSliderState extends State<_PromoSlider> {
   late final PageController _ctrl;
   int _index = 0;
+  List<_PromoMedia> _items = const [];
 
   @override
   void initState() {
     super.initState();
     _ctrl = PageController(viewportFraction: .90);
+    _loadManifestOrFallback();
   }
 
   @override
@@ -105,8 +130,49 @@ class _PromoSliderState extends State<_PromoSlider> {
     super.dispose();
   }
 
+  Future<void> _loadManifestOrFallback() async {
+    try {
+      final s = await rootBundle.loadString('assets/slider/manifest.json');
+      final data = jsonDecode(s) as Map<String, dynamic>;
+      final list = (data['items'] as List).cast<Map<String, dynamic>>();
+      final items = list.map((m) {
+        final type = (m['type'] ?? 'image').toString().toLowerCase();
+        return _PromoMedia(
+          title: (m['title'] ?? '') as String,
+          subtitle: (m['subtitle'] ?? '') as String,
+          asset: (m['asset'] ?? '') as String,
+          isVideo: type == 'video',
+        );
+      }).toList();
+
+      if (!mounted) return;
+      setState(() => _items = items);
+      // Bilder vorladen (Videos nicht nötig)
+      for (final it in items.where((e) => !e.isVideo && e.asset.isNotEmpty)) {
+        // ignore: use_build_context_synchronously
+        precacheImage(AssetImage(it.asset), context);
+      }
+    } catch (_) {
+      // Fallback: Code-Promos nutzen
+      final fb = widget.banners.map((p) => _PromoMedia(
+        title: p.title,
+        subtitle: p.subtitle,
+        asset: p.imageAsset ?? '',
+        isVideo: false,
+        grad: p.grad,
+      )).toList();
+      if (!mounted) return;
+      setState(() => _items = fb);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final items = _items;
+    if (items.isEmpty) {
+      return const SizedBox(height: 200, child: Center(child: CupertinoActivityIndicator()));
+    }
+
     return Column(
       children: [
         AspectRatio(
@@ -114,46 +180,57 @@ class _PromoSliderState extends State<_PromoSlider> {
           child: PageView.builder(
             controller: _ctrl,
             onPageChanged: (i) => setState(() => _index = i),
-            itemCount: widget.banners.length,
+            itemCount: items.length,
             itemBuilder: (ctx, i) {
-              final p = widget.banners[i];
+              final p = items[i];
               return Padding(
                 padding: const EdgeInsets.only(right: 10),
                 child: _SolidCard(
                   radius: _rXL,
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: p.grad,
-                  ),
-                  child: Stack(
-                    children: [
-                      if (p.imageAsset != null)
-                        Positioned.fill(
-                          child: DecoratedBox(
+                  color: _surface,
+                  child: ClipRRect(
+                    borderRadius: _rXL,
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        // 1) Media-Hintergrund
+                        if (p.isVideo)
+                          _VideoCard(asset: p.asset)
+                        else if (p.asset.isNotEmpty)
+                          Image.asset(p.asset, fit: BoxFit.cover)
+                        else
+                          DecoratedBox(
                             decoration: BoxDecoration(
-                              borderRadius: _rXL,
-                              image: DecorationImage(
-                                image: AssetImage(p.imageAsset!),
-                                fit: BoxFit.cover,
+                              gradient: LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: p.grad ?? [_violetA, _cyan],
                               ),
                             ),
                           ),
+
+                        // 2) dunkler Fade unten für Lesbarkeit
+                        const _BottomFade(),
+
+                        // 3) Beschriftung
+                        Positioned(
+                          left: 16, right: 16, bottom: 16,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(p.title,
+                                  maxLines: 1, overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    color: _white, fontSize: 18, fontWeight: FontWeight.w800)),
+                              const SizedBox(height: 4),
+                              Text(p.subtitle,
+                                  maxLines: 2, overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(color: _white)),
+                            ],
+                          ),
                         ),
-                      Positioned(
-                        left: 16, right: 16, bottom: 16,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(p.title,
-                                style: const TextStyle(
-                                  color: _white, fontSize: 18, fontWeight: FontWeight.w800)),
-                            const SizedBox(height: 4),
-                            Text(p.subtitle, style: const TextStyle(color: _white)),
-                          ],
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               );
@@ -163,14 +240,14 @@ class _PromoSliderState extends State<_PromoSlider> {
         const SizedBox(height: 10),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: List.generate(widget.banners.length, (i) {
+          children: List.generate(items.length, (i) {
             final active = i == _index;
             return GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTap: () => _ctrl.animateToPage(
                 i, duration: const Duration(milliseconds: 260), curve: Curves.easeOut),
               child: Container(
-                width: 24, height: 24, // leicht zu tippen
+                width: 24, height: 24,
                 alignment: Alignment.center,
                 child: Container(
                   width: active ? 10 : 8,
@@ -185,6 +262,75 @@ class _PromoSliderState extends State<_PromoSlider> {
           }),
         ),
       ],
+    );
+  }
+}
+
+class _BottomFade extends StatelessWidget {
+  const _BottomFade();
+  @override
+  Widget build(BuildContext context) {
+    return const DecoratedBox(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.bottomCenter, end: Alignment.topCenter,
+          colors: [Color(0xAA000000), Color(0x00000000)],
+          stops: [0.0, 0.5],
+        ),
+      ),
+    );
+  }
+}
+
+class _VideoCard extends StatefulWidget {
+  final String asset;
+  const _VideoCard({required this.asset});
+
+  @override
+  State<_VideoCard> createState() => _VideoCardState();
+}
+
+class _VideoCardState extends State<_VideoCard> {
+  late final VideoPlayerController _c;
+  bool _ready = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _c = VideoPlayerController.asset(widget.asset);
+    _init();
+  }
+
+  Future<void> _init() async {
+    try {
+      await _c.setLooping(true);
+      await _c.setVolume(0); // stumm → Autoplay im Web/iOS erlaubt
+      await _c.initialize();
+      await _c.play();
+      if (!mounted) return;
+      setState(() => _ready = true);
+    } catch (_) {
+      // Wenn das Video nicht geladen werden kann, bleiben wir still.
+    }
+  }
+
+  @override
+  void dispose() {
+    _c.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (!_ready) return const SizedBox.shrink();
+    return FittedBox(
+      fit: BoxFit.cover,
+      clipBehavior: Clip.hardEdge,
+      child: SizedBox(
+        width: _c.value.size.width,
+        height: _c.value.size.height,
+        child: VideoPlayer(_c),
+      ),
     );
   }
 }
@@ -449,31 +595,89 @@ class _Pill extends StatelessWidget {
 }
 
 // ------------------------------------------------------
-//  Recents
+//  Recents – dynamisch aus JournalRepo
 // ------------------------------------------------------
-class _RecentSection extends StatelessWidget {
+class _RecentSection extends StatefulWidget {
   const _RecentSection();
+
+  @override
+  State<_RecentSection> createState() => _RecentSectionState();
+}
+
+class _RecentSectionState extends State<_RecentSection> {
+  final _repo = JournalRepo.instance;
+  List<JournalIndexItem> _recent = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _init();
+    _repo.revision.addListener(_refresh);
+  }
+
+  @override
+  void dispose() {
+    _repo.revision.removeListener(_refresh);
+    super.dispose();
+  }
+
+  Future<void> _init() async {
+    await _repo.init();
+    await _refresh();
+  }
+
+  Future<void> _refresh() async {
+    final latest = await _repo.latest(count: 3);
+    if (!mounted) return;
+    setState(() => _recent = latest);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
-        Text('Zuletzt',
+      children: [
+        const Text('Zuletzt',
             style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700, color: _white)),
-        SizedBox(height: 8),
-        _Recent(title: 'Journal – 3 Einträge',      subtitle: 'Heute, 07:10'),
-        _Recent(title: 'RC-Reminder aktiviert',      subtitle: 'Gestern, 19:42'),
-        _Recent(title: 'Cue Tuning – sanfte Glocke', subtitle: 'Gestern, 18:11'),
+        const SizedBox(height: 8),
+
+        if (_recent.isEmpty)
+          const _Recent(title: 'Journal – keine Einträge', subtitle: 'Noch keine Notizen')
+        else
+          ..._recent.map((it) => _Recent(
+                title: 'Journal – ${it.title.isEmpty ? 'Ohne Titel' : it.title}',
+                subtitle: _friendlyDate(it.date),
+                onTap: () => Navigator.of(context).pushNamed('/journal/edit', arguments: it.id),
+              )),
+
+        // Beispiele/Events behalten:
+        const _Recent(title: 'RC-Reminder aktiviert',      subtitle: 'Gestern, 19:42'),
+        const _Recent(title: 'Cue Tuning – sanfte Glocke', subtitle: 'Gestern, 18:11'),
       ],
     );
   }
 }
 
+String _friendlyDate(DateTime dt) {
+  final now = DateTime.now();
+  final d = dt.toLocal();
+  bool sameDay(DateTime a, DateTime b) =>
+      a.year == b.year && a.month == b.month && a.day == b.day;
+
+  String two(int x) => x < 10 ? '0$x' : '$x';
+  final hm = '${two(d.hour)}:${two(d.minute)}';
+
+  if (sameDay(d, now)) return 'Heute, $hm';
+  final yesterday = DateTime(now.year, now.month, now.day).subtract(const Duration(days: 1));
+  if (sameDay(d, yesterday)) return 'Gestern, $hm';
+  return '${two(d.day)}.${two(d.month)}.${d.year}, $hm';
+}
+
 class _Recent extends StatelessWidget {
   final String title;
   final String subtitle;
-  const _Recent({required this.title, required this.subtitle});
+  final VoidCallback? onTap;
+  const _Recent({required this.title, required this.subtitle, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -488,7 +692,7 @@ class _Recent extends StatelessWidget {
         title: Text(title, style: const TextStyle(color: _white)),
         subtitle: Text(subtitle, style: const TextStyle(color: _white)),
         trailing: const Icon(CupertinoIcons.chevron_right, color: _white),
-        onTap: () {},
+        onTap: onTap,
       ),
     );
   }

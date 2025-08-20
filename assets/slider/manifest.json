@@ -1,0 +1,34 @@
+{
+  "items": [
+    {
+      "type": "image",
+      "asset": "assets/slider/auroraband-gruen-blau-ueber-bergen.webp",
+      "title": "Aurora über Bergen",
+      "subtitle": "Sanfte REM-Cues & neue Sounds"
+    },
+    {
+      "type": "image",
+      "asset": "assets/slider/galaxie-nebel-violett-blau.webp",
+      "title": "Galaxie",
+      "subtitle": "Nachtmodus verfeinert"
+    },
+    {
+      "type": "image",
+      "asset": "assets/slider/abenddaemmerung-berge-spiegelnder-see.webp",
+      "title": "Spiegelnder See",
+      "subtitle": "Fokus & Ruhe"
+    },
+    {
+      "type": "video",
+      "asset": "assets/slider/loops/loop01.mp4",
+      "title": "Wellen • Loop",
+      "subtitle": "Autoplay · stumm · Loop"
+    },
+    {
+      "type": "video",
+      "asset": "assets/slider/loops/loop02.mp4",
+      "title": "Waves • Loop",
+      "subtitle": "Mood für Night Lite+"
+    }
+  ]
+}
