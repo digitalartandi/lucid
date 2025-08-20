@@ -38,6 +38,7 @@ flutter:
     - assets/slider/             # Header-Slider-Bilder + manifest.json
     - assets/slider/loops/       # MP4-Video-Loops (autoplay, muted)
     - assets/logo/logo-signet.svg
+    - assets/logo/
     - assets/brand/hero_bg.webp
     - assets/wissen/grundlagen_de.md
     - assets/wissen/klartraum_grundlagen_de.md
@@ -70,6 +71,7 @@ flutter:
     - assets/logo/logo-text.svg
     - assets/audio/cues/
     - assets/images/cue_categories/
+    - assets/fonts/DMSans-Light.ttf
 
 
 

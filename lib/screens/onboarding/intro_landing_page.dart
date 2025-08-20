@@ -1,179 +1,131 @@
-﻿import 'dart:math' as math;
+﻿// lib/screens/onboarding/intro_landing_page.dart
+import 'dart:math' as math;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../../design/gradient_theme.dart';
 
-const _bgDark = Color(0xFF080B23);
+const _bgImage     = 'assets/slider/violetter-sonnenuntergang-ruhiger-see.webp';
+const _logoLanding = 'assets/logo/logo-landingpage.svg';
+
 const _white  = Color(0xFFFFFFFF);
-const _btnGrad = [Color(0xFF7A6CFF), Color(0xFFA179EF)];
+const _shadow = Color(0x80000000);
 
-class IntroLandingPage extends StatefulWidget {
+// ---------- Feinjustage ----------
+const kTopGapFactor   = 0.10;   // 10% der Bildschirmhöhe als Ziel
+const kTopGapMin      = 50.0;  // nie kleiner als 50 px
+const kTopGapMax      = 150.0;  // nie größer als 150 px
+
+const kLogoPhoneMin   = 150.0;
+const kLogoPhoneMax   = 200.0;
+const kLogoTabletMax  = 320.0;
+const kLogoDesktopMax = 360.0;
+
+class IntroLandingPage extends StatelessWidget {
   const IntroLandingPage({super.key});
-  @override
-  State<IntroLandingPage> createState() => _IntroLandingPageState();
-}
-
-class _IntroLandingPageState extends State<IntroLandingPage>
-    with TickerProviderStateMixin {
-  late final AnimationController _cLogos;
-  late final AnimationController _cText;
-  late final AnimationController _cBtn;
-
-  @override
-  void initState() {
-    super.initState();
-    _cLogos = AnimationController(vsync: this, duration: const Duration(milliseconds: 650))..forward();
-    _cText  = AnimationController(vsync: this, duration: const Duration(milliseconds: 550));
-    _cBtn   = AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
-    Future.delayed(const Duration(milliseconds: 300), () => _cText.forward());
-    Future.delayed(const Duration(milliseconds: 650), () => _cBtn.forward());
-  }
-
-  @override
-  void dispose() { _cLogos.dispose(); _cText.dispose(); _cBtn.dispose(); super.dispose(); }
-
-  void _openStepper() => Navigator.of(context).pushReplacementNamed('/intro/stepper');
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final w = size.width;
+
+    // Button-Gradient (bewusst Violett)
+    final violet = GradientTheme.of(GradientStyle.aurora).primary;
+
     return CupertinoPageScaffold(
-      backgroundColor: _bgDark,
+      backgroundColor: const Color(0xFF0D0F16),
       child: Stack(
-        fit: StackFit.expand,
         children: [
-          // Hintergrund
+          // Hintergrundbild (fullscreen)
+          Positioned.fill(child: Image.asset(_bgImage, fit: BoxFit.cover)),
+
+          // Inhalt: Logo + Text oben ausgerichtet mit flexiblem Top-Abstand
           Positioned.fill(
-            child: Image.asset(
-              'assets/slider/violetter-sonnenuntergang-ruhiger-see.webp',
-              fit: BoxFit.cover,
-            ),
-          ),
-          // Darken-Overlay
-          Positioned.fill(
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter, end: Alignment.bottomCenter,
-                  colors: [const Color(0x55000000), const Color(0x66000000), const Color(0xAA000000)],
-                  stops: const [0.0, .55, 1.0],
-                ),
+            child: SafeArea(
+              child: LayoutBuilder(
+                builder: (_, constraints) {
+                  final h = constraints.maxHeight;
+                  // ~250px, aber flexibel über min/max
+                  final topGap = (h * kTopGapFactor).clamp(kTopGapMin, kTopGapMax);
+
+                  // Logo-Breite per Breakpoints
+                  final double logoWidth = () {
+                    if (w < 370) return (w - 48).clamp(kLogoPhoneMin, kLogoPhoneMax);
+                    if (w < 600) return kLogoPhoneMax;
+                    if (w < 900) return kLogoTabletMax;
+                    return kLogoDesktopMax;
+                  }();
+
+                  // Intro-Textgröße – gedeckelt für Desktop
+                  final bodySize = (w * 0.042).clamp(13.0, 20.0);
+
+                  return SingleChildScrollView(
+                    physics: const ClampingScrollPhysics(),
+                    child: Align(
+                      alignment: Alignment.topCenter, // WICHTIG: nicht zentrieren, sondern oben
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(24, topGap, 24, 140),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            // Kombiniertes Landing-Logo, hart in der Breite geklammert
+                            _FadeInUp(
+                              delayMs: 60,
+                              child: ConstrainedBox(
+                                constraints: BoxConstraints(maxWidth: logoWidth),
+                                child: SizedBox(
+                                  width: logoWidth,
+                                  child: SvgPicture.asset(
+                                    _logoLanding,
+                                    fit: BoxFit.contain,
+                                    colorFilter: const ColorFilter.mode(_white, BlendMode.srcIn),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 28), // mehr Abstand Logo → Text
+
+                            // 2-Zeiler – Light, etwas kleiner, gut lesbar
+                            _FadeInUp(
+                              delayMs: 200,
+                              child: Text(
+                                'Schlafe tiefer. Träume klarer.\n'
+                                'Dein ruhiger Begleiter in die Lucidität.',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontFamily: 'DM Sans',
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: bodySize,
+                                  height: 1.28,
+                                  color: _white,
+                                  shadows: const [
+                                    Shadow(color: _shadow, blurRadius: 8, offset: Offset(0, 2)),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
           ),
 
+          // Fixierter Button (immer sichtbar)
           SafeArea(
-            child: LayoutBuilder(
-              builder: (context, c) {
-                final w = c.maxWidth;
-                final h = c.maxHeight;
-                final isShort = h < 620;
-
-                // Größen – streng begrenzt, orientiert am Mock
-                final signetSize = math.min(math.min(w * 0.16, h * 0.12), 96.0); // kleiner als zuvor
-                final logoTextHeight = math.min(math.min(w * 0.12, h * 0.10), 84.0);
-                final claimSize = (w * 0.06).clamp(16.0, isShort ? 20.0 : 26.0);
-
-                final topGap = math.max(20.0, h * 0.08);   // Abstand oberhalb des Signets
-                final afterLogoGap = isShort ? 18.0 : 24.0;
-
-                final content = Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    SizedBox(height: topGap),
-
-                    // Signet (weiß), weich einblenden
-                    FadeTransition(
-                      opacity: CurvedAnimation(parent: _cLogos, curve: Curves.easeOut),
-                      child: SlideTransition(
-                        position: Tween(begin: const Offset(0, .08), end: Offset.zero)
-                            .animate(CurvedAnimation(parent: _cLogos, curve: Curves.easeOut)),
-                        child: SizedBox(
-                          height: signetSize,
-                          child: FittedBox(
-                            fit: BoxFit.contain,
-                            child: SvgPicture.asset(
-                              'assets/logo/logo-signet.svg',
-                              colorFilter: const ColorFilter.mode(_white, BlendMode.srcIn),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    SizedBox(height: isShort ? 12 : 18),
-
-                    // Textlogo (weiß) – Höhe begrenzen statt Breite!
-                    FadeTransition(
-                      opacity: CurvedAnimation(parent: _cLogos, curve: const Interval(.3, 1, curve: Curves.easeOut)),
-                      child: SlideTransition(
-                        position: Tween(begin: const Offset(0, .06), end: Offset.zero)
-                            .animate(CurvedAnimation(parent: _cLogos, curve: Curves.easeOut)),
-                        child: SizedBox(
-                          height: logoTextHeight,
-                          // Breite folgt automatisch, Verhältnis bleibt korrekt
-                          child: FittedBox(
-                            fit: BoxFit.contain,
-                            child: SvgPicture.asset(
-                              'assets/logo/logo-text.svg',
-                              colorFilter: const ColorFilter.mode(_white, BlendMode.srcIn),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    SizedBox(height: afterLogoGap),
-
-                    // Claim – zweizeilig
-                    FadeTransition(
-                      opacity: CurvedAnimation(parent: _cText, curve: Curves.easeOut),
-                      child: SlideTransition(
-                        position: Tween(begin: const Offset(0, .05), end: Offset.zero)
-                            .animate(CurvedAnimation(parent: _cText, curve: Curves.easeOut)),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 28),
-                          child: ConstrainedBox(
-                            constraints: BoxConstraints(maxWidth: w * .92),
-                            child: Text(
-                              'Schlafe tiefer. Träume klarer.\nDein ruhiger Begleiter in die Lucidität.',
-                              textAlign: TextAlign.center,
-                              softWrap: true,
-                              style: TextStyle(
-                                color: _white.withOpacity(.95),
-                                fontFamily: 'DM Sans',
-                                fontWeight: FontWeight.w300, // Light
-                                height: 1.25,
-                                fontSize: claimSize,
-                                letterSpacing: .1,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    // Rest füllen → Button bleibt am unteren Rand
-                    const Spacer(),
-
-                    // CTA immer sichtbar + animiert
-                    _AnimatedCTA(controller: _cBtn, onTap: _openStepper),
-
-                    // Unterer Abstand inkl. Safe Insets
-                    SizedBox(height: MediaQuery.of(context).padding.bottom + 18),
-                  ],
-                );
-
-                // Sicherheitsnetz: auf sehr kleinen Höhen scollbar statt overflow
-                if (isShort) {
-                  return SingleChildScrollView(
-                    physics: const ClampingScrollPhysics(),
-                    child: ConstrainedBox(
-                      constraints: BoxConstraints(minHeight: h),
-                      child: content,
-                    ),
-                  );
-                }
-                return content;
-              },
+            minimum: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: _PrimaryGradientButton(
+                label: 'Los geht’s',
+                gradientColors: violet,
+                height: 52,
+                fontSize: 20,
+                onPressed: () => Navigator.of(context).pushNamed('/onboarding'),
+              ),
             ),
           ),
         ],
@@ -182,45 +134,50 @@ class _IntroLandingPageState extends State<IntroLandingPage>
   }
 }
 
-class _AnimatedCTA extends StatelessWidget {
-  final AnimationController controller;
-  final VoidCallback onTap;
-  const _AnimatedCTA({required this.controller, required this.onTap});
+/// Primär-Button mit Gradient
+class _PrimaryGradientButton extends StatelessWidget {
+  final List<Color> gradientColors;
+  final String label;
+  final VoidCallback onPressed;
+  final double height;
+  final double fontSize;
+
+  const _PrimaryGradientButton({
+    required this.label,
+    required this.gradientColors,
+    required this.onPressed,
+    this.height = 52,
+    this.fontSize = 20,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final fade  = CurvedAnimation(parent: controller, curve: Curves.easeOut);
-    final scale = Tween<double>(begin: .98, end: 1)
-        .animate(CurvedAnimation(parent: controller, curve: Curves.easeOutBack));
-
-    return FadeTransition(
-      opacity: fade,
-      child: ScaleTransition(
-        scale: scale,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 28),
-          child: GestureDetector(
-            onTap: onTap,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(22),
-              child: DecoratedBox(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft, end: Alignment.bottomRight, colors: _btnGrad),
-                  boxShadow: [BoxShadow(color: Color(0x33000000), blurRadius: 18, offset: Offset(0, 10))],
-                ),
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(minHeight: 64),
-                  child: const Center(
-                    child: Text(
-                      'Los geht’s',
-                      style: TextStyle(
-                        color: _white,
-                        fontSize: 22,
-                        fontWeight: FontWeight.w700,
-                        fontFamily: 'DM Sans',
-                      ),
-                    ),
+    return _FadeInUp(
+      delayMs: 320,
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 520),
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: gradientColors),
+            borderRadius: BorderRadius.circular(18),
+            boxShadow: const [BoxShadow(color: Color(0x33000000), blurRadius: 16, offset: Offset(0, 8))],
+          ),
+          child: CupertinoButton(
+            padding: EdgeInsets.zero,
+            onPressed: onPressed,
+            borderRadius: BorderRadius.circular(18),
+            minSize: height,
+            child: SizedBox(
+              height: height,
+              width: double.infinity,
+              child: Center(
+                child: Text(
+                  label,
+                  style: TextStyle(
+                    fontFamily: 'DM Sans',
+                    fontWeight: FontWeight.w700,
+                    fontSize: fontSize,
+                    color: _white,
                   ),
                 ),
               ),
@@ -230,4 +187,37 @@ class _AnimatedCTA extends StatelessWidget {
       ),
     );
   }
+}
+
+/// Kleiner Fade-in-Up Effekt
+class _FadeInUp extends StatefulWidget {
+  final Widget child;
+  final int delayMs;
+  const _FadeInUp({required this.child, this.delayMs = 0});
+
+  @override
+  State<_FadeInUp> createState() => _FadeInUpState();
+}
+
+class _FadeInUpState extends State<_FadeInUp> with SingleTickerProviderStateMixin {
+  late final AnimationController _c;
+  late final Animation<double> _opacity;
+  late final Animation<Offset> _offset;
+
+  @override
+  void initState() {
+    super.initState();
+    _c = AnimationController(vsync: this, duration: const Duration(milliseconds: 480));
+    _opacity = CurvedAnimation(parent: _c, curve: Curves.easeOutCubic);
+    _offset = Tween<Offset>(begin: const Offset(0, .08), end: Offset.zero)
+        .animate(CurvedAnimation(parent: _c, curve: Curves.easeOutCubic));
+    Future.delayed(Duration(milliseconds: widget.delayMs), () { if (mounted) _c.forward(); });
+  }
+
+  @override
+  void dispose() { _c.dispose(); super.dispose(); }
+
+  @override
+  Widget build(BuildContext context) =>
+      FadeTransition(opacity: _opacity, child: SlideTransition(position: _offset, child: widget.child));
 }

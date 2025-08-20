@@ -93,7 +93,7 @@ Route<dynamic> onGenerateRoute(RouteSettings s) {
     case '/help':
       return _c(const HelpCenterPage());
     case '/onboarding':
-      return _c(const OnboardingStart());
+      return _c(const IntroStepperPage()); // ← statt altem OnboardingStart
 
     // --- Wissen: Artikel & FAQ ---
     case '/wissen/article': {

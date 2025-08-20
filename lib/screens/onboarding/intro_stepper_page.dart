@@ -1,45 +1,42 @@
-﻿import 'dart:async';
+﻿// lib/screens/onboarding/intro_stepper_page.dart
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../design/gradient_theme.dart';
+import '../home/home_page.dart'; // nur für den Type im Route-Ziel (RootTabs liegt in main.dart)
 
-const _bg = Color(0xFF080B23);
+const _bg = Color(0xFF0D0F16);
 const _white = Color(0xFFFFFFFF);
-const _muted = Color(0xCCFFFFFF);
+const _hair = Color(0x22FFFFFF);
 
 class IntroStepperPage extends StatefulWidget {
   const IntroStepperPage({super.key});
-
   @override
   State<IntroStepperPage> createState() => _IntroStepperPageState();
 }
 
 class _IntroStepperPageState extends State<IntroStepperPage> {
-  final _c = PageController();
-  int _index = 0;
+  final _page = PageController();
+  int _i = 0;
+
+  List<_Slide> get _slides => const [
+        _Slide(CupertinoIcons.moon_stars, 'Night Lite+',
+            'Sanfte REM-Cues im Schlaf — abgestimmt auf dich.'),
+        _Slide(CupertinoIcons.bell, 'RC-Reminder',
+            'Kontextbasierte Reality-Checks, damit Lucidität zur Gewohnheit wird.'),
+        _Slide(CupertinoIcons.music_note, 'Cue Tuning',
+            'Deine Cue-Sounds fein abstimmen und im Loop testen.'),
+        _Slide(CupertinoIcons.airplane, 'Traumreisen',
+            'Geführte Szenen, die sanft in Klarträume leiten.'),
+        _Slide(CupertinoIcons.chart_bar, 'Trainer',
+            'Ein klarer Einstieg mit Fortschritt & Routinen.'),
+      ];
 
   Future<void> _finish() async {
-    final p = await SharedPreferences.getInstance();
-    await p.setBool('onboarded', true);
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('intro_done', true);
     if (!mounted) return;
-    // Nach Hause / Dashboard
-    Navigator.of(context).pushNamedAndRemoveUntil('/', (_) => false);
-  }
-
-  void _skip() => _finish();
-
-  void _next() {
-    if (_index == _pages.length - 1) {
-      _finish();
-    } else {
-      _c.nextPage(duration: const Duration(milliseconds: 280), curve: Curves.easeOut);
-    }
-  }
-
-  @override
-  void dispose() {
-    _c.dispose();
-    super.dispose();
+    // → direkt ins Dashboard, Stack leeren
+    Navigator.of(context).pushNamedAndRemoveUntil('/', (r) => false);
   }
 
   @override
@@ -50,12 +47,13 @@ class _IntroStepperPageState extends State<IntroStepperPage> {
       backgroundColor: _bg,
       navigationBar: CupertinoNavigationBar(
         backgroundColor: _bg,
-        border: null,
+        middle: const Text('Willkommen', style: TextStyle(color: _white)),
         trailing: CupertinoButton(
-          padding: EdgeInsets.zero,
-          onPressed: _skip,
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          onPressed: _finish,
           child: const Text('Überspringen', style: TextStyle(color: _white)),
         ),
+        border: const Border(bottom: BorderSide(color: _hair, width: .5)),
       ),
       child: SafeArea(
         top: false,
@@ -63,56 +61,48 @@ class _IntroStepperPageState extends State<IntroStepperPage> {
           children: [
             Expanded(
               child: PageView.builder(
-                controller: _c,
-                onPageChanged: (i) => setState(() => _index = i),
-                itemCount: _pages.length,
-                itemBuilder: (_, i) => _StepPage(data: _pages[i]),
+                controller: _page,
+                onPageChanged: (i) => setState(() => _i = i),
+                itemCount: _slides.length,
+                itemBuilder: (_, i) => _SlideCard(slide: _slides[i]),
               ),
             ),
-
-            // Dots + Button
+            const SizedBox(height: 6),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(_slides.length, (i) {
+                final active = i == _i;
+                return AnimatedContainer(
+                  duration: const Duration(milliseconds: 220),
+                  margin: const EdgeInsets.symmetric(horizontal: 4),
+                  width: active ? 18 : 8,
+                  height: 8,
+                  decoration: BoxDecoration(
+                    color: active ? _white : _white.withOpacity(.35),
+                    borderRadius: BorderRadius.circular(999),
+                  ),
+                );
+              }),
+            ),
+            const SizedBox(height: 14),
             Padding(
-              padding: EdgeInsets.fromLTRB(20, 8, 20, 16 + MediaQuery.of(context).viewPadding.bottom),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(_pages.length, (i) {
-                      final active = i == _index;
-                      return AnimatedContainer(
-                        duration: const Duration(milliseconds: 200),
-                        margin: const EdgeInsets.symmetric(horizontal: 4),
-                        width: active ? 16 : 8,
-                        height: 8,
-                        decoration: BoxDecoration(
-                          color: active ? _white : _white.withOpacity(.35),
-                          borderRadius: BorderRadius.circular(999),
-                        ),
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 20),
+              child: SizedBox(
+                width: double.infinity,
+                child: CupertinoButton.filled(
+                  borderRadius: BorderRadius.circular(14),
+                  onPressed: () {
+                    if (_i < _slides.length - 1) {
+                      _page.nextPage(
+                        duration: const Duration(milliseconds: 240),
+                        curve: Curves.easeOut,
                       );
-                    }),
-                  ),
-                  const SizedBox(height: 14),
-                  CupertinoButton(
-                    padding: EdgeInsets.zero,
-                    onPressed: _next,
-                    child: Container(
-                      height: 52,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        gradient: LinearGradient(
-                          colors: _index == _pages.length - 1
-                              ? g.primary
-                              : [const Color(0xFF40435E), const Color(0xFF40435E)],
-                        ),
-                      ),
-                      child: Text(
-                        _index == _pages.length - 1 ? 'Los geht’s' : 'Weiter',
-                        style: const TextStyle(color: _white, fontSize: 17, fontWeight: FontWeight.w700),
-                      ),
-                    ),
-                  ),
-                ],
+                    } else {
+                      _finish();
+                    }
+                  },
+                  child: Text(_i == _slides.length - 1 ? 'Los geht’s' : 'Weiter'),
+                ),
               ),
             ),
           ],
@@ -122,65 +112,42 @@ class _IntroStepperPageState extends State<IntroStepperPage> {
   }
 }
 
-// --- Seiteninhalte (Platzhalter-Icons, klarer Text) ---
-class _StepData {
+class _Slide {
   final IconData icon;
   final String title;
   final String body;
-  const _StepData(this.icon, this.title, this.body);
+  const _Slide(this.icon, this.title, this.body);
 }
 
-final _pages = <_StepData>[
-  _StepData(CupertinoIcons.moon_stars_fill, 'Sanfte Cues',
-      'Leise Erinnerungstöne triggern Realitätschecks und helfen dir, bewusst zu träumen.'),
-  _StepData(CupertinoIcons.music_note_2, 'Traumreisen',
-      'Geführte Szenen mit Musik & SFX – ideal zum Einschlafen oder für MILD.'),
-  _StepData(CupertinoIcons.bell_circle_fill, 'RC-Reminder',
-      'Kontextbasierte Erinnerungen zur Routine – flexibel und smart.'),
-  _StepData(CupertinoIcons.lightbulb_fill, 'Night Lite+',
-      'REM-freundliche Hinweise in der Nacht, fein einstellbar.'),
-  _StepData(CupertinoIcons.chart_bar_alt_fill, 'Trainer',
-      '2-Wochen-Plan mit klaren Schritten – damit du zuverlässig Fortschritte siehst.'),
-];
-
-class _StepPage extends StatelessWidget {
-  const _StepPage({required this.data});
-  final _StepData data;
+class _SlideCard extends StatelessWidget {
+  final _Slide slide;
+  const _SlideCard({required this.slide});
 
   @override
   Widget build(BuildContext context) {
-    final w = MediaQuery.of(context).size.width;
-    final iconSize = w < 360 ? 110.0 : 140.0;
-    final titleSize = w < 360 ? 22.0 : 24.0;
-    final bodySize  = w < 360 ? 15.0 : 16.0;
-
+    final g = GradientTheme.of(GradientTheme.style.value);
     return Padding(
-      padding: const EdgeInsets.fromLTRB(24, 8, 24, 0),
+      padding: const EdgeInsets.fromLTRB(28, 20, 28, 0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Icon-Card
           Container(
-            height: iconSize + 40,
-            width: iconSize + 40,
+            padding: const EdgeInsets.all(22),
             decoration: BoxDecoration(
-              color: const Color(0x1AFFFFFF),
-              borderRadius: BorderRadius.circular(24),
+              shape: BoxShape.circle,
+              gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: g.primary),
+              boxShadow: const [BoxShadow(color: Color(0x33000000), blurRadius: 20, offset: Offset(0, 10))],
             ),
-            child: Icon(data.icon, color: _white, size: iconSize),
+            child: Icon(slide.icon, size: 42, color: _white),
           ),
           const SizedBox(height: 22),
-          Text(
-            data.title,
-            textAlign: TextAlign.center,
-            style: TextStyle(color: _white, fontSize: titleSize, fontWeight: FontWeight.w800),
-          ),
+          Text(slide.title,
+              textAlign: TextAlign.center,
+              style: const TextStyle(color: _white, fontSize: 22, fontWeight: FontWeight.w800)),
           const SizedBox(height: 10),
-          Text(
-            data.body,
-            textAlign: TextAlign.center,
-            style: TextStyle(color: _muted, fontSize: bodySize, height: 1.35),
-          ),
+          Text(slide.body,
+              textAlign: TextAlign.center,
+              style: const TextStyle(color: _white, fontSize: 16, height: 1.35)),
         ],
       ),
     );
