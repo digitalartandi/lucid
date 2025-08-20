@@ -1,6 +1,6 @@
 ﻿// lib/services/journal_repo.dart
 import 'dart:convert';
-import 'dart:io' show Directory, File, Platform;
+import 'dart:io' show Directory, File;
 import 'package:flutter/foundation.dart' show kIsWeb, ValueNotifier;
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,6 +9,7 @@ import '../models/journal_models.dart';
 class JournalRepo {
   static const _indexKey = 'journal_index_v1';
   static const _entryPrefix = 'journal_entry_v1_';
+
   static final JournalRepo instance = JournalRepo._();
   JournalRepo._();
 
@@ -82,7 +83,14 @@ class JournalRepo {
 
   void _bump() => revision.value = revision.value + 1;
 
-  // -------- CRUD --------
+  // -------- CRUD / Abfragen --------
+
+  /// 🔹 NEU: Von der UI erwartete Methode (Fix für `journal_list_page.dart`)
+  Future<List<JournalIndexItem>> list({int? limit}) async {
+    await init();
+    final all = await listAll();
+    return limit == null ? all : all.take(limit).toList();
+  }
 
   Future<List<JournalIndexItem>> listAll() async {
     _index.sort((a, b) => b.date.compareTo(a.date));
@@ -98,6 +106,7 @@ class JournalRepo {
 
   Future<JournalEntry?> getById(String id) async {
     if (_cache.containsKey(id)) return _cache[id];
+
     if (kIsWeb) {
       final sp = await SharedPreferences.getInstance();
       final s = sp.getString('$_entryPrefix$id');

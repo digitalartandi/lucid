@@ -75,6 +75,8 @@ flutter:
     - assets/meditations/manifest.json
     - assets/meditations/tracks/
     - assets/meditations/covers/
+    - assets/audio/cues/
+    - assets/meditations/
 
 
 

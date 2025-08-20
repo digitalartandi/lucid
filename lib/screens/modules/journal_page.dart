@@ -1,165 +1,159 @@
 ﻿import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
-import 'package:share_plus/share_plus.dart';
-import '../../services/journal_store.dart';
+import '../../models/journal_models.dart';
+import '../../services/journal_repo.dart';
 
-class JournalPage extends StatefulWidget {
-  const JournalPage({super.key});
-  @override State<JournalPage> createState()=> _JournalPageState();
+const _bg = Color(0xFF0D0F16);
+const _white = Color(0xFFE9EAFF);
+const _glass = Color(0x1AFFFFFF);
+const _line = Color(0x22FFFFFF);
+const _accent = Color(0xFF7A6CFF);
+const _card = Color(0xFF0A0A23);
+
+class JournalListPage extends StatefulWidget {
+  const JournalListPage({super.key});
+  @override
+  State<JournalListPage> createState() => _JournalListPageState();
 }
 
-class _JournalPageState extends State<JournalPage> {
-  final _input = TextEditingController();
-  final _edit = TextEditingController();
-  final _store = JournalStore();
-  List<JournalEntry> _items = [];
+class _JournalListPageState extends State<JournalListPage> {
+  final _repo = JournalRepo.instance;
+
+  int _seg = 0; // 0=Alle, 1=Lucid, 2=Normal
   String _query = '';
+  List<JournalIndexItem> _items = [];
 
   @override
   void initState() {
     super.initState();
     _load();
+    _repo.revision.addListener(_load);
+  }
+
+  @override
+  void dispose() {
+    _repo.revision.removeListener(_load);
+    super.dispose();
   }
 
   Future<void> _load() async {
-    final data = await _store.load();
-    if (mounted) setState(()=> _items = data);
-  }
-
-  Future<void> _add() async {
-    final t = _input.text.trim();
-    if (t.isEmpty) return;
-    final data = await _store.add(t);
+    await _repo.init();
+    final list = await _repo.list();
     if (!mounted) return;
-    setState(()=> _items = data);
-    _input.clear();
-  }
-
-  Future<void> _remove(String id) async {
-    final data = await _store.remove(id);
-    if (!mounted) return;
-    setState(()=> _items = data);
-  }
-
-  Future<void> _editEntry(JournalEntry e) async {
-    _edit.text = e.text;
-    await showCupertinoDialog(context: context, builder: (_)=> CupertinoAlertDialog(
-      title: const Text('Eintrag bearbeiten'),
-      content: Column(children: [
-        const SizedBox(height: 8),
-        CupertinoTextField(controller: _edit, maxLines: 5),
-      ]),
-      actions: [
-        CupertinoDialogAction(
-          isDestructiveAction: true,
-          onPressed: ()=> Navigator.of(context).pop(),
-          child: const Text('Abbrechen'),
-        ),
-        CupertinoDialogAction(
-          isDefaultAction: true,
-          onPressed: () async {
-            final txt = _edit.text.trim();
-            if (txt.isNotEmpty) await _store.update(e.id, txt);
-            if (mounted) Navigator.of(context).pop();
-            _load();
-          },
-          child: const Text('Speichern'),
-        ),
-      ],
-    ));
-  }
-
-  Future<void> _export() async {
-    final json = await _store.exportJson();
-    await Clipboard.setData(ClipboardData(text: json));
-    try { await Share.share(json, subject: 'Lucid Journal Export'); } catch (_) {}
-    if (!mounted) return;
-    showCupertinoDialog(context: context, builder: (_)=> const CupertinoAlertDialog(
-      title: Text('Export'),
-      content: Text('Export in Zwischenablage kopiert.'),
-    )).then((_){ if (mounted) Navigator.of(context).pop(); });
+    setState(() => _items = list);
   }
 
   @override
   Widget build(BuildContext context) {
-    final filtered = _query.isEmpty
-      ? _items
-      : _items.where((e)=> e.text.toLowerCase().contains(_query.toLowerCase())).toList();
+    final filtered = _items.where((e) {
+      final q = _query.trim().toLowerCase();
+      final matchesQuery = q.isEmpty ||
+          e.title.toLowerCase().contains(q) ||
+          e.tags.any((t) => t.toLowerCase().contains(q));
+      final matchesSeg = switch (_seg) {
+        0 => true,
+        1 => e.tags.contains('lucid'),
+        2 => !e.tags.contains('lucid'),
+        _ => true,
+      };
+      return matchesQuery && matchesSeg;
+    }).toList()
+      ..sort((a, b) => b.date.compareTo(a.date));
 
     return CupertinoPageScaffold(
+      backgroundColor: _bg,
       navigationBar: CupertinoNavigationBar(
-        middle: const Text('Journal'),
-        trailing: CupertinoButton(
-          padding: EdgeInsets.zero,
-          onPressed: _export,
-          child: const Icon(CupertinoIcons.square_arrow_up),
+        backgroundColor: _bg,
+        middle: const Text('Journal', style: TextStyle(color: _white)),
+        trailing: Row(mainAxisSize: MainAxisSize.min, children: [
+          CupertinoButton(
+            padding: EdgeInsets.zero,
+            onPressed: () => Navigator.of(context).pushNamed('/journal/new'),
+            child: const Icon(CupertinoIcons.add, color: _white),
+          ),
+        ]),
+      ),
+      child: SafeArea(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 10, 12, 8),
+              child: CupertinoSearchTextField(
+                placeholder: 'Suchen…',
+                style: const TextStyle(color: _white),
+                placeholderStyle: const TextStyle(color: Color(0x66E9EAFF)),
+                backgroundColor: _glass,
+                prefixIcon:
+                    const Icon(CupertinoIcons.search, color: _white, size: 18),
+                suffixIcon: const Icon(CupertinoIcons.xmark_circle_fill,
+                    color: _white),
+                onChanged: (q) => setState(() => _query = q),
+              ),
+            ),
+
+            // Segmented – IMMER weiße Typo
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 6, 12, 2),
+              child: CupertinoSlidingSegmentedControl<int>(
+                groupValue: _seg,
+                backgroundColor: const Color(0x33242742),
+                thumbColor: _accent,
+                children: {
+                  0: _segLabel('Alle'),
+                  1: _segLabel('Lucid'),
+                  2: _segLabel('Normal'),
+                },
+                onValueChanged: (v) => setState(() => _seg = v ?? 0),
+              ),
+            ),
+
+            const SizedBox(height: 8),
+
+            Expanded(
+              child: ListView.separated(
+                padding: const EdgeInsets.fromLTRB(12, 8, 12, 20),
+                itemBuilder: (_, i) {
+                  final it = filtered[i];
+                  return Container(
+                    decoration: BoxDecoration(
+                      color: _card,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: _line),
+                    ),
+                    child: CupertinoListTile.notched(
+                      title: Text(
+                        it.title.isEmpty ? 'Ohne Titel' : it.title,
+                        style: const TextStyle(color: _white),
+                      ),
+                      subtitle: Text(
+                        _fmt(it.date),
+                        style: const TextStyle(color: _white),
+                      ),
+                      trailing: const Icon(CupertinoIcons.chevron_right,
+                          color: _white),
+                      onTap: () => Navigator.of(context)
+                          .pushNamed('/journal/edit', arguments: it.id),
+                    ),
+                  );
+                },
+                separatorBuilder: (_, __) => const SizedBox(height: 10),
+                itemCount: filtered.length,
+              ),
+            ),
+          ],
         ),
       ),
-      child: SafeArea(child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(12),
-            child: CupertinoTextField(
-              controller: _input,
-              placeholder: 'Kurzer Traum-Eintrag …',
-              maxLines: 3,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal:12),
-            child: Row(
-              children: [
-                Expanded(
-                  child: CupertinoButton.filled(
-                    onPressed: _add,
-                    child: const Text('Speichern'),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 6),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: CupertinoSearchTextField(
-              placeholder: 'Suchen …',
-              onChanged: (q)=> setState(()=> _query = q),
-            ),
-          ),
-          const SizedBox(height: 6),
-          Expanded(
-            child: ListView.separated(
-              itemBuilder: (_, i) {
-                final e = filtered[i];
-                return CupertinoListTile.notched(
-                  title: Text(e.text),
-                  subtitle: Text(_fmt(e.createdAt)),
-                  trailing: Row(mainAxisSize: MainAxisSize.min, children: [
-                    CupertinoButton(
-                      padding: EdgeInsets.zero,
-                      onPressed: ()=> _editEntry(e),
-                      child: const Icon(CupertinoIcons.pencil),
-                    ),
-                    const SizedBox(width: 8),
-                    CupertinoButton(
-                      padding: EdgeInsets.zero,
-                      onPressed: ()=> _remove(e.id),
-                      child: const Icon(CupertinoIcons.delete, color: CupertinoColors.destructiveRed),
-                    ),
-                  ]),
-                );
-              },
-              separatorBuilder: (_, __)=> Container(height: 1, color: CupertinoColors.separator),
-              itemCount: filtered.length,
-            ),
-          ),
-        ],
-      )),
     );
   }
 
+  Widget _segLabel(String s) => Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        child: Text(s,
+            style: const TextStyle(
+                color: _white, fontWeight: FontWeight.w600, fontSize: 13)),
+      );
+
   String _fmt(DateTime d) {
-    final two = (int n)=> n.toString().padLeft(2,'0');
-    return '${d.year}-${two(d.month)}-${two(d.day)} ${two(d.hour)}:${two(d.minute)}';
-  }
+    String two(int x) => x < 10 ? '0$x' : '$x';
+    return '${two(d.day)}.${two(d.month)}.${d.year}  ${two(d.hour)}:${two(d.minute)}';
+    }
 }

@@ -1,9 +1,11 @@
 ﻿import 'package:flutter/cupertino.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../screens/cues/cue_library_page.dart';
-import '../../services/cue_player.dart';
 import '../../models/cue_models.dart';
+import '../../services/cue_player.dart';
+
+const _bg     = Color(0xFF0D0F16);
+const _white  = Color(0xFFE9EAFF);
+const _card   = Color(0xFF0A0A23);
+const _line   = Color(0x22FFFFFF);
 
 class CueTuningPage extends StatefulWidget {
   const CueTuningPage({super.key});
@@ -12,214 +14,178 @@ class CueTuningPage extends StatefulWidget {
 }
 
 class _CueTuningPageState extends State<CueTuningPage> {
-  // Persistenz-Keys
-  static const _kVolume = 'cue_tuning_volume_v1';
-  static const _kInterval = 'cue_tuning_interval_min_v1';
-  static const _kAsset = 'cue_tuning_asset_v1';
+  final _player = CueLoopPlayer.instance;
 
-  // Zustand
-  double _volume = 0.8;     // 0..1
-  double _interval = 10.0;  // Minuten
   CueSound? _selected;
-  String? _selectedAssetPath; // falls _selected nicht geladen ist (z. B. nach App-Neustart)
-  bool _playing = false;
-
-  final _cuePlayer = CueLoopPlayer.instance;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadPrefs();
-  }
+  double _volume = .8;
+  double _intervalMin = 10;
 
   @override
   void dispose() {
-    _cuePlayer.stop();
+    _player.stop();
     super.dispose();
-  }
-
-  Future<void> _loadPrefs() async {
-    final p = await SharedPreferences.getInstance();
-    setState(() {
-      _volume = p.getDouble(_kVolume) ?? 0.8;
-      _interval = p.getDouble(_kInterval) ?? 10.0;
-      _selectedAssetPath = p.getString(_kAsset);
-    });
-  }
-
-  Future<void> _saveVolume(double v) async {
-    final p = await SharedPreferences.getInstance();
-    await p.setDouble(_kVolume, v);
-  }
-
-  Future<void> _saveInterval(double v) async {
-    final p = await SharedPreferences.getInstance();
-    await p.setDouble(_kInterval, v);
-  }
-
-  Future<void> _saveAsset(String asset) async {
-    final p = await SharedPreferences.getInstance();
-    await p.setString(_kAsset, asset);
-  }
-
-  // Helfer: hübscher Anzeigename aus Asset-Pfad
-  String _displayNameFromAsset(String assetPath) {
-    final base = assetPath.split('/').last.replaceAll('.mp3', '');
-    final clean = base.replaceAll('_', ' ').replaceAll('-', ' ');
-    return clean.split(' ').where((w) => w.isNotEmpty).map((w) {
-      final lower = w.toLowerCase();
-      return '${lower[0].toUpperCase()}${lower.substring(1)}';
-    }).join(' ');
-  }
-
-  Future<void> _pickCue() async {
-    final pick = await Navigator.of(context).push<CueSound>(
-      CupertinoPageRoute(builder: (_) => const CueLibraryPage(returnOnPick: true)),
-    );
-    if (pick != null) {
-      setState(() {
-        _selected = pick;
-        _selectedAssetPath = pick.id;
-      });
-      await _saveAsset(pick.id);
-      await _cuePlayer.playLoop(pick.id, volume: _volume);
-      setState(() => _playing = true);
-    }
-  }
-
-  Future<void> _play() async {
-    final asset = _selected?.id ?? _selectedAssetPath;
-    if (asset == null) return;
-    await _cuePlayer.playLoop(asset, volume: _volume);
-    setState(() => _playing = true);
-  }
-
-  Future<void> _stop() async {
-    await _cuePlayer.stop();
-    setState(() => _playing = false);
-  }
-
-  Future<void> _probe() async {
-    await _play();
-    // kurze Probe (5s), dann leise ausblenden und stoppen
-    await Future.delayed(const Duration(seconds: 5));
-    if (mounted) await _stop();
   }
 
   @override
   Widget build(BuildContext context) {
-    final chosenName = _selected != null
-        ? _selected!.name
-        : (_selectedAssetPath != null ? _displayNameFromAsset(_selectedAssetPath!) : 'Kein Cue gewählt');
-
     return CupertinoPageScaffold(
-      navigationBar: CupertinoNavigationBar(
-        middle: const Text('Cue-Tuning'),
-        trailing: CupertinoButton(
-          padding: EdgeInsets.zero,
-          onPressed: _playing ? _stop : _play,
-          child: Icon(_playing ? CupertinoIcons.pause_fill : CupertinoIcons.play_fill),
-        ),
+      backgroundColor: _bg,
+      navigationBar: const CupertinoNavigationBar(
+        backgroundColor: _bg,
+        middle: Text('Cue-Tuning', style: TextStyle(color: _white)),
       ),
       child: SafeArea(
         child: ListView(
+          padding: const EdgeInsets.fromLTRB(12, 12, 12, 24),
           children: [
-            // Auswahl & Vorschau
-            CupertinoListSection.insetGrouped(
-              header: const Text('Cue'),
-              children: [
-                CupertinoListTile(
-                  title: const Text('Gewählter Cue'),
-                  subtitle: Text(chosenName),
-                  trailing: CupertinoButton(
-                    onPressed: _pickCue,
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    child: const Text('Auswählen'),
-                  ),
+            // Gewählter Cue
+            _tileCard(
+              title: 'Gewählter Cue',
+              subtitle: _selected?.displayLabel ?? 'Kein Cue gewählt',
+              trailing: CupertinoButton(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                onPressed: _pickCue,
+                child: const Text('Auswählen', style: TextStyle(color: _white)),
+              ),
+            ),
+            _tileCard(
+              title: 'Probe abspielen',
+              subtitle: '5 Sekunden mit aktueller Lautstärke',
+              trailing: CupertinoButton(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                onPressed: _selected == null ? null : () => _player.playOnce(_selected!, seconds: 5, volume: _volume),
+                child: const Text('Probe-Cue', style: TextStyle(color: _white)),
+              ),
+            ),
+            _tileCard(
+              title: 'Wiedergabe',
+              subtitle: 'Loop mit Intervall',
+              trailing: Row(mainAxisSize: MainAxisSize.min, children: [
+                CupertinoButton(
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                  onPressed: _selected == null ? null : () => _player.playLoop(_selected!, volume: _volume, intervalMinutes: _intervalMin.round()),
+                  child: const Text('Play', style: TextStyle(color: _white)),
                 ),
-                CupertinoListTile(
-                  title: const Text('Probe abspielen'),
-                  subtitle: const Text('5 Sekunden mit aktueller Lautstärke'),
-                  trailing: CupertinoButton(
-                    onPressed: (_selected != null || _selectedAssetPath != null) ? _probe : null,
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    child: const Text('Probe-Cue'),
-                  ),
+                const SizedBox(width: 8),
+                CupertinoButton(
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                  onPressed: _player.isPlaying ? _player.stop : null,
+                  child: const Text('Stop', style: TextStyle(color: _white)),
                 ),
-                CupertinoListTile(
-                  title: const Text('Wiedergabe'),
-                  trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      CupertinoButton(
-                        onPressed: (_selected != null || _selectedAssetPath != null) ? _play : null,
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-                        child: const Text('Play'),
-                      ),
-                      const SizedBox(width: 6),
-                      CupertinoButton(
-                        onPressed: _playing ? _stop : null,
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-                        child: const Text('Stop'),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+              ]),
             ),
 
-            // Lautstärke / Intervall
-            CupertinoListSection.insetGrouped(
-              header: const Text('Feinabstimmung'),
-              children: [
-                CupertinoListTile(
-                  title: const Text('Lautstärke'),
-                  trailing: SizedBox(
-                    width: 200,
-                    child: CupertinoSlider(
-                      value: _volume,
-                      onChanged: (v) async {
-                        setState(() => _volume = v);
-                        await _cuePlayer.setVolume(v);
-                        await _saveVolume(v);
-                      },
-                    ),
-                  ),
-                ),
-                CupertinoListTile(
-                  title: Text('Intervall: ${_interval.toStringAsFixed(0)} min'),
-                  subtitle: const Text('Zeit zwischen zwei Cues'),
-                  trailing: SizedBox(
-                    width: 200,
-                    child: CupertinoSlider(
-                      min: 5,
-                      max: 30,
-                      value: _interval,
-                      onChanged: (v) async {
-                        setState(() => _interval = v);
-                        await _saveInterval(v);
-                      },
-                    ),
-                  ),
-                ),
-              ],
+            const SizedBox(height: 14),
+
+            // Lautstärke
+            _sectionCard(
+              header: 'Lautstärke',
+              child: CupertinoSlider(
+                value: _volume,
+                onChanged: (v) => setState(() => _volume = v),
+              ),
+            ),
+            // Intervall
+            _sectionCard(
+              header: 'Intervall: ${_intervalMin.round()} min',
+              child: CupertinoSlider(
+                min: 5, max: 30,
+                value: _intervalMin,
+                onChanged: (v) => setState(() => _intervalMin = v),
+              ),
             ),
 
-            // Hinweise
-            CupertinoListSection.insetGrouped(
-              children: const [
-                CupertinoListTile(
-                  title: Text('Hinweis'),
-                  subtitle: Text(
-                    'Die Auswahl und Einstellungen werden automatisch gespeichert '
-                    'und in RC-Reminder / Night Lite+ verwendet.',
-                  ),
-                ),
-              ],
-            ),
+            const SizedBox(height: 12),
+            _hintCard('Die Auswahl und Einstellungen werden automatisch gespeichert und in RC-Reminder / Night Lite+ verwendet.'),
           ],
         ),
       ),
     );
   }
+
+  Future<void> _pickCue() async {
+    final res = await Navigator.of(context).pushNamed('/cues', arguments: {
+      'picker': true,
+      'selectedId': _selected?.id,
+    });
+
+    if (!mounted) return;
+    if (res is CueSound) {
+      setState(() => _selected = res);
+    }
+  }
+
+  // ---------- UI-Helfer ----------
+  Widget _tileCard({required String title, required String subtitle, Widget? trailing}) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 10),
+      decoration: BoxDecoration(
+        color: _card,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: _line),
+      ),
+      child: CupertinoListTile.notched(
+        title: Text(title, style: const TextStyle(color: _white, fontWeight: FontWeight.w600)),
+        subtitle: Text(subtitle, style: const TextStyle(color: _white)),
+        trailing: trailing,
+      ),
+    );
+  }
+
+  Widget _sectionCard({required String header, required Widget child}) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.fromLTRB(12, 10, 12, 14),
+      decoration: BoxDecoration(
+        color: _card,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: _line),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(header, style: const TextStyle(color: _white, fontWeight: FontWeight.w600)),
+          const SizedBox(height: 8),
+          child,
+        ],
+      ),
+    );
+  }
+
+  Widget _hintCard(String text) {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: _card,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: _line),
+      ),
+      child: Text(text, style: const TextStyle(color: _white)),
+    );
+  }
 }
+
+// Nutzt dieselbe Kompatibilitäts-Extension wie in der Library:
+extension CueSoundCompat on CueSound {
+  String get assetPathPretty {
+    final a = (this as dynamic).asset as String? ?? '';
+    if (a.isEmpty) return '';
+    return a.split('/').last;
+  }
+
+  String get displayLabel {
+    final dyn = this as dynamic;
+    final n = (dyn.displayName as String?) ??
+              (dyn.name as String?) ??
+              (dyn.title as String?) ??
+              '';
+    if (n.trim().isNotEmpty) return n.trim();
+
+    final pretty = assetPathPretty.replaceAll('_', ' ').replaceAll('-', ' ');
+    final withoutExt = pretty.contains('.') ? pretty.substring(0, pretty.lastIndexOf('.')) : pretty;
+    return _capitalizeWords(withoutExt);
+  }
+}
+
+String _capitalizeWords(String s) =>
+    s.split(RegExp(r'\s+')).map((w) => w.isEmpty ? w : '${w[0].toUpperCase()}${w.substring(1)}').join(' ');

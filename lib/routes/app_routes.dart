@@ -1,4 +1,5 @@
-﻿import 'package:flutter/cupertino.dart';
+﻿// lib/routes/app_routes.dart
+import 'package:flutter/cupertino.dart';
 
 // Intro
 import '../screens/onboarding/intro_landing_page.dart';
@@ -13,17 +14,15 @@ import '../screens/modules/rc_reminder_page.dart';
 import '../screens/modules/night_lite_page.dart';
 import '../screens/modules/trainer_page.dart';
 import '../screens/modules/cue_tuning_page.dart';
-// (altes Journal-Module entfernt)
 
-// Hilfe / Onboarding
+// Hilfe
 import '../screens/help/help_center_page.dart';
-import '../screens/onboarding/start_screen.dart';
 
 // Wissen
-import '../screens/wissen/wissen_hub_page.dart';       // Hub / Übersichtsseite
-import '../screens/wissen/wissen_article_page.dart';   // Markdown-Artikel
-import '../screens/wissen/faq_basics_page.dart';       // FAQ-Einstieg
-import '../screens/wissen/reading_list_page.dart';     // Leseliste
+import '../screens/wissen/wissen_hub_page.dart';
+import '../screens/wissen/wissen_article_page.dart';
+import '../screens/wissen/faq_basics_page.dart';
+import '../screens/wissen/reading_list_page.dart';
 
 // Studien-Feed
 import '../screens/wissen/studien_feed_page_with_save.dart';
@@ -38,20 +37,13 @@ import '../models/journal_models.dart';
 import '../screens/account/account_settings_page.dart';
 
 // Cues
-import '../screens/cues/cue_library_page.dart';   // ⬅️ NEU
+import '../screens/cues/cue_library_page.dart';
 
 // Meditation
 import '../screens/meditation/meditation_hub_page.dart';
 import '../screens/meditation/meditation_player_page.dart';
 
-// Trainer
-import '../screens/modules/trainer_page.dart';
-
-
-
-
 CupertinoPageRoute<T> _c<T>(Widget w) => CupertinoPageRoute<T>(builder: (_) => w);
-
 String _argString(Object? a, [String fallback = '']) => a is String ? a : fallback;
 
 Route<dynamic> onGenerateRoute(RouteSettings s) {
@@ -82,13 +74,11 @@ Route<dynamic> onGenerateRoute(RouteSettings s) {
       return _c(TraumreisePlayerPage(id: id));
     }
 
-    // --- Journal (neu) ---
+    // --- Journal ---
     case '/journal':
       return _c(const JournalListPage());
-
     case '/journal/new':
       return _c(const _JournalNewEntryLauncher());
-
     case '/journal/edit': {
       final id = _argString(s.arguments, '');
       if (id.isEmpty) {
@@ -101,14 +91,11 @@ Route<dynamic> onGenerateRoute(RouteSettings s) {
     case '/help':
       return _c(const HelpCenterPage());
     case '/onboarding':
-      return _c(const IntroStepperPage()); // ← statt altem OnboardingStart
+      return _c(const IntroStepperPage());
 
     // --- Wissen: Artikel & FAQ ---
     case '/wissen/article': {
-      final path = _argString(
-        s.arguments,
-        'assets/wissen/grundlagen_de.md', // Fallback
-      );
+      final path = _argString(s.arguments, 'assets/wissen/grundlagen_de.md');
       return _c(WissenArticlePage(assetPath: path));
     }
     case '/wissen/faq_basics':
@@ -118,8 +105,9 @@ Route<dynamic> onGenerateRoute(RouteSettings s) {
     case '/reading_list':
       return _c(const ReadingListPage());
 
+    // --- Cues Bibliothek ---
     case '/cues':
-      return _c(const CueLibraryPage()); // ⬅️ NEU: Bibliothek öffnen
+      return _c(const CueLibraryPage());
 
     // --- Studien-Feed (Aliase) ---
     case '/studien':
@@ -130,26 +118,22 @@ Route<dynamic> onGenerateRoute(RouteSettings s) {
     case '/account':
       return _c(const AccountSettingsPage());
 
-   // --- Intro ---
+    // --- Intro ---
     case '/intro':
       return _c(const IntroLandingPage());
     case '/intro/stepper':
       return _c(const IntroStepperPage());
 
-// Meditations / Soundscapes
-case '/meditations':
-  return _c(const MeditationHubPage());
-case '/meditations/play': {
-  final id = s.arguments is String ? s.arguments as String : '';
-  if (id.isEmpty) return _c(const _UnknownRouteScreen(name: '/meditations/play (ohne ID)'));
-  return _c(MeditationPlayerPage(id: id));
-}
-
-// Trainer
-case '/trainer':
-  return _c(const TrainerPage());
-
-
+    // --- Meditations / Soundscapes ---
+    case '/meditations':
+      return _c(const MeditationHubPage());
+    case '/meditations/play': {
+      final id = _argString(s.arguments, '');
+      if (id.isEmpty) {
+        return _c(const _UnknownRouteScreen(name: '/meditations/play (ohne ID)'));
+      }
+      return _c(MeditationPlayerPage(id: id));
+    }
 
     // --- Fallback: unbekannte Route ---
     default:

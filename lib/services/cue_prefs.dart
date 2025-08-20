@@ -1,24 +1,68 @@
+import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../models/cue_models.dart';
 
-class CuePrefsKeys {
-  static const volume   = 'cue_tuning_volume_v1';
-  static const interval = 'cue_tuning_interval_min_v1';
-  static const asset    = 'cue_tuning_asset_v1';
-}
+class CueSelection {
+  final String id;
+  final String name;
+  final String asset;
+  final String category;
 
-class CueConfig {
-  final double volume;        // 0..1
-  final double intervalMin;   // Minuten
-  final String? asset;        // assets/audio/cues/*.mp3
-  const CueConfig({required this.volume, required this.intervalMin, required this.asset});
+  const CueSelection({
+    required this.id,
+    required this.name,
+    required this.asset,
+    required this.category,
+  });
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'asset': asset,
+        'category': category,
+      };
+
+  factory CueSelection.fromJson(Map<String, dynamic> j) => CueSelection(
+        id: j['id'] ?? '',
+        name: j['name'] ?? '',
+        asset: j['asset'] ?? '',
+        category: j['category'] ?? '',
+      );
 }
 
 class CuePrefs {
-  static Future<CueConfig> load() async {
-    final p = await SharedPreferences.getInstance();
-    final volume   = p.getDouble(CuePrefsKeys.volume)   ?? 0.8;
-    final interval = p.getDouble(CuePrefsKeys.interval) ?? 10.0;
-    final asset    = p.getString(CuePrefsKeys.asset);
-    return CueConfig(volume: volume, intervalMin: interval, asset: asset);
+  static const _key = 'selected_cue_v2';
+  static final ValueListenable<CueSelection?> selection = _selection;
+  static final ValueNotifier<CueSelection?> _selection =
+      ValueNotifier<CueSelection?>(null);
+
+  static Future<void> load() async {
+    final sp = await SharedPreferences.getInstance();
+    final s = sp.getString(_key);
+    if (s != null && s.isNotEmpty) {
+      _selection.value = CueSelection.fromJson(jsonDecode(s));
+    }
+  }
+
+  static Future<void> setFromCue(CueSound s) async {
+    await set(CueSelection(
+      id: s.id,
+      name: s.name,
+      asset: s.asset,
+      category: s.category,
+    ));
+  }
+
+  static Future<void> set(CueSelection sel) async {
+    final sp = await SharedPreferences.getInstance();
+    await sp.setString(_key, jsonEncode(sel.toJson()));
+    _selection.value = sel;
+  }
+
+  static Future<void> clear() async {
+    final sp = await SharedPreferences.getInstance();
+    await sp.remove(_key);
+    _selection.value = null;
   }
 }
