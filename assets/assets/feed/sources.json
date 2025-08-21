@@ -1,0 +1,27 @@
+[
+  {
+    "name": "PubMed (Lucid Dreaming)",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/rss/search/1jY0mT3-lucid-dreaming/?size=20",
+    "isStudy": true
+  },
+  {
+    "name": "arXiv: Sleep & Dreams",
+    "url": "http://export.arxiv.org/api/query?search_query=all:dream%20OR%20lucid&start=0&max_results=20",
+    "isStudy": true
+  },
+  {
+    "name": "Nature Neuroscience",
+    "url": "https://www.nature.com/subjects/sleep/rss",
+    "isStudy": false
+  },
+  {
+    "name": "Mind Hacks (Sleep)",
+    "url": "https://mindhacks.com/feed/",
+    "isStudy": false
+  },
+  {
+    "name": "Curated",
+    "url": "asset://curated",
+    "isStudy": true
+  }
+]

@@ -1,0 +1,64 @@
+{
+  "items": [
+    {
+      "id": "all",
+      "title": "Abenteuerreise ins All",
+      "subtitle": "Schwerelosigkeit & Sternenruhe",
+      "image": "assets/traumreisen/images/all.jpg",
+      "audio": "assets/traumreisen/audio/Abenteuerreise-ins-All-german.mp3",
+      "durationSec": 1200,
+      "tags": ["fokus", "lucidity"]
+    },
+    {
+      "id": "insel",
+      "title": "Einsame Insel",
+      "subtitle": "Wellen, Sand, Weite",
+      "image": "assets/traumreisen/images/insel.jpg",
+      "audio": "assets/traumreisen/audio/Einsame-Insel-german.mp3",
+      "durationSec": 900
+    },
+    {
+      "id": "alpen",
+      "title": "Flug über die Alpen",
+      "subtitle": "Weitsicht, Klarheit, Freiflug",
+      "image": "assets/traumreisen/images/alpen.jpg",
+      "audio": "assets/traumreisen/audio/Flug-ueber-Alpen.mp3",
+      "durationSec": 840
+    },
+    {
+      "id": "highlands",
+      "title": "Highlands",
+      "subtitle": "Nebel, Hügel, Ruhe",
+      "image": "assets/traumreisen/images/highlands.jpg",
+      "audio": "assets/traumreisen/audio/Highlands-german.mp3"
+    },
+    {
+      "id": "regenwald",
+      "title": "Tropischer Regenwald",
+      "subtitle": "Morgenlicht & Tropfgrün",
+      "image": "assets/traumreisen/images/regenwald.jpg",
+      "audio": "assets/traumreisen/audio/Regenwald-german.mp3"
+    },
+    {
+      "id": "lapland",
+      "title": "Nordlichter Lappland",
+      "subtitle": "Morgenlicht & Tropfgrün",
+      "image": "assets/traumreisen/images/nordlichter.jpg",
+      "audio": "assets/traumreisen/audio/Nordlichter-Lappland.mp3"
+    },
+    {
+      "id": "garten",
+      "title": "Auszeit im Garten",
+      "subtitle": "Auszeit im Garten",
+      "image": "assets/traumreisen/images/garten.jpg",
+      "audio": "assets/traumreisen/audio/Garten-german.mp3"
+    },
+    {
+      "id": "zauberwald",
+      "title": "Zauberwald",
+      "subtitle": "Lichtfunken & Pfade",
+      "image": "assets/traumreisen/images/zauberwald.jpg",
+      "audio": "assets/traumreisen/audio/Zauberwald-german.mp3"
+    }
+  ]
+}
