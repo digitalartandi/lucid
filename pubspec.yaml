@@ -20,7 +20,6 @@ dependencies:
   background_fetch: ^1.2.1
   share_plus: ^10.0.0
   google_fonts: ^6.3.0
-  # Neu: MP4-Loops im Header-Slider
   video_player: ^2.9.1
   http: ^1.2.1
   dart_rss: ^3.0.2
@@ -35,14 +34,31 @@ flutter:
   uses-material-design: false
 
   assets:
-    - assets/icons/              # Bottom-Nav SVGs
-    - assets/slider/             # Header-Slider-Bilder + manifest.json
-    - assets/slider/loops/       # MP4-Video-Loops (autoplay, muted)
-    - assets/audio/affirmations/
-    - assets/audio/
+    # Icons / UI
+    - assets/icons/
     - assets/logo/logo-signet.svg
+    - assets/logo/logo-text.svg
     - assets/logo/
     - assets/brand/hero_bg.webp
+
+    # Slider (Bilder + Loops + Manifest)
+    - assets/slider/
+    - assets/slider/loops/
+
+    # Cues
+    - assets/audio/cues/
+    - assets/images/cue_categories/
+
+    # Affirmationen (einmal, nicht doppelt)
+    - assets/audio/affirmations/
+
+    # Meditations / Soundscapes
+    - assets/meditations/manifest.json
+    - assets/meditations/
+    - assets/meditations/tracks/
+    - assets/meditations/covers/
+
+    # Wissen (sowohl einzelne Dateien als auch Ordner – ist ok)
     - assets/wissen/grundlagen_de.md
     - assets/wissen/klartraum_grundlagen_de.md
     - assets/wissen/techniken_de.md
@@ -67,26 +83,22 @@ flutter:
     - assets/wissen_en/faq_en.md
     - assets/wissen_en/glossary_en.md
     - assets/wissen_en/citations_en.md
-    - assets/quizzes/techniken_de.json
-    - assets/checklists/pre_night_de.json
+    - assets/wissen/
+
+    # Traumreisen
     - assets/traumreisen/
     - assets/traumreisen/images/
     - assets/traumreisen/audio/
-    - assets/logo/logo-text.svg
-    - assets/audio/cues/
-    - assets/images/cue_categories/
-    - assets/fonts/DMSans-Light.ttf
-    - assets/meditations/manifest.json
-    - assets/meditations/
-    - assets/meditations/tracks/
-    - assets/meditations/covers/
+
+    # Quizzes / Checklisten / Feed
+    - assets/quizzes/techniken_de.json
+    - assets/checklists/pre_night_de.json
     - assets/feed/sources.json
     - assets/feed/curated.json
-    - assets/wissen/
-    - assets/audio/affirmations/
 
+    # Fonts
+    - assets/fonts/DMSans-Light.ttf
 
-  # Optional, aber empfohlen: DM Sans lokal einbetten (passt zu allowRuntimeFetching=false)
   fonts:
     - family: DM Sans
       fonts:
