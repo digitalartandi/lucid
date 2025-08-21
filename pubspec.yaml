@@ -83,6 +83,7 @@ flutter:
     - assets/feed/sources.json
     - assets/feed/curated.json
     - assets/wissen/
+    - assets/audio/affirmations/
 
 
   # Optional, aber empfohlen: DM Sans lokal einbetten (passt zu allowRuntimeFetching=false)

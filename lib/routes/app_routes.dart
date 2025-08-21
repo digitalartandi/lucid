@@ -43,6 +43,11 @@ import '../screens/cues/cue_library_page.dart';
 import '../screens/meditation/meditation_hub_page.dart';
 import '../screens/meditation/meditation_player_page.dart';
 
+// Affirmationen
+import '../screens/affirmations/affirmation_hub_page.dart';
+import '../screens/affirmations/affirmation_player_page.dart';
+
+
 CupertinoPageRoute<T> _c<T>(Widget w) => CupertinoPageRoute<T>(builder: (_) => w);
 String _argString(Object? a, [String fallback = '']) => a is String ? a : fallback;
 
@@ -86,6 +91,16 @@ Route<dynamic> onGenerateRoute(RouteSettings s) {
       }
       return _c(JournalEntryPage(id: id));
     }
+
+// --- Affirmationen ---
+case '/affirmations':
+  return _c(const AffirmationHubPage());
+case '/affirmations/play': {
+  final id = s.arguments is String ? s.arguments as String : '';
+  if (id.isEmpty) return _c(const _UnknownRouteScreen(name: '/affirmations/play (ohne ID)'));
+  return _c(AffirmationPlayerPage(id: id));
+}
+
 
     // --- Hilfe / Onboarding ---
     case '/help':

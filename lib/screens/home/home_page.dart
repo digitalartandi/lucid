@@ -487,13 +487,19 @@ class _HorizontalCards extends StatelessWidget {
                 colors: g.tertiary,
                 route: '/journal',
               ),
-_GradientCard(
-  title: 'Soundscapes',
-  subtitle: 'Entspannung • Focus',
-  colors: g.accent,          // falls du GradientTheme nutzt; sonst beliebiges Paar
-  route: '/meditations',
-),
-
+              _GradientCard(
+                title: 'Soundscapes',
+                subtitle: 'Entspannung & Fokus',
+                colors: g.accent,
+                route: '/meditations',
+              ),
+              // NEU: Affirmationen – direkt neben Soundscapes
+              _GradientCard(
+                title: 'Affirmationen',
+                subtitle: 'Stärke & Ruhe',
+                colors: g.accent, // gleicher Stil wie Soundscapes (keine Icons)
+                route: '/affirmations',
+              ),
             ],
           ),
         );
