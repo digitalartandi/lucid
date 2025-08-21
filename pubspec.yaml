@@ -38,6 +38,7 @@ flutter:
     - assets/icons/              # Bottom-Nav SVGs
     - assets/slider/             # Header-Slider-Bilder + manifest.json
     - assets/slider/loops/       # MP4-Video-Loops (autoplay, muted)
+    - assets/audio/affirmations/
     - assets/logo/logo-signet.svg
     - assets/logo/
     - assets/brand/hero_bg.webp
