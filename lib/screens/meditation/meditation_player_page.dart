@@ -1,5 +1,7 @@
-﻿import 'package:flutter/cupertino.dart';
+﻿// lib/screens/meditation/meditation_player_page.dart
+import 'package:flutter/cupertino.dart';
 import 'package:just_audio/just_audio.dart';
+import '../../design/gradient_theme.dart';
 import '../../models/meditation_models.dart';
 import '../../services/meditation_repo.dart';
 
@@ -18,7 +20,6 @@ class MeditationPlayerPage extends StatefulWidget {
 class _MeditationPlayerPageState extends State<MeditationPlayerPage> {
   final _player = AudioPlayer();
   MeditationTrack? _t;
-  bool _loop = true;
 
   @override
   void initState() {
@@ -27,18 +28,21 @@ class _MeditationPlayerPageState extends State<MeditationPlayerPage> {
   }
 
   Future<void> _load() async {
-    final t = await MeditationRepo.instance.byId(widget.id);
-    _t = t;
-    if (t == null) return;
+    try {
+      _t = await MeditationRepo.instance.byId(widget.id);
+      if (_t == null) return;
 
-    // Wichtig: auf allen Plattformen stabil – bevorzugt setAsset().
-    await _player.setAsset(t.asset);
-    await _player.setLoopMode(LoopMode.one);
-    _loop = true;
-    await _player.setVolume(.8);
-    await _player.play();
+      // *** WICHTIG: Web-sichere Asset-Zuweisung ***
+      // statt 'asset://...' immer AudioSource.asset() benutzen
+      await _player.setAudioSource(AudioSource.asset(_t!.asset));
 
-    if (mounted) setState(() {});
+      await _player.setLoopMode(LoopMode.one);
+      await _player.setVolume(.8);
+      await _player.play();
+      if (mounted) setState(() {});
+    } catch (_) {
+      // stille Fehler – UI bleibt erhalten
+    }
   }
 
   @override
@@ -49,8 +53,8 @@ class _MeditationPlayerPageState extends State<MeditationPlayerPage> {
 
   @override
   Widget build(BuildContext context) {
+    final g = GradientTheme.of(GradientTheme.style.value).primary;
     final t = _t;
-
     return CupertinoPageScaffold(
       backgroundColor: _bg,
       navigationBar: CupertinoNavigationBar(
@@ -64,16 +68,39 @@ class _MeditationPlayerPageState extends State<MeditationPlayerPage> {
               child: ListView(
                 padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
                 children: [
-                  _Cover(path: t.cover),
+                  Container(
+                    height: 280,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: _stroke),
+                      boxShadow: const [
+                        BoxShadow(
+                            color: Color(0x66000000),
+                            blurRadius: 16,
+                            offset: Offset(0, 8))
+                      ],
+                    ),
+                    clipBehavior: Clip.hardEdge,
+                    child: t.cover.isNotEmpty
+                        ? Image.asset(t.cover, fit: BoxFit.cover)
+                        : DecoratedBox(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: g,
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                            ),
+                          ),
+                  ),
                   const SizedBox(height: 16),
                   Text(t.title,
                       style: const TextStyle(
-                          color: _white, fontSize: 22, fontWeight: FontWeight.w800)),
+                          color: _white,
+                          fontSize: 22,
+                          fontWeight: FontWeight.w800)),
                   const SizedBox(height: 4),
-                  Text(
-                    _metaLine(t),
-                    style: const TextStyle(color: _white),
-                  ),
+                  Text(t.category, style: const TextStyle(color: _white)),
                   const SizedBox(height: 16),
 
                   // Transport
@@ -85,26 +112,31 @@ class _MeditationPlayerPageState extends State<MeditationPlayerPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           CupertinoButton(
-                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 10),
                             onPressed: () => _player.seek(Duration.zero),
-                            child: const Icon(CupertinoIcons.gobackward, color: _white, size: 28),
+                            child: const Icon(CupertinoIcons.gobackward,
+                                color: _white, size: 28),
                           ),
                           const SizedBox(width: 6),
                           CupertinoButton.filled(
-                            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
-                            onPressed: () => playing ? _player.pause() : _player.play(),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 24, vertical: 10),
+                            onPressed: () =>
+                                playing ? _player.pause() : _player.play(),
                             child: Icon(
-                              playing ? CupertinoIcons.pause_fill : CupertinoIcons.play_fill,
-                              size: 28,
-                            ),
+                                playing
+                                    ? CupertinoIcons.pause_fill
+                                    : CupertinoIcons.play_fill,
+                                size: 28),
                           ),
                           const SizedBox(width: 6),
                           CupertinoButton(
-                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 10),
                             onPressed: () async {
                               final v = _player.volume;
-                              await _player.setVolume((v + 0.1).clamp(0, 1));
-                              setState(() {});
+                              _player.setVolume((v + 0.1).clamp(0, 1));
                             },
                             child: const Icon(CupertinoIcons.speaker_3_fill,
                                 color: _white, size: 28),
@@ -126,12 +158,11 @@ class _MeditationPlayerPageState extends State<MeditationPlayerPage> {
                       return Column(
                         children: [
                           CupertinoSlider(
-                            value: p.clamp(0.0, 1.0),
-                            onChanged: (v) {
-                              if (dur == Duration.zero) return;
-                              _player.seek(dur * v);
-                            },
-                          ),
+                              value: p.clamp(0.0, 1.0),
+                              onChanged: (v) {
+                                if (dur == Duration.zero) return;
+                                _player.seek(dur * v);
+                              }),
                           Text('${_fmt(pos)} / ${_fmt(dur)}',
                               style: const TextStyle(color: _white)),
                         ],
@@ -141,64 +172,27 @@ class _MeditationPlayerPageState extends State<MeditationPlayerPage> {
 
                   const SizedBox(height: 8),
 
-                  // Loop Toggle – ohne komplizierte Notifier-Extensions
-                  CupertinoListTile(
-                    backgroundColor: const Color(0x11000000),
-                    title: const Text('Endlos wiederholen',
-                        style: TextStyle(color: _white)),
-                    trailing: CupertinoSwitch(
-                      value: _loop,
-                      onChanged: (v) async {
-                        setState(() => _loop = v);
-                        await _player.setLoopMode(v ? LoopMode.one : LoopMode.off);
-                      },
-                    ),
+                  // Loop Toggle
+                  StreamBuilder<LoopMode>(
+                    stream: _player.loopModeStream,
+                    initialData: LoopMode.one,
+                    builder: (_, snap) {
+                      final on = (snap.data ?? LoopMode.one) == LoopMode.one;
+                      return CupertinoListTile(
+                        backgroundColor: const Color(0x11000000),
+                        title: const Text('Endlos wiederholen',
+                            style: TextStyle(color: _white)),
+                        trailing: CupertinoSwitch(
+                          value: on,
+                          onChanged: (v) => _player
+                              .setLoopMode(v ? LoopMode.one : LoopMode.off),
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),
             ),
-    );
-  }
-
-  String _metaLine(MeditationTrack t) {
-    // Daueranzeige wie im Hub
-    int? minutes;
-    final dyn = t as dynamic;
-    try {
-      final any = dyn.durationLabel;
-      if (any is String && any.trim().isNotEmpty) {
-        return '${t.category} · $any';
-      }
-    } catch (_) {}
-    try {
-      final v =
-          dyn.durationMinutes ?? dyn.durationMin ?? dyn.minutes ?? dyn.lengthMinutes;
-      if (v is int) minutes = v;
-      if (v is double) minutes = v.round();
-    } catch (_) {}
-    return minutes == null ? t.category : '${t.category} · ${minutes} min';
-  }
-}
-
-class _Cover extends StatelessWidget {
-  const _Cover({required this.path});
-  final String? path;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 280,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: _stroke),
-        boxShadow: const [
-          BoxShadow(color: Color(0x66000000), blurRadius: 16, offset: Offset(0, 8))
-        ],
-      ),
-      clipBehavior: Clip.hardEdge,
-      child: path != null && path!.isNotEmpty
-          ? Image.asset(path!, fit: BoxFit.cover)
-          : Container(color: const Color(0xFF1B1E33)),
     );
   }
 }

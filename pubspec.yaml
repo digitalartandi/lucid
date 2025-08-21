@@ -39,6 +39,7 @@ flutter:
     - assets/slider/             # Header-Slider-Bilder + manifest.json
     - assets/slider/loops/       # MP4-Video-Loops (autoplay, muted)
     - assets/audio/affirmations/
+    - assets/audio/
     - assets/logo/logo-signet.svg
     - assets/logo/
     - assets/brand/hero_bg.webp
@@ -79,8 +80,6 @@ flutter:
     - assets/meditations/
     - assets/meditations/tracks/
     - assets/meditations/covers/
-    - assets/audio/cues/
-    - assets/meditations/
     - assets/feed/sources.json
     - assets/feed/curated.json
     - assets/wissen/
