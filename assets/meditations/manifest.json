@@ -8,5 +8,11 @@
     { "id": "space",              "title": "Space",               "category": "Cosmic • Drone",       "asset": "assets/meditations/tracks/space.mp3",              "cover": "assets/meditations/covers/space.jpg" },
     { "id": "tropic",             "title": "Tropic",              "category": "Tropical • Warm",      "asset": "assets/meditations/tracks/tropic.mp3",             "cover": "assets/meditations/covers/tropic.jpg" },
     { "id": "woodland-breathing", "title": "Woodland Breathing",  "category": "Forest • Soft",        "asset": "assets/meditations/tracks/woodland-breathing.mp3", "cover": "assets/meditations/covers/woodland-breathing.jpg" }
+{ "id": "arcane-library", "title": "Arcane-Library",  "category": "Cosmic • Drone",        "asset": "assets/meditations/tracks/Arcane-Library.mp3", "cover": "assets/meditations/covers/Arcane-Library.jpg" }
+{ "id": "aurora-crown", "title": "Aurora Crown",  "category": "Cosmic • Drone",        "asset": "assets/meditations/tracks/Aurora-Crown.mp3", "cover": "assets/meditations/covers/Aurora-Crown.jpg" }
+{ "id": "fairy-forest", "title": "Fairy Forest",  "category": "Forest • Soft",        "asset": "assets/meditations/tracks/Fairy-Forest.mp3", "cover": "assets/meditations/covers/Fairy-Forest.jpg" }
+{ "id": "harp-of-the-evergreen", "title": "Harp of the Evergreen",  "category": "Forest • Soft",        "asset": "assets/meditations/tracks/Harp-of-the-Evergreen01.mp3", "cover": "assets/meditations/covers/Harp-of-the-Evergreen.jpg" }
+{ "id": "sky-islands", "title": "Sky Islands",  "category": "Forest • Soft",        "asset": "assets/meditations/tracks/Sky-Islands-Glide01.mp3", "cover": "assets/meditations/covers/Sky-Islands.jpg" }
+{ "id": "sky-islands", "title": "Sky Islands 2",  "category": "Forest • Soft",        "asset": "assets/meditations/tracks/Sky-Islands-Glide02.mp3", "cover": "assets/meditations/covers/Sky-Islands.jpg" }
   ]
 }
