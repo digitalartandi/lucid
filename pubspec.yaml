@@ -12,9 +12,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_markdown: ^0.6.18
   flutter_svg: ^2.0.10+1
-  http: ^1.2.1
   path_provider: ^2.1.3
-  url_launcher: ^6.2.5
   shared_preferences: ^2.5.3
   web_socket_channel: ^2.4.0
   just_audio: ^0.9.39
@@ -24,6 +22,9 @@ dependencies:
   google_fonts: ^6.3.0
   # Neu: MP4-Loops im Header-Slider
   video_player: ^2.9.1
+  http: ^1.2.1
+  dart_rss: ^3.0.2
+  url_launcher: ^6.3.0
 
 dev_dependencies:
   flutter_test:
@@ -45,12 +46,13 @@ flutter:
     - assets/wissen/techniken_de.md
     - assets/wissen/neuro_sleep_de.md
     - assets/wissen/journal_guide_de.md
-    - assets/wissen/nightmare_irt_de.md
-    - assets/wissen/wearables_detection_de.md
-    - assets/wissen/ethics_risks_de.md
+    - assets/wissen/albtraeume_irt_de.md
+    - assets/wissen/wearables_erkennung_de.md
+    - assets/wissen/ethik_risiken_de.md
     - assets/wissen/troubleshooting_de.md
     - assets/wissen/faq_de.md
-    - assets/wissen/glossary_de.md
+    - assets/wissen/glossar_de.md
+    - assets/wissen/quellen_zitate_de.md
     - assets/wissen/citations_de.md
     - assets/wissen_en/basics_en.md
     - assets/wissen_en/techniques_en.md
@@ -73,11 +75,14 @@ flutter:
     - assets/images/cue_categories/
     - assets/fonts/DMSans-Light.ttf
     - assets/meditations/manifest.json
+    - assets/meditations/
     - assets/meditations/tracks/
     - assets/meditations/covers/
     - assets/audio/cues/
     - assets/meditations/
-
+    - assets/feed/sources.json
+    - assets/feed/curated.json
+    - assets/wissen/
 
 
   # Optional, aber empfohlen: DM Sans lokal einbetten (passt zu allowRuntimeFetching=false)

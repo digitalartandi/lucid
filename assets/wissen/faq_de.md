@@ -1,28 +1,34 @@
-\# Häufige Fragen
+\# FAQ – Häufige Fragen
 
 
 
-\*\*Macht Klarträumen müde?\*\*  
+\*\*Wie schnell klappt Klarträumen?\*\*  
 
-Nicht an sich. Übertreibe WBTB/WILD nicht, achte auf Schlafdauer.
-
-
-
-\*\*Wie oft „sollte“ ich lucid sein?\*\*  
-
-Individuell. 1–2×/Monat ist für Einsteiger super; Qualität zählt.
+Individuell. Erste Effekte oft 2–6 Wochen bei täglicher Praxis.
 
 
 
-\*\*Ich wache sofort auf – Hilfe?\*\*  
+\*\*Sind Cues sicher?\*\*  
 
-Szene \*\*stabilisieren\*\* (Hände reiben, drehen, Details zählen), Emotion senken.
+Ja, wenn sie \*\*sanft\*\* sind und den Schlaf kaum stören. Bei starker Müdigkeit pausieren.
 
 
 
-\*\*Schlafparalyse?\*\*  
+\*\*Brauche ich ein Wearable?\*\*  
 
-Unangenehm, aber \*\*harmlos\*\*. Ruhig atmen, Fokus auf Atem/Zehen, dann aufwachen oder in Traum „rollen“.
+Nein. Es hilft bei Timing, ist aber optional.
+
+
+
+\*\*Wie viele Reality-Checks pro Tag?\*\*  
+
+2–6 sinnvolle, \*\*kontextgebundene\*\* RCs sind besser als 20 automatische.
+
+
+
+\*\*Hilft Meditation?\*\*  
+
+Achtsamkeit verbessert Aufmerksamkeit \& Traumerinnerung → meist hilfreich.
 
 
 

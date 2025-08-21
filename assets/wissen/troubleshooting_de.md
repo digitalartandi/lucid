@@ -2,13 +2,41 @@
 
 
 
-\*\*Keine Traumerinnerung\*\* → Abend: 2 Min. Intention + Wasser/Notizblock bereit; Morgen: 30 Sek still liegen, 3 Stichwörter.  
+\*\*Problem → Lösungsvorschläge\*\*
 
-\*\*WBTB macht mich wach\*\* → Wachfenster kürzen (5–10 Min), warmes Licht, kein Handy-Feed.  
 
-\*\*WILD = Unruhe\*\* → Erst MILD/SSILD festigen, Atem-Anker statt Zwang.  
 
-\*\*Klarheit bricht ab\*\* → Sofort reiben/drehen, „Ich bleibe“ sagen, nächstes Mini-Ziel setzen.  
+\### „Ich werde nicht klar.“
 
-\*\*Albtraum-Thema\*\* → IRT-Protokoll (s.u.), ggf. fachliche Begleitung.
+\- RCs an \*\*persönliche Triggers\*\* koppeln (aus dem Journal).
+
+\- Abends \*\*Intention\*\* formulieren (MILD).
+
+\- \*\*Cues\*\* testen: Lautstärke, Zeitpunkt, Art (Ton/Licht/Vibe).
+
+
+
+\### „Ich wache bei Cues auf.“
+
+\- Lautstärke ↓, \*\*einmalig\*\* abspielen, Intervall ↑.
+
+\- \*\*weich einschwingen\*\* (Fade-in), neutrale Sounds.
+
+
+
+\### „Keine Traumerinnerung.“
+
+\- Direkt nach dem Aufwachen \*\*Stichworte\*\*, nicht aufs Handy schauen.
+
+\- Schlafdauer ↑; Weckzeit leicht variieren.
+
+
+
+\### „Albtraum stressig.“
+
+\- \*\*IRT\*\*: Szene umschreiben, tagsüber üben.  
+
+\- Beruhigungs-Routine (Atmung 4-6, Bodyscan).
+
+
 
