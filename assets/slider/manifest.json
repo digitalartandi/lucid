@@ -8,20 +8,20 @@
     },
     {
       "type": "image",
-      "asset": "assets/slider/dramatische-sturmwolken-tuerkis-himmel.webp",
-      "title": "Galaxie",
-      "subtitle": "Nachtmodus verfeinert"
+      "asset": "assets/slider/dramatische-sturmwolken-tuerkis-himmel-.webp",
+      "title": "Affirmationen",
+      "subtitle": "Stärke & Ruhe"
     },
     {
       "type": "image",
       "asset": "assets/slider/abenddaemmerung-berge-spiegelnder-see.webp",
-      "title": "Spiegelnder See",
-      "subtitle": "Fokus & Ruhe"
+      "title": "Traumreisen",
+      "subtitle": "Wo Träume Urlaub machen."
     },
     {
       "type": "video",
       "asset": "assets/slider/loops/loop01.mp4",
-      "title": "Wellen • Loop",
+      "title": "Cues & neue Sounds",
       "subtitle": "Autoplay · stumm · Loop"
     },
     {
