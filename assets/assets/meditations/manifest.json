@@ -1,122 +1,124 @@
-[
-  {
-    "id": "arcane-library",
-    "title": "Arcane Library",
-    "category": "Atmosphäre",
-    "minutes": 10,
-    "asset": "assets/meditations/tracks/Arcane-Library.mp3",
-    "cover": "assets/meditations/covers/Arcane-Library.jpg"
-  },
-  {
-    "id": "aurora-crown",
-    "title": "Aurora Crown",
-    "category": "Atmosphäre",
-    "minutes": 10,
-    "asset": "assets/meditations/tracks/Aurora-Crown.mp3",
-    "cover": "assets/meditations/covers/Aurora-Crown.jpg"
-  },
-  {
-    "id": "fairy-forest",
-    "title": "Fairy Forest",
-    "category": "Natur",
-    "minutes": 10,
-    "asset": "assets/meditations/tracks/Fairy-Forest.mp3",
-    "cover": "assets/meditations/covers/Fairy-Forest.jpg"
-  },
-  {
-    "id": "harp-of-the-evergreen-01",
-    "title": "Harp of the Evergreen 01",
-    "category": "Harp",
-    "minutes": 10,
-    "asset": "assets/meditations/tracks/Harp-of-the-Evergreen01.mp3",
-    "cover": "assets/meditations/covers/Harp-of-the-Evergreen.jpg"
-  },
-  {
-    "id": "harp-of-the-evergreen-02",
-    "title": "Harp of the Evergreen 02",
-    "category": "Harp",
-    "minutes": 10,
-    "asset": "assets/meditations/tracks/Harp-of-the-Evergreen02.mp3",
-    "cover": "assets/meditations/covers/Harp-of-the-Evergreen.jpg"
-  },
-  {
-    "id": "sky-islands-glide-01",
-    "title": "Sky Islands Glide 01",
-    "category": "Ambient",
-    "minutes": 10,
-    "asset": "assets/meditations/tracks/Sky-Islands-Glide01.mp3",
-    "cover": "assets/meditations/covers/Sky-Islands.jpg"
-  },
-  {
-    "id": "sky-islands-glide-02",
-    "title": "Sky Islands Glide 02",
-    "category": "Ambient",
-    "minutes": 10,
-    "asset": "assets/meditations/tracks/Sky-Islands-Glide02.mp3",
-    "cover": "assets/meditations/covers/Sky-Islands.jpg"
-  },
-  {
-    "id": "space",
-    "title": "Space",
-    "category": "Atmosphäre",
-    "minutes": 10,
-    "asset": "assets/meditations/tracks/Space.mp3",
-    "cover": "assets/meditations/covers/Space.jpg"
-  },
-  {
-    "id": "handpan-drift",
-    "title": "Handpan Drift",
-    "category": "Handpan",
-    "minutes": 10,
-    "asset": "assets/meditations/tracks/handpan-drift.mp3",
-    "cover": "assets/meditations/covers/handpan-drift.jpg"
-  },
-  {
-    "id": "highlands",
-    "title": "Highlands",
-    "category": "Natur",
-    "minutes": 10,
-    "asset": "assets/meditations/tracks/highlands.mp3",
-    "cover": "assets/meditations/covers/highlands.jpg"
-  },
-  {
-    "id": "misty-horizons",
-    "title": "Misty Horizons",
-    "category": "Ambient",
-    "minutes": 10,
-    "asset": "assets/meditations/tracks/misty-horizons.mp3",
-    "cover": "assets/meditations/covers/misty-horizons.jpg"
-  },
-  {
-    "id": "moonlit-fjord",
-    "title": "Moonlit Fjord",
-    "category": "Wasser",
-    "minutes": 10,
-    "asset": "assets/meditations/tracks/moonlit-fjord.mp3",
-    "cover": "assets/meditations/covers/moonlit-fjord.jpg"
-  },
-  {
-    "id": "oceanic-breath",
-    "title": "Oceanic Breath",
-    "category": "Wasser",
-    "minutes": 10,
-    "asset": "assets/meditations/tracks/oceanic-breath.mp3",
-    "cover": "assets/meditations/covers/oceanic-breath.jpg"
-  },
-  {
-    "id": "tropic",
-    "title": "Tropic",
-    "category": "Natur",
-    "minutes": 10,
-    "asset": "assets/meditations/tracks/tropic.mp3",
-    "cover": "assets/meditations/covers/tropic.jpg"
-  },
-  {
-    "id": "woodland-breathing",
-    "title": "Woodland Breathing",
-    "category": "Natur",
-    "minutes": 10,
-    "asset": "assets/meditations/tracks/woodland-breathing.mp3",
-    "cover": "assets/meditations/covers/woodland-breathing.jpg"
-  }
-]
+{
+  "items": [
+    {
+      "id": "arcane-library",
+      "title": "Arcane Library",
+      "category": "Atmosphäre",
+      "minutes": 10,
+      "asset": "assets/meditations/tracks/Arcane-Library.mp3",
+      "cover": "assets/meditations/covers/Arcane-Library.jpg"
+    },
+    {
+      "id": "aurora-crown",
+      "title": "Aurora Crown",
+      "category": "Atmosphäre",
+      "minutes": 10,
+      "asset": "assets/meditations/tracks/Aurora-Crown.mp3",
+      "cover": "assets/meditations/covers/Aurora-Crown.jpg"
+    },
+    {
+      "id": "fairy-forest",
+      "title": "Fairy Forest",
+      "category": "Natur",
+      "minutes": 10,
+      "asset": "assets/meditations/tracks/Fairy-Forest.mp3",
+      "cover": "assets/meditations/covers/Fairy-Forest.jpg"
+    },
+    {
+      "id": "harp-of-the-evergreen-01",
+      "title": "Harp of the Evergreen 01",
+      "category": "Harp",
+      "minutes": 10,
+      "asset": "assets/meditations/tracks/Harp-of-the-Evergreen01.mp3",
+      "cover": "assets/meditations/covers/Harp-of-the-Evergreen.jpg"
+    },
+    {
+      "id": "harp-of-the-evergreen-02",
+      "title": "Harp of the Evergreen 02",
+      "category": "Harp",
+      "minutes": 10,
+      "asset": "assets/meditations/tracks/Harp-of-the-Evergreen02.mp3",
+      "cover": "assets/meditations/covers/Harp-of-the-Evergreen.jpg"
+    },
+    {
+      "id": "sky-islands-glide-01",
+      "title": "Sky Islands Glide 01",
+      "category": "Ambient",
+      "minutes": 10,
+      "asset": "assets/meditations/tracks/Sky-Islands-Glide01.mp3",
+      "cover": "assets/meditations/covers/Sky-Islands.jpg"
+    },
+    {
+      "id": "sky-islands-glide-02",
+      "title": "Sky Islands Glide 02",
+      "category": "Ambient",
+      "minutes": 10,
+      "asset": "assets/meditations/tracks/Sky-Islands-Glide02.mp3",
+      "cover": "assets/meditations/covers/Sky-Islands.jpg"
+    },
+    {
+      "id": "space",
+      "title": "Space",
+      "category": "Atmosphäre",
+      "minutes": 10,
+      "asset": "assets/meditations/tracks/Space.mp3",
+      "cover": "assets/meditations/covers/Space.jpg"
+    },
+    {
+      "id": "handpan-drift",
+      "title": "Handpan Drift",
+      "category": "Handpan",
+      "minutes": 10,
+      "asset": "assets/meditations/tracks/handpan-drift.mp3",
+      "cover": "assets/meditations/covers/handpan-drift.jpg"
+    },
+    {
+      "id": "highlands",
+      "title": "Highlands",
+      "category": "Natur",
+      "minutes": 10,
+      "asset": "assets/meditations/tracks/highlands.mp3",
+      "cover": "assets/meditations/covers/highlands.jpg"
+    },
+    {
+      "id": "misty-horizons",
+      "title": "Misty Horizons",
+      "category": "Ambient",
+      "minutes": 10,
+      "asset": "assets/meditations/tracks/misty-horizons.mp3",
+      "cover": "assets/meditations/covers/misty-horizons.jpg"
+    },
+    {
+      "id": "moonlit-fjord",
+      "title": "Moonlit Fjord",
+      "category": "Wasser",
+      "minutes": 10,
+      "asset": "assets/meditations/tracks/moonlit-fjord.mp3",
+      "cover": "assets/meditations/covers/moonlit-fjord.jpg"
+    },
+    {
+      "id": "oceanic-breath",
+      "title": "Oceanic Breath",
+      "category": "Wasser",
+      "minutes": 10,
+      "asset": "assets/meditations/tracks/oceanic-breath.mp3",
+      "cover": "assets/meditations/covers/oceanic-breath.jpg"
+    },
+    {
+      "id": "tropic",
+      "title": "Tropic",
+      "category": "Natur",
+      "minutes": 10,
+      "asset": "assets/meditations/tracks/tropic.mp3",
+      "cover": "assets/meditations/covers/tropic.jpg"
+    },
+    {
+      "id": "woodland-breathing",
+      "title": "Woodland Breathing",
+      "category": "Natur",
+      "minutes": 10,
+      "asset": "assets/meditations/tracks/woodland-breathing.mp3",
+      "cover": "assets/meditations/covers/woodland-breathing.jpg"
+    }
+  ]
+}
