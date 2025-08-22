@@ -3,6 +3,7 @@
   "assets/icons/wissen.svg": ["assets/icons/wissen.svg"],
   "assets/icons/research.svg": ["assets/icons/research.svg"],
   "assets/icons/feed.svg": ["assets/icons/feed.svg"],
+
   "assets/logo/logo-signet.svg": ["assets/logo/logo-signet.svg"],
   "assets/logo/logo-text.svg": ["assets/logo/logo-text.svg"],
 
@@ -39,6 +40,7 @@
   "assets/meditations/tracks/tropic.mp3": ["assets/meditations/tracks/tropic.mp3"],
   "assets/meditations/tracks/woodland-breathing.mp3": ["assets/meditations/tracks/woodland-breathing.mp3"],
 
+
   "assets/meditations/covers/Arcane-Library.jpg": ["assets/meditations/covers/Arcane-Library.jpg"],
   "assets/meditations/covers/Aurora-Crown.jpg": ["assets/meditations/covers/Aurora-Crown.jpg"],
   "assets/meditations/covers/Fairy-Forest.jpg": ["assets/meditations/covers/Fairy-Forest.jpg"],
@@ -53,6 +55,7 @@
   "assets/meditations/covers/tropic.jpg": ["assets/meditations/covers/tropic.jpg"],
   "assets/meditations/covers/woodland-breathing.jpg": ["assets/meditations/covers/woodland-breathing.jpg"],
 
+  
   "assets/audio/affirmations/alternative-sicht.mp3": ["assets/audio/affirmations/alternative-sicht.mp3"],
   "assets/audio/affirmations/eigenes-tempo.mp3": ["assets/audio/affirmations/eigenes-tempo.mp3"],
   "assets/audio/affirmations/ein-gedanke-ist-kein-befehl.mp3": ["assets/audio/affirmations/ein-gedanke-ist-kein-befehl.mp3"],
@@ -78,7 +81,7 @@
   "assets/audio/affirmations/ich-uebe-selbstmitgefuehl.mp3": ["assets/audio/affirmations/ich-uebe-selbstmitgefuehl.mp3"],
   "assets/audio/affirmations/ich-waehle-klare-grenzen.mp3": ["assets/audio/affirmations/ich-waehle-klare-grenzen.mp3"],
   "assets/audio/affirmations/jederzeit-pause.mp3": ["assets/audio/affirmations/jederzeit-pause.mp3"],
-  "assets/audio/affirmations/klare-grenzen.mp3": ["assets/audio/affirmations/klare-grenzen.mp3"],
+  "assets/audio/affirmations/klare-Grenzen.mp3": ["assets/audio/affirmations/klare-Grenzen.mp3"],
   "assets/audio/affirmations/kleine-gute-entscheidungen.mp3": ["assets/audio/affirmations/kleine-gute-entscheidungen.mp3"],
   "assets/audio/affirmations/lernen-verbessern.mp3": ["assets/audio/affirmations/lernen-verbessern.mp3"],
   "assets/audio/affirmations/machbarer-schritt.mp3": ["assets/audio/affirmations/machbarer-schritt.mp3"],
