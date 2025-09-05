@@ -58,7 +58,7 @@ Route<dynamic> onGenerateRoute(RouteSettings s) {
     case '/':
       return _c(const WissenHubPage()); // unverändert: Root kann weiter auf den Hub zeigen
     case '/wissen':
-      return _c(const KnowledgeAccordionPage()); // ← GEÄNDERT: Wissen-Tab zeigt jetzt das Accordion
+      return _c(const WissenHubPage());   // ← so muss es sein
 
     // --- Module ---
     case '/rc':
