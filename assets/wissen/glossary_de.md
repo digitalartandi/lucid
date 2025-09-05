@@ -1,18 +1,34 @@
-\# Glossar (kurz erklärt)
+\## RC (Reality-Check)
+
+Kurzer Realitäts-Test (z. B. Nasen-RC, Digitaluhr) – \*\*kontextgebunden\*\* einsetzen.
 
 
 
-\*\*RC (Reality Check):\*\* Kurztest, ob du träumst (z. B. Nase zuhalten \& atmen).  
+\## MILD / WBTB / WILD
 
-\*\*WBTB:\*\* Nach ~5 h kurz aufstehen, dann mit Intention wieder einschlafen.  
+\- \*\*MILD\*\*: mentale Intention + Visualisierung.
 
-\*\*MILD:\*\* Gedächtnis-Methode mit Visualisierung + Satz „Ich erkenne den Traum“.  
+\- \*\*WBTB\*\*: kurzes Wach werden in später Nacht, dann Technik.
 
-\*\*WILD:\*\* Direkt vom Wachzustand in den Traum übergehen.  
+\- \*\*WILD\*\*: Eintritt direkt aus Wachzustand – fortgeschritten.
 
-\*\*SSILD:\*\* Sinnes-Zyklen (sehen/hören/fühlen) zur Fokus-Vertiefung.  
 
-\*\*TMR:\*\* Gezielte Reaktivierung von Erinnerungen im Schlaf (Ton/Duft-Cues).  
 
-\*\*Stabilisierung:\*\* Szene festigen (reiben, drehen, Details benennen).
+\## IRT
+
+Imagery Rehearsal Therapy – Albtraum-Skript tagsüber positiv umschreiben.
+
+
+
+\## REM
+
+Schlafphase mit intensiven Träumen; häufigstes Fenster für Klarträume.
+
+
+
+\## Hypnopompie/Hypnagogie
+
+Übergangszustände beim Ein-/Aufwachen; visuelle/kinästhetische Eindrücke möglich.
+
+
 

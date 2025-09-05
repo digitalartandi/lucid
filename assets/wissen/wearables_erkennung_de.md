@@ -1,42 +1,40 @@
-\# Wearables \& Erkennung
+\## Überblick
+
+Wearables (z. B. Smartwatches, EEG-Stirnbänder) helfen beim Timing von Cues (REM-Phasen) und beim Tracken von Schlafqualität. Sie sind \*\*optional\*\* – Klarträumen funktioniert auch ohne.
 
 
 
-\*\*Worum geht's?\*\* Schlaf-/REM-Erkennung und dezente Cues.
+\## Erkennung von REM/Schlafphasen
+
+\- \*\*Bewegung + HF/HF-Variabilität\*\*: Näherung über Beschleunigungssensor und Herzfrequenz.
+
+\- \*\*EEG-basierte Geräte\*\*: Genauere Schlafstadien, dafür aufwendiger.
+
+\- \*\*Grenzen\*\*: Algorithmische Schätzung ≠ medizinische Diagnose; individuelle Kalibrierung wichtig.
 
 
 
-\## Signale
+\## Praktische Nutzung
 
-\- \*\*Herzrate \& HRV\*\* – REM oft erhöhte Variabilität.
+\- \*\*Fenster statt exakte Zeitpunkte\*\*: z. B. 70–110 Min. nach dem Einschlafen, dann alle 20 Min. prüfen.
 
-\- \*\*Bewegung\*\* – Aktigrafie, Mikrobewegungen (IMU).
+\- \*\*Sanfte Cues\*\*: kurze Vibration oder leiser Ton, \*\*keine\*\* Dauertöne.
 
-\- \*\*EOG-ähnliche Muster\*\* – Rapid Eye Movements (nur bestimmte Geräte).
-
-
-
-\## Einsatz für Klarträume
-
-\- \*\*Cues im REM:\*\* sanfter Ton, Vibration, Licht → Realitätsprüfung im Traum.
-
-\- \*\*Grenzen:\*\* Latenz, Fehl-Trigger, individuelle Unterschiede.
+\- \*\*Fallback\*\*: Wenn unsicher, lieber \*\*manuell\*\* zu festen Zeiten leichte Cues testen.
 
 
 
-\## Best Practices
+\## Datenschutz \& Strom
 
-\- Cues \*\*leise\*\* starten, \*\*einmalig\*\*, Abstand ≥ 5–10 min.
+\- \*\*Offline-First\*\* bevorzugen, Datensynchronisation bewusst halten.
 
-\- \*\*A/B testen\*\* (verschiedene Töne, Zeiten).
-
-\- Überwachung \*\*Schlafqualität\*\* – keine dauerhafte Störung.
+\- Akkulaufzeit: nächtliches Tracking verkürzt Laufzeit; Low-Power-Modi nutzen.
 
 
 
-\## Datenschutz
+\## Empfehlung in der App
 
-\- Lokale Speicherung bevorzugen. Export nur mit Einverständnis.
+\- Nutze Wearables primär als \*\*Timing-Helfer\*\*. Entscheidend bleibt \*\*Kontext-RC\*\*, Journaling und Schlafhygiene.
 
 
 
