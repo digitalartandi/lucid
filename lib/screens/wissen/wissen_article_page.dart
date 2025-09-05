@@ -27,11 +27,7 @@ class _WissenArticlePageState extends State<WissenArticlePage> {
     final bytes = await rootBundle.load(widget.assetPath);
     final md = utf8.decode(bytes.buffer.asUint8List());
     final lines = md.split(RegExp(r'\r?\n'));
-    // Titel aus erster Markdown-H1 übernehmen, wenn vorhanden
-    final h1 = lines.firstWhere(
-      (l) => l.trim().startsWith('# '),
-      orElse: () => '',
-    );
+    final h1 = lines.firstWhere((l) => l.trim().startsWith('# '), orElse: () => '');
     if (h1.isNotEmpty) {
       _title = h1.replaceFirst(RegExp(r'^#\s*'), '').trim();
     }
@@ -46,25 +42,21 @@ class _WissenArticlePageState extends State<WissenArticlePage> {
         top: false,
         child: FutureBuilder<void>(
           future: _loadF,
-          builder: (_, snap) {
+          builder: (_, __) {
             if (_md == null) {
               return const Center(child: CupertinoActivityIndicator());
             }
 
             final faqs = _tryParseFaq(_md!);
             if (faqs.length >= 3) {
-              // Accordion-Ansicht
               return _FaqView(items: faqs);
             }
 
-            // Fallback: normale Markdown-Ansicht
             return Markdown(
               data: _md!,
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               selectable: false,
-              styleSheet: MarkdownStyleSheet.fromCupertinoTheme(
-                CupertinoTheme.of(context),
-              ),
+              styleSheet: _mdWhite(context), // <-- weißer Text auch im Fallback
             );
           },
         ),
@@ -73,72 +65,42 @@ class _WissenArticlePageState extends State<WissenArticlePage> {
   }
 }
 
-/// Einfache Struktur für Frage/Antwort
 class _FaqItem {
   _FaqItem(this.question, this.answer);
-  final String question; // reine Frage (eine Zeile)
-  final String answer;   // Markdown (mehrere Zeilen)
+  final String question;
+  final String answer;
 }
 
-/// Heuristik: Erzeuge FAQ-Blöcke aus Markdown.
-/// Regeln:
-/// - Eine Zeile, die mit '## ' / '### ' beginnt ODER mit '?' endet, gilt als Frage.
-/// - Antwort = nachfolgende Zeilen bis zur nächsten Frage oder Dateiende.
-/// - Überschrift '# ' (Titel) wird ignoriert.
 List<_FaqItem> _tryParseFaq(String md) {
   final lines = md.split(RegExp(r'\r?\n'));
-
-  // Start nach erster H1 (falls vorhanden)
   int i = 0;
-  if (lines.isNotEmpty && lines.first.trim().startsWith('# ')) {
-    i = 1;
-  }
+  if (lines.isNotEmpty && lines.first.trim().startsWith('# ')) i = 1;
 
   final items = <_FaqItem>[];
 
-  bool isQuestionLine(String s) {
+  bool isQ(String s) {
     final t = s.trimLeft();
-    if (t.startsWith('## ')) return true;
-    if (t.startsWith('### ')) return true;
-    // einfache Fragezeile
+    if (t.startsWith('## ') || t.startsWith('### ')) return true;
     return t.isNotEmpty && t.endsWith('?');
   }
 
-  String cleanQuestion(String s) {
-    var t = s.trim();
-    t = t.replaceFirst(RegExp(r'^#{2,}\s*'), ''); // '## ' / '### ' entfernen
-    return t;
-  }
+  String cleanQ(String s) => s.trim().replaceFirst(RegExp(r'^#{2,}\s*'), '');
 
   while (i < lines.length) {
-    final line = lines[i];
-    if (!isQuestionLine(line)) {
-      i++;
-      continue;
-    }
-
-    final q = cleanQuestion(line);
-    i++;
+    if (!isQ(lines[i])) { i++; continue; }
+    final q = cleanQ(lines[i++]);
 
     final buf = <String>[];
-    // sammle Antwort bis zur nächsten Frage
-    while (i < lines.length && !isQuestionLine(lines[i])) {
-      buf.add(lines[i]);
-      i++;
-    }
-    // überflüssige Leerzeilen am Anfang/Ende kürzen
+    while (i < lines.length && !isQ(lines[i])) buf.add(lines[i++]);
     while (buf.isNotEmpty && buf.first.trim().isEmpty) buf.removeAt(0);
     while (buf.isNotEmpty && buf.last.trim().isEmpty) buf.removeLast();
 
     final a = buf.join('\n').trim();
-    if (q.isNotEmpty && a.isNotEmpty) {
-      items.add(_FaqItem(q, a));
-    }
+    if (q.isNotEmpty && a.isNotEmpty) items.add(_FaqItem(q, a));
   }
   return items;
 }
 
-/// Cupertino-Accordion für FAQ
 class _FaqView extends StatefulWidget {
   const _FaqView({required this.items});
   final List<_FaqItem> items;
@@ -178,6 +140,21 @@ class _FaqViewState extends State<_FaqView> {
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                 onPressed: () => setState(() => _open[i] = !expanded),
                 child: Row(
+                  children: const [
+                    Expanded(
+                      child: Text(
+                        '',
+                        // Der tatsächliche Fragetext wird unten gesetzt
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              // Frage-Row mit korrektem Text & Chevron
+              CupertinoButton(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                onPressed: () => setState(() => _open[i] = !expanded),
+                child: Row(
                   children: [
                     Expanded(
                       child: Text(
@@ -204,9 +181,7 @@ class _FaqViewState extends State<_FaqView> {
                   padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
                   child: MarkdownBody(
                     data: it.answer,
-                    styleSheet: MarkdownStyleSheet.fromCupertinoTheme(
-                      CupertinoTheme.of(context),
-                    ),
+                    styleSheet: _mdWhite(context), // <-- HIER: weißer Text im Accordion
                   ),
                 ),
                 crossFadeState:
@@ -219,4 +194,22 @@ class _FaqViewState extends State<_FaqView> {
       },
     );
   }
+}
+
+/// Einheitliches Markdown-Stylesheet mit weißer Typo
+MarkdownStyleSheet _mdWhite(BuildContext context) {
+  const white = Color(0xFFE9EAFF);
+  final base = MarkdownStyleSheet.fromCupertinoTheme(CupertinoTheme.of(context));
+  return base.copyWith(
+    p: base.p!.copyWith(color: white),
+    h1: base.h1!.copyWith(color: white),
+    h2: base.h2!.copyWith(color: white),
+    h3: base.h3!.copyWith(color: white),
+    h4: base.h4!.copyWith(color: white),
+    h5: base.h5!.copyWith(color: white),
+    h6: base.h6!.copyWith(color: white),
+    blockquote: base.blockquote!.copyWith(color: white),
+    code: base.code!.copyWith(color: white),
+    listBullet: const TextStyle(color: white),
+  );
 }
