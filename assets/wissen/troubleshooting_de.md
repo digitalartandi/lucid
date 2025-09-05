@@ -1,42 +1,42 @@
-\# Troubleshooting
+\## Keine/seltene Klarträume
+
+\- Erhöhe \*\*Journaling-Konsistenz\*\* (2–5 Stichpunkte reichen).
+
+\- RCs \*\*kontextgebunden\*\* (nicht mechanisch).
+
+\- Reduziere \*\*Cues\*\* (weniger ist mehr) und optimiere Schlafdauer (7.5–9 h).
 
 
 
-\*\*Problem → Lösungsvorschläge\*\*
+\## Cues wecken auf
+
+\- Lautstärke/Intensität \*\*reduzieren\*\*, Häufigkeit senken.
+
+\- \*\*Zeitfenster\*\* verschieben (spätere Nachtphasen toleranter).
 
 
 
-\### „Ich werde nicht klar.“
+\## Schlafparalyse macht Angst
 
-\- RCs an \*\*persönliche Triggers\*\* koppeln (aus dem Journal).
+\- \*\*Normalisieren\*\*: Übergangszustand; vergeht von selbst.
 
-\- Abends \*\*Intention\*\* formulieren (MILD).
-
-\- \*\*Cues\*\* testen: Lautstärke, Zeitpunkt, Art (Ton/Licht/Vibe).
+\- Strategie: ruhige Atmung, \*\*Atem zählen\*\*, kleine Bewegungen (Zehen, Lippen).
 
 
 
-\### „Ich wache bei Cues auf.“
+\## Inhalte laden nicht (Wissen)
 
-\- Lautstärke ↓, \*\*einmalig\*\* abspielen, Intervall ↑.
+\- Direkt-URL testen: `/lucid/assets/wissen/<datei>.md`
 
-\- \*\*weich einschwingen\*\* (Fade-in), neutrale Sounds.
-
-
-
-\### „Keine Traumerinnerung.“
-
-\- Direkt nach dem Aufwachen \*\*Stichworte\*\*, nicht aufs Handy schauen.
-
-\- Schlafdauer ↑; Weckzeit leicht variieren.
+\- \*\*AssetManifest\*\* prüfen; SW-Cache leeren (Hard Reload / „Clear storage“).
 
 
 
-\### „Albtraum stressig.“
+\## Wearable erkennt schlecht
 
-\- \*\*IRT\*\*: Szene umschreiben, tagsüber üben.  
+\- \*\*Band fester\*\* tragen, Sensor reinigen.
 
-\- Beruhigungs-Routine (Atmung 4-6, Bodyscan).
+\- HF-Messung aktivieren, fixe Aufwach-Cues testweise pausieren.
 
 
 

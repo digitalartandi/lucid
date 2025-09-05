@@ -1,34 +1,42 @@
-\# FAQ – Häufige Fragen
+\## Wie schnell klappt Klarträumen?
+
+Individuell. Erste Effekte oft in 2–6 Wochen bei täglicher, \*\*leicht\*\* dosierter Praxis.
 
 
 
-\*\*Wie schnell klappt Klarträumen?\*\*  
+\## Brauche ich ein Wearable?
 
-Individuell. Erste Effekte oft 2–6 Wochen bei täglicher Praxis.
-
-
-
-\*\*Sind Cues sicher?\*\*  
-
-Ja, wenn sie \*\*sanft\*\* sind und den Schlaf kaum stören. Bei starker Müdigkeit pausieren.
+Nein. Es kann beim \*\*Timing\*\* helfen, ist aber optional.
 
 
 
-\*\*Brauche ich ein Wearable?\*\*  
+\## Wie viele Reality-Checks pro Tag?
 
-Nein. Es hilft bei Timing, ist aber optional.
-
-
-
-\*\*Wie viele Reality-Checks pro Tag?\*\*  
-
-2–6 sinnvolle, \*\*kontextgebundene\*\* RCs sind besser als 20 automatische.
+2–6 \*\*kontextgebundene\*\* RCs sind sinnvoller als 20 automatische.
 
 
 
-\*\*Hilft Meditation?\*\*  
+\## Ist Meditation hilfreich?
 
-Achtsamkeit verbessert Aufmerksamkeit \& Traumerinnerung → meist hilfreich.
+Ja. 5–10 Min. Achtsamkeit täglich korrelieren mit Traumerinnerung und Klarheit.
+
+
+
+\## Was tun bei Albträumen?
+
+Tagsüber \*\*Skript neu schreiben\*\* (IRT) und abends 2–3 Min. visualisieren; sanfte Cues nur ergänzend.
+
+
+
+\## Schadet das meiner Schlafqualität?
+
+Nicht bei \*\*sanfter Dosierung\*\*. Bei Müdigkeit \*\*pausieren\*\*.
+
+
+
+\## Funktioniert das bei Schichtarbeit?
+
+Ja, aber länger. Fokus auf Schlafhygiene, kurze Tags-Mikro-Sessions, flexible RC-Trigger.
 
 
 

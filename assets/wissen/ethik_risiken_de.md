@@ -1,36 +1,40 @@
-\# Ethik \& Risiken
-
-
-
 \## Grundsätze
 
-\- \*\*Autonomie:\*\* Freiwilligkeit \& informierte Entscheidung.
+\- \*\*Autonomie\*\*: Freiwilligkeit, informierte Entscheidung.
 
-\- \*\*Nicht-Schaden:\*\* Schlafqualität hat Vorrang.
+\- \*\*Nicht-Schaden\*\*: Schlafqualität hat Vorrang.
 
-\- \*\*Transparenz:\*\* Wirkannahmen, Limitationen, Datenflüsse.
+\- \*\*Transparenz\*\*: Annahmen, Limitationen, Datenflüsse klar benennen.
 
 
 
 \## Mögliche Risiken
 
-\- Einschlafprobleme durch Überfokussierung.
+\- \*\*Schlaffragmentierung\*\* durch zu häufige oder laute Cues.
 
-\- Frustration bei ausbleibendem Erfolg.
+\- \*\*Überfokussierung\*\* (Leistungsdruck, Erwartungsstress).
 
-\- Bei Trauma-Themen: Reaktivierung.
+\- \*\*Grenzerfahrungen\*\* (Schlafparalyse, intensive Träume) – meist harmlos, aber erklärungsbedürftig.
+
+\- \*\*Datenschutz\*\* bei Wearables/Cloud-Sync.
 
 
 
-\## Empfehlungen
+\## Schutzfaktoren
 
-\- \*\*Pausen\*\* bei Müdigkeit.  
+\- \*\*Sanfte Dosierung\*\*: seltene, kurze Cues; Pausen bei Müdigkeit.
 
-\- \*\*Sanfte\*\* Cues, kein Dauerton.  
+\- \*\*Schlafhygiene\*\*: regelmäßige Zeiten, dunkles Zimmer, kein Spät-Koffein.
 
-\- \*\*Journaling\*\* zur Selbstreflexion.  
+\- \*\*Psychoedukation\*\*: Schlafparalyse = vorübergehender Zustand; ruhig atmen, Fokus auf Atem/Zehen bewegen.
 
-\- Bei psychischer Vorbelastung: \*\*fachliche Begleitung\*\*.
+\- \*\*Opt-out\*\*: jederzeit abbrechen können.
+
+
+
+\## Für sensible Gruppen
+
+\- Bei \*\*Angst-/Traumafolgestörungen\*\* vorab medizinisch abklären. IRT (Albtraum-Umstrukturierung) ggf. priorisieren.
 
 
 

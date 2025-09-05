@@ -1,40 +1,34 @@
-\# Glossar (A–Z)
+\## RC (Reality-Check)
+
+Kurzer Realitäts-Test (z. B. Nasen-RC, Digitaluhr) – \*\*kontextgebunden\*\* einsetzen.
 
 
 
-\*\*DR – Dream Recall\*\*  
+\## MILD / WBTB / WILD
 
-Traumerinnerung.
+\- \*\*MILD\*\*: mentale Intention + Visualisierung.
 
+\- \*\*WBTB\*\*: kurzes Wach werden in später Nacht, dann Technik.
 
-
-\*\*IRT – Imagery Rehearsal Therapy\*\*  
-
-Umstrukturierung von Albtraum-Skripten durch tagsüber geübte positive Varianten.
+\- \*\*WILD\*\*: Eintritt direkt aus Wachzustand – fortgeschritten.
 
 
 
-\*\*MILD\*\*  
+\## IRT
 
-Mnemonic Induction of Lucid Dreams – Klarheit durch abendliche Intention \& Visualisierung.
-
-
-
-\*\*Reality-Check (RC)\*\*  
-
-Kurztest, ob man träumt (Nase zuhalten, Digitalanzeige, Umgebung plausibel?).
+Imagery Rehearsal Therapy – Albtraum-Skript tagsüber positiv umschreiben.
 
 
 
-\*\*REM\*\*  
+\## REM
 
-Schlafphase mit schnellen Augenbewegungen; hohe Traumdichte.
+Schlafphase mit intensiven Träumen; häufigstes Fenster für Klarträume.
 
 
 
-\*\*WILD\*\*  
+\## Hypnopompie/Hypnagogie
 
-Wake-Initiated Lucid Dream – bewusster Übergang vom Wach- in den Traumzustand.
+Übergangszustände beim Ein-/Aufwachen; visuelle/kinästhetische Eindrücke möglich.
 
 
 

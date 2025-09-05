@@ -1,20 +1,15 @@
-\# Quellen \& Zitate
+## Hinweise zur Evidenz
+- Forschungslage **gemischt**: gute Fall-/Pilotstudien, weniger Groß-RCTs.
+- Wearable-Erkennung: nützlich, aber **keine** klinische Diagnose.
 
+## Zitierstil (Kurzform)
+Autor (Jahr). Titel. Journal/Verlag. DOI/URL.
 
+## Beispielquellen (Auswahl)
+- Spoormaker VI & van den Bout J (2006). IRT for nightmares. *Sleep*.
+- Schredl M (2013). Dream recall and lucid dreaming. *Int J Dream Research*.
+- Baird B et al. (2019). Lucid dreaming and metacognition. *Psych Sci*.
+- Stumbrys T et al. (2012). Induction techniques: a systematic review. *Front Psychol*.
 
-\* LaBerge, S. – \*\*Lucid Dreaming\*\* (Grundlagen \& Experimente)  
-
-\* Hobson, J.A. – \*\*REM and Dreaming\*\*  
-
-\* Spoormaker, V. – \*\*Imagery Rehearsal Therapy\*\* (RCTs, Metaanalysen)  
-
-\* Dresler, M. et al. – \*\*Neuroscience of Lucid Dreaming\*\*  
-
-\* Leitlinien Schlafmedizin (D) – Schlafhygiene, Insomnie
-
-
-
-> Hinweis: Dieser Abschnitt ist als Startpunkt gedacht. Für Studienlinks siehe „Studien \& News“ (Feed).
-
-
-
+## Weiteres Vorgehen
+- Interne Notiz: Quellenliste sukzessive erweitern; pro Themen-Markdown am Ende **„Weiterführende Literatur“** ergänzen.
