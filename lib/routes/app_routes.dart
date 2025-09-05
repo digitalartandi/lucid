@@ -23,6 +23,7 @@ import '../screens/wissen/wissen_hub_page.dart';
 import '../screens/wissen/wissen_article_page.dart';
 import '../screens/wissen/faq_basics_page.dart';
 import '../screens/wissen/reading_list_page.dart';
+import '../screens/wissen/knowledge_accordion_page.dart'; // ← NEU: Accordion-Seite importieren
 
 // Studien-Feed
 import '../screens/wissen/studien_feed_page_with_save.dart';
@@ -53,10 +54,11 @@ String _argString(Object? a, [String fallback = '']) => a is String ? a : fallba
 
 Route<dynamic> onGenerateRoute(RouteSettings s) {
   switch (s.name) {
-    // --- sichere Defaults / Einstieg ins Wissen ---
+    // --- sichere Defaults / Einstieg ---
     case '/':
+      return _c(const WissenHubPage()); // unverändert: Root kann weiter auf den Hub zeigen
     case '/wissen':
-      return _c(const WissenHubPage());
+      return _c(const KnowledgeAccordionPage()); // ← GEÄNDERT: Wissen-Tab zeigt jetzt das Accordion
 
     // --- Module ---
     case '/rc':
@@ -92,15 +94,14 @@ Route<dynamic> onGenerateRoute(RouteSettings s) {
       return _c(JournalEntryPage(id: id));
     }
 
-// --- Affirmationen ---
-case '/affirmations':
-  return _c(const AffirmationHubPage());
-case '/affirmations/play': {
-  final id = s.arguments is String ? s.arguments as String : '';
-  if (id.isEmpty) return _c(const _UnknownRouteScreen(name: '/affirmations/play (ohne ID)'));
-  return _c(AffirmationPlayerPage(id: id));
-}
-
+    // --- Affirmationen ---
+    case '/affirmations':
+      return _c(const AffirmationHubPage());
+    case '/affirmations/play': {
+      final id = s.arguments is String ? s.arguments as String : '';
+      if (id.isEmpty) return _c(const _UnknownRouteScreen(name: '/affirmations/play (ohne ID)'));
+      return _c(AffirmationPlayerPage(id: id));
+    }
 
     // --- Hilfe / Onboarding ---
     case '/help':

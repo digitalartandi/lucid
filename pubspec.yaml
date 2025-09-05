@@ -84,6 +84,7 @@ flutter:
     - assets/wissen_en/glossary_en.md
     - assets/wissen_en/citations_en.md
     - assets/wissen/
+    - assets/wissen_en/
 
     # Traumreisen
     - assets/traumreisen/
