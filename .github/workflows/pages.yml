@@ -1,4 +1,4 @@
-name: Deploy Flutter Web to GitHub Pages
+﻿name: Deploy Flutter Web to GitHub Pages
 
 on:
   push:
@@ -24,6 +24,10 @@ jobs:
           channel: stable
       - run: flutter pub get
       - run: flutter build web --release --base-href /lucid/ --pwa-strategy=offline-first
+      - name: SPA fallback & nojekyll
+        run: |
+          cp build/web/index.html build/web/404.html
+          touch build/web/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:
           path: build/web
