@@ -32,7 +32,7 @@ class _AffirmationPlayerPageState extends State<AffirmationPlayerPage> {
     _t = t;
     if (t == null) return;
     // Assets auf Web: via asset:// Pfad
-    await _player.setAudioSource(AudioSource.uri(Uri.parse('asset://${t.asset}')));
+    await _player.setAudioSource(AudioSource.asset(t.asset),);
     await _player.setLoopMode(LoopMode.one);
     await _player.setVolume(.9);
     _player.play();
