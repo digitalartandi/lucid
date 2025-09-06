@@ -19,15 +19,41 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
-      - run: flutter pub get
-      - run: flutter build web --release --base-href /lucid/ --pwa-strategy=offline-first
-      - name: SPA fallback & nojekyll
+
+      - name: Flutter pub get
+        run: flutter pub get
+
+      - name: Build (base=/lucid/)
+        run: flutter build web --release --base-href /lucid/ --pwa-strategy=offline-first
+
+      - name: Ensure SPA fallback & nojekyll
         run: |
           cp build/web/index.html build/web/404.html
           touch build/web/.nojekyll
+
+      # Falls dein Projekt KEIN eigenes web/manifest.json hat,
+      # erzeugen wir ein minimalistisches, damit der 404 im Live-Betrieb verschwindet.
+      - name: Create minimal manifest.json if missing
+        run: |
+          if [ ! -f build/web/manifest.json ]; then
+            cat > build/web/manifest.json << 'EOF'
+            {
+              "name": "Lucid",
+              "short_name": "Lucid",
+              "start_url": "/lucid/",
+              "scope": "/lucid/",
+              "display": "standalone",
+              "background_color": "#0D0F16",
+              "theme_color": "#7A6CFF",
+              "icons": []
+            }
+            EOF
+          fi
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: build/web

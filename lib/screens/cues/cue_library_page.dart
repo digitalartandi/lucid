@@ -18,12 +18,11 @@ const _kCueSelectedJson = 'cue.selected.v1';
 class _CuePrefs {
   static Future<void> save(CueSound s) async {
     final sp = await SharedPreferences.getInstance();
-    final dyn = s as dynamic;
     final data = {
-      'id':        dyn.id as String? ?? '',
-      'name':      dyn.name as String? ?? '',
-      'category':  dyn.category as String? ?? '',
-      'asset':     dyn.asset as String? ?? '',
+      'id':        s.id,
+      'name':      s.name,
+      'category':  s.category,
+      'asset':     s.asset,
     };
     await sp.setString(_kCueSelectedJson, jsonEncode(data));
   }
@@ -49,8 +48,8 @@ class CueLibraryPage extends StatefulWidget {
 }
 
 class _CueLibraryPageState extends State<CueLibraryPage> {
-  bool _picker = false;            // <- wird über Route-Argument gesetzt
-  String? _selectedId;             // <- aktuell gespeicherte Auswahl (für Häkchen)
+  bool _picker = false;            // über Route-Argument
+  String? _selectedId;             // aktuell gespeicherte Auswahl (Häkchen)
   String _query = '';
 
   final _player = CueLoopPlayer.instance;
@@ -75,8 +74,6 @@ class _CueLibraryPageState extends State<CueLibraryPage> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     final args = ModalRoute.of(context)?.settings.arguments;
-
-    // Robust: akzeptiere Map<dynamic,dynamic> und feuere keinen Dialog im Picker-Modus
     if (args is Map) {
       final pickerArg = args['picker'];
       _picker = pickerArg == true || pickerArg?.toString() == 'true';
@@ -200,12 +197,10 @@ class _CueLibraryPageState extends State<CueLibraryPage> {
     setState(() => _selectedId = s.id);
 
     if (_picker) {
-      // WICHTIG: Im Picker-Modus mit Ergebnis zurück – CueTuningPage setzt dann _selected.
       Navigator.of(context).pop<CueSound>(s);
       return;
     }
 
-    // Normaler Bibliotheksmodus: dein bestehender Dialog bleibt erhalten
     showCupertinoDialog(
       context: context,
       builder: (_) => CupertinoAlertDialog(
@@ -224,7 +219,7 @@ class _CueLibraryPageState extends State<CueLibraryPage> {
 
   Future<void> _togglePreview(CueSound s) async {
     if (_previewId == s.id && _player.isPlaying) {
-      _player.stop();
+      await _player.stop();
       setState(() => _previewId = null);
       return;
     }
@@ -234,7 +229,7 @@ class _CueLibraryPageState extends State<CueLibraryPage> {
       await _player.playOnce(s, seconds: 5, volume: .8);
     } catch (_) {
       try {
-        await (_player as dynamic).playOnce(s.asset as String, seconds: 5, volume: .8);
+        await _player.playOnceAsset(s.asset, seconds: 5, volume: .8);
       } catch (_) {}
     }
 
@@ -357,7 +352,7 @@ class _CueLibraryPageState extends State<CueLibraryPage> {
     ];
 
     // Synth & Space
-    final synth = [
+    final synths = [
       cue('pure-sine-tone-ping.mp3', 'Sine-Ping', 'Synth & Space'),
       cue('spacecraft-interior.mp3', 'Raumschiff 1', 'Synth & Space'),
       cue('spacecraft-interior2.mp3', 'Raumschiff 2', 'Synth & Space'),
@@ -377,7 +372,7 @@ class _CueLibraryPageState extends State<CueLibraryPage> {
       cue('woodland-breathing.mp3', 'Waldatmen', 'Ambience'),
     ];
 
-    return [...birds, ...water, ...wind, ...chimes, ...synth, ...amb];
+    return [...birds, ...water, ...wind, ...chimes, ...synths, ...amb];
   }
 
   String _pretty(String asset) => asset.split('/').last;

@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../models/cue_models.dart' show CueSound; // dein Modell
+import '../../models/cue_models.dart' show CueSound;
 import '../../services/cue_player.dart';
 
 // Farben
@@ -14,7 +14,7 @@ const _card   = Color(0xFF0A0A23);
 const _line   = Color(0x22FFFFFF);
 const _accent = Color(0xFF7A6CFF);
 
-// Persistenz-Keys (müssen zu Library passen)
+// Persistenz-Keys
 const _kCueSelectedJson = 'cue.selected.v1';
 const _kBgAssetV1       = 'cue.bg.asset.v1';
 
@@ -31,7 +31,7 @@ class _CueTuningPageState extends State<CueTuningPage> {
   String? _bgAsset;    // optionaler Hintergrund
 
   double _volume = .8;
-  double _intervalMin = 0; // Standard: 0 = Dauerhaft/Loop
+  double _intervalMin = 10;
 
   @override
   void initState() {
@@ -83,7 +83,7 @@ class _CueTuningPageState extends State<CueTuningPage> {
             // Gewählter Cue
             _tileCard(
               title: 'Gewählter Cue',
-              subtitle: _selected?.displayLabel ?? 'Kein Cue gewählt',
+              subtitle: _selected?.name ?? 'Kein Cue gewählt',
               trailing: CupertinoButton(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 onPressed: _pickCue,
@@ -135,23 +135,23 @@ class _CueTuningPageState extends State<CueTuningPage> {
             // Wiedergabe
             _tileCard(
               title: 'Wiedergabe',
-              subtitle: 'Loop mit Intervall',
+              subtitle: 'Loop oder Intervall',
               trailing: Row(mainAxisSize: MainAxisSize.min, children: [
                 CupertinoButton(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
                   onPressed: _selected == null
                       ? null
                       : () async {
-                          // erst Hintergrund (falls vorhanden)
+                          // 1) Hintergrund-Loop (falls gesetzt)
                           if (_bgAsset != null && _bgAsset!.isNotEmpty) {
                             await _player.startBedAsset(_bgAsset!, volume: 0.35);
                           }
-                          // dann Cue – Intervall 0 => Dauerhaft/Loop
+                          // 2) Cue: Dauerloop (<=0) oder Intervall (>0)
+                          final minutes = _intervalMin.round();
                           await _player.playLoop(
                             _selected!,
                             volume: _volume,
-                            // FIX: immer int übergeben (0 = Loop/Dauerhaft)
-                            intervalMinutes: (_intervalMin <= 0) ? 0 : _intervalMin.round(),
+                            intervalMinutes: (minutes <= 0) ? null : minutes,
                           );
                           if (mounted) setState(() {});
                         },
@@ -184,11 +184,9 @@ class _CueTuningPageState extends State<CueTuningPage> {
 
             // Intervall
             _sectionCard(
-              header: _intervalMin <= 0
-                  ? 'Intervall: Dauerhaft (Loop)'
-                  : 'Intervall: ${_intervalMin.round()} min',
+              header: 'Intervall: ${_intervalMin.round()} min (0 = Dauerloop)',
               child: CupertinoSlider(
-                min: 0, max: 30, // 0 = Dauerhaft
+                min: 0, max: 30,
                 value: _intervalMin,
                 onChanged: (v) => setState(() => _intervalMin = v),
               ),
@@ -216,7 +214,7 @@ class _CueTuningPageState extends State<CueTuningPage> {
     if (res is CueSound) {
       setState(() => _selected = res);
 
-      // Persistenter Store (spiegelt Library)
+      // Persistenz spiegeln (wie in der Library)
       final sp = await SharedPreferences.getInstance();
       await sp.setString(_kCueSelectedJson, jsonEncode({
         'id': res.id,
@@ -294,8 +292,7 @@ class _CueTuningPageState extends State<CueTuningPage> {
 }
 
 // ──────────────────────────────────────────────────────────────────────────────
-// Hintergrund-Auswahlseite
-// Route: '/cues/background'
+// Hintergrund-Auswahlseite (Route: '/cues/background') – mit Preview-Button
 // ──────────────────────────────────────────────────────────────────────────────
 class CueBackgroundPickerPage extends StatefulWidget {
   const CueBackgroundPickerPage({super.key});
@@ -305,9 +302,12 @@ class CueBackgroundPickerPage extends StatefulWidget {
 }
 
 class _CueBackgroundPickerPageState extends State<CueBackgroundPickerPage> {
+  final _player = CueLoopPlayer.instance;
+
   String? _selectedAsset;
   List<String> _assets = const [];
   bool _loaded = false;
+  String? _previewing; // aktuell vorhörendes Asset
 
   @override
   void didChangeDependencies() {
@@ -340,6 +340,12 @@ class _CueBackgroundPickerPageState extends State<CueBackgroundPickerPage> {
   }
 
   @override
+  void dispose() {
+    _player.stop(); // Preview stoppen, falls noch aktiv
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       backgroundColor: _bg,
@@ -356,6 +362,8 @@ class _CueBackgroundPickerPageState extends State<CueBackgroundPickerPage> {
                 itemBuilder: (_, i) {
                   final a = _assets[i];
                   final isSel = a == _selectedAsset;
+                  final isPrev = a == _previewing;
+
                   return Container(
                     margin: const EdgeInsets.only(bottom: 10),
                     decoration: BoxDecoration(
@@ -366,10 +374,33 @@ class _CueBackgroundPickerPageState extends State<CueBackgroundPickerPage> {
                     child: CupertinoListTile.notched(
                       title: Text(_nice(a), style: const TextStyle(color: _white)),
                       subtitle: Text(a, style: const TextStyle(color: _white)),
-                      trailing: Icon(
-                        isSel ? CupertinoIcons.check_mark_circled_solid : CupertinoIcons.chevron_right,
-                        color: isSel ? _accent : _white,
-                      ),
+                      trailing: Row(mainAxisSize: MainAxisSize.min, children: [
+                        CupertinoButton(
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                          onPressed: () async {
+                            if (isPrev) {
+                              await _player.stop();
+                              if (mounted) setState(() => _previewing = null);
+                              return;
+                            }
+                            setState(() => _previewing = a);
+                            await _player.playOnceAsset(a, seconds: 5, volume: .8);
+                            if (mounted && _previewing == a) setState(() => _previewing = null);
+                          },
+                          child: Icon(
+                            isPrev ? CupertinoIcons.stop_fill : CupertinoIcons.play_fill,
+                            color: _white,
+                            size: 20,
+                          ),
+                        ),
+                        const SizedBox(width: 4),
+                        Icon(
+                          isSel
+                              ? CupertinoIcons.check_mark_circled_solid
+                              : CupertinoIcons.chevron_right,
+                          color: isSel ? _accent : _white,
+                        ),
+                      ]),
                       onTap: () => Navigator.of(context).pop(a),
                     ),
                   );
@@ -385,30 +416,3 @@ class _CueBackgroundPickerPageState extends State<CueBackgroundPickerPage> {
     return base.replaceAll(RegExp(r'[_\-]+'), ' ');
   }
 }
-
-/* ---------------------- Kompatibilitäts-Extension ---------------------- */
-
-extension CueSoundCompat on CueSound {
-  String? _tryDisplayName() { try { final v = (this as dynamic).displayName; if (v is String) return v; } catch (_) {} return null; }
-  String? _tryName()        { try { final v = (this as dynamic).name;        if (v is String) return v; } catch (_) {} return null; }
-  String? _tryTitle()       { try { final v = (this as dynamic).title;       if (v is String) return v; } catch (_) {} return null; }
-  String? _tryLabel()       { try { final v = (this as dynamic).label;       if (v is String) return v; } catch (_) {} return null; }
-  String? _tryAsset()       { try { final v = (this as dynamic).asset;       if (v is String) return v; } catch (_) {} return null; }
-
-  String get assetPathPretty {
-    final a = _tryAsset() ?? '';
-    if (a.isEmpty) return '';
-    return a.split('/').last;
-  }
-
-  String get displayLabel {
-    final n = _tryDisplayName() ?? _tryName() ?? _tryTitle() ?? _tryLabel();
-    if (n != null && n.trim().isNotEmpty) return n.trim();
-    final pretty = assetPathPretty.replaceAll('_', ' ').replaceAll('-', ' ');
-    final withoutExt = pretty.contains('.') ? pretty.substring(0, pretty.lastIndexOf('.')) : pretty;
-    return _capitalizeWords(withoutExt);
-  }
-}
-
-String _capitalizeWords(String s) =>
-    s.split(RegExp(r'\s+')).map((w) => w.isEmpty ? w : '${w[0].toUpperCase()}${w.substring(1)}').join(' ');
