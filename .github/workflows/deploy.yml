@@ -1,22 +1,20 @@
-name: Deploy Flutter Web to GitHub Pages
+name: Build & Deploy (Flutter Web)
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main ]   # anpassen, falls du anders deployen willst
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: write   # wichtig für Push auf gh-pages
 
-# verhindert parallele/überholende Builds
 concurrency:
-  group: gh-pages-deploy
+  group: deploy-pages
   cancel-in-progress: true
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -24,22 +22,20 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.32.8'   # deine gepinnte Version
-          channel: 'stable'
+          channel: stable
+          cache: true
 
-      - name: Flutter version
-        run: flutter --version
-
-      - name: Get packages
+      - name: Flutter pub get
         run: flutter pub get
 
-      - name: Build web (Base-Href für /lucid/)
-        run: flutter build web --release --base-href /lucid/ --pwa-strategy=none
+      - name: Build Web (GitHub Pages unter /lucid/)
+        run: flutter build web --release --base-href /lucid/ --pwa-strategy none
 
-      - name: SPA 404 fallback + nojekyll
+      # Optional: Service Worker aus dem Build entfernen, falls der noch auftaucht
+      - name: Remove service worker (optional but safe)
         run: |
-          cp -f build/web/index.html build/web/404.html
-          touch build/web/.nojekyll
+          rm -f build/web/flutter_service_worker.js || true
+          rm -f build/web/manifest.json || true
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
@@ -47,4 +43,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: build/web
+          # Verhindert "expected sha" Konflikte & Branch-Schutz-Probleme:
           force_orphan: true
+          # Falls du ein CNAME brauchst, hier setzen:
+          # cname: example.com
