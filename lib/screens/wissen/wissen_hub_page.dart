@@ -27,12 +27,8 @@ class _WissenHubPageState extends State<WissenHubPage>
     const violet = Color(0xFF7A6CFF);
 
     return CupertinoPageScaffold(
-      navigationBar: const CupertinoNavigationBar(
-        middle: Text('Wissen'),
-      ),
-      backgroundColor: const Color(0x00000000),
-      child: SafeArea(
-        top: false,
+      child: SafeArea( // <-- Inhalt beginnt unter der fixierten Navigation
+        top: true,
         child: CupertinoScrollbar(
           controller: _scrollCtrl,
           child: ListView(
@@ -53,7 +49,7 @@ class _WissenHubPageState extends State<WissenHubPage>
               ),
               const SizedBox(height: 20),
 
-              // Schnellzugriffe (Studien & Leseliste)
+              // Schnellzugriff (nur: Studien & News)
               Row(
                 children: [
                   Expanded(
@@ -62,16 +58,6 @@ class _WissenHubPageState extends State<WissenHubPage>
                       subtitle: 'Aktuelle Forschung',
                       icon: CupertinoIcons.lab_flask,
                       onTap: () => Navigator.of(context).pushNamed('/studien'),
-                      bg: card, fg: white, sub: sub, stroke: line, accent: violet,
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: _HubTile(
-                      title: 'Leseliste',
-                      subtitle: 'Später weiterlesen',
-                      icon: CupertinoIcons.bookmark,
-                      onTap: () => Navigator.of(context).pushNamed('/reading_list'),
                       bg: card, fg: white, sub: sub, stroke: line, accent: violet,
                     ),
                   ),
@@ -113,21 +99,21 @@ class _WissenHubPageState extends State<WissenHubPage>
                 title: 'Albträume & IRT',
                 subtitle: 'Sicher mit Träumen arbeiten',
                 icon: CupertinoIcons.moon_zzz,
-                onTap: () => _openMd(context, 'assets/wissen/nightmare_irt_de.md'),
+                onTap: () => _openMd(context, 'assets/wissen/albtraeume_irt_de.md'),
                 bg: card, fg: white, sub: sub, stroke: line, accent: violet,
               ),
               _HubTile(
                 title: 'Wearables & Erkennung',
                 subtitle: 'Signale, Erkennung, Grenzen',
                 icon: CupertinoIcons.time,
-                onTap: () => _openMd(context, 'assets/wissen/wearables_detection_de.md'),
+                onTap: () => _openMd(context, 'assets/wissen/wearables_erkennung_de.md'),
                 bg: card, fg: white, sub: sub, stroke: line, accent: violet,
               ),
               _HubTile(
                 title: 'Ethik & Risiken',
                 subtitle: 'Verantwortung & Best Practices',
                 icon: CupertinoIcons.shield_lefthalf_fill,
-                onTap: () => _openMd(context, 'assets/wissen/ethics_risks_de.md'),
+                onTap: () => _openMd(context, 'assets/wissen/ethik_risiken_de.md'),
                 bg: card, fg: white, sub: sub, stroke: line, accent: violet,
               ),
               _HubTile(
@@ -155,7 +141,7 @@ class _WissenHubPageState extends State<WissenHubPage>
                 title: 'Quellen & Zitate',
                 subtitle: 'Literatur & Referenzen',
                 icon: CupertinoIcons.doc_text_search,
-                onTap: () => _openMd(context, 'assets/wissen/citations_de.md'),
+                onTap: () => _openMd(context, 'assets/wissen/quellen_zitate_de.md'),
                 bg: card, fg: white, sub: sub, stroke: line, accent: violet,
               ),
 

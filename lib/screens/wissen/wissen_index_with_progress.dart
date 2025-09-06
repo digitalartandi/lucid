@@ -16,13 +16,13 @@ class _WissenIndexWithProgressState extends State<WissenIndexWithProgress> {
     'Techniken â€“ Details':'assets/wissen/techniken_de.md',
     'Neurobiologie des Schlafs':'assets/wissen/neuro_sleep_de.md',
     'Traumtagebuch â€“ Praxis':'assets/wissen/journal_guide_de.md',
-    'Albtraumtherapie (IRT)':'assets/wissen/nightmare_irt_de.md',
-    'Wearables & Erkennung':'assets/wissen/wearables_detection_de.md',
-    'Ethik & Risiken':'assets/wissen/ethics_risks_de.md',
+    'Albtraumtherapie (IRT)':'assets/wissen/albtraeume_irt_de.md',
+    'Wearables & Erkennung':'assets/wissen/wearables_erkennung_de.md',
+    'Ethik & Risiken':'assets/wissen/ethik_risiken_de.md',
     'Troubleshooting & Plateaus':'assets/wissen/troubleshooting_de.md',
     'FAQ':'assets/wissen/faq_de.md',
     'Glossar':'assets/wissen/glossary_de.md',
-    'Quellen & Literatur':'assets/wissen/citations_de.md',
+    'Quellen & Literatur':'assets/wissen/quellen_zitate_de.md',
   };
   Map<String, KnowledgeProgress> progress = {};
 

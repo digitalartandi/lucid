@@ -1,5 +1,5 @@
-name: lucid_dreams_aaa
-description: AAA Lucid Dreaming App – Knowledge, Research, Studies Feed, Reading List (on-device), Apple-style UI.
+﻿name: lucid_dreams_aaa
+description: AAA Lucid Dreaming App â€“ Knowledge, Research, Studies Feed, Reading List (on-device), Apple-style UI.
 publish_to: "none"
 version: 0.1.0+1
 
@@ -58,7 +58,7 @@ flutter:
     - assets/meditations/tracks/
     - assets/meditations/covers/
 
-    # Wissen (sowohl einzelne Dateien als auch Ordner – ist ok)
+    # Wissen (sowohl einzelne Dateien als auch Ordner â€“ ist ok)
     - assets/wissen/grundlagen_de.md
     - assets/wissen/klartraum_grundlagen_de.md
     - assets/wissen/techniken_de.md
@@ -71,7 +71,7 @@ flutter:
     - assets/wissen/faq_de.md
     - assets/wissen/glossar_de.md
     - assets/wissen/quellen_zitate_de.md
-    - assets/wissen/citations_de.md
+    - assets/wissen/quellen_zitate_de.md
     - assets/wissen_en/basics_en.md
     - assets/wissen_en/techniques_en.md
     - assets/wissen_en/neuro_sleep_en.md

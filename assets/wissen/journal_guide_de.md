@@ -2,273 +2,265 @@
 
 
 
-Traum-Journal – schnell und effektiv
-
-
-
-Nutzen eines Traum-Journals
+\## Nutzen eines Traum-Journals
 
 Mehr Traumerinnerung führt zu mehr Chancen auf Klarheit und zu gezieltem Lernen an persönlichen Dream-Signs. Ein Journal macht Fortschritt sichtbar und verbindet Alltagstrigger mit wiederkehrenden Themen in Träumen.
 
 
 
-Ziele für die nächsten 14 Tage
+\## Ziele für die nächsten 14 Tage
 
-\- Tägliche Notiz, auch wenn es null erinnerte Träume sind
+\- Tägliche Notiz, auch wenn es \*\*0\*\* erinnerte Träume sind.  
 
-\- Mindestens drei konkrete Dream-Signs identifizieren
+\- Mindestens \*\*drei\*\* konkrete Dream-Signs identifizieren.  
 
-\- Ein persönliches Fokus-Thema wählen, zum Beispiel Türen, Prüfungen, Fliegen
+\- \*\*Ein\*\* persönliches Fokus-Thema wählen (z. B. Türen, Prüfungen, Fliegen).  
 
-\- Erste Reality-Checks an diese Dream-Signs koppeln
+\- Erste Reality-Checks an diese Dream-Signs koppeln.
 
 
 
-Setup in 60 Sekunden
+\## Setup in 60 Sekunden
 
-\- Medium frei wählen: App, Papier oder Diktiergerät
+\- Medium frei wählen: App, Papier oder Diktiergerät.  
 
-\- Notiz direkt am Bett platzieren, Display dunkel
+\- Notiz \*\*direkt am Bett\*\* platzieren, Display dunkel.  
 
-\- In der Nacht Flugmodus aktivieren
+\- In der Nacht \*\*Flugmodus\*\* aktivieren.  
 
-\- Wöchentlich lokal exportieren
+\- Wöchentlich lokal exportieren.
 
 
 
-Minimal-Template in 1 bis 3 Minuten
+\## Minimal-Template (1–3 Minuten)
 
-\- Titel
+\- \*\*Titel\*\*  
 
-\- Stichwörter zu Personen, Orten, Gefühlen
+\- \*\*Stichwörter\*\* zu Personen, Orten, Gefühlen  
 
-\- Ein bis drei Sätze Ablauf
+\- \*\*Ein bis drei Sätze\*\* Ablauf  
 
-\- Dream-Signs als Hashtags, zum Beispiel #Aufzug, #Prüfung, #Flug
+\- \*\*Dream-Signs\*\* als Hashtags (z. B. #Aufzug, #Prüfung, #Flug)  
 
-\- RC-Anker, also was dich hätte lucid machen können
+\- \*\*RC-Anker\*\* – was dich hätte lucid machen können
 
 
 
-Beispiel-Einträge ultrakurz
+\## Beispiel-Einträge (ultrakurz)
 
-Titel: Falscher Zug
+\*\*Titel:\*\* Falscher Zug  
 
-Stichwörter: Bahnhof, Eile, Ticket, Regen
+\*\*Stichwörter:\*\* Bahnhof, Eile, Ticket, Regen  
 
-Ablauf: Suche Gleis, steige ein, Zug fährt in die falsche Richtung
+\*\*Ablauf:\*\* Suche Gleis, steige ein, Zug fährt in die falsche Richtung  
 
-Dream-Signs: #Zug, #Verspätung
+\*\*Dream-Signs:\*\* #Zug, #Verspätung  
 
-RC-Anker: Uhrzeit prüfen und Anzeige doppelt lesen
+\*\*RC-Anker:\*\* Uhrzeit prüfen, Anzeige doppelt lesen
 
 
 
-Titel: Meeting ohne Schuhe
+\*\*Titel:\*\* Meeting ohne Schuhe  
 
-Stichwörter: Büro, peinlich, Lachen
+\*\*Stichwörter:\*\* Büro, peinlich, Lachen  
 
-Ablauf: Sitze im Meeting und bemerke fehlende Schuhe
+\*\*Ablauf:\*\* Sitze im Meeting und bemerke fehlende Schuhe  
 
-Dream-Signs: #Peinlichkeit, #Büro
+\*\*Dream-Signs:\*\* #Peinlichkeit, #Büro  
 
-RC-Anker: Körper-Scan und Finger-durch-Hand
+\*\*RC-Anker:\*\* Körper-Scan, Finger-durch-Hand
 
 
 
-Morgenroutine für mehr Erinnerung in 2 bis 5 Minuten
+\## Morgenroutine (2–5 Minuten)
 
-1\. Augen geschlossen lassen, Lage beibehalten, den Traum gedanklich zurückspulen
+1\. Augen geschlossen lassen, Lage beibehalten, Traum \*\*zurückspulen\*\*.  
 
-2\. Stichwörter leise benennen, erst dann zum Notizmedium greifen
+2\. Stichwörter leise benennen, \*\*erst dann\*\* zum Notizmedium greifen.  
 
-3\. Notieren in der Reihenfolge Titel, Stichwörter, ein bis drei Sätze, Dream-Signs, RC-Anker
+3\. Notieren in der Reihenfolge: Titel → Stichwörter → 1–3 Sätze → Dream-Signs → RC-Anker.  
 
-4\. Optional Stimmung mit Emoji protokollieren
+4\. Optional Stimmung mit Emoji protokollieren.  
 
-5\. Rohtext ist ausreichend und besser als gar nichts
+5\. \*\*Rohtext\*\* reicht – besser als gar nichts.
 
 
 
-Abendroutine als kurzes Priming in 1 bis 3 Minuten
+\## Abendroutine (1–3 Minuten)
 
-\- Drei Dream-Signs der Woche ansehen
+\- Drei Dream-Signs der Woche ansehen.  
 
-\- Eine klare Intention formulieren, zum Beispiel Heute Nacht erkenne ich Aufzüge oder Prüfungen als Traum
+\- Eine klare \*\*Intention\*\* formulieren (z. B. „Heute Nacht erkenne ich Aufzüge/Prüfungen als Traum“).  
 
-\- Ein bis zwei alte Einträge lesen
+\- Ein bis zwei \*\*alte Einträge\*\* lesen.
 
 
 
-RC-Anker finden und nutzen
+\## RC-Anker finden \& nutzen
 
-\- Wiederholer priorisieren, zum Beispiel Orte wie Schule, Uni, Büro, Verkehr wie Zug oder Bus, Emotionen wie Prüfungsstress, Anomalien wie Flug
+\- Wiederholer priorisieren: Orte (Schule, Uni, Büro), Verkehr (Zug/Bus), Emotionen (Prüfungsstress), Anomalien (Flug).  
 
-\- Pro Anker ein Reality-Check-Paar wählen, zum Beispiel Uhr lesen und Nase zuhalten
+\- Pro Anker ein \*\*Reality-Check-Paar\*\* wählen (z. B. Uhr lesen \*\*und\*\* Nase zuhalten).  
 
-\- Regel im Alltag anwenden, jedes Auftreten des Ankers löst einen echten Reality-Check aus
+\- \*\*Regel im Alltag:\*\* Jedes Auftreten des Ankers löst einen echten RC aus.
 
 
 
-Tags und einfache Taxonomie
+\## Tags \& einfache Taxonomie
 
-\- Hashtags für Ort, Person und Thema, zum Beispiel #Wien, #Alex, #Prüfung
+\- Hashtags für \*\*Ort, Person, Thema\*\* (z. B. #Wien, #Alex, #Prüfung).  
 
-\- Optional Emojis für Stimmung und Motive
+\- Optional Emojis für Stimmung/Motive.  
 
-\- Maximal fünf Tags pro Eintrag wählen
+\- Maximal \*\*fünf\*\* Tags pro Eintrag.
 
 
 
-Wöchentlicher Review in zehn Minuten
+\## Wöchentlicher Review (10 Minuten)
 
-1\. Top drei Dream-Signs zählen
+1\. Top-3-Dream-Signs zählen.  
 
-2\. Ein Fokus-Thema für sieben Tage festlegen
+2\. Ein \*\*Fokus-Thema\*\* für 7 Tage festlegen.  
 
-3\. Ein bis zwei RC-Anker daran koppeln
+3\. \*\*1–2 RC-Anker\*\* daran koppeln.  
 
-4\. Highlight notieren, zum Beispiel bessere Erinnerung oder stabilere Klarheit
+4\. \*\*Highlight\*\* notieren (bessere Erinnerung, stabilere Klarheit).  
 
-5\. Optional kleine Mindmap erstellen
+5\. Optional kleine \*\*Mindmap\*\* erstellen.
 
 
 
-Leichte Metriken für Motivation
+\## Leichte Metriken (Motivation)
 
-\- Erinnerungsrate pro Woche als Tage mit Eintrag durch sieben
+\- Erinnerungsrate/Woche = Tage \*\*mit Eintrag\*\* / 7.  
 
-\- Dream-Signs pro Eintrag als Anzahl Tags durch Anzahl Einträge
+\- Dream-Signs/Eintrag = Anzahl Tags / Anzahl Einträge.  
 
-\- Anzahl Klarträume pro Woche oder Monat
+\- Klarträume pro Woche/Monat.  
 
-\- Streak als Tage am Stück mit Notiz
+\- \*\*Streak\*\* = Tage am Stück mit Notiz.
 
 
 
-Hürden und schnelle Fixes
+\## Hürden \& schnelle Fixes
 
-\- Keine Erinnerung am Morgen: liegen bleiben, drei ruhige Atemzüge, Pose nicht ändern, Fragen nach Wer, Wo, Gefühl im Kopf beantworten
+\- \*\*Keine Erinnerung:\*\* liegen bleiben, 3 ruhige Atemzüge, Pose nicht ändern, Fragen nach Wer/Wo/Gefühl im Kopf beantworten.  
 
-\- Zeitmangel: nur Titel und drei Stichwörter notieren
+\- \*\*Zeitmangel:\*\* nur Titel + 3 Stichwörter.  
 
-\- Schreibblockade: zuerst Stichwörter, Sätze später ergänzen
+\- \*\*Schreibblockade:\*\* erst Stichwörter, Sätze später ergänzen.  
 
-\- Zerfaserte Träume: ein Hauptmotiv wählen, Rest als Stichwörter
+\- \*\*Zerfaserte Träume:\*\* ein Hauptmotiv beschreiben, Rest als Stichwörter.  
 
-\- Zu spät notiert: kurze Sprachnotiz direkt nach dem Aufwachen, später verschriftlichen
+\- \*\*Zu spät notiert:\*\* kurze \*\*Sprachnotiz\*\* direkt nach dem Aufwachen, später verschriftlichen.
 
 
 
-Fortgeschrittene Optionen
+\## Fortgeschrittene Optionen
 
-\- Audio zuerst, später in Stichwörter und Sätze überführen
+\- Audio zuerst, später in Stichwörter/Sätze überführen.  
 
-\- Skizzen von Räumen oder Wegen anfertigen
+\- Skizzen von Räumen oder Wegen anfertigen.  
 
-\- Szenen klar strukturieren, zum Beispiel Szene eins, Szene zwei, Aufwachen
+\- Szenen klar strukturieren (Szene 1, Szene 2, Aufwachen).
 
 
 
-WBTB mit Journal optional ein bis zwei Mal pro Woche
+\## WBTB + Journal (optional, 1–2×/Woche)
 
-\- Nach viereinhalb bis sechs Stunden Schlaf kurz aufstehen, Intention lesen und zurück ins Bett
+\- Nach \*\*4.5–6 h\*\* Schlaf kurz aufstehen, Intention lesen, zurück ins Bett.  
 
-\- Danach Traumerinnerung vergleichen und notieren
+\- Danach Traumerinnerung vergleichen und notieren.
 
 
 
-Datenschutz und Sicherheit
+\## Datenschutz \& Sicherheit
 
-\- Journal und Leseliste werden lokal gespeichert
+\- Journal und Leseliste werden \*\*lokal\*\* gespeichert.  
 
-\- Exporte verschlüsseln und Gerätesperre aktiv lassen
+\- Exporte \*\*verschlüsseln\*\*, Gerätesperre aktiv.  
 
-\- Keine externen Tracker
+\- Keine externen Tracker.
 
 
 
-Tägliche Checkliste in 60 bis 120 Sekunden
+\## Tägliche Checkliste (60–120 Sekunden)
 
-\- Titel
+\- Titel  
 
-\- Drei bis fünf Stichwörter
+\- 3–5 Stichwörter  
 
-\- Ein bis drei Sätze Ablauf
+\- 1–3 Sätze Ablauf  
 
-\- Dream-Signs als Hashtags
+\- Dream-Signs als Hashtags  
 
-\- RC-Anker, was dich heute trainiert
+\- RC-Anker (was dich heute trainiert)
 
 
 
-Vorlagen zum Kopieren
+\## Vorlagen zum Kopieren
 
+\*\*Vorlage ultrakurz\*\*  
 
+Titel:  
 
-Vorlage ultrakurz
+Stichwörter:  
 
-Titel:
+Ein bis drei Sätze:  
 
-Stichwörter:
-
-Ein bis drei Sätze:
-
-Dream-Signs: #..., #...
+Dream-Signs: #…, #…  
 
 RC-Anker:
 
 
 
-Vorlage mit Stimmung und Skala
+\*\*Vorlage mit Stimmung \& Skala\*\*  
 
-Titel:
+Titel:  
 
-Stimmung:
+Stimmung:  
 
-Stichwörter:
+Stichwörter:  
 
-Was passierte, drei bis sechs Sätze:
+Was passierte (3–6 Sätze):  
 
-Dream-Signs: #...
+Dream-Signs: #…  
 
 RC-Anker für heute:
 
 
 
-Wöchentlicher Review
+\*\*Wöchentlicher Review\*\*  
 
-Top drei Dream-Signs:
+Top drei Dream-Signs:  
 
-Fokus-Thema für sieben Tage:
+Fokus-Thema (7 Tage):  
 
-RC-Anker im Alltag:
+RC-Anker im Alltag:  
 
-Highlight der Woche:
+Highlight der Woche:  
 
 Nächster kleiner Schritt:
 
 
 
-Kurze Hinweise
+\*\*Kurze Hinweise\*\*  
 
-\- Ein Eintrag pro Tag reicht aus
+\- Ein Eintrag pro Tag reicht.  
 
-\- Detaillierte Prosa ist nicht notwendig
+\- Prosa nicht nötig – Stichwörter genügen.  
 
-\- Klarträume entstehen häufiger, wenn Dream-Signs tagsüber konsequent mit Reality-Checks verknüpft werden
+\- Klarträume werden wahrscheinlicher, wenn Dream-Signs tagsüber \*\*konsequent\*\* mit RCs verknüpft werden.  
 
-\- Papier oder App ist Geschmackssache, entscheidend ist tägliche Nutzung
-
-
-
-Nächster Schritt
-
-\- Drei RC-Anker festlegen, zum Beispiel Uhr lesen, Tür durchschreiten, Aufzug betreten
-
-\- Heute eine kurze Notiz schreiben, neunzig Sekunden reichen
+\- Papier oder App: Geschmackssache – \*\*Konstanz\*\* gewinnt.
 
 
+
+\*\*Nächster Schritt\*\*  
+
+\- Drei RC-Anker festlegen (z. B. Uhr lesen, Tür durchschreiten, Aufzug betreten).  
+
+\- Heute eine kurze Notiz schreiben – \*\*90 Sekunden reichen\*\*.
 
 
 

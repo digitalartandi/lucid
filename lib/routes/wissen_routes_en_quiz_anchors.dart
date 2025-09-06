@@ -30,13 +30,13 @@ class WissenRoutesEx {
       'techniken': {'de':'assets/wissen/techniken_de.md','en':'assets/wissen_en/techniques_en.md'},
       'neuro': {'de':'assets/wissen/neuro_sleep_de.md','en':'assets/wissen_en/neuro_sleep_en.md'},
       'journal': {'de':'assets/wissen/journal_guide_de.md','en':'assets/wissen_en/journal_guide_en.md'},
-      'nightmare': {'de':'assets/wissen/nightmare_irt_de.md','en':'assets/wissen_en/nightmare_irt_en.md'},
-      'wearables': {'de':'assets/wissen/wearables_detection_de.md','en':'assets/wissen_en/wearables_detection_en.md'},
-      'ethics': {'de':'assets/wissen/ethics_risks_de.md','en':'assets/wissen_en/ethics_risks_en.md'},
+      'nightmare': {'de':'assets/wissen/albtraeume_irt_de.md','en':'assets/wissen_en/nightmare_irt_en.md'},
+      'wearables': {'de':'assets/wissen/wearables_erkennung_de.md','en':'assets/wissen_en/wearables_detection_en.md'},
+      'ethics': {'de':'assets/wissen/ethik_risiken_de.md','en':'assets/wissen_en/ethics_risks_en.md'},
       'troubleshooting': {'de':'assets/wissen/troubleshooting_de.md','en':'assets/wissen_en/troubleshooting_en.md'},
       'faq': {'de':'assets/wissen/faq_de.md','en':'assets/wissen_en/faq_en.md'},
       'glossary': {'de':'assets/wissen/glossary_de.md','en':'assets/wissen_en/glossary_en.md'},
-      'citations': {'de':'assets/wissen/citations_de.md','en':'assets/wissen_en/citations_en.md'},
+      'citations': {'de':'assets/wissen/quellen_zitate_de.md','en':'assets/wissen_en/citations_en.md'},
     };
     final map = m[key] ?? const {};
     return map[lang] ?? map['de']!;
