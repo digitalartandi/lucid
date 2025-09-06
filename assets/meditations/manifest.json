@@ -17,6 +17,14 @@
       "cover": "assets/meditations/covers/Aurora-Crown.jpg"
     },
     {
+      "id": "mists-of-eternity",
+      "title": "Mists of Eternity",
+      "category": "Ambient",
+      "minutes": 10,
+      "asset": "assets/meditations/tracks/mists-of-eternity.mp3",
+      "cover": "assets/meditations/covers/mists-of-eternity.jpg"
+    },
+    {
       "id": "fairy-forest",
       "title": "Fairy Forest",
       "category": "Natur",
@@ -33,6 +41,14 @@
       "cover": "assets/meditations/covers/Harp-of-the-Evergreen.jpg"
     },
     {
+      "id": "the-ancient-horizon",
+      "title": "The Ancient Horizon",
+      "category": "Atmosphäre",
+      "minutes": 10,
+      "asset": "assets/meditations/tracks/the-ancient-horizon.mp3",
+      "cover": "assets/meditations/covers/the-ancient-horizon.jpg"
+    },
+    {
       "id": "harp-of-the-evergreen-02",
       "title": "Harp of the Evergreen 02",
       "category": "Harp",
@@ -47,6 +63,14 @@
       "minutes": 10,
       "asset": "assets/meditations/tracks/Sky-Islands-Glide01.mp3",
       "cover": "assets/meditations/covers/Sky-Islands.jpg"
+    },
+    {
+      "id": "celestial-reverie",
+      "title": "Celestial Reverie",
+      "category": "Ambient",
+      "minutes": 10,
+      "asset": "assets/meditations/tracks/celestial-Reverie.mp3",
+      "cover": "assets/meditations/covers/celestial-reverie.jpg"
     },
     {
       "id": "sky-islands-glide-02",
@@ -73,6 +97,14 @@
       "cover": "assets/meditations/covers/handpan-drift.jpg"
     },
     {
+      "id": "ethereal-depths",
+      "title": "Ethereal Depths",
+      "category": "Atmosphäre",
+      "minutes": 10,
+      "asset": "assets/meditations/tracks/ethereal-depths.mp3",
+      "cover": "assets/meditations/covers/ethereal-depths.jpg"
+    },
+    {
       "id": "highlands",
       "title": "Highlands",
       "category": "Natur",
@@ -87,6 +119,14 @@
       "minutes": 10,
       "asset": "assets/meditations/tracks/misty-horizons.mp3",
       "cover": "assets/meditations/covers/misty-horizons.jpg"
+    },
+    {
+      "id": "lucid-horizon",
+      "title": "Lucid Horizon",
+      "category": "Ambient",
+      "minutes": 10,
+      "asset": "assets/meditations/tracks/lucid-horizon.mp3",
+      "cover": "assets/meditations/covers/lucid-horizon.jpg"
     },
     {
       "id": "moonlit-fjord",

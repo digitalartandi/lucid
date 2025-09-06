@@ -11,10 +11,6 @@
 - **Normalisieren**: Übergangszustand; vergeht von selbst.
 - Strategie: ruhige Atmung, **Atem zählen**, kleine Bewegungen (Zehen, Lippen).
 
-## Inhalte laden nicht (Wissen)
-- Direkt-URL testen: `/lucid/assets/wissen/<datei>.md`
-- **AssetManifest** prüfen; SW-Cache leeren (Hard Reload / „Clear storage“).
-
 ## Wearable erkennt schlecht
 - **Band fester** tragen, Sensor reinigen.
 - HF-Messung aktivieren, fixe Aufwach-Cues testweise pausieren.
