@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
+  audioplayers: ^5.2.1
   flutter_markdown: ^0.6.18
   flutter_svg: ^2.0.10+1
   path_provider: ^2.1.3

@@ -13,7 +13,7 @@ import '../screens/traumreisen/traumreise_player_page.dart';
 import '../screens/modules/rc_reminder_page.dart';
 import '../screens/modules/night_lite_page.dart';
 import '../screens/modules/trainer_page.dart';
-import '../screens/modules/cue_tuning_page.dart';
+import '../screens/modules/cue_tuning_page.dart'; // enthält auch CueBackgroundPickerPage
 
 // Hilfe
 import '../screens/help/help_center_page.dart';
@@ -23,7 +23,7 @@ import '../screens/wissen/wissen_hub_page.dart';
 import '../screens/wissen/wissen_article_page.dart';
 import '../screens/wissen/faq_basics_page.dart';
 import '../screens/wissen/reading_list_page.dart';
-import '../screens/wissen/knowledge_accordion_page.dart'; // ← NEU: Accordion-Seite importieren
+import '../screens/wissen/knowledge_accordion_page.dart'; // falls genutzt
 
 // Studien-Feed
 import '../screens/wissen/studien_feed_page_with_save.dart';
@@ -48,7 +48,6 @@ import '../screens/meditation/meditation_player_page.dart';
 import '../screens/affirmations/affirmation_hub_page.dart';
 import '../screens/affirmations/affirmation_player_page.dart';
 
-
 CupertinoPageRoute<T> _c<T>(Widget w) => CupertinoPageRoute<T>(builder: (_) => w);
 String _argString(Object? a, [String fallback = '']) => a is String ? a : fallback;
 
@@ -56,9 +55,9 @@ Route<dynamic> onGenerateRoute(RouteSettings s) {
   switch (s.name) {
     // --- sichere Defaults / Einstieg ---
     case '/':
-      return _c(const WissenHubPage()); // unverändert: Root kann weiter auf den Hub zeigen
+      return _c(const WissenHubPage());
     case '/wissen':
-      return _c(const WissenHubPage());   // ← so muss es sein
+      return _c(const WissenHubPage());
 
     // --- Module ---
     case '/rc':
@@ -69,6 +68,11 @@ Route<dynamic> onGenerateRoute(RouteSettings s) {
       return _c(const TrainerPage());
     case '/cuetuning':
       return _c(const CueTuningPage());
+
+    // Hintergrund-Auswahl (beide Pfade zulassen)
+    case '/cues/background':
+    case '/cue/background':
+      return _c(const CueBackgroundPickerPage());
 
     // --- Traumreisen ---
     case '/traumreisen':

@@ -33,7 +33,6 @@ class _CuePrefs {
     final json = sp.getString(_kCueSelectedJson);
     if (json == null) return null;
     final m = jsonDecode(json) as Map<String, dynamic>;
-    // Kompatibel zu deinem CueSound (id, name, category, asset)
     return CueSound(
       id:        (m['id'] ?? '') as String,
       name:      (m['name'] ?? '') as String,
@@ -50,8 +49,8 @@ class CueLibraryPage extends StatefulWidget {
 }
 
 class _CueLibraryPageState extends State<CueLibraryPage> {
-  bool _picker = false;
-  String? _selectedId;
+  bool _picker = false;            // <- wird über Route-Argument gesetzt
+  String? _selectedId;             // <- aktuell gespeicherte Auswahl (für Häkchen)
   String _query = '';
 
   final _player = CueLoopPlayer.instance;
@@ -76,9 +75,15 @@ class _CueLibraryPageState extends State<CueLibraryPage> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     final args = ModalRoute.of(context)?.settings.arguments;
+
+    // Robust: akzeptiere Map<dynamic,dynamic> und feuere keinen Dialog im Picker-Modus
     if (args is Map) {
-      _picker = args['picker'] == true;
-      _selectedId = (args['selectedId'] as String?) ?? _selectedId;
+      final pickerArg = args['picker'];
+      _picker = pickerArg == true || pickerArg?.toString() == 'true';
+      final sid = args['selectedId'];
+      if (sid is String && sid.isNotEmpty) {
+        _selectedId = sid;
+      }
     }
   }
 
@@ -195,10 +200,12 @@ class _CueLibraryPageState extends State<CueLibraryPage> {
     setState(() => _selectedId = s.id);
 
     if (_picker) {
-      Navigator.of(context).pop(s); // Übergibt die Auswahl an den Aufrufer
+      // WICHTIG: Im Picker-Modus mit Ergebnis zurück – CueTuningPage setzt dann _selected.
+      Navigator.of(context).pop<CueSound>(s);
       return;
     }
 
+    // Normaler Bibliotheksmodus: dein bestehender Dialog bleibt erhalten
     showCupertinoDialog(
       context: context,
       builder: (_) => CupertinoAlertDialog(
@@ -206,6 +213,7 @@ class _CueLibraryPageState extends State<CueLibraryPage> {
         content: Text('„${s.name}“ wurde als Cue übernommen.'),
         actions: [
           CupertinoDialogAction(
+            isDefaultAction: true,
             child: const Text('OK'),
             onPressed: () => Navigator.of(context).pop(),
           ),
@@ -223,10 +231,8 @@ class _CueLibraryPageState extends State<CueLibraryPage> {
     setState(() => _previewId = s.id);
 
     try {
-      // bevorzugte API
       await _player.playOnce(s, seconds: 5, volume: .8);
     } catch (_) {
-      // Legacy (nur Asset-String)
       try {
         await (_player as dynamic).playOnce(s.asset as String, seconds: 5, volume: .8);
       } catch (_) {}
@@ -236,7 +242,6 @@ class _CueLibraryPageState extends State<CueLibraryPage> {
   }
 
   // -------- Katalog / Gruppierung --------
-
   List<Object> _filterAndGroup(List<CueSound> sounds, String query) {
     final q = query.trim().toLowerCase();
     final filtered = sounds.where((s) {
@@ -251,7 +256,6 @@ class _CueLibraryPageState extends State<CueLibraryPage> {
       groups.putIfAbsent(s.category, () => []).add(s);
     }
 
-    // Reihenfolge der Hauptkategorien (übersichtlich)
     const order = [
       'Tiere',
       'Wasser & Regen',
@@ -281,11 +285,10 @@ class _CueLibraryPageState extends State<CueLibraryPage> {
     return out;
   }
 
-  // ---- Dein kompletter Cue-Bestand (kuratiert und zusammengefasst) ----
+  // ---- Cue-Bestand ----
   static const _base = 'assets/audio/cues/';
 
   List<CueSound> _buildCatalog() {
-    // Hilfs-Funktion
     CueSound cue(String file, String name, String cat) =>
         CueSound(id: file, name: name, category: cat, asset: '$_base$file');
 
@@ -305,7 +308,7 @@ class _CueLibraryPageState extends State<CueLibraryPage> {
       cue('meadow-bees02.mp3', 'Wiese – Bienen 2', 'Tiere'),
       cue('meadow-bees03.mp3', 'Wiese – Bienen 3', 'Tiere'),
       cue('cat-purring.mp3', 'Katze schnurrt', 'Tiere'),
-      cue('jellyfish-soft.mp3', 'Quallen (sanft)', 'Tiere'), // falls vorhanden
+      cue('jellyfish-soft.mp3', 'Quallen (sanft)', 'Tiere'),
     ];
 
     // Wasser & Regen
@@ -333,7 +336,7 @@ class _CueLibraryPageState extends State<CueLibraryPage> {
       cue('mountain-ridge-wind02.mp3', 'Bergwind 2', 'Wind & Natur'),
       cue('mountain-ridge-wind03.mp3', 'Bergwind 3', 'Wind & Natur'),
       cue('wind01.mp3', 'Wind 1', 'Wind & Natur'),
-      cue('forest-ambience01.mp3', 'Wald – Ambience', 'Wind & Natur'), // falls vorhanden
+      cue('forest-ambience01.mp3', 'Wald – Ambience', 'Wind & Natur'),
     ];
 
     // Glocken & Chimes
@@ -359,7 +362,7 @@ class _CueLibraryPageState extends State<CueLibraryPage> {
       cue('spacecraft-interior.mp3', 'Raumschiff 1', 'Synth & Space'),
       cue('spacecraft-interior2.mp3', 'Raumschiff 2', 'Synth & Space'),
       cue('spacecraft-interior3.mp3', 'Raumschiff 3', 'Synth & Space'),
-      cue('misty-horizons.mp3', 'Misty Horizons', 'Synth & Space'), // falls vorhanden
+      cue('misty-horizons.mp3', 'Misty Horizons', 'Synth & Space'),
     ];
 
     // Ambience / Sonstiges
@@ -371,7 +374,7 @@ class _CueLibraryPageState extends State<CueLibraryPage> {
       cue('thunder-rumbles02.mp3', 'Donnerrollen 2', 'Ambience'),
       cue('thunder-rumbles03.mp3', 'Donnerrollen 3', 'Ambience'),
       cue('tropical-rainforest.mp3', 'Tropenwald', 'Ambience'),
-      cue('woodland-breathing.mp3', 'Waldatmen', 'Ambience'), // falls vorhanden
+      cue('woodland-breathing.mp3', 'Waldatmen', 'Ambience'),
     ];
 
     return [...birds, ...water, ...wind, ...chimes, ...synth, ...amb];
