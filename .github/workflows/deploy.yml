@@ -2,22 +2,25 @@ name: Build & Deploy (Flutter Web)
 
 on:
   push:
-    branches: [ main ]   # anpassen, falls du anders deployen willst
+    branches: [ main ]         # ggf. anpassen
   workflow_dispatch:
 
 permissions:
-  contents: write   # wichtig für Push auf gh-pages
+  contents: write              # nötig fürs Pushen
 
 concurrency:
-  group: deploy-pages
-  cancel-in-progress: true
+  group: gh-pages-${{ github.ref }}
+  cancel-in-progress: true     # verhindert parallele Deploys
 
 jobs:
   build-and-deploy:
+    if: github.ref == 'refs/heads/main'    # nur von main deployen
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0                   # vollständige Historie vermeidet Push-Konflikte
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -25,14 +28,14 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Flutter pub get
+      - name: Pub get
         run: flutter pub get
 
       - name: Build Web (GitHub Pages unter /lucid/)
         run: flutter build web --release --base-href /lucid/ --pwa-strategy none
 
-      # Optional: Service Worker aus dem Build entfernen, falls der noch auftaucht
-      - name: Remove service worker (optional but safe)
+      # Optional: SW/Manifest entfernen, um harte Caches zu vermeiden
+      - name: Remove service worker & manifest (optional)
         run: |
           rm -f build/web/flutter_service_worker.js || true
           rm -f build/web/manifest.json || true
@@ -43,7 +46,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: build/web
-          # Verhindert "expected sha" Konflikte & Branch-Schutz-Probleme:
-          force_orphan: true
-          # Falls du ein CNAME brauchst, hier setzen:
-          # cname: example.com
+          force_orphan: true               # jedes Mal frischer Commit ⇒ keine "expected sha"-Fehler
+          # keep_files: false              # Standard: alles überschreiben
