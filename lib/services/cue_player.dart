@@ -2,13 +2,13 @@
 //
 // Player-Service für Cue-Tuning / RC-Reminder / Night Lite+.
 // - Zwei Player: _cue (der eigentliche Cue), _bed (optionales Hintergrundbett)
-// - Web-freundliches Laden: auf Web wird eine UrlSource mit URL-encodetem Pfad genutzt,
-//   damit Sonderzeichen/Leerzeichen funktionieren.
-// - API bleibt stabil:
+// - Web-freundliches Laden: auf Web absolute URL via Uri.base.resolve(assetPath),
+//   damit das <base href="/lucid/"> auf GitHub Pages korrekt berücksichtigt wird.
+// - API:
 //
 //   final p = CueLoopPlayer.instance;
 //   await p.playOnce(cue, seconds: 5, volume: 0.8);
-//   await p.playLoop(cue, volume: 0.7, intervalMinutes: 0); // 0 = endloser Loop
+//   await p.playLoop(cue, volume: 0.7, intervalMinutes: 0); // 0 = permanenter Loop
 //   await p.startBedAsset('assets/audio/meditation/xyz.mp3', volume: 0.35);
 //   await p.stop();
 //
@@ -19,7 +19,7 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:audioplayers/audioplayers.dart';
-import '../models/cue_models.dart'; // nur für den Typ CueSound
+import '../models/cue_models.dart'; // Typ CueSound
 
 class CueLoopPlayer {
   CueLoopPlayer._internal() {
@@ -32,7 +32,7 @@ class CueLoopPlayer {
   final AudioPlayer _cue = AudioPlayer(playerId: 'cue-player');
   final AudioPlayer _bed = AudioPlayer(playerId: 'cue-bed');
 
-  bool _cueActive = false; // cue läuft aktuell (Loop ODER gerade im "once")
+  bool _cueActive = false; // cue läuft (Loop ODER "once")
   bool _bedActive = false; // bed läuft
   Timer? _intervalTimer;
 
@@ -43,9 +43,10 @@ class CueLoopPlayer {
 
   Future<void> _setSourceAssetSafe(AudioPlayer p, String assetPath) async {
     if (kIsWeb) {
-      // Segmente encoden (z. B. Leerzeichen, Klammern), Slash bleibt erhalten
-      final encoded = assetPath.split('/').map(Uri.encodeComponent).join('/');
-      await p.setSource(UrlSource(encoded)); // respektiert <base href>
+      // WICHTIG: absolute URL erzeugen, die <base href> berücksichtigt.
+      // Beispiel: https://username.github.io/lucid/assets/audio/...
+      final abs = Uri.base.resolve(assetPath).toString();
+      await p.setSource(UrlSource(abs));
     } else {
       await p.setSource(AssetSource(assetPath));
     }
@@ -68,13 +69,13 @@ class CueLoopPlayer {
     await _playCueOnce(cue.asset, volume, seconds: seconds);
   }
 
-  // Legacy-Helfer (wird in einzelnen Screens noch referenziert)
+  // Legacy-Helfer (Altaufrufe)
   Future<void> playOnceAsset(String asset, {int seconds = 5, double volume = 0.8}) async {
     await _playCueOnce(asset, volume, seconds: seconds);
   }
 
   Future<void> _playCueOnce(String asset, double vol, {int seconds = 5}) async {
-    // Falls gerade Loop/Timer aktiv ist, unterbrechen wir kurz nur den Cue-Kanal
+    // Falls Loop/Timer aktiv ist, unterbrechen wir nur den Cue-Kanal
     await _cue.stop();
     await _setSourceAssetSafe(_cue, asset);
     await _cue.setVolume(vol);
@@ -95,7 +96,7 @@ class CueLoopPlayer {
   /// - intervalMinutes <= 0  -> permanenter Loop (Repeat)
   /// - intervalMinutes > 0   -> alle N Minuten 5s „Ping“ (Once)
   Future<void> playLoop(CueSound cue, {required double volume, int? intervalMinutes}) async {
-    await stopCueChannel(); // räumt Timer & Player
+    await stopCueChannel(); // Timer & Player räumen
     final minutes = intervalMinutes ?? 0;
 
     if (minutes <= 0) {
