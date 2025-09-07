@@ -198,6 +198,9 @@ class _FeedCard extends StatelessWidget {
     final svc = NewsFeedService.instance;
     final isSaved = svc.isSaved(item.id);
 
+    // *** EINZIGE FUNKTIONALE ÄNDERUNG: kompakte Darstellung auf kleinen Screens ***
+    final bool isCompact = MediaQuery.of(context).size.width < 430;
+
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
@@ -271,27 +274,29 @@ class _FeedCard extends StatelessWidget {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                CupertinoButton(
-                  padding: const EdgeInsets.all(6),
-                  onPressed: () async {
-                    try {
-                      await Share.share('${item.title}\n${item.link}');
-                    } catch (_) {
-                      await Clipboard.setData(ClipboardData(text: item.link));
-                      _toast(context, 'Link kopiert');
-                    }
-                  },
-                  child: const Icon(CupertinoIcons.share, color: _white, size: 20),
-                ),
-                CupertinoButton(
-                  padding: const EdgeInsets.all(6),
-                  onPressed: () => svc.toggleSaved(item),
-                  child: Icon(
-                    isSaved ? CupertinoIcons.bookmark_solid : CupertinoIcons.bookmark,
-                    color: isSaved ? _accent : _white,
-                    size: 20,
+                if (!isCompact)
+                  CupertinoButton(
+                    padding: const EdgeInsets.all(6),
+                    onPressed: () async {
+                      try {
+                        await Share.share('${item.title}\n${item.link}');
+                      } catch (_) {
+                        await Clipboard.setData(ClipboardData(text: item.link));
+                        _toast(context, 'Link kopiert');
+                      }
+                    },
+                    child: const Icon(CupertinoIcons.share, color: _white, size: 20),
                   ),
-                ),
+                if (!isCompact)
+                  CupertinoButton(
+                    padding: const EdgeInsets.all(6),
+                    onPressed: () => svc.toggleSaved(item),
+                    child: Icon(
+                      isSaved ? CupertinoIcons.bookmark_solid : CupertinoIcons.bookmark,
+                      color: isSaved ? _accent : _white,
+                      size: 20,
+                    ),
+                  ),
                 CupertinoButton(
                   padding: const EdgeInsets.all(6),
                   onPressed: () => _openExternal(context, item.link),
