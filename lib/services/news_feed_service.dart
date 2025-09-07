@@ -134,20 +134,31 @@ class NewsFeedService {
     String relWebPath,
     String assetsPath,
   ) async {
-    // 1) Web: relative URL (z.B. /lucid/feed/*.json auf GH Pages)
     if (kIsWeb) {
-      try {
-        final r = await http.get(Uri.parse(relWebPath))
-            .timeout(const Duration(seconds: 10));
-        if (r.statusCode == 200 && r.body.isNotEmpty) {
-          return _parseItems(r.body);
+      // Reihenfolge: (1) basis-relativ, (2) ab Root, (3) absolute GH-Pages-URL
+      final candidates = <Uri>[
+        Uri.base.resolve(relWebPath),
+        Uri.parse('/$relWebPath'),
+        Uri.parse('https://digitalartandi.github.io/lucid/$relWebPath'),
+      ];
+
+      for (final u in candidates) {
+        final withCb = u.replace(queryParameters: {
+          ...u.queryParameters,
+          'v': DateTime.now().millisecondsSinceEpoch.toString(), // Cache-Buster
+        });
+        try {
+          final r = await http.get(withCb).timeout(const Duration(seconds: 10));
+          if (r.statusCode == 200 && r.body.isNotEmpty) {
+            return _parseItems(r.body);
+          }
+        } catch (_) {
+          // Nächsten Kandidaten probieren
         }
-      } catch (_) {
-        // Fallback auf Assets
       }
     }
 
-    // 2) Assets-Fallback (funktioniert überall)
+    // Asset-Fallback (funktioniert überall)
     try {
       final s = await rootBundle.loadString(assetsPath);
       return _parseItems(s);
