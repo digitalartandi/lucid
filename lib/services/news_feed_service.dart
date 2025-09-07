@@ -1,213 +1,181 @@
+// lib/services/news_feed_service.dart
+import 'dart:async';
 import 'dart:convert';
-import 'package:flutter/foundation.dart' show ValueNotifier, kIsWeb;
+
+import 'package:flutter/foundation.dart' show kIsWeb, ValueNotifier;
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:dart_rss/dart_rss.dart';
+
 import '../models/news_models.dart';
+import 'link_sanitizer.dart';
 
 class NewsFeedService {
-  static final NewsFeedService instance = NewsFeedService._();
   NewsFeedService._();
+  static final NewsFeedService instance = NewsFeedService._();
 
-  static const _kSavedKey = 'feed.saved.v1';
-  static const _kSourcesAsset = 'assets/feed/sources.json';
-  static const _kCuratedAsset = 'assets/feed/curated.json';
-
+  /// UI hört darauf und baut neu.
   final ValueNotifier<int> revision = ValueNotifier<int>(0);
 
-  final List<FeedSource> _sources = [];
-  final List<NewsItem> _items = [];
-  final List<NewsItem> _saved = [];
+  /// Sichtbare Liste (Tabs/Query filtert die UI).
+  List<NewsItem> _items = [];
+  List<NewsItem> get items => _items;
 
-  List<NewsItem> get items => List.unmodifiable(_items);
-  List<NewsItem> get saved => List.unmodifiable(_saved);
-  List<FeedSource> get sources => List.unmodifiable(_sources);
+  /// Gespeicherte Einträge (Lesezeichen).
+  List<NewsItem> _saved = [];
+  List<NewsItem> get saved => _saved;
+
+  static const _savedKey = 'feed.saved.v1';
+
+  /// Relativ (funktioniert lokal & auf GH Pages / Subpfad):
+  static const _webStudiesRel = 'feed/studies.json';
+  static const _webNewsRel    = 'feed/news.json';
+
+  /// Assets-Fallback:
+  static const _assetsStudies = 'assets/feed/studies.json';
+  static const _assetsNews    = 'assets/feed/news.json';
+
+  bool _initialized = false;
 
   Future<void> init() async {
-    await _loadSources();
+    if (_initialized) return;
+    _initialized = true;
+
     await _loadSaved();
-    if (_items.isEmpty) {
-      await refresh();
-    }
+    // Direkt live laden (nur aus den beiden JSON-Dateien).
+    unawaited(refresh());
   }
 
-  Future<void> _loadSources() async {
-    try {
-      final s = await rootBundle.loadString(_kSourcesAsset);
-      final list = (jsonDecode(s) as List).cast<Map<String, dynamic>>();
-      _sources
-        ..clear()
-        ..addAll(list.map(FeedSource.fromJson));
-    } catch (_) {
-      _sources
-        ..clear()
-        ..addAll(const [
-          FeedSource(name: 'Curated', url: 'asset://curated', isStudy: true),
-        ]);
-    }
-  }
-
-  Future<void> _loadSaved() async {
-    final sp = await SharedPreferences.getInstance();
-    final s = sp.getString(_kSavedKey);
-    _saved
-      ..clear()
-      ..addAll(s == null ? const <NewsItem>[] : NewsItem.decodeList(s));
-  }
-
-  Future<void> _saveSaved() async {
-    final sp = await SharedPreferences.getInstance();
-    await sp.setString(_kSavedKey, NewsItem.encodeList(_saved));
-  }
+  // ---------------------------------------------------------------------------
+  // Public
+  // ---------------------------------------------------------------------------
 
   Future<void> refresh() async {
-    final fetched = <NewsItem>[];
-    bool anyNetworkOk = false;
+    final List<NewsItem> fresh = [];
 
-    for (final src in _sources) {
-      if (src.url == 'asset://curated') {
-        final c = await _loadCurated();
-        fetched.addAll(c);
-        continue;
-      }
+    // 1) Studien (nur aus JSON)
+    final studies = await _loadJsonListPreferWeb(_webStudiesRel, _assetsStudies);
+    fresh.addAll(studies);
 
-      try {
-        final r = await http.get(Uri.parse(src.url));
-        if (r.statusCode != 200) throw Exception('HTTP ${r.statusCode}');
-        final body = r.body;
+    // 2) News (nur aus JSON)
+    final news = await _loadJsonListPreferWeb(_webNewsRel, _assetsNews);
+    fresh.addAll(news);
 
-        // RSS?
-        try {
-          final feed = RssFeed.parse(body);
-          fetched.addAll(_rssToItems(feed, src));
-          anyNetworkOk = true;
-          continue;
-        } catch (_) {}
+    // 3) Nur gültige Links, deduplizieren, sortieren
+    final byId = <String, NewsItem>{};
+    for (final n in fresh) {
+      final uri = LinkSanitizer.normalizeForLaunch(n.link);
+      if (uri == null) continue;
 
-        // Atom?
-        try {
-          final atom = AtomFeed.parse(body);
-          fetched.addAll(_atomToItems(atom, src));
-          anyNetworkOk = true;
-          continue;
-        } catch (_) {}
-
-        // JSON Feed?
-        final parsed = jsonDecode(body);
-        if (parsed is Map && parsed['items'] is List) {
-          final items = (parsed['items'] as List).cast<Map<String, dynamic>>();
-          for (final m in items) {
-            final title = (m['title'] ?? '').toString();
-            final link = (m['url'] ?? m['link'] ?? '').toString();
-            if (title.isEmpty || link.isEmpty) continue;
-            fetched.add(NewsItem(
-              id: '${src.name}:${link.hashCode}',
-              title: title,
-              link: link,
-              source: src.name,
-              published: DateTime.tryParse((m['date_published'] ?? m['published'] ?? '') as String? ?? ''),
-              summary: (m['summary'] ?? m['content_text'] ?? '').toString(),
-              imageUrl: (m['image'] ?? m['banner_image']) as String?,
-              isStudy: src.isStudy,
-              tags: const [],
-            ));
-          }
-          anyNetworkOk = true;
-          continue;
-        }
-      } catch (_) {
-        // Ignorieren; Curated-Fallback greift
-      }
+      final normalized = _copyWithLink(n, uri.toString());
+      final key = normalized.id.isNotEmpty ? normalized.id : normalized.link;
+      byId[key] = normalized;
     }
 
-    if (!anyNetworkOk && fetched.isEmpty) {
-      fetched.addAll(await _loadCurated());
-    }
-
-    // Deduplizieren + sortieren
-    final map = <String, NewsItem>{};
-    for (final it in fetched) {
-      map[it.id] = it;
-    }
-    final list = map.values.toList()
+    final merged = byId.values.toList()
       ..sort((a, b) {
         final ad = a.published ?? DateTime.fromMillisecondsSinceEpoch(0);
         final bd = b.published ?? DateTime.fromMillisecondsSinceEpoch(0);
         return bd.compareTo(ad);
       });
 
-    _items
-      ..clear()
-      ..addAll(list);
-
-    revision.value++;
-  }
-
-  List<NewsItem> _rssToItems(RssFeed feed, FeedSource src) {
-    return feed.items.map((i) {
-      final link = i.link ?? i.guid ?? '';
-      final img = i.enclosure?.url; // konservativ: enclosure (dart_rss garantiert vorhanden)
-
-      return NewsItem(
-        id: '${src.name}:${(link).hashCode}:${(i.pubDate ?? '').hashCode}',
-        title: i.title ?? '(ohne Titel)',
-        link: link,
-        source: src.name,
-        published: _tryRssDate(i.pubDate),
-        summary: i.description ?? i.content?.value ?? '',
-        imageUrl: img,
-        isStudy: src.isStudy,
-        tags: const [],
-      );
-    }).toList();
-  }
-
-  List<NewsItem> _atomToItems(AtomFeed feed, FeedSource src) {
-    return feed.items.map((i) {
-      final link = i.links.isNotEmpty ? (i.links.first.href ?? '') : '';
-      final when = i.updated ?? i.published;
-      return NewsItem(
-        id: '${src.name}:${(link).hashCode}:${(when ?? '').hashCode}',
-        title: i.title ?? '(ohne Titel)',
-        link: link,
-        source: src.name,
-        published: when != null ? DateTime.tryParse(when) : null,
-        summary: i.summary ?? '',
-        imageUrl: null,
-        isStudy: src.isStudy,
-        tags: const [],
-      );
-    }).toList();
-  }
-
-  DateTime? _tryRssDate(String? s) {
-    if (s == null) return null;
-    // Konservativ: wir versuchen nur ISO-kompatibel; sonst null.
-    try { return DateTime.parse(s); } catch (_) {}
-    return null;
-  }
-
-  Future<List<NewsItem>> _loadCurated() async {
-    try {
-      final s = await rootBundle.loadString(_kCuratedAsset);
-      final list = (jsonDecode(s) as List).cast<Map<String, dynamic>>();
-      return list.map(NewsItem.fromJson).toList();
-    } catch (_) {
-      return const <NewsItem>[];
+    // Behalte bisherigen Stand, wenn gar nichts geladen werden konnte.
+    if (merged.isEmpty && _items.isNotEmpty) {
+      _bump();
+      return;
     }
+
+    _items = merged;
+    _bump();
   }
 
   bool isSaved(String id) => _saved.any((e) => e.id == id);
 
-  Future<void> toggleSaved(NewsItem it) async {
-    final idx = _saved.indexWhere((e) => e.id == it.id);
-    if (idx >= 0) {
-      _saved.removeAt(idx);
+  Future<void> toggleSaved(NewsItem item) async {
+    if (isSaved(item.id)) {
+      _saved = _saved.where((e) => e.id != item.id).toList();
     } else {
-      _saved.insert(0, it);
+      _saved = [..._saved, item];
     }
-    await _saveSaved();
-    revision.value++;
+    final sp = await SharedPreferences.getInstance();
+    await sp.setString(
+      _savedKey,
+      jsonEncode(_saved.map((e) => e.toJson()).toList()),
+    );
+    _bump();
   }
+
+  // ---------------------------------------------------------------------------
+  // Private
+  // ---------------------------------------------------------------------------
+
+  void _bump() => revision.value++;
+
+  Future<void> _loadSaved() async {
+    final sp = await SharedPreferences.getInstance();
+    final raw = sp.getString(_savedKey);
+    if (raw == null || raw.isEmpty) {
+      _saved = [];
+      return;
+    }
+    try {
+      final list = (jsonDecode(raw) as List)
+          .map((e) => NewsItem.fromJson(e as Map<String, dynamic>))
+          .toList();
+      _saved = list;
+    } catch (_) {
+      _saved = [];
+    }
+  }
+
+  /// Liest eine JSON-Liste **zuerst** relativ über HTTP (nur Web),
+  /// dann – falls nötig – aus den App-Assets.
+  Future<List<NewsItem>> _loadJsonListPreferWeb(
+    String relWebPath,
+    String assetsPath,
+  ) async {
+    // 1) Web: relative URL (z.B. /lucid/feed/*.json auf GH Pages)
+    if (kIsWeb) {
+      try {
+        final r = await http.get(Uri.parse(relWebPath))
+            .timeout(const Duration(seconds: 10));
+        if (r.statusCode == 200 && r.body.isNotEmpty) {
+          return _parseItems(r.body);
+        }
+      } catch (_) {
+        // Fallback auf Assets
+      }
+    }
+
+    // 2) Assets-Fallback (funktioniert überall)
+    try {
+      final s = await rootBundle.loadString(assetsPath);
+      return _parseItems(s);
+    } catch (_) {
+      return const [];
+    }
+  }
+
+  List<NewsItem> _parseItems(String jsonText) {
+    try {
+      final list = (jsonDecode(jsonText) as List)
+          .map((e) => NewsItem.fromJson(e as Map<String, dynamic>))
+          .toList();
+      return list;
+    } catch (_) {
+      return const [];
+    }
+  }
+
+  NewsItem _copyWithLink(NewsItem n, String link) => NewsItem(
+        id: n.id,
+        title: n.title,
+        summary: n.summary,
+        link: link,
+        source: n.source,
+        isStudy: n.isStudy,
+        published: n.published,
+        imageUrl: n.imageUrl,
+        tags: n.tags,
+      );
 }

@@ -1,0 +1,123 @@
+[
+  {
+    "id": "commbio-2025-hypnagogia-day-residue",
+    "title": "A day residue of learning intrudes into hypnagogia and perturbs memory consolidation",
+    "summary": "Neue Arbeit zeigt: Lernreste dringen in die Einschlafphase (Hypnagogie) ein und können die Gedächtniskonsolidierung beeinflussen.",
+    "link": "https://www.nature.com/articles/s42003-024-06953-5",
+    "source": "Communications Biology (Nature)",
+    "isStudy": true,
+    "published": "2025-03-03T00:00:00Z",
+    "imageUrl": null,
+    "tags": ["sleep", "hypnagogia", "memory"]
+  },
+  {
+    "id": "aasm-jcsm-2025-consumer-sleep-tech-evidence-brief",
+    "title": "Consumer Sleep Technologies: AASM Evidence Brief (2025)",
+    "summary": "Aktualisierte Übersicht der American Academy of Sleep Medicine zu Consumer-Schlaftechnologien: Chancen, Limitationen und Anwendungsbereiche.",
+    "link": "https://jcsm.aasm.org/doi/10.5664/jcsm.11192",
+    "source": "Journal of Clinical Sleep Medicine",
+    "isStudy": true,
+    "published": "2025-02-01T00:00:00Z",
+    "imageUrl": null,
+    "tags": ["wearables", "validation", "sleep"]
+  },
+  {
+    "id": "mdpi-sensors-2025-actigraphy-validation",
+    "title": "Validation of Actigraphy-Based Wearables for Sleep Monitoring: Systematic Review",
+    "summary": "Systematische Auswertung aktueller Studien zur Genauigkeit von Actigraphy-Wearables bei Schlaf/Wach-Erkennung.",
+    "link": "https://www.mdpi.com/1424-8220/25/7/2113",
+    "source": "Sensors (MDPI)",
+    "isStudy": true,
+    "published": "2025-04-10T00:00:00Z",
+    "imageUrl": null,
+    "tags": ["wearables", "actigraphy", "validation"]
+  },
+  {
+    "id": "pubmed-2024-nonverbal-tmr",
+    "title": "Not only words make memories: Non-verbal cues are more effective than verbal cues in Targeted Memory Reactivation",
+    "summary": "Arbeit zu Targeted Memory Reactivation (TMR): nicht-verbale Reize verbessern die Gedächtnisreaktivierung stärker als verbale.",
+    "link": "https://pubmed.ncbi.nlm.nih.gov/39274691/",
+    "source": "PubMed (Originalartikel verlinkt)",
+    "isStudy": true,
+    "published": "2024-08-15T00:00:00Z",
+    "imageUrl": null,
+    "tags": ["TMR", "REM", "memory"]
+  },
+  {
+    "id": "npj-scilearn-2025-personalized-tmr",
+    "title": "Personalized targeted memory reactivation enhances consolidation of challenging memories via slow wave and spindle dynamics",
+    "summary": "Eine Studie zeigt, dass ein personalisiertes Targeted Memory Reactivation (TMR)-Protokoll (individuell angepasste Reizwiederholung basierend auf Lernerfolg) den Gedächtnisverfall bei schwierigem Lernmaterial deutlich reduziert und Fehlerkorrekturen verbessert. Mit personalisiertem TMR traten verstärkte Slow-Wave- und Spindel-Synchronisation im Schlaf-EEG auf, was mit besseren Lernergebnissen einherging.",
+    "link": "https://www.nature.com/articles/s41539-025-00340-3",
+    "source": "npj Science of Learning (Nature)",
+    "isStudy": true,
+    "published": "2025-07-22T00:00:00Z",
+    "imageUrl": null,
+    "tags": ["TMR", "memory", "sleep"]
+  },
+  {
+    "id": "jneurosci-2015-lucid-metacognition",
+    "title": "Metacognitive mechanisms underlying lucid dreaming",
+    "summary": "Studie zeigt: Häufig luzide Träumer besitzen ein vergrößertes frontopolares Kortex-Areal (BA9/10) und höhere Aktivität dort bei einer Selbstreflexions-Aufgabe. Das legt nahe, dass luzides Träumen mit gesteigerter Metakognition (Selbstreflexionsfähigkeit) im Wachzustand einhergeht.",
+    "link": "https://pubmed.ncbi.nlm.nih.gov/25609624/",
+    "source": "PubMed (J. Neurosci)",
+    "isStudy": true,
+    "published": "2015-01-21T00:00:00Z",
+    "imageUrl": null,
+    "tags": ["lucid dreaming", "metacognition", "neuroscience"]
+  },
+  {
+    "id": "natneuro-2014-gamma-lucid",
+    "title": "Induction of self awareness in dreams through frontal low current stimulation of gamma activity",
+    "summary": "In einem Experiment wurde 2014 gezeigt, dass transkranielle 40-Hz-Stimulation während des REM-Schlafs gezielt luzide Träume auslösen kann. Andere Frequenzen blieben ohne Effekt – höheres Traum-Bewusstsein scheint demnach mit synchronen Gamma-Oszillationen (~25–40 Hz) verbunden.",
+    "link": "https://pubmed.ncbi.nlm.nih.gov/24816141/",
+    "source": "Nature Neuroscience",
+    "isStudy": true,
+    "published": "2014-05-11T00:00:00Z",
+    "imageUrl": null,
+    "tags": ["lucid dreaming", "EEG", "stimulation"]
+  },
+  {
+    "id": "currbiol-2021-two-way-communication",
+    "title": "Real-time dialogue between experimenters and dreamers during REM sleep",
+    "summary": "Vier unabhängige Forschungsteams demonstrierten 2021, dass Zwei-Wege-Kommunikation mit schlafenden, luzid träumenden Personen möglich ist. Im REM-Schlaf konnten Träumende Fragen der Forschenden verstehen und mittels Augenbewegungen oder Muskelkontraktionen (Ja/Nein) in Echtzeit korrekte Antworten übermitteln.",
+    "link": "https://pubmed.ncbi.nlm.nih.gov/33607035/",
+    "source": "Current Biology",
+    "isStudy": true,
+    "published": "2021-02-18T00:00:00Z",
+    "imageUrl": null,
+    "tags": ["lucid dreaming", "communication", "REM"]
+  },
+  {
+    "id": "sleepadv-2022-lucid-benefits-risks",
+    "title": "Benefits and concerns of seeking and experiencing lucid dreams: benefits are tied to successful induction and dream control",
+    "summary": "Auswertung von Online-Berichten: Luzides Träumen kann Alpträume beenden und das Wohlbefinden steigern, birgt aber Risiken bei misslungener Induktion. Negative Erfahrungen (z.B. Schlafparalyse) traten meist bei fehlgeschlagenen Versuchen oder geringer Traumkontrolle auf, während erfolgreich herbeigeführte luzide Träume überwiegend positive Wirkungen hatten.",
+    "link": "https://doi.org/10.1093/sleepadvances/zpac027",
+    "source": "Sleep Advances (Sleep Research Society)",
+    "isStudy": true,
+    "published": "2022-09-07T00:00:00Z",
+    "imageUrl": null,
+    "tags": ["lucid dreaming", "nightmares", "risks"]
+  },
+  {
+    "id": "plosone-2018-galantamine-lucid",
+    "title": "Pre-sleep treatment with galantamine stimulates lucid dreaming: A double-blind, placebo-controlled, crossover study",
+    "summary": "Eine placebokontrollierte Studie (2018) fand, dass die Einnahme von 4–8 mg Galantamin (einem Acetylcholinesterase-Hemmer) nach 4,5 Stunden Schlaf – kombiniert mit Aufwachen und der MILD-Technik – die Häufigkeit luzider Träume signifikant steigerte. Bei 8 mg Galantamin traten in 42% der Nächte luzide Träume auf (gegenüber 14% unter Placebo); zudem nahmen Traumerinnerung und Lebendigkeit zu.",
+    "link": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0201246",
+    "source": "PLOS One",
+    "isStudy": true,
+    "published": "2018-08-08T00:00:00Z",
+    "imageUrl": null,
+    "tags": ["lucid dreaming", "induction", "pharmacology"]
+  },
+  {
+    "id": "ejtd-2025-lucid-ptsd-workshop",
+    "title": "Decreased PTSD symptoms following a lucid dreaming workshop: A randomized controlled study",
+    "summary": "Eine randomisierte Studie (2025) zeigte, dass ein sechstägiger Online-Workshop zum luziden Träumen bei Teilnehmenden mit chronischer PTSD deutliche Verbesserungen bewirkte. Trotz ähnlicher Luzidtraum-Rate in beiden Gruppen sank in der Workshop-Gruppe die PTSD-Symptomatik und Albtraum-Belastung signifikant (mit anhaltendem Effekt nach 1 Monat), während Wohlbefinden und positive Emotionen zunahmen.",
+    "link": "https://doi.org/10.1016/j.ejtd.2025.100510",
+    "source": "European Journal of Trauma & Dissociation",
+    "isStudy": true,
+    "published": "2025-01-22T00:00:00Z",
+    "imageUrl": null,
+    "tags": ["PTSD", "therapy", "lucid dreaming"]
+  }
+]

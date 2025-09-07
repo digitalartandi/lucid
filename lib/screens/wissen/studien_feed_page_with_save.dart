@@ -1,6 +1,7 @@
 ﻿import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../services/link_sanitizer.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../services/news_feed_service.dart';
 import '../../models/news_models.dart';
@@ -141,8 +142,8 @@ class _TopBar extends StatelessWidget {
         // Suche
         Padding(
           padding: const EdgeInsets.fromLTRB(12, 10, 12, 8),
-          child: CupertinoSearchTextField(
-            placeholder: 'Studien, News, Quellen …',
+          child: CupertinoSearchTextField
+          (placeholder: 'Studien, News, Quellen …',
             style: const TextStyle(color: _white, fontSize: 15),
             placeholderStyle: const TextStyle(color: Color(0x66E9EAFF), fontSize: 15),
             backgroundColor: const Color(0x22FFFFFF), // 34% → klarer
@@ -293,12 +294,7 @@ class _FeedCard extends StatelessWidget {
                 ),
                 CupertinoButton(
                   padding: const EdgeInsets.all(6),
-                  onPressed: () async {
-                    final uri = Uri.tryParse(item.link);
-                    if (uri != null) {
-                      await launchUrl(uri, mode: LaunchMode.externalApplication);
-                    }
-                  },
+                  onPressed: () => _openExternal(context, item.link),
                   child: const Icon(CupertinoIcons.arrow_up_right_square, color: _white, size: 20),
                 ),
               ],
@@ -432,4 +428,39 @@ void _toast(BuildContext context, String message) {
   Future.delayed(const Duration(milliseconds: 1400), () {
     entry.remove();
   });
+}
+
+/// Gesichertes Öffnen externer Links (Sanitizing + neuer Tab im Web)
+Future<void> _openExternal(BuildContext context, String rawUrl) async {
+  final uri = LinkSanitizer.normalizeForLaunch(rawUrl);
+  if (uri == null) {
+    _showInfo(context, 'Dieser Link ist ungültig oder führt zu einer Platzhalter-Seite.');
+    return;
+  }
+  if (!await canLaunchUrl(uri)) {
+    _showInfo(context, 'Konnte den Link nicht öffnen.');
+    return;
+  }
+  await launchUrl(
+    uri,
+    mode: LaunchMode.externalApplication,
+    webOnlyWindowName: '_blank', // Web: neuer Tab
+  );
+}
+
+void _showInfo(BuildContext context, String msg) {
+  showCupertinoDialog(
+    context: context,
+    builder: (_) => CupertinoAlertDialog(
+      title: const Text('Hinweis'),
+      content: Text(msg),
+      actions: [
+        CupertinoDialogAction(
+          isDefaultAction: true,
+          child: const Text('OK'),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+      ],
+    ),
+  );
 }

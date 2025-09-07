@@ -1,0 +1,57 @@
+[
+  {
+    "id": "northwestern-2025-wearables-accuracy-news",
+    "title": "Consumer sleep tech is moving closer to medical-grade accuracy",
+    "summary": "Northwestern Medicine berichtet über Fortschritte, durch die Wearables bei Schlafmessungen verlässlicher werden.",
+    "link": "https://news.northwestern.edu/stories/2025/02/consumer-sleep-tech-is-moving-closer-to-medical-grade-accuracy/",
+    "source": "Northwestern Now",
+    "isStudy": false,
+    "published": "2025-02-05T00:00:00Z",
+    "imageUrl": null,
+    "tags": ["wearables", "sleep", "news"]
+  },
+  {
+    "id": "mitnews-2020-dream-incubation",
+    "title": "A new way to control experimentation with dreams",
+    "summary": "MIT News (2020): Das MIT Media Lab präsentiert mit „Dormio“ ein System für gezielte Traumeinflussnahme. Ein Wearable misst den Schlafzustand und eine App spielt in der Hypnagogiephase Schlüsselwörter ab, um Trauminhalte in bestimmte Richtungen zu lenken (Targeted Dream Incubation).",
+    "link": "https://news.mit.edu/2020/targeted-dream-incubation-dormio-mit-media-lab-0721",
+    "source": "MIT News",
+    "isStudy": false,
+    "published": "2020-07-21T00:00:00Z",
+    "imageUrl": null,
+    "tags": ["dream incubation", "technology", "news"]
+  },
+  {
+    "id": "guardian-2021-dream-advertising",
+    "title": "Nightmare scenario: alarm as advertisers seek to plug into our dreams",
+    "summary": "The Guardian (2021): Nachdem ein Braukonzern (Coors) versuchte, via „Targeted Dream Incubation“ Konsumenten zum Träumen von Bier zu verleiten, warnen 40 Schlafforscher in einem offenen Brief vor Traum-Manipulation zu Werbezwecken. Sie fordern Regulierung, da unbeaufsichtigte Traumwerbung ernste Folgen haben könnte.",
+    "link": "https://www.theguardian.com/media/2021/jul/05/advertisers-targeted-dream-incubation",
+    "source": "The Guardian",
+    "isStudy": false,
+    "published": "2021-07-05T00:00:00Z",
+    "imageUrl": null,
+    "tags": ["dream incubation", "advertising", "ethics"]
+  },
+  {
+    "id": "sciam-2024-lucid-dream-engineering",
+    "title": "The New Science of Controlling Lucid Dreams",
+    "summary": "Scientific American (2024): Überblick über Fortschritte in der Luzidtraum-Forschung. Neue Techniken erlauben es, Luzidträume gezielt hervorzurufen (z.B. durch Weck- und Fragetechniken oder tragbare Geräte). Dies eröffnet therapeutische Anwendungen, etwa zur Behandlung von Albträumen und Verbesserung des Schlafs, und ermöglicht einzigartige Einblicke in das bewusste Erleben während des Träumens.",
+    "link": "https://www.scientificamerican.com/article/engineering-lucid-dreams-could-improve-sleep-and-defuse-nightmares/",
+    "source": "Scientific American",
+    "isStudy": false,
+    "published": "2024-12-17T00:00:00Z",
+    "imageUrl": null,
+    "tags": ["lucid dreaming", "technology", "therapy"]
+  },
+  {
+    "id": "pacificsun-2025-lucid-ptsd-therapy",
+    "title": "Sweet Dreams: Lucid Dreaming Shows Promise as PTSD Therapy",
+    "summary": "Pacific Sun (2025): Bericht über eine Studie, der zufolge luzides Träumen als ergänzende Traumatherapie bei PTSD dienen kann. In einem sechstägigen Online-Workshop lernten Teilnehmer, im Traum bewusst mit angstauslösenden Szenen umzugehen. Bei vielen führte dies zu deutlich weniger Albträumen und einer Abnahme der PTSD-Symptome – ein Hinweis auf das therapeutische Potential luzider Träume.",
+    "link": "https://pacificsun.com/sweet-dreams-lucid-dreaming-shows-promise-as-ptsd-therapy/",
+    "source": "Pacific Sun",
+    "isStudy": false,
+    "published": "2025-05-06T00:00:00Z",
+    "imageUrl": null,
+    "tags": ["PTSD", "therapy", "news"]
+  }
+]

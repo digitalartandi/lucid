@@ -97,6 +97,8 @@ flutter:
     - assets/checklists/pre_night_de.json
     - assets/feed/sources.json
     - assets/feed/curated.json
+    - assets/feed/curated.json
+    - assets/feed/curated.json
 
     # Fonts
     - assets/fonts/DMSans-Light.ttf
