@@ -1,0 +1,37 @@
+{
+  "id": "quiz_techniken_v1",
+  "title": "Quiz – Techniken",
+  "questions": [
+    {
+      "id": "q1",
+      "text": "Wofür steht MILD?",
+      "options": [
+        "Mnemonic Induction of Lucid Dreams",
+        "Mindful Intention Lucid Dreaming",
+        "Memory Induced Lucidity"
+      ],
+      "correctIndex": 0,
+      "explain": "Intention + kurze Visualisierung."
+    },
+    {
+      "id": "q2",
+      "text": "Wann ist WBTB sinnvoll?",
+      "options": [
+        "Nach 1–2h",
+        "Nach 4–6h",
+        "Direkt vor dem Schlaf"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": "q3",
+      "text": "SSILD besteht aus…",
+      "options": [
+        "Atmen–Zählen–Drehen",
+        "Sehen–Hören–Körper",
+        "Zählen–Visualisieren–Affirmation"
+      ],
+      "correctIndex": 1
+    }
+  ]
+}

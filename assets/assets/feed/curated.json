@@ -1,0 +1,24 @@
+[
+  {
+    "id": "curated-001",
+    "title": "Neue Studie: Akustische REM-Cues verbessern Traumerinnerung",
+    "link": "https://example.org/study/acoustic-rem-cues",
+    "source": "Curated",
+    "published": "2025-08-10T08:00:00Z",
+    "summary": "Randomisierte Pilotstudie mit 42 Teilnehmenden: sanfte akustische Hinweise während REM-Phasen steigerten die Traumerinnerung um 18%.",
+    "imageUrl": null,
+    "isStudy": true,
+    "tags": ["REM", "Cue", "Traumerinnerung"]
+  },
+  {
+    "id": "curated-002",
+    "title": "News: Wearables erkennen Schlafphasen immer genauer",
+    "link": "https://example.org/news/wearable-accuracy",
+    "source": "Curated",
+    "published": "2025-08-12T12:00:00Z",
+    "summary": "Neue Sensorfusion-Ansätze verbessern die Unterscheidung von NREM/REM — wichtig für smarte Klartraum-Hinweise.",
+    "imageUrl": null,
+    "isStudy": false,
+    "tags": ["Wearables", "REM", "Schlaf"]
+  }
+]
