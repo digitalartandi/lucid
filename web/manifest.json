@@ -1,0 +1,9 @@
+{
+  "name": "Lucid",
+  "short_name": "Lucid",
+  "start_url": "/lucid/",
+  "display": "standalone",
+  "background_color": "#0D0F16",
+  "theme_color": "#0D0F16",
+  "icons": []
+}
