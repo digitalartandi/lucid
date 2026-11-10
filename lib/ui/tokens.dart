@@ -39,6 +39,20 @@ class LC {
   static const Color redDim = Color(0xFF5C1F1C);
   static const Color redLine = Color(0xFF2A0E0D);
 
+  // Glasflächen über dem Sternenhintergrund
+  static const Color glass = Color(0xB8171B38);
+  static const Color glassHi = Color(0xCC20254C);
+  static const Color glassLine = Color(0x24C9CCFF);
+  static const Color bar = Color(0xD90B0D1F);
+
+  // Himmel: Grundverlauf und Lichtschleier
+  static const Color skyTop = Color(0xFF070816);
+  static const Color skyMid = Color(0xFF0E1030);
+  static const Color skyLow = Color(0xFF1A1440);
+  static const Color veilViolet = Color(0xFF7B5CFF);
+  static const Color veilTeal = Color(0xFF3FD0C9);
+  static const Color veilRose = Color(0xFFE77BD0);
+
   static const Color black = Color(0xFF000000);
   static const Color transparent = Color(0x00000000);
 }
@@ -68,10 +82,25 @@ class LRad {
   static const BorderRadius pill = BorderRadius.all(Radius.circular(999));
 }
 
-/// Schrift: DM Sans, eine Familie, klare Stufen.
+/// Bilder für Bühnenflächen. Alle aus assets/slider/.
+class LImg {
+  LImg._();
+  static const String splash = 'assets/slider/violetter-sonnenuntergang-ruhiger-see.webp';
+  static const String morning = 'assets/slider/sternhimmel-ueber-einsamen-berg-rosa-horizont.webp';
+  static const String day = 'assets/slider/polarleuchten-ueber-bergkamm-pastell.webp';
+  static const String evening = 'assets/slider/sternennacht-silhouette-gebirgskette.webp';
+  static const String night = 'assets/slider/mondsichel-ueber-bergkette-blaue-stunde.webp';
+  static const String door = 'assets/slider/lichttor-in-wolken-goldene-stunde.webp';
+  static const String wordmark = 'assets/logo/logo-text.svg';
+  static const String signet = 'assets/logo/logo-signet.svg';
+}
+
+/// Schrift: Cormorant Garamond für große Überschriften (passt zur Wortmarke),
+/// DM Sans für alles, was gelesen und bedient wird.
 class LT {
   LT._();
   static const String family = 'DM Sans';
+  static const String displayFamily = 'Cormorant Garamond';
   static const List<String> fallback = <String>['SF Pro Text', 'Roboto', 'Arial'];
 
   static const TextStyle _base = TextStyle(
@@ -83,16 +112,19 @@ class LT {
   );
 
   static final TextStyle display = _base.copyWith(
-    fontSize: 32,
-    height: 1.12,
-    fontWeight: FontWeight.w700,
-    letterSpacing: -0.6,
+    fontFamily: displayFamily,
+    fontFamilyFallback: const <String>['Georgia', 'Times New Roman', 'serif'],
+    fontSize: 40,
+    height: 1.05,
+    fontWeight: FontWeight.w600,
+    letterSpacing: -0.3,
   );
   static final TextStyle title = _base.copyWith(
-    fontSize: 22,
-    height: 1.2,
-    fontWeight: FontWeight.w700,
-    letterSpacing: -0.3,
+    fontFamily: displayFamily,
+    fontFamilyFallback: const <String>['Georgia', 'Times New Roman', 'serif'],
+    fontSize: 27,
+    height: 1.15,
+    fontWeight: FontWeight.w600,
   );
   static final TextStyle heading = _base.copyWith(
     fontSize: 17,
@@ -132,13 +164,13 @@ CupertinoThemeData lucidTheme() {
     brightness: Brightness.dark,
     primaryColor: LC.iris,
     scaffoldBackgroundColor: LC.night,
-    barBackgroundColor: LC.night,
+    barBackgroundColor: LC.bar,
     textTheme: CupertinoTextThemeData(
       primaryColor: LC.iris,
       textStyle: LT.body,
       actionTextStyle: LT.body.copyWith(color: LC.iris, fontWeight: FontWeight.w600),
       navTitleTextStyle: LT.heading,
-      navLargeTitleTextStyle: LT.display,
+      navLargeTitleTextStyle: LT.display.copyWith(fontSize: 34),
       navActionTextStyle: LT.body.copyWith(color: LC.iris),
       tabLabelTextStyle: LT.caption.copyWith(fontSize: 11, color: LC.faint),
       pickerTextStyle: LT.body.copyWith(fontSize: 21),

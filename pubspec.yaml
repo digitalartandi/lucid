@@ -15,6 +15,7 @@ dependencies:
   audioplayers: ^5.2.1
   just_audio: ^0.9.39
   flutter_markdown: ^0.6.18
+  flutter_svg: ^2.0.10+1
   path_provider: ^2.1.3
   shared_preferences: ^2.5.3
   share_plus: ^10.0.0
@@ -30,6 +31,16 @@ flutter:
   uses-material-design: false
 
   assets:
+    # Wortmarke und Bühnenbilder
+    - assets/logo/logo-text.svg
+    - assets/logo/logo-signet.svg
+    - assets/slider/violetter-sonnenuntergang-ruhiger-see.webp
+    - assets/slider/sternhimmel-ueber-einsamen-berg-rosa-horizont.webp
+    - assets/slider/polarleuchten-ueber-bergkamm-pastell.webp
+    - assets/slider/sternennacht-silhouette-gebirgskette.webp
+    - assets/slider/mondsichel-ueber-bergkette-blaue-stunde.webp
+    - assets/slider/lichttor-in-wolken-goldene-stunde.webp
+
     # Töne für Wecksignal, Klangsignale und Reality-Check-Erinnerungen
     - assets/audio/cues/
     - assets/images/cue_categories/
@@ -48,6 +59,10 @@ flutter:
     - assets/feed/
 
   fonts:
+    - family: Cormorant Garamond
+      fonts:
+        - asset: assets/fonts/CormorantGaramond-SemiBold.ttf
+          weight: 600
     - family: DM Sans
       fonts:
         - asset: assets/fonts/DMSans-Regular.ttf

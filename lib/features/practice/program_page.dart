@@ -23,13 +23,23 @@ class ProgramPage extends StatelessWidget {
           final bool light = store.profile.lightSleeper;
           return LScroll(
             children: <Widget>[
-              Text('Vier Wochen, ein Schritt nach dem anderen', style: LT.title),
-              const SizedBox(height: LS.sm),
-              Text(
-                today > programLength
-                    ? 'Du hast das Programm durchlaufen und bist im freien Üben.'
-                    : 'Du bist an Tag $today von $programLength.',
-                style: LT.bodyMuted,
+              LHero(
+                image: LImg.door,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    const SizedBox(height: 96),
+                    Text('Vier Wochen, ein Schritt nach dem anderen',
+                        style: LT.display.copyWith(fontSize: 32)),
+                    const SizedBox(height: LS.sm),
+                    Text(
+                      today > programLength
+                          ? 'Du hast das Programm durchlaufen und bist im freien Üben.'
+                          : 'Du bist an Tag $today von $programLength.',
+                      style: LT.body.copyWith(color: const Color(0xFFD5D8F5)),
+                    ),
+                  ],
+                ),
               ),
               for (final ProgramWeek w in programWeeks) ...<Widget>[
                 LSection('Woche ${w.number}: ${w.title}'),

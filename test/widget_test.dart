@@ -7,6 +7,8 @@ void main() {
   testWidgets('Erster Start zeigt die Einführung', (WidgetTester tester) async {
     SharedPreferences.setMockInitialValues(<String, Object>{});
     await tester.pumpWidget(const LucidApp());
+    // Auftakt mit Wortmarke abwarten.
+    await tester.pump(const Duration(seconds: 3));
     await tester.pumpAndSettle();
 
     expect(find.text('Wach werden, während du träumst.'), findsOneWidget);

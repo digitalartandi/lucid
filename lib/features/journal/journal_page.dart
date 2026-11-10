@@ -221,7 +221,7 @@ class _EntryTile extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: LS.sm),
       child: LCard(
         onTap: onTap,
-        borderColor: item.lucid ? const Color(0x59F2C879) : null,
+        borderColor: item.lucid ? const Color(0x73F2C879) : LC.glassLine,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[

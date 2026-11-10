@@ -29,30 +29,101 @@ class LPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool sky = background == LC.night;
     return CupertinoPageScaffold(
-      backgroundColor: background,
+      backgroundColor: sky ? LC.skyTop : background,
       navigationBar: title == null
           ? null
           : CupertinoNavigationBar(
-              backgroundColor: background,
+              backgroundColor: sky ? LC.bar : background,
               automaticBackgroundVisibility: false,
               border: null,
               leading: leading,
               middle: Text(title!, style: LT.heading),
               trailing: trailing,
             ),
-      child: SafeArea(
-        bottom: false,
-        child: Align(
-          alignment: Alignment.topCenter,
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: LS.maxWidth),
-            child: child,
+      child: Stack(
+        fit: StackFit.expand,
+        children: <Widget>[
+          if (sky) const LBackdrop(),
+          SafeArea(
+            bottom: false,
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: LS.maxWidth),
+                child: child,
+              ),
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
+}
+
+/// Nachthimmel hinter allen Seiten: tiefer Verlauf, zwei weiche Lichtschleier,
+/// wenige feste Sterne. Wird einmal gemalt und nicht animiert.
+class LBackdrop extends StatelessWidget {
+  const LBackdrop({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const RepaintBoundary(
+      child: CustomPaint(painter: _SkyPainter(), size: Size.infinite),
+    );
+  }
+}
+
+class _SkyPainter extends CustomPainter {
+  const _SkyPainter();
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final Rect rect = Offset.zero & size;
+    canvas.drawRect(
+      rect,
+      Paint()
+        ..shader = const LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: <Color>[LC.skyTop, LC.skyMid, LC.skyLow],
+          stops: <double>[0, 0.55, 1],
+        ).createShader(rect),
+    );
+
+    void veil(Alignment at, double radius, Color color, double alpha) {
+      canvas.drawRect(
+        rect,
+        Paint()
+          ..shader = RadialGradient(
+            center: at,
+            radius: radius,
+            colors: <Color>[color.withValues(alpha: alpha), color.withValues(alpha: 0)],
+          ).createShader(rect),
+      );
+    }
+
+    veil(const Alignment(-0.9, -0.75), 0.9, LC.veilViolet, 0.22);
+    veil(const Alignment(1.1, -0.2), 0.8, LC.veilTeal, 0.10);
+    veil(const Alignment(0.2, 1.15), 0.9, LC.veilRose, 0.10);
+
+    // Sterne: feste Zufallsfolge, damit der Himmel auf jeder Seite gleich aussieht.
+    final math.Random rnd = math.Random(7);
+    final Paint star = Paint();
+    final int count = (size.width * size.height / 9000).clamp(40, 220).toInt();
+    for (int i = 0; i < count; i++) {
+      final double x = rnd.nextDouble() * size.width;
+      // Oben dichter als unten.
+      final double y = math.pow(rnd.nextDouble(), 1.6).toDouble() * size.height;
+      final double r = 0.4 + rnd.nextDouble() * 0.9;
+      star.color = const Color(0xFFE6E8FF).withValues(alpha: 0.18 + rnd.nextDouble() * 0.5);
+      canvas.drawCircle(Offset(x, y), r, star);
+    }
+  }
+
+  @override
+  bool shouldRepaint(_SkyPainter oldDelegate) => false;
 }
 
 /// Scrollbarer Seiteninhalt mit einheitlichen Rändern.
@@ -122,7 +193,7 @@ class LSection extends StatelessWidget {
       padding: const EdgeInsets.only(top: LS.xl, bottom: LS.md),
       child: Row(
         children: <Widget>[
-          Expanded(child: Text(title, style: LT.title.copyWith(fontSize: 19))),
+          Expanded(child: Text(title, style: LT.title.copyWith(fontSize: 23))),
           if (actionLabel != null)
             LTap(
               onTap: onAction,
@@ -185,8 +256,8 @@ class LCard extends StatelessWidget {
     required this.child,
     this.onTap,
     this.padding = const EdgeInsets.all(LS.lg),
-    this.color = LC.surface,
-    this.borderColor,
+    this.color = LC.glass,
+    this.borderColor = LC.glassLine,
     this.radius = LRad.md,
   });
 
@@ -248,13 +319,13 @@ class LButton extends StatelessWidget {
         fg = LC.night;
         break;
       case LButtonKind.secondary:
-        bg = LC.surfaceHi;
+        bg = LC.glassHi;
         fg = LC.text;
         break;
       case LButtonKind.quiet:
         bg = LC.transparent;
-        fg = LC.iris;
-        border = LC.line;
+        fg = LC.text;
+        border = LC.glassLine;
         break;
     }
     final Widget content = Row(
@@ -275,6 +346,7 @@ class LButton extends StatelessWidget {
         ),
       ],
     );
+    final bool glow = enabled && (kind == LButtonKind.primary || kind == LButtonKind.moon);
     return Opacity(
       opacity: enabled ? 1 : 0.4,
       child: LTap(
@@ -283,9 +355,27 @@ class LButton extends StatelessWidget {
           constraints: const BoxConstraints(minHeight: 52),
           padding: const EdgeInsets.symmetric(horizontal: LS.xl, vertical: 14),
           decoration: BoxDecoration(
-            color: bg,
-            borderRadius: LRad.md,
+            color: glow ? null : bg,
+            gradient: glow
+                ? LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: kind == LButtonKind.moon
+                        ? const <Color>[Color(0xFFF7D99A), Color(0xFFEDB96A)]
+                        : const <Color>[Color(0xFFA9A4FF), Color(0xFF7E86FF)],
+                  )
+                : null,
+            borderRadius: LRad.pill,
             border: border == null ? null : Border.all(color: border),
+            boxShadow: glow
+                ? <BoxShadow>[
+                    BoxShadow(
+                      color: bg.withValues(alpha: 0.35),
+                      blurRadius: 24,
+                      offset: const Offset(0, 8),
+                    ),
+                  ]
+                : null,
           ),
           child: content,
         ),
@@ -319,9 +409,9 @@ class LChip extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
         decoration: BoxDecoration(
-          color: selected ? tone : LC.surface,
+          color: selected ? tone : LC.glass,
           borderRadius: LRad.pill,
-          border: Border.all(color: selected ? tone : LC.line),
+          border: Border.all(color: selected ? tone : LC.glassLine),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -446,7 +536,7 @@ class LGroup extends StatelessWidget {
     for (int i = 0; i < children.length; i++) {
       out.add(children[i]);
       if (i < children.length - 1) {
-        out.add(Container(height: 1, color: LC.line));
+        out.add(Container(height: 1, color: LC.glassLine));
       }
     }
     return LCard(
@@ -735,8 +825,59 @@ class LField extends StatelessWidget {
       placeholderStyle: (style ?? LT.body).copyWith(color: LC.faint),
       padding: const EdgeInsets.symmetric(horizontal: LS.lg, vertical: 14),
       decoration: const BoxDecoration(
-        color: LC.surface,
+        color: LC.glass,
         borderRadius: LRad.md,
+        border: Border.fromBorderSide(BorderSide(color: LC.glassLine)),
+      ),
+    );
+  }
+}
+
+/// Bühnenfläche mit Bild: für die eine Sache, die auf einer Seite zählt.
+/// Das Bild liegt unter einem Verlauf, damit Text immer lesbar bleibt.
+class LHero extends StatelessWidget {
+  const LHero({
+    super.key,
+    required this.image,
+    required this.child,
+    this.alignment = Alignment.center,
+    this.minHeight = 0,
+  });
+
+  final String image;
+  final Widget child;
+  final Alignment alignment;
+  final double minHeight;
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: LRad.lg,
+      child: Container(
+        constraints: BoxConstraints(minHeight: minHeight),
+        decoration: BoxDecoration(
+          color: LC.surface,
+          image: DecorationImage(
+            image: AssetImage(image),
+            fit: BoxFit.cover,
+            alignment: alignment,
+          ),
+        ),
+        foregroundDecoration: const BoxDecoration(
+          borderRadius: LRad.lg,
+          border: Border.fromBorderSide(BorderSide(color: LC.glassLine)),
+        ),
+        child: DecoratedBox(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: <Color>[Color(0x000B0D1F), Color(0x8C0B0D1F), Color(0xEB0B0D1F)],
+              stops: <double>[0, 0.5, 1],
+            ),
+          ),
+          child: Padding(padding: const EdgeInsets.all(LS.xl), child: child),
+        ),
       ),
     );
   }

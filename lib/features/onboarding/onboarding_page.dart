@@ -3,6 +3,7 @@
 // Einstieg in fünf kurzen Schritten: worum es geht, wo du stehst,
 // wann du schläfst, was zu beachten ist, wie der Plan aussieht.
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../core/practice_store.dart';
 import '../../ui/tokens.dart';
@@ -145,10 +146,26 @@ class _OnboardingPageState extends State<OnboardingPage> {
     );
   }
 
-  Widget _frame({required String title, required String lead, required List<Widget> children}) {
+  Widget _frame({
+    required String title,
+    required String lead,
+    required List<Widget> children,
+    bool signet = false,
+  }) {
     return ListView(
       padding: const EdgeInsets.fromLTRB(LS.page, LS.xxl, LS.page, LS.xl),
       children: <Widget>[
+        if (signet) ...<Widget>[
+          Align(
+            alignment: Alignment.centerLeft,
+            child: SvgPicture.asset(
+              LImg.signet,
+              width: 56,
+              colorFilter: const ColorFilter.mode(LC.moon, BlendMode.srcIn),
+            ),
+          ),
+          const SizedBox(height: LS.xl),
+        ],
         Text(title, style: LT.display),
         const SizedBox(height: LS.md),
         Text(lead, style: LT.bodyMuted),
@@ -160,6 +177,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
   Widget _stepWelcome() {
     return _frame(
+      signet: true,
       title: 'Wach werden, während du träumst.',
       lead:
           'In einem Klartraum weißt du, dass du träumst. Etwa jeder Zweite erlebt das mindestens einmal im Leben. Es lässt sich üben.',

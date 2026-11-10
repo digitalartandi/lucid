@@ -204,7 +204,7 @@ class _SessionPageState extends State<SessionPage> with SingleTickerProviderStat
                         const SizedBox(height: LS.xl),
                         Text(
                           intro ? s.title : (finished ? 'Geschafft' : step!.title),
-                          style: LT.display.copyWith(color: _fg, fontSize: 28),
+                          style: LT.display.copyWith(color: _fg, fontSize: 32),
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: LS.md),

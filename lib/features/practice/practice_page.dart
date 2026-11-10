@@ -163,30 +163,30 @@ class _NightEntry extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool tooMany = wbtbNights >= 3;
-    return LCard(
-      color: LC.surfaceHi,
-      radius: LRad.lg,
-      padding: const EdgeInsets.all(LS.xl),
+    return LHero(
+      image: LImg.night,
+      alignment: Alignment.topCenter,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
+          const SizedBox(height: 110),
           const Align(
             alignment: Alignment.centerLeft,
             child: Icon(CupertinoIcons.moon_zzz, color: LC.iris, size: 28),
           ),
           const SizedBox(height: LS.md),
-          Text('Nachtmodus', style: LT.title),
+          Text('Nachtmodus', style: LT.display.copyWith(fontSize: 34)),
           const SizedBox(height: LS.sm),
           Text(
             'Weckt dich nach fünf bis sechs Stunden, führt durch Traumnotiz und MILD oder SSILD und spielt auf Wunsch leise Klangsignale.',
-            style: LT.bodyMuted,
+            style: LT.body.copyWith(color: const Color(0xFFD5D8F5)),
           ),
           const SizedBox(height: LS.md),
           Text(
             tooMany
                 ? 'Diese Woche schon $wbtbNights Nächte mit Wachphase. Gönn dir heute ungestörten Schlaf.'
                 : 'Diese Woche: $wbtbNights von höchstens 3 Nächten mit Wachphase.',
-            style: LT.caption.copyWith(color: tooMany ? LC.rose : LC.muted),
+            style: LT.caption.copyWith(color: tooMany ? LC.rose : const Color(0xFFC3C7EA)),
           ),
           const SizedBox(height: LS.lg),
           LButton(

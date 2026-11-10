@@ -13,7 +13,8 @@ Grundlegende Überarbeitung von Inhalt, Benutzerführung und Design.
 - Nachtmodus: Wachphase mit sanft ansteigendem Wecksignal, Traumnotiz, MILD oder SSILD im roten Nachtstil; optionale Klangsignale (TLR) mit Training, leisem Start, Pause nach Aufwachen.
 - Journal mit automatischem Speichern, Klartraum-Kennzeichnung, Traumzeichen, Suche und Filtern.
 - Auswertung: Traumerinnerung, Klarträume, Übungsnächte, häufigste Traumzeichen.
-- Einheitliches Designsystem (`lib/ui`).
+- Einheitliches Designsystem (`lib/ui`): Nachthimmel mit Lichtschleiern und Sternen, Glasflächen, Bühnenbilder, Cormorant Garamond für Überschriften.
+- Auftakt mit der Wortmarke LUCID (im Browser schon vor dem Laden der App, danach nahtlos in der App).
 - Tests für Programm, Nachtlogik und Übungsstand; CI-Workflow.
 
 ### Inhalte

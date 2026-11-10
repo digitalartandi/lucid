@@ -63,15 +63,15 @@ class _AppShellState extends State<AppShell> {
   Widget build(BuildContext context) {
     return CupertinoTabScaffold(
       controller: AppShell.tabs,
-      backgroundColor: LC.night,
+      backgroundColor: LC.skyTop,
       tabBar: CupertinoTabBar(
         onTap: _onTap,
-        backgroundColor: LC.night,
+        backgroundColor: LC.bar,
         activeColor: LC.iris,
         inactiveColor: LC.faint,
         iconSize: 24,
         height: 58,
-        border: const Border(top: BorderSide(color: LC.line, width: 1)),
+        border: const Border(top: BorderSide(color: LC.glassLine, width: 1)),
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.moon_stars),

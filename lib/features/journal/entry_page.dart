@@ -270,7 +270,7 @@ class _EntryPageState extends State<EntryPage> {
           ),
           const LSection('War es ein Klartraum?'),
           LCard(
-            borderColor: e.lucid ? const Color(0x59F2C879) : null,
+            borderColor: e.lucid ? const Color(0x73F2C879) : LC.glassLine,
             child: Column(
               children: <Widget>[
                 Row(

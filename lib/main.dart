@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'core/practice_store.dart';
 import 'features/onboarding/onboarding_page.dart';
 import 'features/shell/app_shell.dart';
+import 'features/shell/splash.dart';
 import 'routes/app_routes.dart' as app;
 import 'services/journal_repo.dart';
 import 'ui/tokens.dart';
@@ -56,12 +57,14 @@ class _BootFlowState extends State<BootFlow> {
   }
 
   Future<void> _boot() async {
+    final Future<void> minimum = Future<void>.delayed(SplashScreen.minimum);
     await _store.load();
     try {
       await JournalRepo.instance.init();
     } catch (_) {
       // Journal lädt beim ersten Zugriff erneut.
     }
+    await minimum;
     if (mounted) setState(() => _ready = true);
   }
 
@@ -77,12 +80,15 @@ class _BootFlowState extends State<BootFlow> {
 
   @override
   Widget build(BuildContext context) {
-    if (!_ready) {
-      return const CupertinoPageScaffold(
-        backgroundColor: LC.night,
-        child: Center(child: CupertinoActivityIndicator()),
-      );
-    }
-    return _store.onboarded ? const AppShell() : const OnboardingPage();
+    final Widget page = !_ready
+        ? const SplashScreen(key: ValueKey<String>('splash'))
+        : (_store.onboarded
+            ? const AppShell(key: ValueKey<String>('app'))
+            : const OnboardingPage(key: ValueKey<String>('onboarding')));
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 700),
+      switchInCurve: Curves.easeOut,
+      child: page,
+    );
   }
 }

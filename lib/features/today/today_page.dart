@@ -276,28 +276,23 @@ class _NowCard extends StatelessWidget {
         break;
     }
 
-    return Container(
-      padding: const EdgeInsets.all(LS.xl),
-      decoration: BoxDecoration(
-        borderRadius: LRad.lg,
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: <Color>[
-            Color.alphaBlend(tone.withValues(alpha: 0.16), LC.surface),
-            LC.surface,
-          ],
-        ),
-        border: Border.all(color: tone.withValues(alpha: 0.28)),
-      ),
+    final String image = switch (phase) {
+      _Phase.morning => LImg.morning,
+      _Phase.day => LImg.day,
+      _Phase.evening => LImg.evening,
+    };
+    return LHero(
+      image: image,
+      alignment: Alignment.topCenter,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Align(alignment: Alignment.centerLeft, child: Icon(icon, color: tone, size: 28)),
+          const SizedBox(height: 110),
+          Align(alignment: Alignment.centerLeft, child: Icon(icon, color: tone, size: 26)),
           const SizedBox(height: LS.md),
-          Text(title, style: LT.title),
+          Text(title, style: LT.display.copyWith(fontSize: 34)),
           const SizedBox(height: LS.sm),
-          Text(text, style: LT.bodyMuted),
+          Text(text, style: LT.body.copyWith(color: const Color(0xFFD5D8F5))),
           const SizedBox(height: LS.xl),
           ...actions,
         ],

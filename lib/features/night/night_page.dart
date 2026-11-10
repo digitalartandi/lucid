@@ -766,7 +766,7 @@ class _NightRunPageState extends State<NightRunPage> with WidgetsBindingObserver
           const Icon(CupertinoIcons.alarm, color: LC.redText, size: 48),
           const SizedBox(height: LS.lg),
           Text('Zeit für die Wachphase',
-              style: LT.display.copyWith(color: LC.redText, fontSize: 28), textAlign: TextAlign.center),
+              style: LT.display.copyWith(color: LC.redText, fontSize: 32), textAlign: TextAlign.center),
           const SizedBox(height: LS.md),
           Text('Bleib kurz still liegen. Was hast du gerade geträumt?',
               style: LT.body.copyWith(color: LC.redText), textAlign: TextAlign.center),
@@ -783,7 +783,7 @@ class _NightRunPageState extends State<NightRunPage> with WidgetsBindingObserver
     final TextStyle body = LT.body.copyWith(color: LC.redText, fontSize: 15.5);
     return ListView(
       children: <Widget>[
-        Text('Wachphase', style: LT.display.copyWith(color: LC.redText, fontSize: 28)),
+        Text('Wachphase', style: LT.display.copyWith(color: LC.redText, fontSize: 32)),
         const SizedBox(height: LS.xs),
         Text(
           mins < 1 ? 'Gerade aufgewacht' : 'Seit $mins Min. wach. 10 bis 30 Minuten genügen.',
