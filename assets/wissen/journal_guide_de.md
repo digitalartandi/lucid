@@ -1,266 +1,54 @@
-\# Traum-Journal – schnell \& effektiv
+# Traumtagebuch
 
+Wer sich an Träume erinnert, hat mit jeder Technik bessere Chancen. In den beiden großen Feldstudien zur Klartraum-Induktion war gute Traumerinnerung einer der verlässlichsten Hinweise auf Erfolg. Das Tagebuch ist deshalb der erste Schritt im Programm.
 
+Quelle: [Aspy 2020](https://doi.org/10.3389/fpsyg.2020.01746)
 
-\## Nutzen eines Traum-Journals
+## Der Moment nach dem Aufwachen
 
-Mehr Traumerinnerung führt zu mehr Chancen auf Klarheit und zu gezieltem Lernen an persönlichen Dream-Signs. Ein Journal macht Fortschritt sichtbar und verbindet Alltagstrigger mit wiederkehrenden Themen in Träumen.
+Traumerinnerung ist flüchtig. Was hilft:
 
+1. Bleib liegen, in der Position, in der du aufgewacht bist. Augen zu.
+2. Frag dich: Was war gerade? Geh von der letzten Szene rückwärts.
+3. Benenne innerlich zwei, drei Stichworte, bevor du zum Handy greifst.
+4. Schreib erst dann.
 
+Kommt nichts, notiere das Gefühl, mit dem du aufgewacht bist. Oft hängt daran ein Bild.
 
-\## Ziele für die nächsten 14 Tage
+## Was in einen Eintrag gehört
 
-\- Tägliche Notiz, auch wenn es \*\*0\*\* erinnerte Träume sind.  
+Stichworte reichen. Wichtig sind:
 
-\- Mindestens \*\*drei\*\* konkrete Dream-Signs identifizieren.  
+- Ort und Personen
+- Was passiert ist, in ein bis drei Sätzen
+- Die Stimmung
+- Alles, was im Wachleben nicht möglich oder sehr unwahrscheinlich wäre
 
-\- \*\*Ein\*\* persönliches Fokus-Thema wählen (z. B. Türen, Prüfungen, Fliegen).  
+Der letzte Punkt ist der wichtigste. Daraus werden deine Traumzeichen.
 
-\- Erste Reality-Checks an diese Dream-Signs koppeln.
+## Traumzeichen
 
+Nach ein, zwei Wochen wiederholt sich etwas: die alte Schule, ein verstorbener Mensch, zu spät kommen, Fliegen, kaputte Technik. Trag solche Motive im Journal als Traumzeichen ein. Die App zählt sie und schlägt die häufigsten für deine Reality-Checks und für MILD vor.
 
+## Auch „nichts“ ist ein Eintrag
 
-\## Setup in 60 Sekunden
+Tippe morgens auf „Nichts erinnert“, wenn nichts da ist. So bleibt die Gewohnheit bestehen, und die Auswertung zeigt ehrlich, an wie vielen Morgen du dich erinnerst.
 
-\- Medium frei wählen: App, Papier oder Diktiergerät.  
+## Abends
 
-\- Notiz \*\*direkt am Bett\*\* platzieren, Display dunkel.  
+Nimm dir vor dem Einschlafen kurz vor, dich zu erinnern. Die geführte „Abend-Absicht“ dauert eine Minute.
 
-\- In der Nacht \*\*Flugmodus\*\* aktivieren.  
+## Einmal pro Woche
 
-\- Wöchentlich lokal exportieren.
+Schau in die Auswertung: An wie vielen Morgen war etwas da? Welche Traumzeichen sind häufig? Passe deine Liste an.
 
+## Wenn es schwerfällt
 
+- **Keine Zeit:** Titel und drei Stichworte. Mehr später, wenn überhaupt.
+- **Alles weg, sobald du aufstehst:** Wecker durch einen leiseren ersetzen und Handy in Reichweite legen.
+- **Nur Bruchstücke:** Die zählen. Schreib sie auf.
+- **Nachts wach:** Zwei Stichworte genügen als Anker für den Morgen.
 
-\## Minimal-Template (1–3 Minuten)
+## Deine Daten
 
-\- \*\*Titel\*\*  
-
-\- \*\*Stichwörter\*\* zu Personen, Orten, Gefühlen  
-
-\- \*\*Ein bis drei Sätze\*\* Ablauf  
-
-\- \*\*Dream-Signs\*\* als Hashtags (z. B. #Aufzug, #Prüfung, #Flug)  
-
-\- \*\*RC-Anker\*\* – was dich hätte lucid machen können
-
-
-
-\## Beispiel-Einträge (ultrakurz)
-
-\*\*Titel:\*\* Falscher Zug  
-
-\*\*Stichwörter:\*\* Bahnhof, Eile, Ticket, Regen  
-
-\*\*Ablauf:\*\* Suche Gleis, steige ein, Zug fährt in die falsche Richtung  
-
-\*\*Dream-Signs:\*\* #Zug, #Verspätung  
-
-\*\*RC-Anker:\*\* Uhrzeit prüfen, Anzeige doppelt lesen
-
-
-
-\*\*Titel:\*\* Meeting ohne Schuhe  
-
-\*\*Stichwörter:\*\* Büro, peinlich, Lachen  
-
-\*\*Ablauf:\*\* Sitze im Meeting und bemerke fehlende Schuhe  
-
-\*\*Dream-Signs:\*\* #Peinlichkeit, #Büro  
-
-\*\*RC-Anker:\*\* Körper-Scan, Finger-durch-Hand
-
-
-
-\## Morgenroutine (2–5 Minuten)
-
-1\. Augen geschlossen lassen, Lage beibehalten, Traum \*\*zurückspulen\*\*.  
-
-2\. Stichwörter leise benennen, \*\*erst dann\*\* zum Notizmedium greifen.  
-
-3\. Notieren in der Reihenfolge: Titel → Stichwörter → 1–3 Sätze → Dream-Signs → RC-Anker.  
-
-4\. Optional Stimmung mit Emoji protokollieren.  
-
-5\. \*\*Rohtext\*\* reicht – besser als gar nichts.
-
-
-
-\## Abendroutine (1–3 Minuten)
-
-\- Drei Dream-Signs der Woche ansehen.  
-
-\- Eine klare \*\*Intention\*\* formulieren (z. B. „Heute Nacht erkenne ich Aufzüge/Prüfungen als Traum“).  
-
-\- Ein bis zwei \*\*alte Einträge\*\* lesen.
-
-
-
-\## RC-Anker finden \& nutzen
-
-\- Wiederholer priorisieren: Orte (Schule, Uni, Büro), Verkehr (Zug/Bus), Emotionen (Prüfungsstress), Anomalien (Flug).  
-
-\- Pro Anker ein \*\*Reality-Check-Paar\*\* wählen (z. B. Uhr lesen \*\*und\*\* Nase zuhalten).  
-
-\- \*\*Regel im Alltag:\*\* Jedes Auftreten des Ankers löst einen echten RC aus.
-
-
-
-\## Tags \& einfache Taxonomie
-
-\- Hashtags für \*\*Ort, Person, Thema\*\* (z. B. #Wien, #Alex, #Prüfung).  
-
-\- Optional Emojis für Stimmung/Motive.  
-
-\- Maximal \*\*fünf\*\* Tags pro Eintrag.
-
-
-
-\## Wöchentlicher Review (10 Minuten)
-
-1\. Top-3-Dream-Signs zählen.  
-
-2\. Ein \*\*Fokus-Thema\*\* für 7 Tage festlegen.  
-
-3\. \*\*1–2 RC-Anker\*\* daran koppeln.  
-
-4\. \*\*Highlight\*\* notieren (bessere Erinnerung, stabilere Klarheit).  
-
-5\. Optional kleine \*\*Mindmap\*\* erstellen.
-
-
-
-\## Leichte Metriken (Motivation)
-
-\- Erinnerungsrate/Woche = Tage \*\*mit Eintrag\*\* / 7.  
-
-\- Dream-Signs/Eintrag = Anzahl Tags / Anzahl Einträge.  
-
-\- Klarträume pro Woche/Monat.  
-
-\- \*\*Streak\*\* = Tage am Stück mit Notiz.
-
-
-
-\## Hürden \& schnelle Fixes
-
-\- \*\*Keine Erinnerung:\*\* liegen bleiben, 3 ruhige Atemzüge, Pose nicht ändern, Fragen nach Wer/Wo/Gefühl im Kopf beantworten.  
-
-\- \*\*Zeitmangel:\*\* nur Titel + 3 Stichwörter.  
-
-\- \*\*Schreibblockade:\*\* erst Stichwörter, Sätze später ergänzen.  
-
-\- \*\*Zerfaserte Träume:\*\* ein Hauptmotiv beschreiben, Rest als Stichwörter.  
-
-\- \*\*Zu spät notiert:\*\* kurze \*\*Sprachnotiz\*\* direkt nach dem Aufwachen, später verschriftlichen.
-
-
-
-\## Fortgeschrittene Optionen
-
-\- Audio zuerst, später in Stichwörter/Sätze überführen.  
-
-\- Skizzen von Räumen oder Wegen anfertigen.  
-
-\- Szenen klar strukturieren (Szene 1, Szene 2, Aufwachen).
-
-
-
-\## WBTB + Journal (optional, 1–2×/Woche)
-
-\- Nach \*\*4.5–6 h\*\* Schlaf kurz aufstehen, Intention lesen, zurück ins Bett.  
-
-\- Danach Traumerinnerung vergleichen und notieren.
-
-
-
-\## Datenschutz \& Sicherheit
-
-\- Journal und Leseliste werden \*\*lokal\*\* gespeichert.  
-
-\- Exporte \*\*verschlüsseln\*\*, Gerätesperre aktiv.  
-
-\- Keine externen Tracker.
-
-
-
-\## Tägliche Checkliste (60–120 Sekunden)
-
-\- Titel  
-
-\- 3–5 Stichwörter  
-
-\- 1–3 Sätze Ablauf  
-
-\- Dream-Signs als Hashtags  
-
-\- RC-Anker (was dich heute trainiert)
-
-
-
-\## Vorlagen zum Kopieren
-
-\*\*Vorlage ultrakurz\*\*  
-
-Titel:  
-
-Stichwörter:  
-
-Ein bis drei Sätze:  
-
-Dream-Signs: #…, #…  
-
-RC-Anker:
-
-
-
-\*\*Vorlage mit Stimmung \& Skala\*\*  
-
-Titel:  
-
-Stimmung:  
-
-Stichwörter:  
-
-Was passierte (3–6 Sätze):  
-
-Dream-Signs: #…  
-
-RC-Anker für heute:
-
-
-
-\*\*Wöchentlicher Review\*\*  
-
-Top drei Dream-Signs:  
-
-Fokus-Thema (7 Tage):  
-
-RC-Anker im Alltag:  
-
-Highlight der Woche:  
-
-Nächster kleiner Schritt:
-
-
-
-\*\*Kurze Hinweise\*\*  
-
-\- Ein Eintrag pro Tag reicht.  
-
-\- Prosa nicht nötig – Stichwörter genügen.  
-
-\- Klarträume werden wahrscheinlicher, wenn Dream-Signs tagsüber \*\*konsequent\*\* mit RCs verknüpft werden.  
-
-\- Papier oder App: Geschmackssache – \*\*Konstanz\*\* gewinnt.
-
-
-
-\*\*Nächster Schritt\*\*  
-
-\- Drei RC-Anker festlegen (z. B. Uhr lesen, Tür durchschreiten, Aufzug betreten).  
-
-\- Heute eine kurze Notiz schreiben – \*\*90 Sekunden reichen\*\*.
-
-
-
+Das Journal liegt nur auf deinem Gerät. In den Einstellungen kannst du es als Datei exportieren. Im Browser solltest du das gelegentlich tun, weil die Einträge mit den Website-Daten gelöscht werden.

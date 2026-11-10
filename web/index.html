@@ -1,24 +1,40 @@
 <!DOCTYPE html>
+<html lang="de">
 <head>
   <meta charset="UTF-8">
   <base href="$FLUTTER_BASE_HREF">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Lucid – Klarträumen lernen: geführtes Programm, Nachtmodus, Traumtagebuch und geprüftes Wissen.">
+  <meta name="theme-color" content="#0B0D1F">
+  <meta name="color-scheme" content="dark">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Lucid">
   <link rel="manifest" href="manifest.json">
-  <link rel="icon" href="favicon.ico">
   <title>Lucid</title>
+  <style>
+    html, body { height: 100%; margin: 0; background: #0B0D1F; }
+    #boot {
+      position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+      color: #A4A9CF; font: 500 15px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+  </style>
 </head>
-  <body>
-    <script>
-      {{flutter_js}}
-      {{flutter_build_config}}
+<body>
+  <div id="boot">Lucid wird geladen …</div>
+  <script>
+    {{flutter_js}}
+    {{flutter_build_config}}
 
-      // Minimaler, empfohlener Start (kein serviceWorkerVersion mehr nötig)
-      _flutter.loader.load({
-        onEntrypointLoaded: async function (engineInitializer) {
-          const appRunner = await engineInitializer.initializeEngine();
-          await appRunner.runApp();
-        }
-      });
-    </script>
-  </body>
+    _flutter.loader.load({
+      onEntrypointLoaded: async function (engineInitializer) {
+        const appRunner = await engineInitializer.initializeEngine();
+        await appRunner.runApp();
+        const boot = document.getElementById('boot');
+        if (boot) boot.remove();
+      }
+    });
+  </script>
+</body>
 </html>

@@ -1,12 +1,12 @@
-﻿// lib/screens/research/survey_run_page.dart
+// lib/screens/research/survey_run_page.dart
 import 'package:flutter/cupertino.dart';
 import '../../models/research_models.dart';
 import '../../services/research_repo.dart';
 
-const _bg = Color(0xFF080B23);
-const _white = Color(0xFFFFFFFF);
-const _stroke = Color(0x22FFFFFF);
-const _card = Color(0xFF0A0A23);
+const _bg = Color(0xFF0B0D1F);
+const _white = Color(0xFFEEF0FF);
+const _stroke = Color(0xFF2B3058);
+const _card = Color(0xFF14172E);
 
 class SurveyRunPage extends StatefulWidget {
   final String studyId;

@@ -1,4 +1,4 @@
-﻿// lib/screens/modules/rc_reminder_page.dart
+// lib/screens/modules/rc_reminder_page.dart
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
@@ -7,11 +7,11 @@ import '../../models/cue_models.dart';
 import '../../services/cue_player.dart';
 import 'rc_reminder_store.dart';
 
-const _bg     = Color(0xFF0D0F16);
-const _white  = Color(0xFFE9EAFF);
-const _card   = Color(0xFF0A0A23);
-const _line   = Color(0x22FFFFFF);
-const _accent = Color(0xFF7A6CFF);
+const _bg     = Color(0xFF0B0D1F);
+const _white  = Color(0xFFEEF0FF);
+const _card   = Color(0xFF14172E);
+const _line   = Color(0xFF2B3058);
+const _accent = Color(0xFF8B8CFF);
 
 const _kCueSelectedJson = 'cue.selected.v1';
 const _kRcVolume = 'rc.volume.v1';
@@ -131,7 +131,7 @@ class _RcReminderPageState extends State<RcReminderPage> {
                 Row(children: [
                   CupertinoButton(
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                    color: const Color(0xFF2A2942),
+                    color: const Color(0xFF1D2142),
                     borderRadius: BorderRadius.circular(12),
                     onPressed: _pickCue,
                     child: const Text('Auswählen', style: TextStyle(color: _white)),
@@ -139,7 +139,7 @@ class _RcReminderPageState extends State<RcReminderPage> {
                   const SizedBox(width: 8),
                   CupertinoButton(
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                    color: const Color(0xFF2A2942),
+                    color: const Color(0xFF1D2142),
                     borderRadius: BorderRadius.circular(12),
                     onPressed: _cue == null ? null : _probe,
                     child: const Text('Probe', style: TextStyle(color: _white)),

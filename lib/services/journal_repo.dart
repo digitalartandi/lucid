@@ -1,4 +1,4 @@
-﻿// lib/services/journal_repo.dart
+// lib/services/journal_repo.dart
 import 'dart:convert';
 import 'dart:io' show Directory, File;
 import 'package:flutter/foundation.dart' show kIsWeb, ValueNotifier;
@@ -22,7 +22,17 @@ class JournalRepo {
 
   // -------- init --------
 
+  bool _ready = false;
+
+  /// Synchroner Blick auf den Index (neueste zuerst), z. B. für Auswertungen.
+  List<JournalIndexItem> get snapshot {
+    final list = List<JournalIndexItem>.from(_index);
+    list.sort((a, b) => b.date.compareTo(a.date));
+    return list;
+  }
+
   Future<void> init() async {
+    _ready = true;
     if (!kIsWeb) {
       final base = await getApplicationSupportDirectory();
       _dir = Directory('${base.path}/journal');
@@ -87,7 +97,7 @@ class JournalRepo {
 
   /// 🔹 NEU: Von der UI erwartete Methode (Fix für `journal_list_page.dart`)
   Future<List<JournalIndexItem>> list({int? limit}) async {
-    await init();
+    if (!_ready) await init();
     final all = await listAll();
     return limit == null ? all : all.take(limit).toList();
   }
@@ -124,8 +134,9 @@ class JournalRepo {
     }
   }
 
+  /// Speichert einen Eintrag. Das Datum bleibt das des Traums und wird
+  /// beim Bearbeiten nicht überschrieben.
   Future<void> upsert(JournalEntry e) async {
-    e = e.copyWith(date: DateTime.now());
     _cache[e.id] = e;
 
     final idx = _index.indexWhere((x) => x.id == e.id);

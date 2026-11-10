@@ -1,18 +1,18 @@
-﻿// lib/screens/research/study_detail_page.dart
+// lib/screens/research/study_detail_page.dart
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import '../../models/research_models.dart';
 import '../../services/research_repo.dart';
 
 // ---- Farben / Tokens (kontrastreich) ----
-const _bg       = Color(0xFF080B23);
-const _white    = Color(0xFFFFFFFF);
+const _bg       = Color(0xFF0B0D1F);
+const _white    = Color(0xFFEEF0FF);
 const _muted    = Color(0xFFCCD4FF);   // Untertitel/Erklärtext
 const _label    = Color(0xFF9FA9D6);   // Labels
-const _stroke   = Color(0x33FFFFFF);   // Hairline
+const _stroke   = Color(0xFF2B3058);   // Hairline
 const _card     = Color(0xFF111631);   // Panel
 const _cardHi   = Color(0xFF171C3F);   // Hervorhebung/Thumb
-const _accent   = Color(0xFF7A6CFF);
+const _accent   = Color(0xFF8B8CFF);
 
 // ---- TextStyles ----
 const _tTitle = TextStyle(color: _white, fontWeight: FontWeight.w700, fontSize: 16, height: 1.2);

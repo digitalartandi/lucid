@@ -9,6 +9,8 @@ class JournalEntry {
   List<String> tags;        // z.B. #Zug, #Prüfung
   int mood;                 // -1, 0, 1 (traurig, neutral, froh) – einfach & robust
   bool lucid;               // Klartraum-Flag
+  bool control;             // Im Klartraum Einfluss genommen
+  String technique;         // id aus core/techniques.dart oder ''
 
   JournalEntry({
     required this.id,
@@ -18,6 +20,8 @@ class JournalEntry {
     required this.tags,
     required this.mood,
     required this.lucid,
+    this.control = false,
+    this.technique = '',
   });
 
   factory JournalEntry.newDraft() {
@@ -40,6 +44,8 @@ class JournalEntry {
     List<String>? tags,
     int? mood,
     bool? lucid,
+    bool? control,
+    String? technique,
   }) {
     return JournalEntry(
       id: id,
@@ -49,6 +55,8 @@ class JournalEntry {
       tags: tags ?? List<String>.from(this.tags),
       mood: mood ?? this.mood,
       lucid: lucid ?? this.lucid,
+      control: control ?? this.control,
+      technique: technique ?? this.technique,
     );
   }
 
@@ -60,6 +68,8 @@ class JournalEntry {
         'tags': tags,
         'mood': mood,
         'lucid': lucid,
+        'control': control,
+        'technique': technique,
       };
 
   static JournalEntry fromJson(Map<String, dynamic> j) {
@@ -71,6 +81,8 @@ class JournalEntry {
       tags: ((j['tags'] as List?) ?? const []).map((e) => e.toString()).toList(),
       mood: (j['mood'] as num?)?.toInt() ?? 0,
       lucid: (j['lucid'] as bool?) ?? false,
+      control: (j['control'] as bool?) ?? false,
+      technique: (j['technique'] as String?) ?? '',
     );
   }
 

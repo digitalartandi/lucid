@@ -3,10 +3,10 @@ import 'package:flutter/cupertino.dart';
 import '../../models/affirmation_models.dart';
 import '../../services/affirmation_repo.dart';
 
-const _bg     = Color(0xFF0D0F16);
-const _white  = Color(0xFFE9EAFF);
-const _card   = Color(0xFF0A0A23);
-const _line   = Color(0x22FFFFFF);
+const _bg     = Color(0xFF0B0D1F);
+const _white  = Color(0xFFEEF0FF);
+const _card   = Color(0xFF14172E);
+const _line   = Color(0xFF2B3058);
 
 class AffirmationHubPage extends StatefulWidget {
   const AffirmationHubPage({super.key});

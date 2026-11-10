@@ -1,13 +1,13 @@
-﻿// lib/screens/meditation/meditation_player_page.dart
+// lib/screens/meditation/meditation_player_page.dart
 import 'package:flutter/cupertino.dart';
 import 'package:just_audio/just_audio.dart';
 import '../../design/gradient_theme.dart';
 import '../../models/meditation_models.dart';
 import '../../services/meditation_repo.dart';
 
-const _bg = Color(0xFF080B23);
-const _white = Color(0xFFFFFFFF);
-const _stroke = Color(0x22FFFFFF);
+const _bg = Color(0xFF0B0D1F);
+const _white = Color(0xFFEEF0FF);
+const _stroke = Color(0xFF2B3058);
 
 class MeditationPlayerPage extends StatefulWidget {
   final String id;

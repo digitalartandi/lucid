@@ -1,123 +1,295 @@
 [
   {
-    "id": "commbio-2025-hypnagogia-day-residue",
-    "title": "A day residue of learning intrudes into hypnagogia and perturbs memory consolidation",
-    "summary": "Neue Arbeit zeigt: Lernreste dringen in die Einschlafphase (Hypnagogie) ein und können die Gedächtniskonsolidierung beeinflussen.",
-    "link": "https://www.nature.com/articles/s42003-024-06953-5",
-    "source": "Communications Biology (Nature)",
+    "id": "fpsyg-2026-vr-reality-checks",
+    "title": "Virtual reality as a metacognitive training tool for lucid dreaming",
+    "summary": "38 Teilnehmende, vier Wochen: Reality-Checks in bizarren VR-Szenen plus Meditation führten zu mehr klaren und halbklaren Träumen (26) als Training ohne VR (11) oder mit realistischen Szenen (4). Kleine Studie, Meditation nicht getrennt prüfbar.",
+    "link": "https://doi.org/10.3389/fpsyg.2026.1924370",
+    "source": "Frontiers in Psychology",
     "isStudy": true,
-    "published": "2025-03-03T00:00:00Z",
+    "published": "2026-09-28T00:00:00Z",
     "imageUrl": null,
-    "tags": ["sleep", "hypnagogia", "memory"]
+    "tags": [
+      "Reality-Check",
+      "VR",
+      "Training"
+    ]
   },
   {
-    "id": "aasm-jcsm-2025-consumer-sleep-tech-evidence-brief",
-    "title": "Consumer Sleep Technologies: AASM Evidence Brief (2025)",
-    "summary": "Aktualisierte Übersicht der American Academy of Sleep Medicine zu Consumer-Schlaftechnologien: Chancen, Limitationen und Anwendungsbereiche.",
-    "link": "https://jcsm.aasm.org/doi/10.5664/jcsm.11192",
-    "source": "Journal of Clinical Sleep Medicine",
+    "id": "nc-2026-dream-incubation-puzzles",
+    "title": "Rätsel im REM-Schlaf: Träume helfen beim Lösen",
+    "summary": "20 Personen hörten im REM-Schlaf Töne, die mit ungelösten Rätseln verknüpft waren. Rätsel, die im Traum auftauchten, wurden am nächsten Tag häufiger gelöst (42 % gegenüber 17 %). Klarheit war dafür nicht nötig.",
+    "link": "https://academic.oup.com/nc/article/2026/1/niaf067/8456489",
+    "source": "Neuroscience of Consciousness",
     "isStudy": true,
-    "published": "2025-02-01T00:00:00Z",
+    "published": "2026-02-01T00:00:00Z",
     "imageUrl": null,
-    "tags": ["wearables", "validation", "sleep"]
+    "tags": [
+      "TMR",
+      "REM",
+      "Problemlösen"
+    ]
   },
   {
-    "id": "mdpi-sensors-2025-actigraphy-validation",
-    "title": "Validation of Actigraphy-Based Wearables for Sleep Monitoring: Systematic Review",
-    "summary": "Systematische Auswertung aktueller Studien zur Genauigkeit von Actigraphy-Wearables bei Schlaf/Wach-Erkennung.",
-    "link": "https://www.mdpi.com/1424-8220/25/7/2113",
-    "source": "Sensors (MDPI)",
+    "id": "biorxiv-multicenter-ssild-cues",
+    "title": "Inducing lucid dreaming with multisensory stimulation: a preregistered multi-center study",
+    "summary": "Drei Schlaflabore (Niederlande, Italien, Kanada) kombinierten SSILD mit Sinnesreizen im REM-Schlaf und tragbarer Hirnstrommessung. Hohe Klartraumraten auch bei Ungeübten, aber kein klarer Zusatznutzen der Reize gegenüber dem SSILD-Training allein.",
+    "link": "https://doi.org/10.1101/2024.06.21.600133",
+    "source": "bioRxiv (Preprint)",
     "isStudy": true,
-    "published": "2025-04-10T00:00:00Z",
+    "published": "2026-01-15T00:00:00Z",
     "imageUrl": null,
-    "tags": ["wearables", "actigraphy", "validation"]
+    "tags": [
+      "SSILD",
+      "TLR",
+      "Wearable-EEG"
+    ]
   },
   {
-    "id": "pubmed-2024-nonverbal-tmr",
-    "title": "Not only words make memories: Non-verbal cues are more effective than verbal cues in Targeted Memory Reactivation",
-    "summary": "Arbeit zu Targeted Memory Reactivation (TMR): nicht-verbale Reize verbessern die Gedächtnisreaktivierung stärker als verbale.",
-    "link": "https://pubmed.ncbi.nlm.nih.gov/39274691/",
-    "source": "PubMed (Originalartikel verlinkt)",
+    "id": "jneurosci-2025-eeg-correlates",
+    "title": "Electrophysiological correlates of lucid dreaming: sensor and source level signatures",
+    "summary": "Bisher größte Auswertung von Hirnstrommessungen: 44 Klartraum-Episoden von 26 Geübten aus mehreren Laboren. Beim Klarwerden mehr Gamma-Aktivität im Bereich des Precuneus und stärkere Kopplung im Alpha-Band als im gewöhnlichen REM-Schlaf.",
+    "link": "https://www.jneurosci.org/content/45/20/e2237242025",
+    "source": "Journal of Neuroscience",
     "isStudy": true,
-    "published": "2024-08-15T00:00:00Z",
+    "published": "2025-05-14T00:00:00Z",
     "imageUrl": null,
-    "tags": ["TMR", "REM", "memory"]
+    "tags": [
+      "EEG",
+      "Gehirn",
+      "REM"
+    ]
   },
   {
-    "id": "npj-scilearn-2025-personalized-tmr",
-    "title": "Personalized targeted memory reactivation enhances consolidation of challenging memories via slow wave and spindle dynamics",
-    "summary": "Eine Studie zeigt, dass ein personalisiertes Targeted Memory Reactivation (TMR)-Protokoll (individuell angepasste Reizwiederholung basierend auf Lernerfolg) den Gedächtnisverfall bei schwierigem Lernmaterial deutlich reduziert und Fehlerkorrekturen verbessert. Mit personalisiertem TMR traten verstärkte Slow-Wave- und Spindel-Synchronisation im Schlaf-EEG auf, was mit besseren Lernergebnissen einherging.",
-    "link": "https://www.nature.com/articles/s41539-025-00340-3",
-    "source": "npj Science of Learning (Nature)",
+    "id": "sleepadv-2025-six-wearables",
+    "title": "A performance validation of six commercial wrist-worn wearable sleep-tracking devices",
+    "summary": "62 Erwachsene im Schlaflabor mit sechs Handgelenk-Geräten. Übereinstimmung mit der Labormessung nur mäßig; REM-Abschnitte wurden je nach Gerät zu 33 bis 69 % richtig erkannt.",
+    "link": "https://doi.org/10.1093/sleepadvances/zpaf021",
+    "source": "SLEEP Advances",
     "isStudy": true,
-    "published": "2025-07-22T00:00:00Z",
+    "published": "2025-03-22T00:00:00Z",
     "imageUrl": null,
-    "tags": ["TMR", "memory", "sleep"]
-  },
-  {
-    "id": "jneurosci-2015-lucid-metacognition",
-    "title": "Metacognitive mechanisms underlying lucid dreaming",
-    "summary": "Studie zeigt: Häufig luzide Träumer besitzen ein vergrößertes frontopolares Kortex-Areal (BA9/10) und höhere Aktivität dort bei einer Selbstreflexions-Aufgabe. Das legt nahe, dass luzides Träumen mit gesteigerter Metakognition (Selbstreflexionsfähigkeit) im Wachzustand einhergeht.",
-    "link": "https://pubmed.ncbi.nlm.nih.gov/25609624/",
-    "source": "PubMed (J. Neurosci)",
-    "isStudy": true,
-    "published": "2015-01-21T00:00:00Z",
-    "imageUrl": null,
-    "tags": ["lucid dreaming", "metacognition", "neuroscience"]
-  },
-  {
-    "id": "natneuro-2014-gamma-lucid",
-    "title": "Induction of self awareness in dreams through frontal low current stimulation of gamma activity",
-    "summary": "In einem Experiment wurde 2014 gezeigt, dass transkranielle 40-Hz-Stimulation während des REM-Schlafs gezielt luzide Träume auslösen kann. Andere Frequenzen blieben ohne Effekt – höheres Traum-Bewusstsein scheint demnach mit synchronen Gamma-Oszillationen (~25–40 Hz) verbunden.",
-    "link": "https://pubmed.ncbi.nlm.nih.gov/24816141/",
-    "source": "Nature Neuroscience",
-    "isStudy": true,
-    "published": "2014-05-11T00:00:00Z",
-    "imageUrl": null,
-    "tags": ["lucid dreaming", "EEG", "stimulation"]
-  },
-  {
-    "id": "currbiol-2021-two-way-communication",
-    "title": "Real-time dialogue between experimenters and dreamers during REM sleep",
-    "summary": "Vier unabhängige Forschungsteams demonstrierten 2021, dass Zwei-Wege-Kommunikation mit schlafenden, luzid träumenden Personen möglich ist. Im REM-Schlaf konnten Träumende Fragen der Forschenden verstehen und mittels Augenbewegungen oder Muskelkontraktionen (Ja/Nein) in Echtzeit korrekte Antworten übermitteln.",
-    "link": "https://pubmed.ncbi.nlm.nih.gov/33607035/",
-    "source": "Current Biology",
-    "isStudy": true,
-    "published": "2021-02-18T00:00:00Z",
-    "imageUrl": null,
-    "tags": ["lucid dreaming", "communication", "REM"]
-  },
-  {
-    "id": "sleepadv-2022-lucid-benefits-risks",
-    "title": "Benefits and concerns of seeking and experiencing lucid dreams: benefits are tied to successful induction and dream control",
-    "summary": "Auswertung von Online-Berichten: Luzides Träumen kann Alpträume beenden und das Wohlbefinden steigern, birgt aber Risiken bei misslungener Induktion. Negative Erfahrungen (z.B. Schlafparalyse) traten meist bei fehlgeschlagenen Versuchen oder geringer Traumkontrolle auf, während erfolgreich herbeigeführte luzide Träume überwiegend positive Wirkungen hatten.",
-    "link": "https://doi.org/10.1093/sleepadvances/zpac027",
-    "source": "Sleep Advances (Sleep Research Society)",
-    "isStudy": true,
-    "published": "2022-09-07T00:00:00Z",
-    "imageUrl": null,
-    "tags": ["lucid dreaming", "nightmares", "risks"]
-  },
-  {
-    "id": "plosone-2018-galantamine-lucid",
-    "title": "Pre-sleep treatment with galantamine stimulates lucid dreaming: A double-blind, placebo-controlled, crossover study",
-    "summary": "Eine placebokontrollierte Studie (2018) fand, dass die Einnahme von 4–8 mg Galantamin (einem Acetylcholinesterase-Hemmer) nach 4,5 Stunden Schlaf – kombiniert mit Aufwachen und der MILD-Technik – die Häufigkeit luzider Träume signifikant steigerte. Bei 8 mg Galantamin traten in 42% der Nächte luzide Träume auf (gegenüber 14% unter Placebo); zudem nahmen Traumerinnerung und Lebendigkeit zu.",
-    "link": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0201246",
-    "source": "PLOS One",
-    "isStudy": true,
-    "published": "2018-08-08T00:00:00Z",
-    "imageUrl": null,
-    "tags": ["lucid dreaming", "induction", "pharmacology"]
+    "tags": [
+      "Wearables",
+      "Schlafphasen"
+    ]
   },
   {
     "id": "ejtd-2025-lucid-ptsd-workshop",
     "title": "Decreased PTSD symptoms following a lucid dreaming workshop: A randomized controlled study",
-    "summary": "Eine randomisierte Studie (2025) zeigte, dass ein sechstägiger Online-Workshop zum luziden Träumen bei Teilnehmenden mit chronischer PTSD deutliche Verbesserungen bewirkte. Trotz ähnlicher Luzidtraum-Rate in beiden Gruppen sank in der Workshop-Gruppe die PTSD-Symptomatik und Albtraum-Belastung signifikant (mit anhaltendem Effekt nach 1 Monat), während Wohlbefinden und positive Emotionen zunahmen.",
+    "summary": "Sechstägiger Online-Workshop (49 Personen) gegen Wartegruppe (50): weniger Symptome und weniger Belastung durch Albträume, auch nach einem Monat. Die Besserung hing nicht messbar davon ab, ob ein Klartraum gelang.",
     "link": "https://doi.org/10.1016/j.ejtd.2025.100510",
     "source": "European Journal of Trauma & Dissociation",
     "isStudy": true,
     "published": "2025-01-22T00:00:00Z",
     "imageUrl": null,
-    "tags": ["PTSD", "therapy", "lucid dreaming"]
+    "tags": [
+      "Albträume",
+      "PTBS",
+      "Therapie"
+    ]
+  },
+  {
+    "id": "ijodr-2024-open-source-watch-tlr",
+    "title": "Targeted lucidity reactivation implemented in an open-source watchOS app",
+    "summary": "Quelloffene Uhren-App, die Klangsignale samt Schätzung der Schlafphasen aus Bewegung und Puls umsetzt. Ein technischer Rahmen; die Wirksamkeit zu Hause ist damit noch nicht gezeigt.",
+    "link": "https://doi.org/10.11588/ijodr.2024.2.100797",
+    "source": "International Journal of Dream Research",
+    "isStudy": true,
+    "published": "2024-10-17T00:00:00Z",
+    "imageUrl": null,
+    "tags": [
+      "TLR",
+      "Wearables",
+      "Open Source"
+    ]
+  },
+  {
+    "id": "sensors-2024-three-wearables",
+    "title": "Accuracy of Three Commercial Wearable Devices for Sleep Tracking in Healthy Adults",
+    "summary": "35 gesunde Erwachsene, ein Ring und zwei Uhren gegen das Schlaflabor. Schlaf und Wachsein wurden gut erkannt (mindestens 95 %), einzelne Schlafphasen zu 50 bis 86 %. Vom Hersteller des Rings finanziert.",
+    "link": "https://doi.org/10.3390/s24206532",
+    "source": "Sensors",
+    "isStudy": true,
+    "published": "2024-10-10T00:00:00Z",
+    "imageUrl": null,
+    "tags": [
+      "Wearables",
+      "Schlafphasen"
+    ]
+  },
+  {
+    "id": "concog-2024-tlr-smartphone",
+    "title": "Provoking lucid dreams at home with sensory cues paired with pre-sleep cognitive training",
+    "summary": "Klangsignale per Smartphone: In der ersten Studie (19 Personen) stieg die Zahl der Klarträume von 0,74 auf 2,11 pro Woche. Im kontrollierten zweiten Teil zeigte sich der Vorteil nur teilweise, und die Töne weckten häufig auf.",
+    "link": "https://doi.org/10.1016/j.concog.2024.103759",
+    "source": "Consciousness and Cognition",
+    "isStudy": true,
+    "published": "2024-09-14T00:00:00Z",
+    "imageUrl": null,
+    "tags": [
+      "TLR",
+      "Smartphone",
+      "Klangsignale"
+    ]
+  },
+  {
+    "id": "cns-2023-tlr-lab-nap",
+    "title": "Combining presleep cognitive training and REM-sleep stimulation in a laboratory morning nap",
+    "summary": "Zwanzig Minuten Training mit Ton und Licht, dann dieselben Reize im REM-Schlaf: 50 % der Teilnehmenden wurden in einem einzigen Morgenschlaf nachweislich klar, ohne Reize 17 %. Drei davon hatten nie zuvor einen Klartraum.",
+    "link": "https://doi.org/10.1037/cns0000227",
+    "source": "Psychology of Consciousness",
+    "isStudy": true,
+    "published": "2023-12-01T00:00:00Z",
+    "imageUrl": null,
+    "tags": [
+      "TLR",
+      "Schlaflabor"
+    ]
+  },
+  {
+    "id": "cns-2023-adverse-effects",
+    "title": "Dispelling the shadows of the lucid night: potential adverse effects of lucid dreaming",
+    "summary": "Befragung von 489 Personen: Häufige Klarträume gingen nicht mit schlechterem Schlaf oder mehr Dissoziation einher, aber mit höherem Wohlbefinden. Etwa jeder zehnte Klartraum wurde als unangenehm erlebt.",
+    "link": "https://doi.org/10.1037/cns0000288",
+    "source": "Psychology of Consciousness",
+    "isStudy": true,
+    "published": "2023-07-01T00:00:00Z",
+    "imageUrl": null,
+    "tags": [
+      "Sicherheit",
+      "Schlafqualität"
+    ]
+  },
+  {
+    "id": "jsr-2023-induction-review",
+    "title": "A systematic review of new empirical data on lucid dream induction techniques",
+    "summary": "19 Studien, 14 Techniken: MILD schneidet am besten ab. SSILD und Galantamin gelten als vielversprechend, brauchen aber Wiederholungen. Die Qualität der Studien ist seit 2012 gestiegen.",
+    "link": "https://doi.org/10.1111/jsr.13786",
+    "source": "Journal of Sleep Research",
+    "isStudy": true,
+    "published": "2022-11-21T00:00:00Z",
+    "imageUrl": null,
+    "tags": [
+      "Review",
+      "MILD",
+      "SSILD"
+    ]
+  },
+  {
+    "id": "clockssleep-2022-earlier-wbtb",
+    "title": "Combining Wake-Up-Back-to-Bed with Cognitive Induction Techniques",
+    "summary": "Wird schon nach etwa viereinhalb statt sechs Stunden geweckt, sinkt die Erfolgsrate (26 %). Ohne Wecken aus dem REM-Schlaf am Morgen gelang keine Induktion; Reality-Checks schnitten schlechter ab als MILD.",
+    "link": "https://doi.org/10.3390/clockssleep4020021",
+    "source": "Clocks & Sleep",
+    "isStudy": true,
+    "published": "2022-04-20T00:00:00Z",
+    "imageUrl": null,
+    "tags": [
+      "WBTB",
+      "MILD",
+      "Schlaflabor"
+    ]
+  },
+  {
+    "id": "currbiol-2021-two-way-communication",
+    "title": "Real-time dialogue between experimenters and dreamers during REM sleep",
+    "summary": "Vier Labore, 36 Personen: Klarträumende konnten im REM-Schlaf Fragen wahrnehmen und per Augen- oder Gesichtsmuskelsignal beantworten, etwa einfache Rechenaufgaben.",
+    "link": "https://doi.org/10.1016/j.cub.2021.01.026",
+    "source": "Current Biology",
+    "isStudy": true,
+    "published": "2021-02-18T00:00:00Z",
+    "imageUrl": null,
+    "tags": [
+      "Kommunikation",
+      "REM",
+      "Schlaflabor"
+    ]
+  },
+  {
+    "id": "fpsyg-2020-ildis",
+    "title": "Findings From the International Lucid Dream Induction Study",
+    "summary": "355 Teilnehmende, fünf Technik-Kombinationen: MILD und SSILD ähnlich wirksam, Reality-Checks allein ohne Effekt. Erfolgsfaktoren: gute Traumerinnerung und Einschlafen binnen zehn Minuten. Die Schlafqualität litt nicht.",
+    "link": "https://doi.org/10.3389/fpsyg.2020.01746",
+    "source": "Frontiers in Psychology",
+    "isStudy": true,
+    "published": "2020-07-17T00:00:00Z",
+    "imageUrl": null,
+    "tags": [
+      "MILD",
+      "SSILD",
+      "Feldstudie"
+    ]
+  },
+  {
+    "id": "fpsyg-2020-wbtb-lab",
+    "title": "Wake Up, Work on Dreams, Back to Bed and Lucid Dream: A Sleep Laboratory Study",
+    "summary": "Wecken nach sechs Stunden, eine Stunde Traumarbeit und MILD: 54 %, 53 % und 36 % der nicht vorausgewählten Teilnehmenden hatten danach einen Klartraum. Mit Lesen statt MILD 9 %.",
+    "link": "https://doi.org/10.3389/fpsyg.2020.01383",
+    "source": "Frontiers in Psychology",
+    "isStudy": true,
+    "published": "2020-06-26T00:00:00Z",
+    "imageUrl": null,
+    "tags": [
+      "WBTB",
+      "MILD",
+      "Schlaflabor"
+    ]
+  },
+  {
+    "id": "fnins-2020-call-for-caution",
+    "title": "Are Lucid Dreams Good for Us? A Call for Caution in Lucid Dream Research",
+    "summary": "Fachbeitrag: Mögliche Nachteile häufiger, gezielter Induktion sind kaum untersucht. Genannt werden gestörter Schlaf und eine mögliche Aufweichung der Grenze zwischen Fantasie und Wirklichkeit bei anfälligen Menschen.",
+    "link": "https://doi.org/10.3389/fnins.2019.01423",
+    "source": "Frontiers in Neuroscience",
+    "isStudy": true,
+    "published": "2020-01-24T00:00:00Z",
+    "imageUrl": null,
+    "tags": [
+      "Sicherheit",
+      "Risiken"
+    ]
+  },
+  {
+    "id": "plosone-2018-galantamine-lucid",
+    "title": "Pre-sleep treatment with galantamine stimulates lucid dreaming",
+    "summary": "Placebokontrolliert, 121 Erfahrene: Mit 4 mg hatten 27 %, mit 8 mg 42 % einen Klartraum (Placebo 14 %), jeweils mit Wachphase und MILD. Verschreibungspflichtiges Medikament, nicht für Selbstversuche.",
+    "link": "https://doi.org/10.1371/journal.pone.0201246",
+    "source": "PLOS ONE",
+    "isStudy": true,
+    "published": "2018-08-08T00:00:00Z",
+    "imageUrl": null,
+    "tags": [
+      "Galantamin",
+      "Substanzen"
+    ]
+  },
+  {
+    "id": "jcsm-2018-nightmare-position-paper",
+    "title": "Position Paper for the Treatment of Nightmare Disorder in Adults",
+    "summary": "Die amerikanische Fachgesellschaft für Schlafmedizin empfiehlt Imagery Rehearsal Therapy. Klartraumtherapie zählt zu den Verfahren, die eingesetzt werden können.",
+    "link": "https://doi.org/10.5664/jcsm.7178",
+    "source": "Journal of Clinical Sleep Medicine",
+    "isStudy": true,
+    "published": "2018-06-15T00:00:00Z",
+    "imageUrl": null,
+    "tags": [
+      "Albträume",
+      "IRT",
+      "Positionspapier"
+    ]
+  },
+  {
+    "id": "concog-2016-incidence-meta",
+    "title": "Lucid dreaming incidence: A quality effects meta-analysis of 50 years of research",
+    "summary": "34 Studien: Rund 55 % der Menschen hatten mindestens einen Klartraum, etwa 23 % haben monatlich einen oder mehr.",
+    "link": "https://doi.org/10.1016/j.concog.2016.06.002",
+    "source": "Consciousness and Cognition",
+    "isStudy": true,
+    "published": "2016-06-20T00:00:00Z",
+    "imageUrl": null,
+    "tags": [
+      "Häufigkeit",
+      "Meta-Analyse"
+    ]
   }
 ]

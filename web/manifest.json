@@ -1,9 +1,13 @@
 {
-  "name": "Lucid",
+  "name": "Lucid – Klarträumen lernen",
   "short_name": "Lucid",
-  "start_url": "/lucid/",
+  "description": "Geführtes Programm, Nachtmodus, Traumtagebuch und geprüftes Wissen zum Klarträumen.",
+  "lang": "de",
+  "start_url": ".",
+  "scope": ".",
   "display": "standalone",
-  "background_color": "#0D0F16",
-  "theme_color": "#0D0F16",
+  "orientation": "portrait",
+  "background_color": "#0B0D1F",
+  "theme_color": "#0B0D1F",
   "icons": []
 }

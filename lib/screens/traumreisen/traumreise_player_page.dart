@@ -1,4 +1,4 @@
-﻿// lib/screens/traumreisen/traumreise_player_page.dart
+// lib/screens/traumreisen/traumreise_player_page.dart
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:just_audio/just_audio.dart';
@@ -6,9 +6,9 @@ import 'package:just_audio/just_audio.dart';
 import '../../models/traumreise_models.dart';
 import '../../services/traumreise_repo.dart';
 
-const _bgDark = Color(0xFF080B23);
-const _white  = Color(0xFFFFFFFF);
-const _stroke = Color(0x22FFFFFF);
+const _bgDark = Color(0xFF0B0D1F);
+const _white  = Color(0xFFEEF0FF);
+const _stroke = Color(0xFF2B3058);
 
 class TraumreisePlayerPage extends StatefulWidget {
   final String id;
@@ -183,7 +183,7 @@ class _TraumreisePlayerPageState extends State<TraumreisePlayerPage> {
                           setState(() => _loop = v);
                           await _player.setLoopMode(v ? LoopMode.one : LoopMode.off);
                         },
-                        activeColor: const Color(0xFF7A6CFF),
+                        activeColor: const Color(0xFF8B8CFF),
                       ),
                     ],
                   ),
@@ -228,7 +228,7 @@ class _SeekBar extends StatelessWidget {
     return CupertinoSlider(
       value: value,
       onChanged: (v) => onChanged(Duration(milliseconds: (v * total).round())),
-      activeColor: const Color(0xFF7A6CFF),
+      activeColor: const Color(0xFF8B8CFF),
     );
   }
 }

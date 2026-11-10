@@ -1,4 +1,4 @@
-﻿import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../services/link_sanitizer.dart';
@@ -14,13 +14,13 @@ const _cardPad     = 14.0;  // Innenabstand Karte
 const _vSpace      = 8.0;   // vertikale Abstände
 
 // Farben – etwas heller als zuvor, für mehr Kontrast
-const _bg      = Color(0xFF0D0F16);
-const _white   = Color(0xFFE9EAFF);
-const _muted   = Color(0xFFC7CEFF);   // heller Sekundärtext
-const _card    = Color(0xFF12152A);   // minimal heller als zuvor
-const _line    = Color(0x33FFFFFF);   // 20% → 33% Hairline
+const _bg      = Color(0xFF0B0D1F);
+const _white   = Color(0xFFEEF0FF);
+const _muted   = Color(0xFFA4A9CF);   // heller Sekundärtext
+const _card    = Color(0xFF14172E);   // minimal heller als zuvor
+const _line    = Color(0xFF2B3058);   // 20% → 33% Hairline
 const _thumbBg = Color(0x1FFFFFFF);
-const _accent  = Color(0xFF7A6CFF);
+const _accent  = Color(0xFF8B8CFF);
 
 enum _Tab { all, studies, news, saved }
 
@@ -59,7 +59,7 @@ class _StudienFeedPageState extends State<StudienFeedPage> {
       navigationBar: const CupertinoNavigationBar(
         backgroundColor: _bg,
         middle: Text(
-          'Aktuelle Studien & News',
+          'Studien und Meldungen',
           style: TextStyle(color: _white, fontWeight: FontWeight.w700),
         ),
       ),
@@ -176,7 +176,7 @@ class _TopBar extends StatelessWidget {
               const SizedBox(width: 10),
               CupertinoButton(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                color: const Color(0xFF2A2942),
+                color: const Color(0xFF1D2142),
                 borderRadius: BorderRadius.circular(12),
                 onPressed: onRefresh,
                 child: const Icon(CupertinoIcons.refresh, color: _white, size: 18),
@@ -416,7 +416,7 @@ void _toast(BuildContext context, String message) {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
             decoration: BoxDecoration(
-              color: const Color(0xE61C1F2E),
+              color: const Color(0xF21D2142),
               borderRadius: BorderRadius.circular(12),
               border: Border.all(color: _line),
             ),

@@ -1,6 +1,5 @@
 // lib/services/affirmation_repo.dart
-import 'dart:convert';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/services.dart' show AssetManifest, rootBundle;
 import '../models/affirmation_models.dart';
 
 /// Lädt alle Affirmations-MP3s aus dem Asset-Manifest.
@@ -15,10 +14,8 @@ class AffirmationRepo {
   /// Einmalig scannen. Kann beliebig oft aufgerufen werden (idempotent).
   Future<void> init() async {
     if (_cache.isNotEmpty) return;
-    final manifestJson = await rootBundle.loadString('AssetManifest.json');
-    final Map<String, dynamic> manifest = jsonDecode(manifestJson);
-
-    final keys = manifest.keys
+    final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
+    final keys = manifest.listAssets()
         .where((k) => k.startsWith(_prefix) && k.toLowerCase().endsWith('.mp3'))
         .toList()
       ..sort();

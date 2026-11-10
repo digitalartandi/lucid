@@ -1,122 +1,66 @@
-# Albträume & IRT (Imagery Rehearsal Therapy)
+# Albträume verändern
 
-**Ziel:** belastende Traumbilder umschreiben, vor dem Schlafen kurz einüben – so werden Albträume
-seltener und weniger intensiv. IRT ist verhaltenstherapeutisch erprobt, einfach zu lernen und
-funktioniert **auch ohne Klarträume**.
+Etwa 4 % der Erwachsenen leiden unter einer Albtraumstörung: Albträume, die so häufig oder so belastend sind, dass sie den Schlaf und den Tag beeinträchtigen. Dafür gibt es wirksame Hilfe. Klarträumen ist eine Möglichkeit, aber nicht die erste.
 
----
+## Was empfohlen wird
 
-## Wann passt IRT – und wann nicht?
+Die amerikanische Fachgesellschaft für Schlafmedizin hat 2018 die Behandlungen bewertet:
 
-- **Geeignet:** wiederkehrende Albträume, belastende Traumbilder, auch ohne Klarträume.
-- **Mit Vorsicht:** frische Traumata, schwere Depression, starke Dissoziation → zuerst fachlich
-  abklären.
-- **Nicht nötig:** gelegentliche „starke“ Träume **ohne** Leidensdruck.
+- **Empfohlen:** Imagery Rehearsal Therapy (IRT), sowohl bei Albtraumstörung als auch bei Albträumen im Rahmen einer Traumafolgestörung.
+- **Kann eingesetzt werden:** unter anderem kognitive Verhaltenstherapie, Entspannungsverfahren und Klartraumtherapie.
 
----
+Für die Klartraumtherapie ist die Datenlage dünner als für IRT.
 
-## Schritt 1 – Auswahl (1–2 Min.)
+Quelle: [Morgenthaler et al. 2018](https://doi.org/10.5664/jcsm.7178)
 
-- Wähle **einen** wiederkehrenden Albtraum.
-- Notiere **Titel** und **Belastung** (0–10).
-- Entscheide dich für **ein** einziges neues Ende (keine Varianten).
+## Imagery Rehearsal in vier Schritten
 
----
+IRT funktioniert im Wachzustand und ohne Klarträume. Du schreibst den Albtraum um und übst die neue Fassung.
 
-## Schritt 2 – Umschreiben (5–10 Min.)
+1. **Auswählen.** Nimm einen wiederkehrenden Albtraum. Für den Anfang nicht den schlimmsten.
+2. **Umschreiben.** Ändere den Traum so, wie du willst: ein anderes Ende, eine Wendung, eine helfende Person. Schreib fünf bis zehn Sätze in der Gegenwart. Die neue Fassung soll ruhig oder gut ausgehen, kein Racheszenario.
+3. **Üben.** Stell dir die neue Fassung einmal täglich einige Minuten lebhaft vor, tagsüber, nicht im Bett.
+4. **Beobachten.** Notiere wöchentlich, wie oft der Albtraum kommt und wie belastend er ist (0 bis 10).
 
-Ziel ist **neutral bis positiv** – kein „Rache-Skript“ oder explizite Details.
+Ändert sich der Traum, passe die neue Fassung an und übe weiter.
 
-- **5–10 Sätze** reichen. Schreibe in der **Gegenwartsform** („Ich stehe im Flur…“).
-- **Leitsätze:**
-  - Gefahr wird **aufgelöst** (Hilfe kommt, Licht geht an, Tür öffnet sich, ich gehe sicher hinaus).
-  - **Selbstwirksamkeit** zeigen (jemanden anrufen, Stopp sagen, Schutz finden).
-  - **Körperempfinden** beruhigen (ruhiger Atem, warme Hände, fester Boden).
+## Was Klarträumen beitragen kann
 
-**Mini-Beispiel**
+Die Idee: Wer im Albtraum erkennt, dass er träumt, kann anders reagieren, etwa stehen bleiben, die Figur ansprechen oder die Szene verlassen.
 
-> *Alter Traum:* „Ich renne vor etwas Unsichtbarem weg, komme nicht vom Fleck.“  
-> *Neues Ende:* „Ich halte inne, atme ruhig, spüre Boden unter den Füßen. Ein helles Licht wird
-> stärker, ich sehe eine offene Tür. Draußen warten Menschen. Ich gehe hinaus, bin sicher und
-> erleichtert.“
+Was die Studien zeigen:
 
----
+- Eine Pilotstudie mit 23 Betroffenen fand nach einer zweistündigen Sitzung weniger Albträume. Bemerkenswert: Klar zu werden war dafür nicht nötig. Schon die Beschäftigung mit dem Albtraum und die Vorstellung, ihn verändern zu können, half.
+- Bei Patientinnen und Patienten mit Traumafolgestörung gingen Angst und Depressivität im Verlauf einer Klartraumtherapie zurück; der Schlaf selbst veränderte sich nicht.
+- Eine randomisierte Studie verglich 2025 einen sechstägigen Online-Workshop (49 Personen) mit einer Wartegruppe (50 Personen). In der Workshop-Gruppe sanken die Symptome der Traumafolgestörung und die Belastung durch Albträume, auch einen Monat später noch. Die Besserung hing allerdings nicht messbar damit zusammen, ob jemand tatsächlich einen Klartraum hatte.
+- Eine Übersichtsarbeit von 2026 nennt den therapeutischen Nutzen vielversprechend, aber vorläufig.
 
-## Schritt 3 – Rehearsal (tägliche Übung, 5 Min.)
+Das Muster ist deutlich: Die Arbeit mit dem Albtraum hilft. Welchen Anteil die Klarheit selbst hat, ist offen.
 
-- **Am Tag**, nicht im Bett: **5 Minuten lebhaft vorstellen** (Bilder, Geräusche, Körpergefühl).
-- **Langsam** durchgehen, gern mit **Augen zu**.
-- Danach **kurz aufschreiben** (Häkchen reicht): „Geübt ✓“.
+Quellen: [Spoormaker & van den Bout 2006](https://doi.org/10.1159/000095446), [Holzinger et al. 2020](https://doi.org/10.3389/fpsyg.2020.01826), [Yount et al. 2025](https://doi.org/10.1016/j.ejtd.2025.100510)
 
-**Optional – Anker**
+## Beides verbinden
 
-- Ein kurzes Wort/Foto, das an das neue Ende erinnert (z. B. „Tür“, „Licht“).
-- Tagsüber anschauen → **10 Sekunden nachspüren**.
+Die umgeschriebene Fassung aus der IRT eignet sich als Plan für den Klartraum. Wenn du im Albtraum klar wirst:
 
----
+1. Erinnere dich: Das ist ein Traum. Mir kann hier nichts passieren.
+2. Bleib stehen, atme, schau dir die Szene an.
+3. Tu, was du in der neuen Fassung geübt hast.
 
-## Schritt 4 – Integration abends (1–2 Min.)
+## Wenn du nachts aufwachst
 
-- Vor dem Schlafen das neue Ende **1–2× ruhig** durchgehen (ohne aufzuwühlen).
-- Wenn du Klarträume anstrebst: **Reality-Checks** tagsüber an passenden „Traumsignaturen“ koppeln.
+- Länger aus- als einatmen, einige Minuten.
+- Licht an, aufsetzen, einen Schluck Wasser.
+- Zwei Sätze notieren, dann weglegen.
+- Erst wieder hinlegen, wenn der Puls ruhig ist.
 
----
+## Wann du dir Hilfe holen solltest
 
-## Notfall-Tools für die Nacht
+- Die Albträume hängen mit einem Trauma zusammen.
+- Du schläfst aus Angst vor ihnen schlecht ein oder meidest den Schlaf.
+- Die Belastung bleibt nach einigen Wochen Üben hoch.
+- Es kommen Niedergeschlagenheit, starke Angst oder Gedanken an Selbstverletzung dazu.
 
-- **Atmen 4-6:** 4 ein, 6 aus. Schultern senken.
-- **Bodyscan:** von Zehen bis Kopf, Wärme/Schwere spüren.
-- **„Name 5 Dinge“ (5-4-3-2-1):** 5 sehen, 4 fühlen, 3 hören, 2 riechen, 1 schmecken.
-- **Aufschreiben → Abstand → Wasser**, kurz aufrichten, dann wieder hinlegen.
+Dann gehört die Behandlung in fachliche Hände. Erste Anlaufstelle ist deine Hausärztin oder dein Hausarzt, oder eine psychotherapeutische Praxis. In akuten Krisen erreichst du in Österreich die Telefonseelsorge unter 142, in Deutschland unter 0800 111 0 111.
 
----
-
-## Verlauf & Erfolg messen
-
-- **Häufigkeit** und **Belastung (0–10)** wöchentlich notieren.
-- Erste Verbesserungen oft nach **2–4 Wochen**.
-- Wenn ein Traum sich **verändert**: neues Ende **anpassen** und weiter üben.
-
----
-
-## FAQ – häufige Fragen
-
-**Was, wenn der Albtraum nicht wiederkommt?**  
-Weiter üben – das Ziel ist **Generalisierung** (Ähnliches wird leichter).
-
-**Was, wenn ich doch aufwache oder Klarheit habe?**  
-Kurz stabilisieren (Atmung, Hände reiben), dann das **neue Ende erinnern**.
-
-**Wie lange insgesamt?**  
-Meist **4–8 Wochen**. Bei anhaltender Besserung Häufigkeit der Übungen reduzieren.
-
-**Kann ich IRT mit Night-Lite/RC kombinieren?**  
-Ja – aber **sanft** bleiben (keine lauten Cues). Verhalten & Schlafhygiene bleiben Basis.
-
----
-
-## Wann Hilfe holen?
-
-- Belastung bleibt **hoch** (≥ 7/10) trotz 2–4 Wochen Übung.
-- **PTBS-Symptome**, starke Angst/Depression, Selbstverletzungsgedanken.
-- Traumata, die sich beim Üben deutlich **aufdrängen**.
-
-→ In diesen Fällen IRT **therapeutisch begleitet** fortführen.
-
----
-
-## Kurz-Checkliste (zum Abhaken)
-
-- [ ] Einen Albtraum gewählt & benannt (0–10).  
-- [ ] Neues Ende **neutral/positiv**, 5–10 Sätze, Gegenwartsform.  
-- [ ] Tägliches Rehearsal (5 Min.) dokumentiert.  
-- [ ] Abendliche Kurz-Visualisierung (1–2×).  
-- [ ] Notfall-Tools griffbereit.  
-- [ ] Wöchentliche Verlaufsnotiz.
-
----
-
-## Weiterlesen
-
-- Krakow, B. et al. (2001). *A Controlled Study of Imagery Rehearsal…*  
-- Nappi, C. et al. (2010). *Imagery Rehearsal Therapy for Chronic Nightmares…*
+Wachphasen und Klangsignale der App sind bei Albtraumstörung nicht zu empfehlen, solange der Schlaf ohnehin leidet.

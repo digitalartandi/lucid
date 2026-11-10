@@ -1,0 +1,44 @@
+name: CI (analyze, test, build)
+
+# Prüft jeden Branch außer main; main wird von den Deploy-Workflows gebaut.
+on:
+  push:
+    branches-ignore: [ main, gh-pages, 'backup/**' ]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.32.8'
+          cache: true
+
+      - run: flutter pub get
+
+      # Fehler brechen ab; Hinweise und Warnungen werden nur gelistet.
+      - name: Analyze
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+
+      - name: Test
+        run: flutter test
+
+      - name: Build web
+        run: flutter build web --release --base-href /lucid/ --pwa-strategy none
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: web-build
+          path: build/web
+          retention-days: 7

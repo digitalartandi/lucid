@@ -1,18 +1,18 @@
-﻿// lib/screens/modules/cue_tuning_page.dart
+// lib/screens/modules/cue_tuning_page.dart
 import 'dart:convert' show jsonDecode, jsonEncode;
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/services.dart' show AssetManifest, rootBundle;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/cue_models.dart' show CueSound;
 import '../../services/cue_player.dart';
 
 // Farben
-const _bg     = Color(0xFF0D0F16);
-const _white  = Color(0xFFE9EAFF);
-const _card   = Color(0xFF0A0A23);
-const _line   = Color(0x22FFFFFF);
-const _accent = Color(0xFF7A6CFF);
+const _bg     = Color(0xFF0B0D1F);
+const _white  = Color(0xFFEEF0FF);
+const _card   = Color(0xFF14172E);
+const _line   = Color(0xFF2B3058);
+const _accent = Color(0xFF8B8CFF);
 
 // Persistenz-Keys
 const _kCueSelectedJson = 'cue.selected.v1';
@@ -323,10 +323,9 @@ class _CueBackgroundPickerPageState extends State<CueBackgroundPickerPage> {
     if (_loaded) return;
     _loaded = true;
     try {
-      final manifestJson = await rootBundle.loadString('AssetManifest.json');
-      final Map<String, dynamic> manifest = jsonDecode(manifestJson);
+      final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
 
-      final candidates = manifest.keys.where((k) {
+      final candidates = manifest.listAssets().where((k) {
         final lk = k.toLowerCase();
         final isAudio = lk.endsWith('.mp3') || lk.endsWith('.m4a') || lk.endsWith('.wav');
         final isMeditation = lk.contains('/meditation') || lk.contains('/soundscape') || lk.contains('/ambience');

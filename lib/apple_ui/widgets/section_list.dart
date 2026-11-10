@@ -1,4 +1,4 @@
-﻿import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart';
 
 class Section extends StatelessWidget {
   final String? header;
@@ -11,7 +11,7 @@ class Section extends StatelessWidget {
     final list = Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
-        color: CupertinoColors.secondarySystemGroupedBackground,
+        color: Color(0xFF14172E),
         borderRadius: BorderRadius.circular(14),
         boxShadow: const [
           BoxShadow(color: Color(0x0F000000), blurRadius: 10, offset: Offset(0, 6)),
@@ -35,7 +35,7 @@ class Section extends StatelessWidget {
               header!,
               style: const TextStyle(
                 fontSize: 13,
-                color: CupertinoColors.systemGrey,
+                color: Color(0xFFA4A9CF),
                 fontWeight: FontWeight.w600,
                 letterSpacing: 0.2,
               ),
@@ -87,7 +87,7 @@ class RowItem extends StatelessWidget {
                 DefaultTextStyle(
                   style: const TextStyle(
                     fontSize: 16,
-                    color: CupertinoColors.label,
+                    color: Color(0xFFEEF0FF),
                     fontWeight: FontWeight.w600,
                   ),
                   child: title,
@@ -97,7 +97,7 @@ class RowItem extends StatelessWidget {
                   DefaultTextStyle(
                     style: const TextStyle(
                       fontSize: 13,
-                      color: CupertinoColors.systemGrey,
+                      color: Color(0xFFA4A9CF),
                       fontWeight: FontWeight.w400,
                     ),
                     child: subtitle!,
@@ -111,7 +111,7 @@ class RowItem extends StatelessWidget {
         if (onTap != null)
           const Padding(
             padding: EdgeInsets.only(left: 6),
-            child: Icon(CupertinoIcons.chevron_right, size: 16, color: CupertinoColors.systemGrey2),
+            child: Icon(CupertinoIcons.chevron_right, size: 16, color: Color(0xFF6F7499)),
           ),
       ],
     );
@@ -140,7 +140,7 @@ class DividerInset extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(left: 16),
       height: 0.6,
-      color: CupertinoColors.separator,
+      color: Color(0xFF2B3058),
     );
   }
 }

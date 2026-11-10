@@ -1,11 +1,11 @@
-﻿// lib/screens/traumreisen/traumreisen_hub_page.dart
+// lib/screens/traumreisen/traumreisen_hub_page.dart
 import 'package:flutter/cupertino.dart';
 import '../../models/traumreise_models.dart';
 import '../../services/traumreise_repo.dart';
 
-const _bgDark = Color(0xFF080B23);
-const _white = Color(0xFFFFFFFF);
-const _stroke = Color(0x22FFFFFF);
+const _bgDark = Color(0xFF0B0D1F);
+const _white = Color(0xFFEEF0FF);
+const _stroke = Color(0xFF2B3058);
 const _rXL = BorderRadius.all(Radius.circular(20));
 
 class TraumreisenHubPage extends StatefulWidget {

@@ -1,7 +1,7 @@
-﻿name: lucid_dreams_aaa
-description: AAA Lucid Dreaming App â€“ Knowledge, Research, Studies Feed, Reading List (on-device), Apple-style UI.
+name: lucid_dreams_aaa
+description: Lucid – Klarträumen lernen. Geführtes Programm, Nachtmodus, Traumtagebuch und geprüftes Wissen. Alle Daten bleiben auf dem Gerät.
 publish_to: "none"
-version: 0.1.0+1
+version: 0.2.0+2
 
 environment:
   sdk: ">=3.3.0 <4.0.0"
@@ -9,21 +9,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   cupertino_icons: ^1.0.8
   audioplayers: ^5.2.1
+  just_audio: ^0.9.39
   flutter_markdown: ^0.6.18
-  flutter_svg: ^2.0.10+1
   path_provider: ^2.1.3
   shared_preferences: ^2.5.3
-  web_socket_channel: ^2.4.0
-  just_audio: ^0.9.39
-  workmanager: ^0.5.2
-  background_fetch: ^1.2.1
   share_plus: ^10.0.0
-  google_fonts: ^6.3.0
-  video_player: ^2.9.1
   http: ^1.2.1
-  dart_rss: ^3.0.2
   url_launcher: ^6.3.0
 
 dev_dependencies:
@@ -35,73 +30,22 @@ flutter:
   uses-material-design: false
 
   assets:
-    # Icons / UI
-    - assets/icons/
-    - assets/logo/logo-signet.svg
-    - assets/logo/logo-text.svg
-    - assets/logo/
-    - assets/brand/hero_bg.webp
-
-    # Slider (Bilder + Loops + Manifest)
-    - assets/slider/
-    - assets/slider/loops/
-
-    # Cues
+    # Töne für Wecksignal, Klangsignale und Reality-Check-Erinnerungen
     - assets/audio/cues/
     - assets/images/cue_categories/
 
-    # Affirmationen (einmal, nicht doppelt)
+    # Entspannung
     - assets/audio/affirmations/
-
-    # Meditations / Soundscapes
     - assets/meditations/manifest.json
-    - assets/meditations/
     - assets/meditations/tracks/
     - assets/meditations/covers/
-
-    # Wissen (sowohl einzelne Dateien als auch Ordner â€“ ist ok)
-    - assets/wissen/grundlagen_de.md
-    - assets/wissen/klartraum_grundlagen_de.md
-    - assets/wissen/techniken_de.md
-    - assets/wissen/neuro_sleep_de.md
-    - assets/wissen/journal_guide_de.md
-    - assets/wissen/albtraeume_irt_de.md
-    - assets/wissen/wearables_erkennung_de.md
-    - assets/wissen/ethik_risiken_de.md
-    - assets/wissen/troubleshooting_de.md
-    - assets/wissen/faq_de.md
-    - assets/wissen/glossar_de.md
-    - assets/wissen/quellen_zitate_de.md
-    - assets/wissen/quellen_zitate_de.md
-    - assets/wissen_en/basics_en.md
-    - assets/wissen_en/techniques_en.md
-    - assets/wissen_en/neuro_sleep_en.md
-    - assets/wissen_en/journal_guide_en.md
-    - assets/wissen_en/nightmare_irt_en.md
-    - assets/wissen_en/wearables_detection_en.md
-    - assets/wissen_en/ethics_risks_en.md
-    - assets/wissen_en/troubleshooting_en.md
-    - assets/wissen_en/faq_en.md
-    - assets/wissen_en/glossary_en.md
-    - assets/wissen_en/citations_en.md
-    - assets/wissen/
-    - assets/wissen_en/
-
-    # Traumreisen
-    - assets/traumreisen/
+    - assets/traumreisen/manifest.json
     - assets/traumreisen/images/
     - assets/traumreisen/audio/
 
-    # Quizzes / Checklisten / Feed
-    - assets/quizzes/techniken_de.json
-    - assets/checklists/pre_night_de.json
-    - assets/feed/sources.json
-    - assets/feed/curated.json
-    - assets/feed/curated.json
-    - assets/feed/curated.json
-
-    # Fonts
-    - assets/fonts/DMSans-Light.ttf
+    # Wissen und Studien-Feed
+    - assets/wissen/
+    - assets/feed/
 
   fonts:
     - family: DM Sans

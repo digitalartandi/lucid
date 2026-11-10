@@ -1,128 +1,80 @@
-\# Methoden \& Training
+# Techniken im Vergleich
 
+Nicht alles, was in Foren empfohlen wird, hält einer Prüfung stand. Diese Übersicht ordnet die bekanntesten Techniken nach dem Stand der Forschung im November 2026. Die Schritt-für-Schritt-Anleitungen findest du unter „Üben“.
 
+## Auf einen Blick
 
-Was sind Reality-Checks (RC) – und welche wirken?
+| Technik | Belegt? | Kostet Schlaf? |
+|---|---|---|
+| Traumtagebuch | Gut, als Grundlage | Nein |
+| MILD | Gut | Nur mit Wecker |
+| WBTB (Wachphase) | Gut, zusammen mit MILD | Ja |
+| SSILD | Vielversprechend | Nur mit Wecker |
+| Klangsignale (TLR) | Vielversprechend, zu Hause unsicher | Möglich |
+| Reality-Checks | Allein zu schwach | Nein |
+| WILD | Wenig Daten | Ja |
 
-RCs prüfen, ob du träumst, indem sie Traumlogik entlarven. Zuverlässig sind vor allem Nase zuhalten und durchatmen, Text oder digitale Uhr zweimal lesen, Finger zählen oder Finger durch die Handfläche drücken, Gedächtnis-Lücken prüfen nach dem Motto „Wie bin ich hierhergekommen?“. Wichtig ist, achtsam und kontextbasiert zu prüfen, also bei echten Hinweisen auf Traumlogik, statt mechanisch alle 30 Minuten. Reine Lichtschalter-Tests sind im Traum oft uneinheitlich und als alleinige Methode unzuverlässig. Hintergrund: RCs schulen metakognitive Überwachung und prospektives Gedächtnis; ihre Wirksamkeit steigt, wenn sie mit klarer Erwartung und anschließender Intention kombiniert werden.
+## MILD: die am besten belegte Technik
 
+Bei MILD setzt du beim Wiedereinschlafen eine Absicht für die Zukunft: Wenn ich das nächste Mal träume, erkenne ich es. Dazu stellst du dir vor, wie du in einem gerade erinnerten Traum klar wirst.
 
+Die Übersichtsarbeit von 2023 wertete 19 Studien aus und fand MILD am wirksamsten. Zwei Details entscheiden:
 
-Wie funktioniert MILD?
+- **Zeitpunkt:** nach etwa fünf Stunden Schlaf, nicht beim ersten Einschlafen am Abend.
+- **Einschlafen:** Wer nach MILD innerhalb von fünf Minuten wieder einschlief, hatte in 45,8 % der Versuche einen Klartraum.
 
-MILD bedeutet „Mnemonic Induction of Lucid Dreams“. Nach dem Aufwachen aus einem Traum erinnerst du die Szene so lebhaft wie möglich und setzt eine klare Absicht: „Beim nächsten Traum erkenne ich, dass ich träume.“ Ergänze das durch kurzes mentales Wiederabspielen der Traumszene inklusive des Moments, in dem du klar wirst. Am besten funktioniert MILD nach einem längeren Schlafblock oder zusammen mit WBTB. Hintergrund: MILD nutzt prospektives Gedächtnis. Studien zeigen erhöhte Klartraumraten, wenn gute Traumerinnerung, klare Formulierungen und ausreichender Schlaf zusammenkommen.
+Quellen: [Tan & Fan 2023](https://doi.org/10.1111/jsr.13786), [Aspy 2020](https://doi.org/10.3389/fpsyg.2020.01746)
 
+## WBTB: der Rahmen
 
+Wake Back To Bed heißt: nach fünf bis sechs Stunden aufwachen, kurz wach bleiben, weiterschlafen. Im Schlaflabor wurden Teilnehmende nach sechs Stunden geweckt, beschäftigten sich eine Stunde mit ihren Träumen und übten MILD. In drei Durchgängen hatten 54 %, 53 % und 36 % danach einen Klartraum, obwohl sie nicht nach Vorerfahrung ausgewählt waren. Lasen sie stattdessen ein Buch, waren es 9 %; nach einem Videospiel gab es keinen.
 
-Was ist WBTB (Wake-Back-To-Bed)?
+Die Wachphase allein reicht also nicht. Sie wirkt, weil du sie für Traumarbeit und Absicht nutzt.
 
-Nach etwa 4,5 bis 6 Stunden Schlaf stellst du dir einen Wecker, bleibst 10 bis 60 Minuten wach, liest zum Thema oder planst den nächsten Versuch und schläfst dann wieder ein. Dadurch triffst du auf REM-reiche Schlafphasen bei gleichzeitig erhöhter Wachheit. Empfehlung: zwei- bis dreimal pro Woche. Hintergrund: Nach mehreren Schlafzyklen verlängern sich REM-Phasen, und leichte Aktivierung fördert metakognitive Momente. Zu langes Wachbleiben oder tägliches WBTB kann den Schlaf stören.
+Quelle: [Erlacher & Stumbrys 2020](https://doi.org/10.3389/fpsyg.2020.01383)
 
+## SSILD: die Alternative
 
+Statt eines Satzes wanderst du mit der Aufmerksamkeit mehrmals durch Sehen, Hören und Körpergefühl und schläfst dann ein. In der internationalen Studie mit 355 Teilnehmenden war SSILD ähnlich wirksam wie MILD. Eine Mischung aus beiden brachte keinen Vorteil. Eine vorregistrierte Studie an drei Schlaflaboren kombinierte SSILD 2026 mit Sinnesreizen im REM-Schlaf und erreichte hohe Klartraumraten, auch bei Menschen, die selten klar träumen.
 
-Funktioniert SSILD?
+Quellen: [Aspy 2020](https://doi.org/10.3389/fpsyg.2020.01746), [Multi-Center-Studie](https://doi.org/10.1101/2024.06.21.600133)
 
-Für viele ja. Du wechselst im Halbschlaf in kurzen Zyklen durch Fühlen, Hören, Sehen und lässt die Aufmerksamkeit locker. Optimal in Kombination mit WBTB. Hintergrund: SSILD stabilisiert die Aufmerksamkeit auf wechselnde Sinneskanäle, was Mikro-Erwachtheitsmomente im REM begünstigen kann. Die Evidenz ist vorläufiger als bei MILD, die Methode ist aber praktisch gut erprobt.
+## Klangsignale: im Labor stark, zu Hause offen
 
+Bei Targeted Lucidity Reactivation (TLR) verknüpfst du vor dem Schlafen einen Ton mit wacher, prüfender Aufmerksamkeit. Derselbe Ton wird später im REM-Schlaf leise abgespielt.
 
+- **Labor:** Mit Schlafmessung wurden 50 % der Teilnehmenden in einem einzigen Morgenschlaf nachweislich klar, ohne Töne 17 %.
+- **Smartphone:** In einer ersten Studie stieg die Zahl der Klarträume von 0,74 auf 2,11 pro Woche. Im kontrollierten zweiten Teil zeigte sich der Vorteil der trainierten Töne in der zweiten Nacht, über alle Nächte aber nicht eindeutig. Die Töne weckten häufig auf.
+- **Zusatznutzen:** Die Multi-Center-Studie von 2026 fand keinen klaren Vorteil der Töne gegenüber dem Training allein.
 
-Was ist WILD?
+Für die App heißt das: Klangsignale sind als Experiment gekennzeichnet. Ohne Schlafmessung trifft ein Smartphone die Traumphasen nur ungefähr.
 
-„Wake Initiated Lucid Dream“. Du überträgst Bewusstheit direkt vom Wachzustand in den Traum, meist nach WBTB oder während eines Nickerchens. Vorgehen: Körper entspannen, Atem ruhig lassen, gedankliches Ankern oder sanfte Imagination nutzen und passiv durch Hypnagogie gleiten. Hintergrund: WILD erfordert ein feines Gleichgewicht zwischen Wachheit und Einschlafen. Häufige Begleitphänomene sind Hypnagogie oder Schlafparalyse; beides ist harmlos, wenn du ruhig bleibst und den Fokus auf Sinnesdetails richtest.
+Quellen: [Carr et al. 2023](https://doi.org/10.1037/cns0000227), [Konkoly et al. 2024](https://doi.org/10.1016/j.concog.2024.103759), [Multi-Center-Studie](https://doi.org/10.1101/2024.06.21.600133)
 
+## Reality-Checks: guter Begleiter, schwacher Solist
 
+Tagsüber prüfen, ob man träumt, ist die bekannteste Technik. Als einzige Methode zeigte sie in mehreren Studien über ein bis zwei Wochen keinen messbaren Effekt. Ein Grund: Der Alltag fühlt sich selten traumartig an, die Prüfung wird zur Routine.
 
-Welche Tagesgewohnheiten helfen?
+Dazu passt eine kleine Studie von 2026 mit 38 Teilnehmenden: Wer Reality-Checks in bizarren, traumähnlichen VR-Szenen übte und meditierte, berichtete mehr klare und halbklare Träume (26) als die Gruppen ohne VR (11) oder mit realistischen VR-Szenen (4). Die Studie ist klein, und der Anteil der Meditation lässt sich nicht trennen.
 
-Traumtagebuch führen, drei bis sechs sinnvolle RC-Gelegenheiten pro Tag, kurze Achtsamkeits-Pausen, Wenn-dann-Intentionen, gute Schlafhygiene, moderater Koffein- und Alkoholkonsum, regelmäßige Bettzeiten. Hintergrund: Diese Gewohnheiten verbessern Traumerinnerung, metakognitive Sensibilität und Schlafqualität – die drei Grundpfeiler für häufiger Klarheit.
+Sinnvoll bleiben Reality-Checks als Ergänzung: an persönlichen Traumzeichen und nach jedem Aufwachen.
 
+Quellen: [Aspy 2020](https://doi.org/10.3389/fpsyg.2020.01746), [Signorelli et al. 2026](https://doi.org/10.3389/fpsyg.2026.1924370)
 
+## Was die App nicht empfiehlt
 
-Wie setze ich Audio- oder Licht-Cues ein?
+**Galantamin.** In einer placebokontrollierten Studie mit 121 erfahrenen Teilnehmenden hatten mit 4 mg 27 % und mit 8 mg 42 % einen Klartraum, mit Placebo 14 %, jeweils zusammen mit Wachphase und MILD. Galantamin ist ein verschreibungspflichtiges Medikament gegen Alzheimer-Demenz. Selbstversuche sind keine gute Idee.
 
-Leise, kurz und spät in der Nacht, ideal im REM-Fenster. Zwischen den Signalen mindestens fünf bis zehn Minuten Abstand. Ziel ist Erinnerung, nicht Aufwecken. Hintergrund: Cues wirken besser, wenn sie tagsüber mit einer klaren Bedeutung verknüpft wurden und nachts in REM fallen. Geräte, die Augenbewegungen erkennen, helfen beim Timing; andernfalls orientierst du dich an den typischen REM-Zeiten ab 4,5 Stunden.
+**Hirnstimulation.** Eine Studie von 2014 berichtete mehr Klarheit nach schwacher Wechselstrom-Stimulation mit 40 Hertz. Ein Wiederholungsversuch 2020 konnte das nicht bestätigen. Geräte für zu Hause sind nicht belegt.
 
+Quellen: [LaBerge et al. 2018](https://doi.org/10.1371/journal.pone.0201246), [Voss et al. 2014](https://doi.org/10.1038/nn.3719)
 
+## Welche Reihenfolge?
 
-Was ist Targeted Memory Reactivation (TMR)?
+1. Traumtagebuch, bis du an den meisten Morgen etwas erinnerst.
+2. MILD beim Einschlafen und bei natürlichem Aufwachen.
+3. An zwei bis drei Nächten pro Woche eine kurze Wachphase mit MILD.
+4. Wenn MILD dir nicht liegt: SSILD an denselben Nächten.
+5. Klangsignale nur als Experiment, wenn alles andere sitzt.
 
-Inhalte, die du vor dem Schlaf mit einem Ton oder Geruch verknüpft hast, werden im Schlaf durch denselben Reiz subtil reaktiviert. Das kann Trauminhalte oder Signale verstärken, ist aber keine garantierte Abkürzung zur Klarheit. Hintergrund: TMR verbessert vor allem Gedächtniskonsolidierung. Für Lucidity wirkt TMR indirekt, etwa wenn du damit die Erinnerung an deine Wenn-dann-Absicht oder Traumzeichen anstößt.
-
-
-
-Wie verhindere ich, dass WBTB den Schlaf stört?
-
-Wachzeit kurz halten, warmes, gedimmtes Licht ohne blaues Spektrum, keine spannenden Medien, nicht jede Nacht. Qualität vor Quantität. Hintergrund: Schlafdruck und zirkadiane Phase bestimmen deinen REM-Zugang. Ein schlaffreundliches Setting erhält beides.
-
-
-
-Wie messe ich Fortschritt?
-
-Wöchentliche Traumerinnerungen, RC-Treffer mit echtem Traumhinweis, Klarträume pro Monat, Dauer und Stabilität, Erreichen von Traumzielen, subjektive Schlafqualität. Kurz in App oder Journal erfassen. Hintergrund: Messbare Marker verhindern Überfokussierung auf seltene Volltreffer und zeigen stetige Basisfortschritte.
-
-
-
-Umgang mit falschem Erwachen
-
-Nach dem Aufwachen sofort einen zusätzlichen RC in die Routine einbauen, etwa Text doppelt lesen oder Nase zuhalten. Hintergrund: Falsche Erwachungen sind häufige Vorhöfe von Lucidity; ein automatisierter RC beim Aufstehen fängt viele davon ab.
-
-
-
-Stabilisieren statt aufwachen – konkret
-
-Hände reiben, leicht rotieren, Blick auf Details richten, Gegenstände aktiv tasten, inneren Kommentar wie „klar bleiben“ sprechen, danach sanft zur Handlung zurückkehren. Hintergrund: Starke Emotionen destabilisieren. Sensorische Einbindung und zielgerichtete, ruhige Aktivität verlängern die Traumszene.
-
-
-
-Welche Methode passt zu mir?
-
-Solider Start ist MILD plus RC plus Journal, ergänzt durch WBTB zwei- bis dreimal pro Woche. Später SSILD testen; WILD für geübte Schläfer oder Nickerchen. Bei empfindlichem Schlaf eher MILD, SSILD und Tagespraxis; bei guter Schlaftoleranz punktuell WBTB und WILD. Hintergrund: Chronotyp, Schlafempfindlichkeit und Traumerinnerung bestimmen die Auswahl. Iterativ optimieren.
-
-
-
-Wie formuliere ich wirksame Intentionen?
-
-Konkrete Wenn-dann-Sätze wie „Wenn etwas unlogisch ist, mache ich einen RC“. Abends drei bis fünf Wiederholungen, jeweils mit kurzer, bildhafter Verknüpfung. Hintergrund: „Implementation Intentions“ erhöhen die Abrufwahrscheinlichkeit genau in der Ziel-Situation, also bei Traumzeichen.
-
-
-
-Häufige Hindernisse
-
-Ungeduld, zu viele Methoden gleichzeitig, Schlafmangel, mechanische RCs ohne echtes Prüfen, fehlende Auswertung. Lösung: Fokus halten, Schlaf priorisieren, Kleinstgewohnheiten etablieren, wöchentlich Review. Hintergrund: Motivation und Erwartungshaltung wirken stark; nachhaltige Routinen schlagen Einmalaktionen.
-
-
-
-Nutzen von Meditation und Sport
-
-Achtsamkeitstraining stärkt Metakognition und Emotionsregulation; regelmäßiger, moderater Ausdauersport verbessert Schlafqualität und damit REM-Zugänge. Hintergrund: Indirekte, aber robuste Effekte; abends sehr intensive Workouts können das Einschlafen verzögern.
-
-
-
-Journal, RC und Trainer sinnvoll kombinieren
-
-Morgens zwei bis drei Stichworte plus eine markante Szene, tagsüber RC-Mikromomente an echten Hinweisen, abends kurzer Block mit MILD oder SSILD, wöchentlich Review mit Anpassung der Traumzeichen-Liste. Hintergrund: Verteilter, kurzer Input ist lernpsychologisch effektiver als seltene lange Sessions.
-
-
-
-Was ist ein persönlicher Cue-Katalog?
-
-Eine kurze Liste leiser, bedeutungsvoller Reize oder Wörter mit zugehörigem Bedeutungsanker („Ich träume, prüfe“). Vor dem Schlafen verknüpfen, nachts sparsam einsetzen. Hintergrund: Personalisierte Reize werden leichter verarbeitet als generische Alarme und stören den Schlaf weniger.
-
-
-
-Wie lange dauert eine gute Einheit?
-
-Kurz und häufig schlägt lang und selten. Fünf bis zehn Minuten abends plus RC-Mikros über den Tag sind meist ausreichend. Hintergrund: Spacing-Effekt und geringe Aktivierungsbarrieren unterstützen die Regelmäßigkeit.
-
-
-
-Häufige Fehler vermeiden
-
-Alles gleichzeitig ausprobieren, zu laute oder zu häufige Cues, Schlaf ignorieren, kein Review, nur App statt eigener Reflexion. Besser: Hypothese bilden, gezielt testen, messen, anpassen. Hintergrund: So arbeitest du empirisch an dir selbst und vermeidest Scheinfortschritte.
-
-
-
-Kurzquellen zur Vertiefung
-
-LaBerge: MILD und frühe Klartraumforschung; Stumbrys et al. 2012 Meta-Analyse; Aspy et al. zu MILD und Implementation Intentions; Übersichten zu TMR und Gedächtnis; Konkoly et al. 2021 zu Kommunikation mit Klarträumenden.
-
+Das Programm der App folgt genau dieser Reihenfolge.
