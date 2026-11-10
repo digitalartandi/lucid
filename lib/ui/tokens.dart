@@ -40,9 +40,9 @@ class LC {
   static const Color redLine = Color(0xFF2A0E0D);
 
   // Glasflächen über dem Sternenhintergrund
-  static const Color glass = Color(0xB8171B38);
+  static const Color glass = Color(0x99171B38);
   static const Color glassHi = Color(0xCC20254C);
-  static const Color glassLine = Color(0x24C9CCFF);
+  static const Color glassLine = Color(0x14C9CCFF);
   static const Color bar = Color(0xD90B0D1F);
 
   // Himmel: Grundverlauf und Lichtschleier
@@ -77,8 +77,8 @@ class LS {
 class LRad {
   LRad._();
   static const BorderRadius sm = BorderRadius.all(Radius.circular(10));
-  static const BorderRadius md = BorderRadius.all(Radius.circular(16));
-  static const BorderRadius lg = BorderRadius.all(Radius.circular(24));
+  static const BorderRadius md = BorderRadius.all(Radius.circular(20));
+  static const BorderRadius lg = BorderRadius.all(Radius.circular(28));
   static const BorderRadius pill = BorderRadius.all(Radius.circular(999));
 }
 

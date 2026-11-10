@@ -325,10 +325,17 @@ class _TaskRow extends StatelessWidget {
             semanticLabel: done ? 'Als offen markieren' : 'Als erledigt markieren',
             child: Padding(
               padding: const EdgeInsets.only(right: LS.md, top: 4, bottom: 4),
-              child: Icon(
-                done ? CupertinoIcons.checkmark_circle_fill : CupertinoIcons.circle,
-                color: done ? LC.mint : LC.faint,
-                size: 26,
+              child: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 260),
+                switchInCurve: Curves.easeOutBack,
+                transitionBuilder: (Widget child, Animation<double> anim) =>
+                    ScaleTransition(scale: anim, child: FadeTransition(opacity: anim, child: child)),
+                child: Icon(
+                  done ? CupertinoIcons.checkmark_circle_fill : CupertinoIcons.circle,
+                  key: ValueKey<bool>(done),
+                  color: done ? LC.mint : LC.faint,
+                  size: 26,
+                ),
               ),
             ),
           ),

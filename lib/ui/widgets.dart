@@ -62,25 +62,86 @@ class LPage extends StatelessWidget {
   }
 }
 
-/// Nachthimmel hinter allen Seiten: tiefer Verlauf, zwei weiche Lichtschleier,
-/// wenige feste Sterne. Wird einmal gemalt und nicht animiert.
-class LBackdrop extends StatelessWidget {
+/// Ob Bewegung reduziert werden soll (Systemeinstellung).
+bool reduceMotion(BuildContext context) => MediaQuery.of(context).disableAnimations;
+
+/// Nachthimmel hinter allen Seiten: tiefer Verlauf, weiche Lichtschleier, die
+/// sehr langsam wandern, und wenige Sterne, die leise funkeln.
+class LBackdrop extends StatefulWidget {
   const LBackdrop({super.key});
 
   @override
+  State<LBackdrop> createState() => _LBackdropState();
+}
+
+class _LBackdropState extends State<LBackdrop> with SingleTickerProviderStateMixin {
+  late final AnimationController _drift = AnimationController(
+    vsync: this,
+    duration: const Duration(seconds: 80),
+  );
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (reduceMotion(context)) {
+      _drift.stop();
+    } else if (!_drift.isAnimating) {
+      _drift.repeat();
+    }
+  }
+
+  @override
+  void dispose() {
+    _drift.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const RepaintBoundary(
-      child: CustomPaint(painter: _SkyPainter(), size: Size.infinite),
+    return RepaintBoundary(
+      child: CustomPaint(painter: _SkyPainter(_drift), size: Size.infinite),
     );
   }
 }
 
+class _Star {
+  const _Star(this.x, this.y, this.r, this.alpha, this.speed, this.phase);
+  final double x; // 0..1
+  final double y; // 0..1
+  final double r;
+  final double alpha;
+  final int speed; // ganze Zahl, damit die Schleife nahtlos bleibt
+  final double phase;
+}
+
+List<_Star> _makeStars() {
+  final math.Random rnd = math.Random(7);
+  return <_Star>[
+    for (int i = 0; i < 90; i++)
+      _Star(
+        rnd.nextDouble(),
+        // Oben dichter als unten.
+        math.pow(rnd.nextDouble(), 1.7).toDouble(),
+        0.4 + rnd.nextDouble() * 0.8,
+        0.10 + rnd.nextDouble() * 0.34,
+        // Nur jeder dritte Stern funkelt.
+        i % 3 == 0 ? 6 + rnd.nextInt(9) : 0,
+        rnd.nextDouble(),
+      ),
+  ];
+}
+
+final List<_Star> _stars = _makeStars();
+
 class _SkyPainter extends CustomPainter {
-  const _SkyPainter();
+  _SkyPainter(this.t) : super(repaint: t);
+
+  final Animation<double> t;
 
   @override
   void paint(Canvas canvas, Size size) {
     final Rect rect = Offset.zero & size;
+    final double a = t.value * 2 * math.pi;
     canvas.drawRect(
       rect,
       Paint()
@@ -104,21 +165,16 @@ class _SkyPainter extends CustomPainter {
       );
     }
 
-    veil(const Alignment(-0.9, -0.75), 0.9, LC.veilViolet, 0.22);
-    veil(const Alignment(1.1, -0.2), 0.8, LC.veilTeal, 0.10);
-    veil(const Alignment(0.2, 1.15), 0.9, LC.veilRose, 0.10);
+    veil(Alignment(-0.9 + 0.22 * math.sin(a), -0.75 + 0.10 * math.cos(a)), 0.95, LC.veilViolet, 0.17);
+    veil(Alignment(1.1 + 0.18 * math.cos(a + 1.3), -0.2 + 0.16 * math.sin(a + 1.3)), 0.85, LC.veilTeal, 0.07);
+    veil(Alignment(0.2 + 0.25 * math.sin(a + 2.6), 1.15 + 0.08 * math.cos(a + 2.6)), 0.95, LC.veilRose, 0.07);
 
-    // Sterne: feste Zufallsfolge, damit der Himmel auf jeder Seite gleich aussieht.
-    final math.Random rnd = math.Random(7);
     final Paint star = Paint();
-    final int count = (size.width * size.height / 9000).clamp(40, 220).toInt();
-    for (int i = 0; i < count; i++) {
-      final double x = rnd.nextDouble() * size.width;
-      // Oben dichter als unten.
-      final double y = math.pow(rnd.nextDouble(), 1.6).toDouble() * size.height;
-      final double r = 0.4 + rnd.nextDouble() * 0.9;
-      star.color = const Color(0xFFE6E8FF).withValues(alpha: 0.18 + rnd.nextDouble() * 0.5);
-      canvas.drawCircle(Offset(x, y), r, star);
+    for (final _Star s in _stars) {
+      final double twinkle =
+          s.speed == 0 ? 1 : 0.55 + 0.45 * math.sin(a * s.speed + s.phase * 2 * math.pi);
+      star.color = const Color(0xFFE6E8FF).withValues(alpha: s.alpha * twinkle);
+      canvas.drawCircle(Offset(s.x * size.width, s.y * size.height), s.r, star);
     }
   }
 
@@ -126,8 +182,9 @@ class _SkyPainter extends CustomPainter {
   bool shouldRepaint(_SkyPainter oldDelegate) => false;
 }
 
-/// Scrollbarer Seiteninhalt mit einheitlichen Rändern.
-class LScroll extends StatelessWidget {
+/// Scrollbarer Seiteninhalt mit einheitlichen Rändern. Beim ersten Erscheinen
+/// blenden die Abschnitte nacheinander von unten ein.
+class LScroll extends StatefulWidget {
   const LScroll({super.key, required this.children, this.controller, this.top = LS.lg});
 
   final List<Widget> children;
@@ -135,12 +192,71 @@ class LScroll extends StatelessWidget {
   final double top;
 
   @override
+  State<LScroll> createState() => _LScrollState();
+}
+
+class _LScrollState extends State<LScroll> with SingleTickerProviderStateMixin {
+  late final AnimationController _enter = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 900),
+  );
+  bool _started = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_started) return;
+    _started = true;
+    if (reduceMotion(context)) {
+      _enter.value = 1;
+    } else {
+      _enter.forward();
+    }
+  }
+
+  @override
+  void dispose() {
+    _enter.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final double bottom = MediaQuery.of(context).padding.bottom + 96;
     return ListView(
-      controller: controller,
-      padding: EdgeInsets.fromLTRB(LS.page, top, LS.page, bottom),
-      children: children,
+      controller: widget.controller,
+      padding: EdgeInsets.fromLTRB(LS.page, widget.top, LS.page, bottom),
+      children: <Widget>[
+        for (int i = 0; i < widget.children.length; i++)
+          _Reveal(animation: _enter, index: i, child: widget.children[i]),
+      ],
+    );
+  }
+}
+
+/// Einblenden mit leichtem Aufsteigen, gestaffelt nach Position.
+class _Reveal extends StatelessWidget {
+  const _Reveal({required this.animation, required this.index, required this.child});
+
+  final Animation<double> animation;
+  final int index;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    final double start = (index > 7 ? 7 : index) * 0.07;
+    final Interval curve = Interval(start, math.min(1.0, start + 0.5), curve: Curves.easeOutCubic);
+    return AnimatedBuilder(
+      animation: animation,
+      child: child,
+      builder: (BuildContext context, Widget? child) {
+        final double v = curve.transform(animation.value);
+        if (v >= 1) return child!;
+        return Opacity(
+          opacity: v,
+          child: Transform.translate(offset: Offset(0, (1 - v) * 16), child: child),
+        );
+      },
     );
   }
 }
@@ -239,10 +355,15 @@ class _LTapState extends State<LTap> {
         onTapDown: (_) => _set(true),
         onTapUp: (_) => _set(false),
         onTapCancel: () => _set(false),
-        child: AnimatedOpacity(
-          duration: const Duration(milliseconds: 90),
-          opacity: _down ? 0.6 : 1,
-          child: widget.child,
+        child: AnimatedScale(
+          duration: const Duration(milliseconds: 140),
+          curve: Curves.easeOut,
+          scale: _down ? 0.975 : 1,
+          child: AnimatedOpacity(
+            duration: const Duration(milliseconds: 140),
+            opacity: _down ? 0.75 : 1,
+            child: widget.child,
+          ),
         ),
       ),
     );
@@ -370,9 +491,9 @@ class LButton extends StatelessWidget {
             boxShadow: glow
                 ? <BoxShadow>[
                     BoxShadow(
-                      color: bg.withValues(alpha: 0.35),
-                      blurRadius: 24,
-                      offset: const Offset(0, 8),
+                      color: bg.withValues(alpha: 0.20),
+                      blurRadius: 28,
+                      offset: const Offset(0, 10),
                     ),
                   ]
                 : null,
@@ -406,7 +527,9 @@ class LChip extends StatelessWidget {
     final Color fg = selected ? LC.night : LC.text;
     return LTap(
       onTap: onTap,
-      child: Container(
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 220),
+        curve: Curves.easeOut,
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
         decoration: BoxDecoration(
           color: selected ? tone : LC.glass,
@@ -610,9 +733,15 @@ class LRing extends StatelessWidget {
     return SizedBox(
       width: size,
       height: size,
-      child: CustomPaint(
-        painter: _RingPainter(value.clamp(0.0, 1.0).toDouble(), stroke, color, track),
+      child: TweenAnimationBuilder<double>(
+        tween: Tween<double>(begin: 0, end: value.clamp(0.0, 1.0).toDouble()),
+        duration: reduceMotion(context) ? Duration.zero : const Duration(milliseconds: 700),
+        curve: Curves.easeOutCubic,
         child: Center(child: child),
+        builder: (BuildContext context, double v, Widget? inner) => CustomPaint(
+          painter: _RingPainter(v, stroke, color, track),
+          child: inner,
+        ),
       ),
     );
   }
@@ -690,7 +819,11 @@ class LBars extends StatelessWidget {
                     height: height,
                     child: Align(
                       alignment: Alignment.bottomCenter,
-                      child: Container(
+                      child: AnimatedContainer(
+                        duration: reduceMotion(context)
+                            ? Duration.zero
+                            : Duration(milliseconds: 500 + 60 * i),
+                        curve: Curves.easeOutCubic,
                         height: math.max(4.0, height * values[i].clamp(0.0, 1.0).toDouble()),
                         decoration: BoxDecoration(
                           color: (i < highlights.length && highlights[i])
@@ -834,50 +967,91 @@ class LField extends StatelessWidget {
 }
 
 /// Bühnenfläche mit Bild: für die eine Sache, die auf einer Seite zählt.
-/// Das Bild liegt unter einem Verlauf, damit Text immer lesbar bleibt.
-class LHero extends StatelessWidget {
+/// Das Bild liegt unter einem Verlauf und bewegt sich kaum merklich.
+class LHero extends StatefulWidget {
   const LHero({
     super.key,
     required this.image,
     required this.child,
     this.alignment = Alignment.center,
-    this.minHeight = 0,
   });
 
   final String image;
   final Widget child;
   final Alignment alignment;
-  final double minHeight;
+
+  @override
+  State<LHero> createState() => _LHeroState();
+}
+
+class _LHeroState extends State<LHero> with SingleTickerProviderStateMixin {
+  late final AnimationController _zoom = AnimationController(
+    vsync: this,
+    duration: const Duration(seconds: 26),
+  );
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (reduceMotion(context)) {
+      _zoom.stop();
+    } else if (!_zoom.isAnimating) {
+      _zoom.repeat(reverse: true);
+    }
+  }
+
+  @override
+  void dispose() {
+    _zoom.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: LRad.lg,
-      child: Container(
-        constraints: BoxConstraints(minHeight: minHeight),
-        decoration: BoxDecoration(
-          color: LC.surface,
-          image: DecorationImage(
-            image: AssetImage(image),
-            fit: BoxFit.cover,
-            alignment: alignment,
-          ),
-        ),
-        foregroundDecoration: const BoxDecoration(
-          borderRadius: LRad.lg,
-          border: Border.fromBorderSide(BorderSide(color: LC.glassLine)),
-        ),
-        child: DecoratedBox(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: <Color>[Color(0x000B0D1F), Color(0x8C0B0D1F), Color(0xEB0B0D1F)],
-              stops: <double>[0, 0.5, 1],
+      child: Stack(
+        children: <Widget>[
+          Positioned.fill(
+            child: AnimatedBuilder(
+              animation: _zoom,
+              child: Image.asset(
+                widget.image,
+                fit: BoxFit.cover,
+                alignment: widget.alignment,
+                errorBuilder: (BuildContext context, Object error, StackTrace? stack) =>
+                    const ColoredBox(color: LC.surface),
+              ),
+              builder: (BuildContext context, Widget? image) => Transform.scale(
+                scale: 1.02 + 0.07 * Curves.easeInOut.transform(_zoom.value),
+                child: image,
+              ),
             ),
           ),
-          child: Padding(padding: const EdgeInsets.all(LS.xl), child: child),
-        ),
+          const Positioned.fill(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: <Color>[Color(0x000B0D1F), Color(0x8C0B0D1F), Color(0xEB0B0D1F)],
+                  stops: <double>[0, 0.5, 1],
+                ),
+              ),
+            ),
+          ),
+          Padding(padding: const EdgeInsets.all(LS.xl), child: widget.child),
+          const Positioned.fill(
+            child: IgnorePointer(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  borderRadius: LRad.lg,
+                  border: Border.fromBorderSide(BorderSide(color: LC.glassLine)),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -10,7 +10,9 @@ void main() {
     // Echte Ein-/Ausgabe (Journal-Ordner) abwarten, dann den Auftakt mit Wortmarke.
     await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 500)));
     await tester.pump(const Duration(seconds: 3));
-    await tester.pumpAndSettle();
+    // Der Sternenhimmel bewegt sich dauerhaft, deshalb feste Schritte statt pumpAndSettle.
+    await tester.pump(const Duration(seconds: 1));
+    await tester.pump(const Duration(seconds: 1));
 
     expect(find.text('Wach werden, während du träumst.'), findsOneWidget);
     expect(find.text('Weiter'), findsOneWidget);
