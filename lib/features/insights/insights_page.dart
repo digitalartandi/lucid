@@ -75,7 +75,9 @@ class InsightsPage extends StatelessWidget {
       title: 'Auswertung',
       child: LScroll(
         children: <Widget>[
-          Row(
+          IntrinsicHeight(
+            child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Expanded(
                 child: _Tile(
@@ -88,6 +90,7 @@ class InsightsPage extends StatelessWidget {
                 child: _Tile(value: '$lucidTotal', label: 'Klarträume insgesamt', color: LC.moon),
               ),
             ],
+          ),
           ),
           const SizedBox(height: LS.md),
           Text(trend(), style: LT.labelMuted),

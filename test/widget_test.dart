@@ -7,7 +7,8 @@ void main() {
   testWidgets('Erster Start zeigt die Einführung', (WidgetTester tester) async {
     SharedPreferences.setMockInitialValues(<String, Object>{});
     await tester.pumpWidget(const LucidApp());
-    // Auftakt mit Wortmarke abwarten.
+    // Echte Ein-/Ausgabe (Journal-Ordner) abwarten, dann den Auftakt mit Wortmarke.
+    await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 500)));
     await tester.pump(const Duration(seconds: 3));
     await tester.pumpAndSettle();
 

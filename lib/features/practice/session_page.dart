@@ -122,8 +122,12 @@ class _SessionPageState extends State<SessionPage> with SingleTickerProviderStat
     final SessionStep? step = (!intro && !finished) ? s.steps[_index] : null;
 
     return CupertinoPageScaffold(
-      backgroundColor: _bg,
-      child: SafeArea(
+      backgroundColor: widget.night ? _bg : LC.skyTop,
+      child: Stack(
+        fit: StackFit.expand,
+        children: <Widget>[
+          if (!widget.night) const LBackdrop(),
+          SafeArea(
         child: Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: LS.maxWidth),
@@ -240,6 +244,8 @@ class _SessionPageState extends State<SessionPage> with SingleTickerProviderStat
             ),
           ),
         ),
+      ),
+        ],
       ),
     );
   }

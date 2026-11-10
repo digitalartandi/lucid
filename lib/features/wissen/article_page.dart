@@ -66,14 +66,16 @@ class _ArticlePageState extends State<ArticlePage> {
       blockSpacing: 14,
       blockquote: p.copyWith(color: LC.text),
       blockquotePadding: const EdgeInsets.all(LS.lg),
-      blockquoteDecoration: const BoxDecoration(color: LC.surface, borderRadius: LRad.md),
+      blockquoteDecoration: const BoxDecoration(color: LC.glass, borderRadius: LRad.md),
       horizontalRuleDecoration: const BoxDecoration(
         border: Border(top: BorderSide(color: LC.line)),
       ),
-      tableHead: LT.label.copyWith(fontWeight: FontWeight.w700),
-      tableBody: LT.label,
-      tableBorder: TableBorder.all(color: LC.line),
-      tableCellsPadding: const EdgeInsets.all(LS.sm),
+      tableHead: LT.caption.copyWith(color: LC.text, fontWeight: FontWeight.w700, fontSize: 13),
+      tableBody: LT.caption.copyWith(color: LC.text, fontSize: 13),
+      tableBorder: TableBorder.all(color: LC.glassLine),
+      tableCellsPadding: const EdgeInsets.symmetric(horizontal: 6, vertical: LS.sm),
+      tableCellsDecoration: const BoxDecoration(color: LC.glass),
+      tableColumnWidth: const FlexColumnWidth(),
       code: p.copyWith(fontSize: 15, backgroundColor: LC.surface),
     );
   }

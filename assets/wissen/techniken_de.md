@@ -6,11 +6,11 @@ Nicht alles, was in Foren empfohlen wird, hält einer Prüfung stand. Diese Übe
 
 | Technik | Belegt? | Kostet Schlaf? |
 |---|---|---|
-| Traumtagebuch | Gut, als Grundlage | Nein |
+| Tagebuch | Gut, als Grundlage | Nein |
 | MILD | Gut | Nur mit Wecker |
-| WBTB (Wachphase) | Gut, zusammen mit MILD | Ja |
-| SSILD | Vielversprechend | Nur mit Wecker |
-| Klangsignale (TLR) | Vielversprechend, zu Hause unsicher | Möglich |
+| Wachphase (WBTB) | Gut, zusammen mit MILD | Ja |
+| SSILD | Aussichtsreich | Nur mit Wecker |
+| Klangsignale | Aussichtsreich, zu Hause unsicher | Möglich |
 | Reality-Checks | Allein zu schwach | Nein |
 | WILD | Wenig Daten | Ja |
 
