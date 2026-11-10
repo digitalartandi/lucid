@@ -21,3 +21,6 @@ web/
 # Generated
 pubspec.lock
 coverage/
+
+# Lokale Pruefung
+pruefung.txt
