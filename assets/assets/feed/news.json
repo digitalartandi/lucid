@@ -1,0 +1,86 @@
+[
+  {
+    "id": "medicalxpress-2026-lucid-therapy-review",
+    "title": "Lucid dreaming could be used for mental health therapy, new study says",
+    "summary": "Bericht über eine Übersichtsarbeit zu 38 Studien: Klarträumen könnte bei Albträumen und Traumafolgestörungen helfen. Die Autoren nennen die Befunde vorläufig.",
+    "link": "https://medicalxpress.com/news/2026-02-lucid-mental-health-therapy.html",
+    "source": "Medical Xpress",
+    "isStudy": false,
+    "published": "2026-02-09T00:00:00Z",
+    "imageUrl": null,
+    "tags": [
+      "Therapie",
+      "Review"
+    ]
+  },
+  {
+    "id": "northwestern-2024-tlr-app",
+    "title": "Pre-sleep training coupled with sensory cues can trigger lucid dreaming",
+    "summary": "Die Universität Northwestern über ihre Smartphone-Studie zu Klangsignalen und das Ziel, die Methode ohne Laborausstattung nutzbar zu machen.",
+    "link": "https://news.northwestern.edu/stories/2024/10/study-shows-pre-sleep-training-coupled-with-sensory-cues-can-trigger-lucid-dreaming-2",
+    "source": "Northwestern Now",
+    "isStudy": false,
+    "published": "2024-10-15T00:00:00Z",
+    "imageUrl": null,
+    "tags": [
+      "TLR",
+      "Smartphone"
+    ]
+  },
+  {
+    "id": "derstandard-2024-neue-methoden",
+    "title": "Neue Methoden können Klarträume auslösen",
+    "summary": "Deutschsprachiger Überblick zur gezielten Reaktivierung der Klarheit (TLR) und den Studien dahinter.",
+    "link": "https://www.derstandard.at/story/3000000244768/neue-methoden-koennen-klartraeume-ausloesen",
+    "source": "Der Standard",
+    "isStudy": false,
+    "published": "2024-11-01T00:00:00Z",
+    "imageUrl": null,
+    "tags": [
+      "TLR",
+      "Überblick"
+    ]
+  },
+  {
+    "id": "northwestern-2021-dialogue",
+    "title": "Real-time dialogue with a dreaming person is possible",
+    "summary": "Wie vier Labore zeigten, dass Klarträumende im REM-Schlaf Fragen beantworten können.",
+    "link": "https://news.northwestern.edu/stories/2021/02/lucid-dreams-ken-paller",
+    "source": "Northwestern Now",
+    "isStudy": false,
+    "published": "2021-02-18T00:00:00Z",
+    "imageUrl": null,
+    "tags": [
+      "Kommunikation",
+      "REM"
+    ]
+  },
+  {
+    "id": "adelaide-2020-ildis",
+    "title": "Learning lucid dreaming could help in isolation",
+    "summary": "Die Universität Adelaide zur internationalen Induktionsstudie: MILD und SSILD im Vergleich.",
+    "link": "https://www.adelaide.edu.au/newsroom/news/list/2020/07/20/learning-lucid-dreaming-could-help-in-isolation",
+    "source": "University of Adelaide",
+    "isStudy": false,
+    "published": "2020-07-20T00:00:00Z",
+    "imageUrl": null,
+    "tags": [
+      "MILD",
+      "SSILD"
+    ]
+  },
+  {
+    "id": "aasm-2018-nightmare-paper",
+    "title": "New position paper recommends treatment options for nightmare disorder in adults",
+    "summary": "Mitteilung der Fachgesellschaft zum Positionspapier: Welche Behandlungen bei Albträumen empfohlen werden.",
+    "link": "https://aasm.org/new-position-paper-recommends-treatment-options-for-nightmare-disorder-in-adults/",
+    "source": "American Academy of Sleep Medicine",
+    "isStudy": false,
+    "published": "2018-06-13T00:00:00Z",
+    "imageUrl": null,
+    "tags": [
+      "Albträume",
+      "IRT"
+    ]
+  }
+]
